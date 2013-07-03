@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Estadio {
-	private List<Sector> sectores = new ArrayList();
+	private List<Sector> sectores = new ArrayList<Sector>();
 	
 	public int vender(Entrada entrada){
 		return 1;

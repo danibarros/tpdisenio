@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Sector {
 	
-	private List<Fila> filas = new ArrayList();
 	char nombre;
+	private List<Fila> filas = new ArrayList<Fila>();
+	
 	public List<Fila> getFilas() {
 		return filas;
 	}
