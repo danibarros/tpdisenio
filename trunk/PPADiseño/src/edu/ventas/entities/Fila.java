@@ -8,6 +8,12 @@ public class Fila {
 	int numero;
 	private List<Butaca> butacas = new ArrayList<Butaca>();
 	
+	public Fila(int numero,List<Butaca> butacas){
+		numero=this.numero;
+		butacas=this.butacas;
+		
+	}
+	
 	public List<Butaca> getButacas() {
 		return butacas;
 	}

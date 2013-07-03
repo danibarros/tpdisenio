@@ -1,13 +1,15 @@
 package edu.ventas.entities;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Banda {
 
 	private String nombre;
 	private int categoria;
 
+	public Banda(String nombre,int categoria){
+		nombre=this.nombre;
+		categoria=this.categoria;
+		
+	}
 	
 	public int getCategoria() {
 		return categoria;

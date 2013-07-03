@@ -4,6 +4,12 @@ public class Butaca {
 	private boolean disponible;
 	private int numero;
 	
+	public Butaca(boolean disponible,int numero){
+		disponible=this.disponible;
+		numero=this.numero;
+		
+	}
+	
 	public boolean isDisponible() {
 		return disponible;
 	}
