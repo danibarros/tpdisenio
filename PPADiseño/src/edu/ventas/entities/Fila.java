@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Fila {
 	
-	private List<Butaca> butacas = new ArrayList();
 	int numero;
+	private List<Butaca> butacas = new ArrayList<Butaca>();
+	
 	public List<Butaca> getButacas() {
 		return butacas;
 	}
