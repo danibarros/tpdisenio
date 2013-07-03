@@ -9,7 +9,7 @@ public abstract class CentroDeVenta {
 	
 	public int vender(Entrada entrada)
 	{
-		return 0;
+		return 2;
 	}
 
 	public String getNombre() {
