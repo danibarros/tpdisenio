@@ -8,6 +8,11 @@ public class Sector {
 	char nombre;
 	private List<Fila> filas = new ArrayList<Fila>();
 	
+	public Sector(char nombre,List<Fila> filas){
+		nombre=this.nombre;
+		filas=this.filas;
+	}
+	
 	public List<Fila> getFilas() {
 		return filas;
 	}

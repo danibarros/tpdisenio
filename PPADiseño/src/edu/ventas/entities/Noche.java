@@ -11,13 +11,21 @@ public class Noche {
 	private int numeroDeNoches;
 	private Set<Banda> bandas = new HashSet<Banda>();
 	private Date horaInicio = new Date();
+	private Map<Integer,Integer> categorias = new HashMap<Integer,Integer>();
+	
+	public Noche(Map<Integer,Integer> categorias,int numeroDeNoches,Set<Banda> bandas,Date horaInicio){
+		bandas=this.bandas;
+		numeroDeNoches=this.numeroDeNoches;
+		categorias=this.categorias;
+		horaInicio=this.horaInicio;
+	}
+	
 	public Map<Integer, Integer> getCategorias() {
 		return categorias;
 	}
 	public void setCategorias(Map<Integer, Integer> categorias) {
 		this.categorias = categorias;
 	}
-	private Map<Integer,Integer> categorias = new HashMap<Integer,Integer>();
 	
 	public int getNumeroDeNoches() {
 		return numeroDeNoches;
