@@ -23,6 +23,4 @@ public class Butaca {
 		this.numero = numero;
 	}
 	
-	
-
 }

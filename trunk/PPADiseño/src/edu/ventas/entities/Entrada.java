@@ -1,11 +1,52 @@
 package edu.ventas.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Entrada {
 	private Butaca butaca;
+	private int precio;
 	private long codigoDeBarra;
 	private Festival festival;
 	private Noche noche;
 	private int numeroDeEntrada;
+	private Fila fila;
+	private Sector sector;
+	
+	public Entrada(int numeroDeEntrada, Butaca butaca, Fila fila, Sector sector,
+			long codigoDeBarra, Festival festival, Noche noche){
+		numeroDeEntrada = this.numeroDeEntrada;
+		butaca = this.butaca;
+		fila = this.fila;
+		sector = this.sector;
+		codigoDeBarra = this.codigoDeBarra;
+		festival = this.festival;
+		noche = this.noche;
+		precio = calcularPrecioBase(fila, sector);
+	}
+	
+	private int calcularPrecioBase(Fila fila, Sector sector){
+		return fila.getPrecioFila() + sector.getPrecioSector();
+	}
+	
+	public int getPrecio() {
+		return precio;
+	}
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	public Fila getFila() {
+		return fila;
+	}
+	public void setFila(Fila fila) {
+		this.fila = fila;
+	}
+	public Sector getSector() {
+		return sector;
+	}
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
 	public Butaca getButaca() {
 		return butaca;
 	}

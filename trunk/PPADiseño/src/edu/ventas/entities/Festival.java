@@ -9,6 +9,12 @@ public class Festival {
 	private Estadio estadio;
 	private List<Noche> noches = new ArrayList<Noche>();
 	
+	public Festival(String nombre,Estadio estadio,List<Noche> noches){
+		nombre = this.nombre;
+		estadio = this.estadio;
+		noches = this.noches;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
