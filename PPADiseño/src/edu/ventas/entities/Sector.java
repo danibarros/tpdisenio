@@ -5,12 +5,32 @@ import java.util.List;
 
 public class Sector {
 	
-	char nombre;
+	private String nombre;
 	private List<Fila> filas = new ArrayList<Fila>();
+	private int precioSector;
+	private char ubicacion;
 	
-	public Sector(char nombre,List<Fila> filas){
-		nombre=this.nombre;
-		filas=this.filas;
+	public Sector(String nombre,List<Fila> filas,int precioSector,char ubicacion){
+		nombre = this.nombre;
+		filas = this.filas;
+		precioSector = this.precioSector;
+		ubicacion = this.ubicacion;
+	}
+	
+	public char getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(char ubicacion) {
+		ubicacion = this.ubicacion;
+	}
+
+	public int getPrecioSector() {
+		return precioSector;
+	}
+
+	public void setPrecioSector(int precioSector) {
+		this.precioSector = precioSector;
 	}
 	
 	public List<Fila> getFilas() {
@@ -19,10 +39,10 @@ public class Sector {
 	public void setFilas(List<Fila> filas) {
 		this.filas = filas;
 	}
-	public char getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(char nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 

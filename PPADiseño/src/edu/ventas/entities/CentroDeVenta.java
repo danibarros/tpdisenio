@@ -28,6 +28,4 @@ public abstract class CentroDeVenta {
 		this.puntosDeVenta = puntosDeVenta;
 	}
 	
-	
-
 }
