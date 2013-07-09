@@ -74,7 +74,9 @@ public class Vendedor {
 		
 		Festival festival = new Festival("River Plate", estadio, noches);
 		
-		Entrada entrada = new Entrada(1,butaca,fila,sector,123123L,festival,noche1);
+		Entrada entrada = new Entrada(1,butaca ,fila2,sector,123123,festival,noche1);
+		
+		System.out.println(entrada);
 
 		
 	}
