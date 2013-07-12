@@ -41,6 +41,7 @@ public class Vendedor {
 			int numeroEntrada = this.generarCodigo();
 			
 			Entrada entrada = new Entrada(numeroEntrada,butaca ,fila,sector,123123,festival,noche,listaCategorias);
+			butaca.setDisponible(false);
 			
 			double precioFinal=this.realizarDescuento(edad,entrada);
 			

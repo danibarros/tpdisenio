@@ -1,5 +1,8 @@
 package edu.ventas.main;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 import edu.ventas.entities.Banda;
@@ -25,7 +29,7 @@ public class Main {
 
 	//private List<Butaca> butacas;
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, IOException {
 		
 		
 		
@@ -98,22 +102,61 @@ public class Main {
 		
 		//le mandamos la orden de vender() lo pedido.
 		
-		butaca.setDisponible(true);
 		
-
-		if(unVendedor.vender("Dani",22,butaca,fila,sector,festival,noche1,listaCategorias)){
+		BufferedReader lee = new BufferedReader(new InputStreamReader(System.in));
+		String apeYNom;
+		System.out.println("ingrese su nombre y apellido");
+		apeYNom = lee.readLine();
+		
+		int edad;
+		System.out.println("ingrese su edad");
+		edad=Integer.parseInt(lee.readLine());
+		
+		int numeroDeNoche;
+		System.out.println("ingrese numero de noche");
+		numeroDeNoche=Integer.parseInt(lee.readLine());
+		Noche nocheElegida;
+		nocheElegida=festival.getNoches().get(numeroDeNoche-1);
+		
+		Scanner leer=new Scanner(System.in);
+		char colorSectorElegido;
+		System.out.println("ingrese sector");
+		String aux=lee.readLine();
+		colorSectorElegido= aux.charAt(0);
+		
+		Sector sectorElegido =null;
+		
+		for (int i = 0; i < estadio.getSectores().size(); i++) {
+			if (estadio.getSectores().get(i).getUbicacion() == colorSectorElegido) {
+				 sectorElegido=estadio.getSectores().get(i);
+			}
+		}
+		
+		
+		System.out.println("ingrese numero de fila");
+		int numeroFila=Integer.parseInt(lee.readLine());
+		
+		Fila filaElegida;
+		filaElegida=sectorElegido.getFilas().get(numeroFila-1);
+		
+		
+		System.out.println("ingrese numero butaca");
+		int numeroButaca=Integer.parseInt(lee.readLine());
+		
+		Butaca butacaElegida;
+		
+		butacaElegida=filaElegida.getButacas().get(numeroButaca-1);
+		
+		
+		
+		
+		if(unVendedor.vender("apeYNom",edad,butacaElegida,filaElegida,sectorElegido,festival,nocheElegida,listaCategorias)){
 			System.out.println ("se realizo la venta");
 			
 		}else{
 			System.out.println ("no se vendio nada");
 		}
-		
-		
-		
 
-		
-		
-
-		
+				
 	}
 }
