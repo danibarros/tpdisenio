@@ -26,18 +26,22 @@ public class Entrada {
 		precio = calcularPrecioBase() + calcularPrecioExtra(categorias);
 	}
 
-	private int calcularPrecioBase(){
-		return fila.getPrecioFila() + sector.getPrecioSector();
-	}
+	
+	
 	
 	private int calcularPrecioExtra(Map <String,Integer> categorias ){
 		
 		return categorias.get(noche.mayorCategoria());
 	}
 	
+	public int calcularPrecioBase(){
+		return fila.getPrecioFila() + sector.getPrecioSector();
+	}
+	
 	public int getPrecio() {
 		return precio;
 	}
+
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}

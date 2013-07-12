@@ -94,8 +94,10 @@ public class Main {
 		
 		//le mandamos la orden de vender() lo pedido.
 		
-		
+
 		unVendedor.vender("Dani",22,butaca,fila,sector,festival,noche1,listaCategorias);
+		
+
 		
 		
 
