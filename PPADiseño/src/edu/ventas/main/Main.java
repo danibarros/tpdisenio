@@ -65,7 +65,7 @@ public class Main {
 		
 		Banda banda1 = new Banda("las patillas",1);
 		Banda banda2 = new Banda("ntvg",2);
-		Banda banda3 = new Banda("metallica",1);
+		Banda banda3 = new Banda("metallica",4);
 		Set<Banda> bandas = new HashSet<Banda>();
 		bandas.add(banda1);
 		bandas.add(banda2);
