@@ -3,15 +3,16 @@ package edu.ventas.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estadio  extends CentroDeVenta{
+public class Estadio extends CentroDeVenta {
+
 	private List<Sector> sectores = new ArrayList<Sector>();
-	
-	public Estadio(List<Sector> sectores, List<PuntoDeVenta> puntosDeVenta){
-		this.puntosDeVenta=puntosDeVenta;
-		this.sectores=sectores;
+
+	public Estadio(List<Sector> sectores, List<PuntoDeVenta> puntosDeVenta) {
+		this.puntosDeVenta = puntosDeVenta;
+		this.sectores = sectores;
 	}
-	
-	public int vender(Entrada entrada,PuntoDeVenta puntoDeVenta){
+
+	public int vender(Entrada entrada, PuntoDeVenta puntoDeVenta) {
 		return 0;
 	}
 
@@ -22,6 +23,5 @@ public class Estadio  extends CentroDeVenta{
 	public void setSectores(List<Sector> sectores) {
 		this.sectores = sectores;
 	}
-	
 
 }
