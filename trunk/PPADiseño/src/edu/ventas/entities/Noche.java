@@ -13,9 +13,9 @@ public class Noche {
 	private Date horaInicio = new Date();
 	
 	public Noche(int numeroDeNoches,Set<Banda> bandas,Date horaInicio){
-		bandas=this.bandas;
-		numeroDeNoches=this.numeroDeNoches;
-		horaInicio=this.horaInicio;
+		this.bandas=bandas;
+		this.numeroDeNoches=numeroDeNoches;
+		this.horaInicio=horaInicio;
 	}
 	
 	public int getNumeroDeNoches() {
@@ -37,20 +37,19 @@ public class Noche {
 		this.horaInicio = horaInicio;
 	}
 	
-	public String mayorCategoria(){
+	public int mayorCategoria(){
 		int max = -1;
-		String laBanda = " ";
 		
-		for (Banda unaBanda: bandas) {
+		for (Banda unaBanda: this.bandas) {
 			
 			if (max < unaBanda.getCategoria()) {
 				
 				max=unaBanda.getCategoria();
-				laBanda=unaBanda.getNombre();
+				
 			}
 
 		}
-		return laBanda;
+		return max;
 	}
 	
 }

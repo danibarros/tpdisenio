@@ -31,10 +31,12 @@ public class Vendedor {
 	}
 	
 	
-	public boolean vender(String nombre,int edad,Butaca butaca,Fila fila,Sector sector,Festival festival, Noche noche,Map<String,Integer> listaCategorias){
+	public boolean vender(String nombre,int edad,Butaca butaca,Fila fila,Sector sector,Festival festival, Noche noche,Map<Integer,Integer> listaCategorias){
 		
 		
-		if (butaca.isDisponible()) {
+		if (butaca.isDisponible() == true) {
+			
+			System.out.println ("butaca disponible");
 			
 			int numeroEntrada = this.generarCodigo();
 			
@@ -42,15 +44,15 @@ public class Vendedor {
 			
 			double precioFinal=this.realizarDescuento(edad,entrada);
 			
-			System.console().printf("Piola");
-			
+						
 			
 			System.out.println(entrada.getNumeroDeEntrada() + ", "+entrada.getCodigoDeBarra() +", "+ precioFinal);
-			System.console().printf(entrada.getNumeroDeEntrada() + ", "+entrada.getCodigoDeBarra() +", "+ precioFinal);
+			
 			
 			return true;
 		}else {
 			
+			System.out.println ("butaca no disponible");
 			return false;
 		}
 		

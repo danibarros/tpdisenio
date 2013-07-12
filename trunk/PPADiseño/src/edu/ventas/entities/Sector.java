@@ -11,10 +11,10 @@ public class Sector {
 	private char ubicacion;
 	
 	public Sector(String nombre,List<Fila> filas,int precioSector,char ubicacion){
-		nombre = this.nombre;
-		filas = this.filas;
-		precioSector = this.precioSector;
-		ubicacion = this.ubicacion;
+		this.nombre=nombre;
+		this.filas=filas;
+		this.precioSector=precioSector;
+		this.ubicacion=ubicacion;
 	}
 	
 	public char getUbicacion() {
@@ -27,7 +27,7 @@ public class Sector {
 
 	public int getPrecioSector() {
 		
-		return precioSector;
+		return this.precioSector;
 	}
 
 	public void setPrecioSector(int precioSector) {
@@ -35,13 +35,13 @@ public class Sector {
 	}
 	
 	public List<Fila> getFilas() {
-		return filas;
+		return this.filas;
 	}
 	public void setFilas(List<Fila> filas) {
 		this.filas = filas;
 	}
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

@@ -10,20 +10,22 @@ public class Fila {
 	private int precioFila;
 	
 	public Fila(int numero,List<Butaca> butacas){
-		numero=this.numero;
-		butacas=this.butacas;
+		this.numero=numero;
+		this.butacas=butacas;
+		this.setPrecioFila(numero);
 		
+	}
+	
+	private void setPrecioFila(int precioFila) {
+		precioFila=300/numero; //para darle un valor, dependiendo del numero de fila va a ser el valor.
+		this.precioFila = precioFila;
 	}
 	
 	public int getPrecioFila() {
 		
-		return precioFila;
+		return this.precioFila;
 	}
 
-	public void setPrecioFila(int precioFila) {
-		precioFila=300/numero; //para darle un valor, dependiendo del numero de fila va a ser el valor.
-		this.precioFila = precioFila;
-	}
 
 	public List<Butaca> getButacas() {
 		return butacas;

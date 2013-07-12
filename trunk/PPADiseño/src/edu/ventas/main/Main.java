@@ -23,17 +23,20 @@ import edu.ventas.entities.Vendedor;
 
 public class Main {
 
-	private List<Butaca> butacas;
+	//private List<Butaca> butacas;
 
 	public static void main(String[] args) throws ParseException {
+		
+		
+		
 	    SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
 	    
-	    Map<String,Integer> listaCategorias = new HashMap<String,Integer>();
+	    Map<Integer, Integer> listaCategorias = new HashMap<Integer,Integer>();
 	    
-	    listaCategorias.put("categoria1", 0);
-	    listaCategorias.put("categoria2", 50);
-	    listaCategorias.put("categoria3", 100);
-	    listaCategorias.put("categoria4", 200);
+	    listaCategorias.put(1, 0);
+	    listaCategorias.put(2, 50);
+	    listaCategorias.put(3, 100);
+	    listaCategorias.put(4, 200);
 
 		Butaca butaca = new Butaca(true, 1);
 		Butaca butaca2 = new Butaca(true, 2);
@@ -88,14 +91,24 @@ public class Main {
 		//System.out.println(entrada);
 		
 		
+		
 		Vendedor unVendedor=new Vendedor();
 		
 		//crear un par de variables para q las ingrese por pantalla y unVendedor pueda vender() lo pedido.
 		
 		//le mandamos la orden de vender() lo pedido.
 		
+		butaca.setDisponible(true);
+		
 
-		unVendedor.vender("Dani",22,butaca,fila,sector,festival,noche1,listaCategorias);
+		if(unVendedor.vender("Dani",22,butaca,fila,sector,festival,noche1,listaCategorias)){
+			System.out.println ("se realizo la venta");
+			
+		}else{
+			System.out.println ("no se vendio nada");
+		}
+		
+		
 		
 
 		
