@@ -2,6 +2,7 @@ package edu.ventas.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Entrada {
 	private Butaca butaca;
@@ -14,7 +15,7 @@ public class Entrada {
 	private Sector sector;
 	
 	public Entrada(int numeroDeEntrada, Butaca butaca, Fila fila, Sector sector,
-			long codigoDeBarra, Festival festival, Noche noche){
+			long codigoDeBarra, Festival festival, Noche noche, Map <String,Integer> categorias){
 		numeroDeEntrada = this.numeroDeEntrada;
 		butaca = this.butaca;
 		fila = this.fila;
@@ -22,11 +23,16 @@ public class Entrada {
 		codigoDeBarra = this.codigoDeBarra;
 		festival = this.festival;
 		noche = this.noche;
-		precio = calcularPrecioBase(fila, sector);
+		precio = calcularPrecioBase() + calcularPrecioExtra(categorias);
+	}
+
+	private int calcularPrecioBase(){
+		return fila.getPrecioFila() + sector.getPrecioSector();
 	}
 	
-	private int calcularPrecioBase(Fila fila, Sector sector){
-		return fila.getPrecioFila() + sector.getPrecioSector();
+	private int calcularPrecioExtra(Map <String,Integer> categorias ){
+		
+		return categorias.get(noche.mayorCategoria());
 	}
 	
 	public int getPrecio() {
