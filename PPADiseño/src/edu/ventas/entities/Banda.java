@@ -6,12 +6,13 @@ public class Banda {
 	private int categoria;
 
 	public Banda(String nombre,int categoria){
-		nombre=this.nombre;
-		categoria=this.categoria;
+		this.nombre=nombre;
+		this.categoria=categoria;
 		
 	}
 	
 	public int getCategoria() {
+		
 		return categoria;
 	}
 

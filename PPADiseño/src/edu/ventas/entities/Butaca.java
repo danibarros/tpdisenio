@@ -5,8 +5,8 @@ public class Butaca {
 	private int numero;
 	
 	public Butaca(boolean disponible,int numero){
-		disponible=this.disponible;
-		numero=this.numero;
+		this.disponible=disponible;
+		this.numero=numero;
 		
 	}
 	

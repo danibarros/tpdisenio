@@ -15,27 +15,30 @@ public class Entrada {
 	private Sector sector;
 	
 	public Entrada(int numeroDeEntrada, Butaca butaca, Fila fila, Sector sector,
-			long codigoDeBarra, Festival festival, Noche noche, Map <String,Integer> categorias){
-		numeroDeEntrada = this.numeroDeEntrada;
-		butaca = this.butaca;
-		fila = this.fila;
-		sector = this.sector;
-		codigoDeBarra = this.codigoDeBarra;
-		festival = this.festival;
-		noche = this.noche;
-		precio = calcularPrecioBase() + calcularPrecioExtra(categorias);
+			long codigoDeBarra, Festival festival, Noche noche, Map <Integer,Integer> categorias){
+		this.numeroDeEntrada=numeroDeEntrada;
+		this.butaca=butaca;
+		this.fila=fila;
+		this.sector=sector;
+		this.codigoDeBarra=codigoDeBarra;
+		this.festival=festival;
+		this.noche=noche;
+		this.precio = calcularPrecioBase() + calcularPrecioExtra(categorias);
 	}
 
 	
 	
 	
-	private int calcularPrecioExtra(Map <String,Integer> categorias ){
+	private int calcularPrecioExtra(Map <Integer,Integer> categorias ){
 		
 		return categorias.get(noche.mayorCategoria());
 	}
 	
 	public int calcularPrecioBase(){
-		return fila.getPrecioFila() + sector.getPrecioSector();
+		int precioBase=0;
+		precioBase=fila.getPrecioFila();
+		precioBase=precioBase+sector.getPrecioSector();
+		return precioBase;
 	}
 	
 	public int getPrecio() {
