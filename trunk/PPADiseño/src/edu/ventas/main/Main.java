@@ -4,8 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import edu.ventas.entities.Banda;
@@ -17,13 +19,21 @@ import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.entities.Sector;
+import edu.ventas.entities.Vendedor;
 
-public class Vendedor {
+public class Main {
 
 	private List<Butaca> butacas;
 
 	public static void main(String[] args) throws ParseException {
 	    SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
+	    
+	    Map<String,Integer> listaCategorias = new HashMap<String,Integer>();
+	    
+	    listaCategorias.put("categoria1", 0);
+	    listaCategorias.put("categoria2", 50);
+	    listaCategorias.put("categoria3", 100);
+	    listaCategorias.put("categoria4", 200);
 
 		Butaca butaca = new Butaca(true, 1);
 		Butaca butaca2 = new Butaca(true, 2);
@@ -74,9 +84,20 @@ public class Vendedor {
 		
 		Festival festival = new Festival("River Plate", estadio, noches);
 		
-		Entrada entrada = new Entrada(1,butaca ,fila2,sector,123123,festival,noche1);
+		//Entrada entrada = new Entrada(1,butaca ,fila2,sector,123123,festival,noche1,listaCategorias);
+		//System.out.println(entrada);
 		
-		System.out.println(entrada);
+		
+		Vendedor unVendedor=new Vendedor();
+		
+		//crear un par de variables para q las ingrese por pantalla y unVendedor pueda vender() lo pedido.
+		
+		//le mandamos la orden de vender() lo pedido.
+		
+		
+		unVendedor.vender("Dani",22,butaca,fila,sector,festival,noche1,listaCategorias);
+		
+		
 
 		
 	}

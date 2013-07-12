@@ -37,4 +37,20 @@ public class Noche {
 		this.horaInicio = horaInicio;
 	}
 	
+	public String mayorCategoria(){
+		int max = -1;
+		String laBanda = " ";
+		
+		for (Banda unaBanda: bandas) {
+			
+			if (max < unaBanda.getCategoria()) {
+				
+				max=unaBanda.getCategoria();
+				laBanda=unaBanda.getNombre();
+			}
+
+		}
+		return laBanda;
+	}
+	
 }
