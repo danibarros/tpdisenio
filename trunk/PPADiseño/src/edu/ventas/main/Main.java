@@ -98,7 +98,6 @@ public class Main {
 		int numeroFila = 0;
 		int numeroButaca = 0;
 		Butaca butacaElegida = null;
-		int i;
 
 		System.out.println("Ingrese su nombre y apellido");
 		apeYNom = lee.readLine();
@@ -125,7 +124,6 @@ public class Main {
 
 		Sector sectorElegido = null;
 		System.out.println("Ingrese sector");
-		i = 0;
 		while (colorSectorElegido == '0' || invalido == true) {
 
 			String aux = lee.readLine();
