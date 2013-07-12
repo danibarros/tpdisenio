@@ -7,8 +7,8 @@ public class Estadio  extends CentroDeVenta{
 	private List<Sector> sectores = new ArrayList<Sector>();
 	
 	public Estadio(List<Sector> sectores, List<PuntoDeVenta> puntosDeVenta){
-		puntosDeVenta = this.puntosDeVenta;
-		sectores = this.sectores;
+		this.puntosDeVenta=puntosDeVenta;
+		this.sectores=sectores;
 	}
 	
 	public int vender(Entrada entrada,PuntoDeVenta puntoDeVenta){
