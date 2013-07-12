@@ -7,7 +7,19 @@ import edu.ventas.main.Main;
 
 public class Vendedor {
 	
-	private void realizarDescuento(){
+	private double realizarDescuento(int edad, Entrada entrada){
+		if (edad < 18 & entrada.calcularPrecioBase() > 100 ) {
+			return entrada.getPrecio()*0.8;
+			
+		} else if (edad < 18 & entrada.calcularPrecioBase() > 50 & entrada.calcularPrecioBase() < 100 ) {
+			return entrada.getPrecio()-10;
+			
+		} else if(edad > 65) {
+			return entrada.getPrecio()*0.85;
+
+		} else {
+			return entrada.getPrecio();
+		}
 		
 		
 		
@@ -28,10 +40,13 @@ public class Vendedor {
 			
 			Entrada entrada = new Entrada(numeroEntrada,butaca ,fila,sector,123123,festival,noche,listaCategorias);
 			
-			System.out.println("piola negro!");
+			double precioFinal=this.realizarDescuento(edad,entrada);
+			
+			System.console().printf("Piola");
 			
 			
-			System.out.println(entrada.getNumeroDeEntrada() + ", "+entrada.getCodigoDeBarra() +", "+ entrada.getPrecio());
+			System.out.println(entrada.getNumeroDeEntrada() + ", "+entrada.getCodigoDeBarra() +", "+ precioFinal);
+			System.console().printf(entrada.getNumeroDeEntrada() + ", "+entrada.getCodigoDeBarra() +", "+ precioFinal);
 			
 			return true;
 		}else {
