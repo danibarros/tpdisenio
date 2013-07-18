@@ -22,11 +22,14 @@ import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.entities.Sector;
 import edu.ventas.entities.Vendedor;
+import edu.ventas.gui.UIPrincipal;
 
 public class Main {
 
 	public static void main(String[] args) throws ParseException, IOException {
 
+		createAndShowGUI();
+		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 		Map<Integer, Integer> listaCategorias = new HashMap<Integer, Integer>();
@@ -183,4 +186,9 @@ public class Main {
 		}
 
 	}
+	
+    private static void createAndShowGUI() {
+        //Create and set up the window.
+        UIPrincipal principal = new UIPrincipal();
+    }
 }
