@@ -39,7 +39,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		panel.add(new JLabel("Ingrese una noche"));
 		panel.add(combo);
 		
-		int result = JOptionPane.showConfirmDialog(null, panel, "Test",
+		int result = JOptionPane.showConfirmDialog(null, panel, "Datos del comprador",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) {
@@ -52,7 +52,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			datos.add(field2.getText());
 			datos.add(items.get(combo.getSelectedIndex()));
 		} else {
-			System.out.println("Cancelled");
+			this.cargarFormulario(noches);
 		}
 		return datos;
 
