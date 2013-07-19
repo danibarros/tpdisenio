@@ -8,7 +8,7 @@ public class Vendedor {
 			Sector sector, Festival festival, Noche noche,
 			Map<Integer, Integer> listaCategorias) {
 
-		if (butaca.isDisponible() == true) {
+		/*if (butaca.isDisponible() == true) {
 
 			int numeroEntrada = this.generarCodigo();
 
@@ -26,7 +26,8 @@ public class Vendedor {
 
 			System.out.println("butaca no disponible");
 			return false;
-		}
+		}*/
+		return true;
 
 	}
 

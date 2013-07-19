@@ -12,6 +12,7 @@ import java.util.Set;
 
 import edu.ventas.entities.Banda;
 import edu.ventas.entities.Butaca;
+import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
@@ -28,11 +29,11 @@ public class DataReader implements DataReaderDAO {
 		return listaCategorias;
 	}
 
-	public List<Butaca> getButacas(int line) {
-		Butaca butaca = new Butaca(true, 1);
-		Butaca butaca2 = new Butaca(true, 2);
-		Butaca butaca3 = new Butaca(true, 3);
-		Butaca butaca4 = new Butaca(true, 4);
+	public List<Butaca> getButacas() {
+		Butaca butaca = new Butaca( 1);
+		Butaca butaca2 = new Butaca(2);
+		Butaca butaca3 = new Butaca(3);
+		Butaca butaca4 = new Butaca(4);
 		List<Butaca> butacas = new ArrayList<Butaca>();
 		butacas.add(butaca);
 		butacas.add(butaca2);
@@ -61,6 +62,13 @@ public class DataReader implements DataReaderDAO {
 		sectores.add(sector);
 		sectores.add(sector2);
 		return sectores;
+	}
+	
+	public Estadio getEstadio(List<Sector> sectores,List<PuntoDeVenta> puntos){
+		String nombre = "River Plate";
+		Estadio estadio = new Estadio(nombre,sectores,puntos);
+		
+		return estadio;
 	}
 
 	public List<PuntoDeVenta> getPuntosDeVenta() {
@@ -93,9 +101,12 @@ public class DataReader implements DataReaderDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Noche noche1 = new Noche(1, bandas, date);
+		Noche noche1 = new Noche(null, 1, bandas, date);
 		List<Noche> noches = new ArrayList<Noche>();
 		noches.add(noche1);
 		return noches;
 	}
+
+
+	
 }

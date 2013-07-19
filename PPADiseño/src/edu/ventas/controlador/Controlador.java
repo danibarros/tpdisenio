@@ -7,6 +7,7 @@ import java.util.Set;
 import edu.ventas.dao.DataReader;
 import edu.ventas.dao.DataReaderDAO;
 import edu.ventas.entities.Banda;
+import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.gui.VentanaConButacasDecorator;
@@ -33,26 +34,31 @@ public class Controlador {
 		DataReaderDAO dataReader = new DataReader();
 		Set<Banda> bandas = dataReader.getBandas();
 		List<Noche> noches = dataReader.getNoches(bandas);
+
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
-		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator();
+		
     	datos = form.cargarFormulario(noches);
-    	butaca.dibujar();
     	apeYNom = datos.get(0);
     	edad = Integer.getInteger(datos.get(1));
     	numeroNoche = Integer.getInteger(datos.get(2));
 	}
 	
 	public void elegirButaca(){
-		List<String> datos = new ArrayList<String>();
-		DataReaderDAO dataReader = new DataReader();
-		Set<Banda> bandas = dataReader.getBandas();
-		List<Noche> noches = dataReader.getNoches(bandas);
 
-		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
-    	datos = form.cargarFormulario(noches);
-    	apeYNom = datos.get(0);
-    	edad = Integer.getInteger(datos.get(1));
-    	numeroNoche = Integer.getInteger(datos.get(2));
+		DataReaderDAO dataReader = new DataReader();
+		Set<Banda> lasBandas = dataReader.getBandas();
+		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
+		
+		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
+        Noche nocheElegida = lasNoches.get(this.numeroNoche);
+        
+        
+        
+		
+    	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida);
+    	butaca.dibujar();
+    	
+    	
 	}
 
 }
