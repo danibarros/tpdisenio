@@ -1,6 +1,7 @@
 package edu.ventas.gui;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,8 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Ventana extends JFrame {
-	protected Dimension defaultSize = new Dimension(200, 200);
+public class Ventana extends JFrame implements VentanaInterface{
 	protected UIPrincipal framework = null;
 
 	public Ventana(UIPrincipal controller) {
@@ -60,7 +60,13 @@ public class Ventana extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
+		
+		this.setExtendedState(Frame.MAXIMIZED_BOTH);  
+	}
 
-		setSize(defaultSize);
+	@Override
+	public void dibujar() {
+		// TODO Auto-generated method stub
+		
 	}
 }
