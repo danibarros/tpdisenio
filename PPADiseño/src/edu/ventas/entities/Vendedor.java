@@ -10,8 +10,6 @@ public class Vendedor {
 
 		if (butaca.isDisponible() == true) {
 
-			System.out.println("butaca disponible");
-
 			int numeroEntrada = this.generarCodigo();
 
 			Entrada entrada = new Entrada(numeroEntrada, butaca, fila, sector,
@@ -20,8 +18,8 @@ public class Vendedor {
 
 			double precioFinal = this.realizarDescuento(edad, entrada);
 
-			System.out.println(entrada.getNumeroDeEntrada() + ", "
-					+ entrada.getCodigoDeBarra() + ", " + precioFinal);
+			System.out.println("Factura nº: " + entrada.getNumeroDeEntrada() + ", Código de barras: "
+					+ entrada.getCodigoDeBarra() + ", Precio: $" + precioFinal);
 
 			return true;
 		} else {
