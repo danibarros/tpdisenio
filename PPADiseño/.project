@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>resources/ButacaLibre.png</name>
+			<type>1</type>
+			<location>C:/Users/Dani/Desktop/WorkSpace/PPADiseño/resources/ButacaLibre.png</location>
+		</link>
+		<link>
+			<name>resources/ButacaNoDisponible.png</name>
+			<type>1</type>
+			<location>C:/Users/Dani/Desktop/WorkSpace/PPADiseño/resources/ButacaNoDisponible.png</location>
+		</link>
+		<link>
+			<name>resources/ButacaOcupada.png</name>
+			<type>1</type>
+			<location>C:/Users/Dani/Desktop/WorkSpace/PPADiseño/resources/ButacaOcupada.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
