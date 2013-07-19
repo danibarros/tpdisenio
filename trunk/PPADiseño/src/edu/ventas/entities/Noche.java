@@ -1,7 +1,9 @@
 package edu.ventas.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Noche {
@@ -9,11 +11,30 @@ public class Noche {
 	private int numeroDeNoches;
 	private Set<Banda> bandas = new HashSet<Banda>();
 	private Date horaInicio = new Date();
+    private List<Entrada> entrada = new ArrayList<Entrada>();
+    private Estadio estadio;
 
-	public Noche(int numeroDeNoches, Set<Banda> bandas, Date horaInicio) {
+	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Date horaInicio) {
+		this.estadio = estadio;
 		this.bandas = bandas;
 		this.numeroDeNoches = numeroDeNoches;
 		this.horaInicio = horaInicio;
+	}
+
+	public Estadio getEstadio() {
+		return estadio;
+	}
+
+	public void setEstadio(Estadio estadio) {
+		this.estadio = estadio;
+	}
+
+	public List<Entrada> getEntrada() {
+		return entrada;
+	}
+
+	public void setEntrada(List<Entrada> entrada) {
+		this.entrada = entrada;
 	}
 
 	public int mayorCategoria() {
