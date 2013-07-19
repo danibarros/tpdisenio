@@ -17,7 +17,6 @@ public interface DataReaderDAO {
 	public List<Butaca> getButacas(int line);
 	public List<Fila> getFilas(List<Butaca> butacas);
 	public List<Sector> getSectores(List<Fila> filas);
-	public List<PuntoDeVenta> getPuntosDeVenta(List<Fila> filas);
 	public List<PuntoDeVenta> getPuntosDeVenta();
 	public Set<Banda> getBandas();
 	public List<Noche> getNoches(Set<Banda> bandas);
