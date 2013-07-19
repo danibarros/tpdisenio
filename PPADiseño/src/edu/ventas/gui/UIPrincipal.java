@@ -22,6 +22,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import edu.ventas.controlador.Controlador;
+
 public class UIPrincipal extends WindowAdapter {
     public int numWindows = 0;
     private Point lastLocation = null;
@@ -40,19 +42,21 @@ public class UIPrincipal extends WindowAdapter {
         numWindows++;
         System.out.println("Number of windows: " + numWindows);
  
-        if (lastLocation != null) {
-            //Move the window over and down 40 pixels.
-            lastLocation.translate(40, 40);
-            if ((lastLocation.x > maxX) || (lastLocation.y > maxY)) {
-                lastLocation.setLocation(0, 0);
-            }
-            frame.setLocation(lastLocation);
-        } else {
-            lastLocation = frame.getLocation();
-        }
- 
-        System.out.println("Frame location: " + lastLocation);
+//        if (lastLocation != null) {
+//            //Move the window over and down 40 pixels.
+//            lastLocation.translate(40, 40);
+//            if ((lastLocation.x > maxX) || (lastLocation.y > maxY)) {
+//                lastLocation.setLocation(0, 0);
+//            }
+//            frame.setLocation(lastLocation);
+//        } else {
+//            lastLocation = frame.getLocation();
+//        }
+// 
+//        System.out.println("Frame location: " + lastLocation);
         frame.setVisible(true);
+        Controlador controlador = new Controlador();
+        controlador.pedirDatosIniciales();
     }
  
     //This method must be evoked from the event-dispatching thread.
