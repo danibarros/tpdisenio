@@ -56,6 +56,7 @@ public class UIPrincipal extends WindowAdapter {
 //        System.out.println("Frame location: " + lastLocation);
         frame.setVisible(true);
         Controlador controlador = new Controlador();
+        controlador.iniciarJuego();
         controlador.pedirDatosIniciales();
     }
  

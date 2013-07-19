@@ -1,4 +1,4 @@
-package edu.ventas.gui;
+package edu.ventas.controlador;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -10,33 +10,28 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.ventas.entities.Noche;
+import edu.ventas.entities.PuntoDeVenta;
+import edu.ventas.gui.VentanaAlertDecorator;
 
-public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
+public class VentanaInicioDecorator {
 
-	@Override
-	public void dibujar() {
-
-	}
-
-	public List<String> cargarFormulario(List<Noche> noches) {
+	public List<String> cargarFormulario(List<PuntoDeVenta> puntosDeVenta) {
 		List<String> items = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
 
-		for (Noche noche : noches) {
-			items.add(String.valueOf(noche.getNumeroDeNoches()));
+		for (PuntoDeVenta puntoDeVenta : puntosDeVenta) {
+			items.add(String.valueOf(puntoDeVenta.getNombre()));
 		}
+		
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox combo = new JComboBox(items.toArray());
 		JTextField field1 = new JTextField("");
 		JTextField field2 = new JTextField("");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
-		panel.add(new JLabel("Ingrese su nombre y apellido"));
+		panel.add(new JLabel("Ingrese su nombre de vendedor"));
 		panel.add(field1);
-		panel.add(new JLabel("Ingrese su edad"));
-		panel.add(field2);
-		panel.add(new JLabel("Ingrese una noche"));
+		panel.add(new JLabel("Ingrese el Punto de venta"));
 		panel.add(combo);
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Test",
@@ -46,7 +41,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			if(field1.getText().equals("") || field2.getText().equals("")){
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
-				this.cargarFormulario(noches);
+				this.cargarFormulario(puntosDeVenta);
 			}
 			datos.add(field1.getText());
 			datos.add(field2.getText());

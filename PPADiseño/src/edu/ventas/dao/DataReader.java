@@ -63,15 +63,9 @@ public class DataReader implements DataReaderDAO {
 		return sectores;
 	}
 
-	public List<PuntoDeVenta> getPuntosDeVenta(List<Fila> filas) {
-		PuntoDeVenta puntoDeVenta = new PuntoDeVenta();
-		List<PuntoDeVenta> puntosDeVenta = new ArrayList<PuntoDeVenta>();
-		puntosDeVenta.add(puntoDeVenta);
-		return puntosDeVenta;
-	}
-
 	public List<PuntoDeVenta> getPuntosDeVenta() {
 		PuntoDeVenta puntoDeVenta = new PuntoDeVenta();
+		puntoDeVenta.setNombre("Super punto de venta");
 		List<PuntoDeVenta> puntosDeVenta = new ArrayList<PuntoDeVenta>();
 		puntosDeVenta.add(puntoDeVenta);
 		return puntosDeVenta;
