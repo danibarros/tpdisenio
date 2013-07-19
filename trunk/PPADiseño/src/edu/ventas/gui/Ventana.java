@@ -1,7 +1,11 @@
 package edu.ventas.gui;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,7 +19,7 @@ public class Ventana extends JFrame implements VentanaInterface{
 	protected UIPrincipal framework = null;
 
 	public Ventana(UIPrincipal controller) {
-		super("New Frame");
+		super("Festivales Rockeros");
 		framework = controller;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		addWindowListener(framework);
@@ -41,7 +45,7 @@ public class Ventana extends JFrame implements VentanaInterface{
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("New window");
-				framework.makeNewWindow();
+				framework.iniciarJuego();
 			}
 		});
 		menu.add(item);

@@ -11,6 +11,7 @@ import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
+import edu.ventas.gui.VentanaInicioDecorator;
 
 
 
