@@ -1,15 +1,19 @@
 package edu.ventas.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Festival;
 import edu.ventas.entities.Noche;
+import edu.ventas.entities.Sector;
 
 public class VentanaConButacasDecorator implements VentanaDecoratorInterface{
 	
@@ -23,11 +27,26 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface{
 
 	@Override
 	public void dibujar() {
-		/*JFrame frame = new JFrame("Distribución de Butacas");
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		JFrame frame = new JFrame("Distribución de Butacas");
+		
 		 JPanel panel = new JPanel();
 		 frame.add(panel, BorderLayout.CENTER);
 		 
-		 frame.setVisible(true);*/
+		 JComboBox<String> comboSectores = new JComboBox<String>();
+		 
+		 for (Sector unSector : this.estadio.getSectores()) {
+			comboSectores.addItem(unSector.getNombre());
+		}
+		 panel.setSize(screenSize.width-50, screenSize.height-50);
+		 frame.setSize(screenSize.width, screenSize.height);
+		 
+		 
+		 panel.add(comboSectores,BorderLayout.NORTH);
+		 frame.setVisible(true);
+		 panel.setVisible(true);
+		 
+		 
 
 		
 		

@@ -47,8 +47,11 @@ public class UIPrincipal extends WindowAdapter {
 		frame.setVisible(true);
 		iniciarJuego();
 		pedirDatosIniciales();
+		venta();
 	}
 	
+	
+
 	public void iniciarJuego() {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
@@ -61,6 +64,14 @@ public class UIPrincipal extends WindowAdapter {
 		System.out.println("Number of windows: " + numWindows);
 		Controlador controlador = new Controlador();
 		controlador.pedirDatosIniciales();
+	}
+	
+	private void venta() {
+		numWindows++;
+		System.out.println("Number of windows: "+ numWindows);
+		Controlador controlador = new Controlador();
+		controlador.elegirButaca();
+		
 	}
 
 	// This method must be evoked from the event-dispatching thread.
