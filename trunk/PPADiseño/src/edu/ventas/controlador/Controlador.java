@@ -39,8 +39,8 @@ public class Controlador {
 		
     	datos = form.cargarFormulario(noches);
     	apeYNom = datos.get(0);
-    	edad = Integer.getInteger(datos.get(1));
-    	numeroNoche = Integer.getInteger(datos.get(2));
+    	edad = Integer.parseInt(datos.get(1));
+    	numeroNoche = Integer.parseInt(datos.get(2));
 	}
 	
 	public void elegirButaca(){
@@ -51,8 +51,6 @@ public class Controlador {
 		
 		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
         Noche nocheElegida = lasNoches.get(this.numeroNoche);
-        
-        
         
 		
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida);

@@ -30,15 +30,31 @@ public class DataReader implements DataReaderDAO {
 	}
 
 	public List<Butaca> getButacas() {
-		Butaca butaca = new Butaca( 1);
+		Butaca butaca = new Butaca(1);
 		Butaca butaca2 = new Butaca(2);
 		Butaca butaca3 = new Butaca(3);
 		Butaca butaca4 = new Butaca(4);
+		Butaca butaca5 = new Butaca(5);
+		Butaca butaca6 = new Butaca(6);
+		Butaca butaca7 = new Butaca(7);
+		Butaca butaca8 = new Butaca(8);
+		Butaca butaca9 = new Butaca(9);
+		Butaca butaca10 = new Butaca(10);
+		Butaca butaca11 = new Butaca(11);
+		Butaca butaca12 = new Butaca(12);
 		List<Butaca> butacas = new ArrayList<Butaca>();
 		butacas.add(butaca);
 		butacas.add(butaca2);
 		butacas.add(butaca3);
 		butacas.add(butaca4);
+		butacas.add(butaca5);
+		butacas.add(butaca6);
+		butacas.add(butaca7);
+		butacas.add(butaca8);
+		butacas.add(butaca9);
+		butacas.add(butaca10);
+		butacas.add(butaca11);
+		butacas.add(butaca12);
 		return butacas;
 	}
 
