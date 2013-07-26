@@ -1,5 +1,6 @@
 package edu.ventas.controlador;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
 import edu.ventas.gui.VentanaInicioDecorator;
+import edu.ventas.gui.VentanaSectorDecorator;
 
 
 
@@ -44,19 +46,18 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-
+		VentanaSectorDecorator sectorDecorator = new VentanaSectorDecorator();
 		DataReaderDAO dataReader = new DataReader();
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
 		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
         Noche nocheElegida = lasNoches.get(this.numeroNoche);
-        
 		
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida);
     	butaca.dibujar();
-    	
-    	
+
+
 	}
 
 }
