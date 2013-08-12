@@ -32,17 +32,20 @@ public class UIPrincipal extends WindowAdapter {
 	private Point lastLocation = null;
 	private int maxX = 500;
 	private int maxY = 500;
-
+	JFrame frame;
+	Controlador controlador;
+	
 	public UIPrincipal() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		maxX = screenSize.width - 50;
 		maxY = screenSize.height - 50;
 		JFrame frame = new Ventana(this);
+		controlador = new Controlador(frame);
 		Color c = new Color(112,173,208);
 		Container con = frame.getContentPane();
 		con.setBackground(c);
 		ImageIcon icon = new ImageIcon("resources/presentacion.gif");
-		JLabel cartel = new JLabel(icon, JLabel.CENTER); 
+		JLabel cartel = new JLabel(icon, JLabel.CENTER);
 		frame.add(cartel);
 		frame.setVisible(true);
 		iniciarJuego();
@@ -55,21 +58,18 @@ public class UIPrincipal extends WindowAdapter {
 	public void iniciarJuego() {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		Controlador controlador = new Controlador();
 		controlador.iniciarJuego();
 	}
 
 	public void pedirDatosIniciales() {
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		Controlador controlador = new Controlador();
 		controlador.pedirDatosIniciales();
 	}
 	
 	private void venta() {
 		numWindows++;
 		System.out.println("Number of windows: "+ numWindows);
-		Controlador controlador = new Controlador();
 		controlador.elegirButaca();
 		
 	}

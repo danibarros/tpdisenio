@@ -7,7 +7,6 @@ public class Vendedor {
 	public boolean vender(String nombre, int edad, Butaca butaca, Fila fila,
 			Sector sector, Festival festival, Noche noche,
 			Map<Integer, Integer> listaCategorias) {
-
 		/*if (butaca.isDisponible() == true) {
 
 			int numeroEntrada = this.generarCodigo();

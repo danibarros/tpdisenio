@@ -25,19 +25,20 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface, Ac
 	private String sector;
 	VentanaSectorDecorator ventanaSector = new VentanaSectorDecorator();
 	JFrame frame;
-	
-	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida) {
+	JPanel panel;
+	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida, JFrame frame) {
 		this.estadio=estadio;
 		this.noche=nocheElegida;
+		this.frame=frame;
 	}
 
 	@Override
 	public void dibujar() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame = new JFrame("Distribución de Butacas");
 		
-		 JPanel panel = new JPanel();
-		 frame.add(panel, BorderLayout.CENTER);
+		 panel = new JPanel();
+		 frame.getContentPane().removeAll();
+		 frame.add(panel, BorderLayout.NORTH);
 		 
 		 JComboBox<String> comboSectores = new JComboBox<String>();
 		 comboSectores.addActionListener(this);
@@ -82,7 +83,8 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface, Ac
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JComboBox cb = (JComboBox)e.getSource();
-        sector = (String)cb.getSelectedItem();
-    	ventanaSector.dibujarSector(frame,sector,estadio);
+		String newSelection = (String)cb.getSelectedItem();
+		sector = newSelection;
+		ventanaSector.dibujarSector(frame,sector,estadio);
 	}
 }
