@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import edu.ventas.dao.DataReader;
 import edu.ventas.dao.DataReaderDAO;
 import edu.ventas.entities.Banda;
@@ -24,6 +27,11 @@ public class Controlador {
 	private int edad;
 	private int numeroNoche;
 	private List<PuntoDeVenta> puntosDeVenta;
+	private JFrame frame;
+	
+	public Controlador(JFrame frame){
+		this.frame = frame;
+	}
 	
 	public void iniciarJuego(){
 		DataReaderDAO dataReader = new DataReader();
@@ -52,9 +60,9 @@ public class Controlador {
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
 		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
-        Noche nocheElegida = lasNoches.get(this.numeroNoche);
+        Noche nocheElegida = lasNoches.get(this.numeroNoche -1);
 		
-    	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida);
+    	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	butaca.dibujar();
 
 

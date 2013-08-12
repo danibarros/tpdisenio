@@ -71,9 +71,9 @@ public class DataReader implements DataReaderDAO {
 
 	public List<Sector> getSectores(List<Fila> filas) {
 		List<Fila> filas1 = filas.subList(0, filas.size() / 2);
-		List<Fila> filas2 = filas.subList(filas.size() / 2 + 1, filas.size());
+//		List<Fila> filas2 = filas.subList(filas.size() / 2 + 1, filas.size());
 		Sector sector = new Sector("Sector1", filas1, 50, 'A');
-		Sector sector2 = new Sector("Sector2", filas2, 25, 'B');
+		Sector sector2 = new Sector("Sector2", filas, 25, 'B');
 		List<Sector> sectores = new ArrayList<Sector>();
 		sectores.add(sector);
 		sectores.add(sector2);
