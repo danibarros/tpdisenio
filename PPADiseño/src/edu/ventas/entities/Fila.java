@@ -8,21 +8,15 @@ public class Fila {
 	private int numero;
 	private List<Butaca> butacas = new ArrayList<Butaca>();
 	private int precioFila;
+	private Sector sector;
 
 	public Fila(int numero, List<Butaca> butacas) {
 		this.numero = numero;
 		this.butacas = butacas;
 		this.setPrecioFila(numero);
-
-	}
-
-	private void setPrecioFila(int precioFila) {
-		precioFila = 300 / numero;
-		this.precioFila = precioFila;
 	}
 
 	public int getPrecioFila() {
-
 		return this.precioFila;
 	}
 
@@ -42,4 +36,16 @@ public class Fila {
 		this.numero = numero;
 	}
 
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+	
+	private void setPrecioFila(int precioFila) {
+		precioFila = 300 / numero;
+		this.precioFila = precioFila;
+	}
 }
