@@ -62,7 +62,13 @@ public class DataReader implements DataReaderDAO {
 		List<Butaca> butacas1 = butacas.subList(0, 5);
 		List<Butaca> butacas2 = butacas.subList(5, butacas.size());
 		Fila fila = new Fila(1, butacas1);
+		for (Butaca butaca : butacas1) {
+			butaca.setFila(fila);
+		}
 		Fila fila2 = new Fila(2, butacas2);
+		for (Butaca butaca : butacas2) {
+			butaca.setFila(fila2);
+		}
 		List<Fila> filas = new ArrayList<Fila>();
 		filas.add(fila);
 		filas.add(fila2);
@@ -73,7 +79,13 @@ public class DataReader implements DataReaderDAO {
 		List<Fila> filas1 = filas.subList(0, filas.size() / 2);
 //		List<Fila> filas2 = filas.subList(filas.size() / 2 + 1, filas.size());
 		Sector sector = new Sector("Sector1", filas1, 50, 'A');
+		for (Fila fila : filas1) {
+			fila.setSector(sector);
+		}
 		Sector sector2 = new Sector("Sector2", filas, 25, 'B');
+		for (Fila fila : filas) {
+			fila.setSector(sector2);
+		}
 		List<Sector> sectores = new ArrayList<Sector>();
 		sectores.add(sector);
 		sectores.add(sector2);
