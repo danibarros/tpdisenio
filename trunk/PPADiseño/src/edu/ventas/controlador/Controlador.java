@@ -69,7 +69,7 @@ public class Controlador {
     	
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator();
     	
-    	informator.informarEntradas
+    	informator.informarEntradas(filas, precio, nocheElegida);
     	
 	}
 	
