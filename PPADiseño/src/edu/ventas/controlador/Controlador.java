@@ -1,23 +1,22 @@
 package edu.ventas.controlador;
 
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import edu.ventas.dao.DataReader;
 import edu.ventas.dao.DataReaderDAO;
 import edu.ventas.entities.Banda;
 import edu.ventas.entities.Estadio;
+import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
+import edu.ventas.gui.VentanaInformarEntradasDecorator;
 import edu.ventas.gui.VentanaInicioDecorator;
-import edu.ventas.gui.VentanaSectorDecorator;
 
 
 
@@ -54,7 +53,8 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-		VentanaSectorDecorator sectorDecorator = new VentanaSectorDecorator();
+		List<Fila> filas = null;
+		double precio;
 		DataReaderDAO dataReader = new DataReader();
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
@@ -64,8 +64,18 @@ public class Controlador {
 		
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	butaca.dibujar();
-
-
+    	
+    	precio = calcularPrecio(filas);
+    	
+    	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator();
+    	
+    	informator.informarEntradas
+    	
+	}
+	
+	private double calcularPrecio(List<Fila> filas){
+		
+		return 0.0;
 	}
 
 }

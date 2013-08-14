@@ -56,10 +56,6 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface {
 
 	}
 
-	public void elegirButacas() {
-
-	}
-
 	private void dibujarFila(Fila fila, JFrame frame) {
 		List<Butaca> butacas = fila.getButacas();
 		JPanel panelFila = new JPanel();
