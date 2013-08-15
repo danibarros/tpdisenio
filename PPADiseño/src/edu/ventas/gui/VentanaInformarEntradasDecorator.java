@@ -16,6 +16,7 @@ import edu.ventas.entities.Butaca;
 import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.Sector;
+import edu.ventas.entities.Vendedor;
 
 public class VentanaInformarEntradasDecorator implements
 		VentanaDecoratorInterface {
@@ -32,7 +33,7 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche) {
+	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		frame.getContentPane().removeAll();
@@ -46,6 +47,7 @@ public class VentanaInformarEntradasDecorator implements
 			if (seleccionados.containsKey(sector.getNombre())){
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
 				cantLineas += 1;
+				vendedor.vender(seleccionados,noche,edad);
 				imprimirSector(panel,seleccionados.get(sector.getNombre()));
 			}
 		}

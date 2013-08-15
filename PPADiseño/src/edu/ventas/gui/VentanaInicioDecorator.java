@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import edu.ventas.entities.PuntoDeVenta;
+import edu.ventas.entities.Vendedor;
 
 public class VentanaInicioDecorator {
 
