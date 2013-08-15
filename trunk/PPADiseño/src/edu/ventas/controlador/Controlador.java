@@ -84,9 +84,33 @@ public class Controlador {
     	informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
 	
-	private double calcularPrecio(Map<String,List<Butaca>> sectores){
+	private double calcularPrecio(Map<String,List<Butaca>> sectores, int edad){
+		int i=0;
+		int j=0;
+		List<Butaca> list=null;
+		Butaca butaca=null;
 		
-		return 0.0;
+		while(sectores.size()<=i){
+			list = sectores.get((Estadio.getSectores()).get(i).getNombre());
+			while(list.get(j)!=null){
+				butaca=list.get(j);
+				precio= butaca.getFila().getPrecioFila();
+				precio = precio + butaca.getFila().getSector().getPrecioSector();
+				j=j+1;
+			}
+		i=i+1;
+		}
+		
+		if (edad < 18 & precio > 100) {
+			return precio * 0.8;
+		} else if (edad < 18 & precio > 50
+				& precio < 100) {
+			return precio - 10;
+		} else if (edad > 65) {
+			return precio * 0.85;
+		} else {
+			return precio;
+		}
 	}
-
+}
 }
