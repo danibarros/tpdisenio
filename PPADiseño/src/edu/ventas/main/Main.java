@@ -35,69 +35,6 @@ public class Main {
 	public static void main(String[] args) throws ParseException, IOException {
 
 		createAndShowGUI();
-
-		//
-		// Sector sectorElegido = null;
-		// System.out.println("Ingrese sector");
-		// while (colorSectorElegido == '0' || invalido == true) {
-		//
-		// String aux = lee.readLine();
-		// colorSectorElegido = aux.charAt(0);
-		// for (Sector sectorRecorrido : estadio.getSectores()) {
-		// if (sectorRecorrido.getUbicacion() == colorSectorElegido) {
-		// sectorElegido = sectorRecorrido;
-		// invalido = false;
-		// break;
-		// } else {
-		// invalido = true;
-		// System.out
-		// .println("Ingrese un sector existente en el sistema...");
-		// break;
-		// }
-		// }
-		//
-		// }
-		//
-		// System.out.println("Ingrese numero de fila");
-		// invalido = true;
-		// Fila filaElegida = null;
-		// while (numeroFila == 0 || invalido == true) {
-		//
-		// numeroFila = Integer.parseInt(lee.readLine());
-		// if (sectorElegido.getFilas().size() >= numeroFila) {
-		// filaElegida = sectorElegido.getFilas().get(numeroFila - 1);
-		// invalido = false;
-		// } else {
-		// invalido = true;
-		// System.out
-		// .println("Ingrese una fila existente en el sistema...");
-		// }
-		// }
-		//
-		// System.out.println("Ingrese numero butaca");
-		// invalido = true;
-		// while (numeroButaca == 0 || invalido == true) {
-		//
-		// numeroButaca = Integer.parseInt(lee.readLine());
-		// if (filaElegida.getButacas().size() >= numeroButaca) {
-		// butacaElegida = filaElegida.getButacas().get(numeroButaca - 1);
-		// invalido = false;
-		// } else {
-		// invalido = true;
-		// System.out
-		// .println("Ingrese una butaca existente en el sistema...");
-		// }
-		// }
-		//
-		// if (unVendedor.vender(apeYNom, edad, butacaElegida, filaElegida,
-		// sectorElegido, festival, nocheElegida, listaCategorias)) {
-		// System.out.println("Se realizo la venta");
-		//
-		// } else {
-		// System.out.println("No se vendio nada");
-		// }
-		//
-		//
 	}
 
 	private static void createAndShowGUI() {

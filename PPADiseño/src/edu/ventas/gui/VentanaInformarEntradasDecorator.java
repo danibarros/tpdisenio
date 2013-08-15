@@ -23,20 +23,25 @@ public class VentanaInformarEntradasDecorator implements
 	JFrame frame;
 	JPanel panel;
 	
+	public VentanaInformarEntradasDecorator(JFrame frame){
+		this.frame = frame;
+	}
+	
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
 	}
 
-	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche, JFrame frame) {
+	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		frame.getContentPane().removeAll();
-		frame.add(panel, BorderLayout.NORTH);
+		
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Noche:"));
 		panel.add(new JLabel(String.valueOf(noche.getNumeroDeNoches())));
+		frame.add(panel, BorderLayout.NORTH);
 		for (Sector sector : sectores) {
 			if (seleccionados.containsKey(sector.getNombre())){
 				panel.add(new JLabel("Sector:" + sector.getNombre()));

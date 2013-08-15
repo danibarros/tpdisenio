@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import edu.ventas.controlador.Controlador;
 import edu.ventas.entities.Butaca;
 import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Fila;
@@ -33,8 +34,8 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	VentanaSectorDecorator ventanaSector = new VentanaSectorDecorator();
 	JFrame frame;
 	JPanel panel;
-	Map<String,List<Butaca>> sectores = new HashMap<String,List<Butaca>>();
-	boolean devolver = false;
+	private boolean pause = true;
+	Map<String, List<Butaca>> sectores = new HashMap<String, List<Butaca>>();
 
 	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida,
 			JFrame frame) {
@@ -47,8 +48,8 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	public void dibujar() {
 
 	}
-	
-	public Map<String,List<Butaca>> seleccionarButacas(){
+
+	public Map<String, List<Butaca>> seleccionarButacas() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		panel = new JPanel();
@@ -78,6 +79,15 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		frame.setVisible(true);
 		panel.setVisible(true);
 		pnlBottom.setVisible(true);
+		while (pause) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		return sectores;
 	}
 
@@ -115,29 +125,24 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 			if (cb.getName().equalsIgnoreCase("cmbSectores")) {
 				String newSelection = (String) cb.getSelectedItem();
 				sector = newSelection;
-				ventanaSector.dibujarSector(frame, sector, estadio,ventanaSector.seleccionados);
+				ventanaSector.dibujarSector(frame, sector, estadio,
+						ventanaSector.seleccionados);
 				agregarSeleccionados(ventanaSector.seleccionados, sector);
 			}
 			break;
 		case "Comprar entradas":
 			JButton btn = (JButton) e.getSource();
-			if (btn.getName().equalsIgnoreCase("btnComprar")) {
-				JPanel pnlComprar = new JPanel();
-				JLabel lblCantidad = new JLabel("Cantidad :");
-				JLabel lblTotal = new JLabel("Total :");
-				pnlComprar.add(lblCantidad);
-				pnlComprar.add(lblTotal);
-			}
+			pause = false;
 			break;
 		default:
 			break;
 		}
 
 	}
-	
-	private void agregarSeleccionados(List<Butaca> butacas, String sector){
+
+	private void agregarSeleccionados(List<Butaca> butacas, String sector) {
 		List<Butaca> butacasSeleccionadas = sectores.remove(sector);
 		butacasSeleccionadas = butacas;
-		sectores.put(sector,butacasSeleccionadas);
+		sectores.put(sector, butacasSeleccionadas);
 	}
 }
