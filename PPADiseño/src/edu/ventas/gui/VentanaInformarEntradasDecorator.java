@@ -1,9 +1,13 @@
 package edu.ventas.gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -11,41 +15,41 @@ import javax.swing.JTextField;
 import edu.ventas.entities.Butaca;
 import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
+import edu.ventas.entities.Sector;
 
 public class VentanaInformarEntradasDecorator implements
 		VentanaDecoratorInterface {
 
+	JFrame frame;
+	JPanel panel;
+	
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
 	}
 
-	public void informarEntradas(List<Fila> filas, double precio, Noche noche) {
+	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche, JFrame frame) {
 		int cantLineas = 0;
-		List<String> sectores = new ArrayList<String>(); 
-		for (Fila fila : filas) {
-			sectores.add(fila.getSector().getNombre());
-			cantLineas += fila.getButacas().size() + 1;
-		}
-		
 		cantLineas += 2;
-		cantLineas += sectores.size();
-		
-		JPanel panel = new JPanel(new GridLayout(0, cantLineas));
+		frame.getContentPane().removeAll();
+		frame.add(panel, BorderLayout.NORTH);
+		List<Sector> sectores = noche.getEstadio().getSectores();
+		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Noche:"));
 		panel.add(new JLabel(String.valueOf(noche.getNumeroDeNoches())));
-		for (String sector : sectores) {
-			panel.add(new JLabel("Sector:" + sector));
-			for (Fila fila : filas) {
-				if(fila.getSector().getNombre() == sector);
-					imprimirFila(panel,fila);
-			}	
+		for (Sector sector : sectores) {
+			if (seleccionados.containsKey(sector.getNombre())){
+				panel.add(new JLabel("Sector:" + sector.getNombre()));
+				cantLineas += 1;
+				imprimirSector(panel,seleccionados.get(sector.getNombre()));
+			}
 		}
-		
+		frame.setVisible(true);
+		panel.setVisible(true);
 	}
 	
-	private void imprimirFila(JPanel panel, Fila fila){
-		for (Butaca butaca : fila.getButacas()) {
+	private void imprimirSector(JPanel panel, List<Butaca> butacas){
+		for (Butaca butaca : butacas) {
 			panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));	
 		}
 	}
