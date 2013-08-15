@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Estadio extends CentroDeVenta {
 
-	private List<Sector> sectores = new ArrayList<Sector>();
+	private static List<Sector> sectores = new ArrayList<Sector>();
 	private String nombre;
 
 	public Estadio(String nombre,List<Sector> sectores, List<PuntoDeVenta> puntosDeVenta) {
@@ -26,7 +26,7 @@ public class Estadio extends CentroDeVenta {
 		return 0;
 	}
 
-	public List<Sector> getSectores() {
+	public static List<Sector> getSectores() {
 		return sectores;
 	}
 
