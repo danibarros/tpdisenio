@@ -15,7 +15,7 @@ import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
-import edu.ventas.entities.Sector;
+import edu.ventas.entities.Vendedor;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
 import edu.ventas.gui.VentanaInformarEntradasDecorator;
@@ -33,6 +33,8 @@ public class Controlador {
 	private Map<String,List<Butaca>> sectores = null;
 	private Noche nocheElegida;
 	double precio;
+	private Vendedor vendedor;
+	
 	
 	public Controlador(JFrame frame){
 		this.frame = frame;
@@ -43,6 +45,8 @@ public class Controlador {
 		puntosDeVenta = dataReader.getPuntosDeVenta();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(puntosDeVenta);
+		vendedor = new Vendedor();
+		
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
@@ -70,42 +74,19 @@ public class Controlador {
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	sectores = butaca.seleccionarButacas();
     	
-    	precio = calcularPrecio(sectores, edad);
+    	precio = calcularPrecio(sectores);
     
 	}
 	
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	informator.informarEntradas(sectores, precio, nocheElegida);
+    	informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
 	
-
-	private double calcularPrecio(Map<String,List<Butaca>> sectores, int edad){
-		int i=0;
-		int j=0;
-		List<Butaca> list=null;
-		Butaca butaca=null;
-		while(sectores!=null){
-			list = sectores.get((Estadio.getSectores()).get(i).getNombre());
-			while(list!=null){
-				butaca=list.get(j);
-				precio= butaca.getFila().getPrecioFila();
-				precio = precio + butaca.getFila().getSector().getPrecioSector();
-				j=j+1;
-			}
-		i=i+1;
-		}
+	private double calcularPrecio(Map<String,List<Butaca>> sectores){
 		
-		if (edad < 18 & precio > 100) {
-			return precio * 0.8;
-		} else if (edad < 18 & precio > 50
-				& precio < 100) {
-			return precio - 10;
-		} else if (edad > 65) {
-			return precio * 0.85;
-		} else {
-			return precio;
-		}
+		return 0.0;
 	}
+
 }
