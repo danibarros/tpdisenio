@@ -72,4 +72,15 @@ public class Noche {
 	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
+
+	public int precioDeLaNoche() {
+		switch (this.mayorCategoria()) {
+		case 1:return 0;
+		case 2: return 50;
+		case 3: return 100;
+		case 4: return 200;
+		default:return -1;
+		}
+		
+	}
 }

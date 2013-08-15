@@ -1,35 +1,45 @@
 package edu.ventas.entities;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class Vendedor {
-
-	public boolean vender(String nombre, int edad, Butaca butaca, Fila fila,
-			Sector sector, Festival festival, Noche noche,
-			Map<Integer, Integer> listaCategorias) {
-		/*if (butaca.isDisponible() == true) {
-
-			int numeroEntrada = this.generarCodigo();
-
-			Entrada entrada = new Entrada(numeroEntrada, butaca, fila, sector,
-					123123, festival, noche, listaCategorias);
-			butaca.setDisponible(false);
-
-			double precioFinal = this.realizarDescuento(edad, entrada);
-
-			System.out.println("Factura nº: " + entrada.getNumeroDeEntrada() + ", Código de barras: "
-					+ entrada.getCodigoDeBarra() + ", Precio: $" + precioFinal);
-
-			return true;
-		} else {
-
-			System.out.println("butaca no disponible");
-			return false;
-		}*/
-		return true;
-
+	
+	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad) {
+		String key;
+		List<Butaca> value;
+		Iterator iterator = seleccionados.keySet().iterator();
+		while (iterator.hasNext()) {
+		    key = (String) iterator.next();
+		    value = seleccionados.get(key);
+		    
+		    for (Butaca butaca : value) {
+		    	
+		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butaca));
+				
+				
+			}
+		    
+		}	
+		
 	}
 
+	private double calcularPrecio(String sector,Noche noche,Integer edad,Entrada entrada){
+		
+		double precioFinal = entrada.calcularPrecioBase() + noche.precioDeLaNoche() - this.realizarDescuento(edad,entrada);
+
+		return precioFinal;
+		
+	}
+				
+	private Entrada generarEntrada(Butaca butaca){
+		
+		Entrada entrada=null;
+		int numeroEntrada = this.generarCodigo();
+		return entrada;
+	};
+	
 	private double realizarDescuento(int edad, Entrada entrada) {
 		if (edad < 18 & entrada.calcularPrecioBase() > 100) {
 			return entrada.getPrecio() * 0.8;
@@ -51,5 +61,6 @@ public class Vendedor {
 		int numero = (int) Math.floor(Math.random() * (1 - 10000 + 1) + 10000);
 		return numero;
 	}
+
 
 }
