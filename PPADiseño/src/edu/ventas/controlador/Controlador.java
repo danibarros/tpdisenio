@@ -34,6 +34,7 @@ public class Controlador {
 	private Noche nocheElegida;
 	double precio;
 	private Vendedor vendedor;
+	private Estadio estadio;
 	
 	
 	public Controlador(JFrame frame){
@@ -67,7 +68,7 @@ public class Controlador {
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
-		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
+		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
         nocheElegida = lasNoches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
@@ -82,5 +83,6 @@ public class Controlador {
     	
     	informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
-
+	
 }
+
