@@ -4,61 +4,32 @@ import java.util.Map;
 
 public class Entrada {
 	private Butaca butaca;
-	private int precio;
+	
 	private long codigoDeBarra;
-	private Festival festival;
+	private int precioBase;
 	private Noche noche;
+	
 	private int numeroDeEntrada;
-	private Fila fila;
-	private Sector sector;
+	
 
-	public Entrada(int numeroDeEntrada, Butaca butaca, Fila fila,
-			Sector sector, long codigoDeBarra, Festival festival, Noche noche,
-			Map<Integer, Integer> categorias) {
+	public Entrada(int numeroDeEntrada, Butaca butaca, Noche noche) {
 		this.numeroDeEntrada = numeroDeEntrada;
 		this.butaca = butaca;
-		this.fila = fila;
-		this.sector = sector;
-		this.codigoDeBarra = codigoDeBarra;
-		this.festival = festival;
+		
 		this.noche = noche;
-		this.precio = calcularPrecioBase() + calcularPrecioExtra(categorias);
+		this.codigoDeBarra=123123;
+		
 	}
 
-	public int calcularPrecioBase() {
-		int precioBase = 0;
-		precioBase = fila.getPrecioFila();
-		precioBase = precioBase + sector.getPrecioSector();
-		return precioBase;
+	
+	public int calcularPrecioBase(){
+		return this.noche.precioDeLaNoche();
 	}
-
-	public int getPrecio() {
-		return precio;
+	
+	public int getPrecio(){
+		return this.numeroDeEntrada;
 	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	public Fila getFila() {
-		return fila;
-	}
-
-	public void setFila(Fila fila) {
-		this.fila = fila;
-	}
-
-	public Sector getSector() {
-		return sector;
-	}
-
-	public void setSector(Sector sector) {
-		this.sector = sector;
-	}
-
-	public Butaca getButaca() {
-		return butaca;
-	}
+	
 
 	public void setButaca(Butaca butaca) {
 		this.butaca = butaca;
@@ -72,14 +43,7 @@ public class Entrada {
 		this.codigoDeBarra = codigoDeBarra;
 	}
 
-	public Festival getFestival() {
-		return festival;
-	}
-
-	public void setFestival(Festival festival) {
-		this.festival = festival;
-	}
-
+	
 	public Noche getNoche() {
 		return noche;
 	}
@@ -96,7 +60,5 @@ public class Entrada {
 		this.numeroDeEntrada = numeroDeEntrada;
 	}
 
-	private int calcularPrecioExtra(Map<Integer, Integer> categorias) {
-		return categorias.get(noche.mayorCategoria());
-	}
+	
 }

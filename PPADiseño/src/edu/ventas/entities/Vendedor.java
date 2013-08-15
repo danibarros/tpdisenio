@@ -16,7 +16,7 @@ public class Vendedor {
 		    
 		    for (Butaca butaca : value) {
 		    	
-		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butaca));
+		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butaca,noche));
 				
 				
 			}
@@ -33,10 +33,11 @@ public class Vendedor {
 		
 	}
 				
-	private Entrada generarEntrada(Butaca butaca){
+	private Entrada generarEntrada(Butaca butaca,Noche noche){
 		
-		Entrada entrada=null;
+		
 		int numeroEntrada = this.generarCodigo();
+		Entrada entrada= new Entrada(numeroEntrada, butaca, noche);
 		return entrada;
 	};
 	
