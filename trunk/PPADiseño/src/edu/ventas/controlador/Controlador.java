@@ -30,6 +30,8 @@ public class Controlador {
 	private List<PuntoDeVenta> puntosDeVenta;
 	private JFrame frame;
 	private Map<String,List<Butaca>> sectores = null;
+	private Noche nocheElegida;
+	double precio;
 	
 	public Controlador(JFrame frame){
 		this.frame = frame;
@@ -56,24 +58,25 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-		double precio;
 		DataReaderDAO dataReader = new DataReader();
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
 		Estadio estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
-        Noche nocheElegida = lasNoches.get(this.numeroNoche -1);
+        nocheElegida = lasNoches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	sectores = butaca.seleccionarButacas();
     	
     	precio = calcularPrecio(sectores);
+    
+	}
+	
+	public void vender(){
+    	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator();
-    	
-    	informator.informarEntradas(sectores, precio, nocheElegida, frame);
-    	
+    	informator.informarEntradas(sectores, precio, nocheElegida);
 	}
 	
 	private double calcularPrecio(Map<String,List<Butaca>> sectores){
