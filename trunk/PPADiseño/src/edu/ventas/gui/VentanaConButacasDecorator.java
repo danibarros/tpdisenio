@@ -34,6 +34,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	JFrame frame;
 	JPanel panel;
 	Map<String,List<Butaca>> sectores = new HashMap<String,List<Butaca>>();
+	boolean devolver = false;
 
 	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida,
 			JFrame frame) {
@@ -44,6 +45,10 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 
 	@Override
 	public void dibujar() {
+
+	}
+	
+	public Map<String,List<Butaca>> seleccionarButacas(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		panel = new JPanel();
@@ -73,7 +78,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		frame.setVisible(true);
 		panel.setVisible(true);
 		pnlBottom.setVisible(true);
-
+		return sectores;
 	}
 
 	public Estadio getEstadio() {
@@ -122,9 +127,6 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 				JLabel lblTotal = new JLabel("Total :");
 				pnlComprar.add(lblCantidad);
 				pnlComprar.add(lblTotal);
-				int result = JOptionPane.showConfirmDialog(null, pnlComprar,
-						"Datos del comprador", JOptionPane.OK_CANCEL_OPTION,
-						JOptionPane.PLAIN_MESSAGE);
 			}
 			break;
 		default:
