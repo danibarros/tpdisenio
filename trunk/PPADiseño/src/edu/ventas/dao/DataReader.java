@@ -29,10 +29,10 @@ public class DataReader implements DataReaderDAO {
 		return listaCategorias;
 	}
 
-	public List<Butaca> getButacas() {
+	public List<Butaca> getButacas1() {
 		
 		List<Butaca> butacas = new ArrayList<Butaca>();
-		for (int i = 1; i <= 12; i++) {
+		for (int i = 1; i <= 40; i++) {
 			Butaca butaca = new Butaca(i);
 			butacas.add(butaca);
 		}
@@ -40,32 +40,84 @@ public class DataReader implements DataReaderDAO {
 		return butacas;
 	}
 
-	public List<Fila> getFilas(List<Butaca> butacas) {
+	public List<Butaca> getButacas2() {
+		
+		List<Butaca> butacas = new ArrayList<Butaca>();
+		for (int i = 1; i <= 40; i++) {
+			Butaca butaca = new Butaca(i);
+			butacas.add(butaca);
+		}
+		
+		return butacas;
+	}
+	
+	public List<Fila> getFilas(List<Butaca> butacas, List<Butaca> butacasX) {
+		
 		List<Butaca> butacas1 = butacas.subList(0, 5);
-		List<Butaca> butacas2 = butacas.subList(5, butacas.size());
-		Fila fila = new Fila(1, butacas1);
+		List<Butaca> butacas2 = butacas.subList(5, 12);
+		List<Butaca> butacas3 = butacas.subList(12, 20);
+		List<Butaca> butacas4 = butacas.subList(20, 30);
+		List<Butaca> butacas5 = butacas.subList(30, 40);
+		List<Butaca> butacas6 = butacasX.subList(0, 10);
+		List<Butaca> butacas7 = butacasX.subList(0, 20);
+		List<Butaca> butacas8 = butacasX.subList(20, 40);
+		
+		Fila fila1 = new Fila(1, butacas1);
 		for (Butaca butaca : butacas1) {
-			butaca.setFila(fila);
+			butaca.setFila(fila1);
 		}
 		Fila fila2 = new Fila(2, butacas2);
 		for (Butaca butaca : butacas2) {
 			butaca.setFila(fila2);
 		}
+		Fila fila3 = new Fila(3, butacas3);
+		for (Butaca butaca : butacas3) {
+			butaca.setFila(fila3);
+		}
+		Fila fila4 = new Fila(4, butacas4);
+		for (Butaca butaca : butacas4) {
+			butaca.setFila(fila4);
+		}
+		Fila fila5 = new Fila(5, butacas5);
+		for (Butaca butaca : butacas5) {
+			butaca.setFila(fila5);
+		}
+		Fila fila6 = new Fila(1, butacas6);
+		for (Butaca butaca : butacas6) {
+			butaca.setFila(fila6);
+		}
+		Fila fila7 = new Fila(2, butacas7);
+		for (Butaca butaca : butacas7) {
+			butaca.setFila(fila7);
+		}
+		Fila fila8 = new Fila(3, butacas8);
+		for (Butaca butaca : butacas8) {
+			butaca.setFila(fila8);
+		}
 		List<Fila> filas = new ArrayList<Fila>();
-		filas.add(fila);
+		
+		
+		filas.add(fila1);
 		filas.add(fila2);
+		filas.add(fila3);
+		filas.add(fila4);
+		filas.add(fila5);
+		filas.add(fila6);
+		filas.add(fila7);
+		filas.add(fila8);
+		
 		return filas;
 	}
 
 	public List<Sector> getSectores(List<Fila> filas) {
-		List<Fila> filas1 = filas.subList(0, filas.size() / 2);
-//		List<Fila> filas2 = filas.subList(filas.size() / 2 + 1, filas.size());
+		List<Fila> filas1 = filas.subList(0, 5);
+		List<Fila> filas2 = filas.subList(5, 8);
 		Sector sector = new Sector("Sector1", filas1, 50, 'A');
 		for (Fila fila : filas1) {
 			fila.setSector(sector);
 		}
-		Sector sector2 = new Sector("Sector2", filas, 25, 'B');
-		for (Fila fila : filas) {
+		Sector sector2 = new Sector("Sector2", filas2, 25, 'B');
+		for (Fila fila : filas2) {
 			fila.setSector(sector2);
 		}
 		List<Sector> sectores = new ArrayList<Sector>();
@@ -116,7 +168,6 @@ public class DataReader implements DataReaderDAO {
 		noches.add(noche1);
 		return noches;
 	}
-
 
 	
 }

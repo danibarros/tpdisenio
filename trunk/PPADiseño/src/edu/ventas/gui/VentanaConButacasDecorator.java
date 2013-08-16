@@ -75,7 +75,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		frame.setSize(screenSize.width, screenSize.height);
 
 		panel.add(comboSectores);
-		pnlBottom.add(btnComprar);
+		pnlBottom.add(btnComprar, BorderLayout.NORTH);
 		frame.setVisible(true);
 		panel.setVisible(true);
 		pnlBottom.setVisible(true);
