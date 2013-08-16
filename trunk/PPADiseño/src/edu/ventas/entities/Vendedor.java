@@ -32,7 +32,7 @@ public class Vendedor {
 		return precioFinal;
 		
 	}
-				
+	
 	private Entrada generarEntrada(Butaca butaca,Noche noche){
 		
 		
