@@ -6,7 +6,7 @@ public class Entrada {
 	private Butaca butaca;
 	
 	private long codigoDeBarra;
-	private int precioBase;
+
 	private Noche noche;
 	
 	private int numeroDeEntrada;
