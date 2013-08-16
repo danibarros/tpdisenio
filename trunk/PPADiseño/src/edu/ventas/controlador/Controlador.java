@@ -17,6 +17,7 @@ import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
 import edu.ventas.entities.Vendedor;
 import edu.ventas.gui.VentanaConButacasDecorator;
+import edu.ventas.gui.VentanaDespedidaDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
 import edu.ventas.gui.VentanaInformarEntradasDecorator;
 import edu.ventas.gui.VentanaInicioDecorator;
@@ -35,6 +36,7 @@ public class Controlador {
 	double precio;
 	private Vendedor vendedor;
 	private Estadio estadio;
+	private boolean compraAseptada = false;
 	
 	
 	public Controlador(JFrame frame){
@@ -75,13 +77,20 @@ public class Controlador {
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	sectores = butaca.seleccionarButacas();
     	
-    
 	}
 	
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
+	}
+
+	public boolean isCompraAseptada() {
+		return compraAseptada;
+	}
+
+	public void setCompraAseptada(boolean compraAseptada) {
+		this.compraAseptada = compraAseptada;
 	}
 	
 }
