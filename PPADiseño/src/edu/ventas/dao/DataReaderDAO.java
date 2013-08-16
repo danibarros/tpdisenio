@@ -15,8 +15,9 @@ import edu.ventas.entities.Sector;
 public interface DataReaderDAO {
 
 	public Map<Integer, Integer> getCategorias(int line, int worksheet);
-	public List<Butaca> getButacas();
-	public List<Fila> getFilas(List<Butaca> butacas);
+	public List<Butaca> getButacas1();
+	public List<Butaca> getButacas2();
+	public List<Fila> getFilas(List<Butaca> butacas, List<Butaca> butacasX);
 	public List<Sector> getSectores(List<Fila> filas);
 	public List<PuntoDeVenta> getPuntosDeVenta();
 	public Set<Banda> getBandas();

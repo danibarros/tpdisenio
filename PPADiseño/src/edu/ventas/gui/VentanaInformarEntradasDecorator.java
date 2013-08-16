@@ -50,7 +50,7 @@ public class VentanaInformarEntradasDecorator implements
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
 				cantLineas += 1;
 				vendedor.vender(seleccionados,noche,edad);
-				imprimirSector(panel,seleccionados.get(sector.getNombre()));
+				imprimirSector(panel,seleccionados.get(sector.getNombre()),sector.getNombre());
 			}
 		}
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de la entrada",
@@ -59,6 +59,7 @@ public class VentanaInformarEntradasDecorator implements
 		if (result == JOptionPane.OK_OPTION) {
 			VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
     		despedida.dibujar();
+    		System.exit(0);
 		} else{
 			frame.getContentPane().removeAll();
 		}
@@ -66,9 +67,10 @@ public class VentanaInformarEntradasDecorator implements
 		return vender;
 	}
 	
-	private void imprimirSector(JPanel panel, List<Butaca> butacas){
+	private void imprimirSector(JPanel panel, List<Butaca> butacas, String sector){
 		for (Butaca butaca : butacas) {
-			panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));	
+			if(butaca.getFila().getSector().getNombre().equals(sector))
+				panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));	
 		}
 	}
 }
