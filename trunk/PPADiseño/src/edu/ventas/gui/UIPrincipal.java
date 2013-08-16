@@ -72,6 +72,11 @@ public class UIPrincipal extends WindowAdapter {
 		System.out.println("Number of windows: "+ numWindows);
 		controlador.elegirButaca();
 		controlador.vender();
+		while(!controlador.isCompraAseptada()){
+			controlador.elegirButaca();
+			controlador.vender();
+		}
+		
 	}
 
 	// This method must be evoked from the event-dispatching thread.

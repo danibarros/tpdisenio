@@ -1,6 +1,7 @@
 package edu.ventas.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,28 +23,28 @@ import edu.ventas.entities.Vendedor;
 public class VentanaInformarEntradasDecorator implements
 		VentanaDecoratorInterface {
 
-	JFrame frame;
 	JPanel panel;
+	JFrame frame;
+	boolean vender = false;
+	
 	
 	public VentanaInformarEntradasDecorator(JFrame frame){
 		this.frame = frame;
 	}
-	
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
 	}
 
-	public void informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad) {
 		int cantLineas = 0;
 		cantLineas += 2;
-		frame.getContentPane().removeAll();
 		
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Noche:"));
 		panel.add(new JLabel(String.valueOf(noche.getNumeroDeNoches())));
-		frame.add(panel, BorderLayout.NORTH);
+
 		for (Sector sector : sectores) {
 			if (seleccionados.containsKey(sector.getNombre())){
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
@@ -51,8 +53,17 @@ public class VentanaInformarEntradasDecorator implements
 				imprimirSector(panel,seleccionados.get(sector.getNombre()));
 			}
 		}
-		frame.setVisible(true);
+		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de la entrada",
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+		if (result == JOptionPane.OK_OPTION) {
+			VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
+    		despedida.dibujar();
+		} else{
+			frame.getContentPane().removeAll();
+		}
 		panel.setVisible(true);
+		return vender;
 	}
 	
 	private void imprimirSector(JPanel panel, List<Butaca> butacas){
