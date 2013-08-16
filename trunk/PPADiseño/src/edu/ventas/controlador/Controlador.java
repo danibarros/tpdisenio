@@ -36,7 +36,7 @@ public class Controlador {
 	double precio;
 	private Vendedor vendedor;
 	private Estadio estadio;
-	private boolean compraAseptada = false;
+	private boolean compraAceptada = false;
 	
 	
 	public Controlador(JFrame frame){
@@ -82,15 +82,15 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
+    	compraAceptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
 
 	public boolean isCompraAseptada() {
-		return compraAseptada;
+		return compraAceptada;
 	}
 
 	public void setCompraAseptada(boolean compraAseptada) {
-		this.compraAseptada = compraAseptada;
+		this.compraAceptada = compraAseptada;
 	}
 	
 }
