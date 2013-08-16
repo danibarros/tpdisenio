@@ -26,7 +26,7 @@ public class Entrada {
 		return this.noche.precioDeLaNoche();
 	}
 	
-	public int getPrecio(){
+	public int getNuemroDeEntrada(){
 		return this.numeroDeEntrada;
 	}
 	
