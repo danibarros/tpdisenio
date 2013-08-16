@@ -15,6 +15,7 @@ import edu.ventas.entities.Estadio;
 import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
+import edu.ventas.entities.Sector;
 import edu.ventas.entities.Vendedor;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaDespedidaDecorator;
@@ -36,7 +37,7 @@ public class Controlador {
 	double precio;
 	private Vendedor vendedor;
 	private Estadio estadio;
-	private boolean compraAceptada = false;
+	private boolean compraAseptada = false;
 	
 	
 	public Controlador(JFrame frame){
@@ -70,7 +71,7 @@ public class Controlador {
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
-		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas())),dataReader.getPuntosDeVenta());
+		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
         nocheElegida = lasNoches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
@@ -82,15 +83,15 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAceptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
 
 	public boolean isCompraAseptada() {
-		return compraAceptada;
+		return compraAseptada;
 	}
 
 	public void setCompraAseptada(boolean compraAseptada) {
-		this.compraAceptada = compraAseptada;
+		this.compraAseptada = compraAseptada;
 	}
 	
 }
