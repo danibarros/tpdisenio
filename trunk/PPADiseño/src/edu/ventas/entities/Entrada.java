@@ -34,6 +34,10 @@ public class Entrada {
 	public void setButaca(Butaca butaca) {
 		this.butaca = butaca;
 	}
+	
+	public Butaca getButaca() {
+		return this.butaca;
+	}
 
 	public long getCodigoDeBarra() {
 		return codigoDeBarra;
