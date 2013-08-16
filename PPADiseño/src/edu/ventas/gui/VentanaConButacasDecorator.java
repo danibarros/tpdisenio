@@ -87,7 +87,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 				e.printStackTrace();
 			}
 		}
-
+		frame.getContentPane().removeAll();
 		return sectores;
 	}
 
