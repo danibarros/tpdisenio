@@ -13,14 +13,14 @@ public class Noche {
 	private Date horaInicio = new Date();
     private List<Entrada> entrada = new ArrayList<Entrada>();
     private Estadio estadio;
-    private int fecha;
+    private Integer fecha;
 
 	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Date horaInicio) {
 		this.estadio = estadio;
 		this.bandas = bandas;
 		this.numeroDeNoches = numeroDeNoches;
 		this.horaInicio = horaInicio;
-		this.fecha = 15092013; //DDMMAAAA
+		this.fecha = 15092013; //DDMMAAAA Esto es nuevo
 	}
 
 	public Estadio getEstadio() {
@@ -30,7 +30,11 @@ public class Noche {
 	public void setEstadio(Estadio estadio) {
 		this.estadio = estadio;
 	}
-
+	
+	public Integer getFecha() { //Esto es nuevo
+		return fecha;
+	}
+	
 	public List<Entrada> getEntrada() {
 		return entrada;
 	}

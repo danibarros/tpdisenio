@@ -10,7 +10,7 @@ public class Vendedor {
 	private double precioFinal;
 	private HashMap <Integer,Double> listaPrecios = new HashMap<Integer,Double>();
 	
-	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad) {
+	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad,Integer fechaCompra) {
 		String key;
 		List<Butaca> value;
 		Iterator iterator = seleccionados.keySet().iterator();
@@ -20,7 +20,7 @@ public class Vendedor {
 		    
 		    for (Butaca butacas : value) {
 		    	
-		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butacas,noche));
+		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butacas,noche),fechaCompra);
 		    	for (Butaca butaca : value) {
 		    		listaPrecios.put(butaca.getNumero(),this.precioFinal);
 			    	 System.out.println("Hola");
@@ -34,10 +34,14 @@ public class Vendedor {
 		
 	}
 
-	private void calcularPrecio(String sector,Noche noche,Integer edad,Entrada entrada){
+	private void calcularPrecio(String sector,Noche noche,Integer edad,Entrada entrada,Integer fechaCompra){ //Esto es nuevo
+		private int fecha; // Esto es nuevo 
+		this.fecha = noche.getFecha(); // Esto es nuevo
 		
 		this.precioFinal = entrada.calcularPrecioBase() + noche.precioDeLaNoche();
 		this.precioFinal = realizarDescuento(edad,entrada);		
+		if (fecha - fechaCompra > 30) //Esto es nuevo
+			this.precioFinal = precioFinal - 100; //Esto es nuevo, nose cuanto es el descuento por anticipada
 	}
 	
 	public Map<Integer,Double> getPrecio(){
