@@ -37,8 +37,8 @@ public class UIPrincipal extends WindowAdapter {
 	
 	public UIPrincipal() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		maxX = screenSize.width - 50;
-		maxY = screenSize.height - 50;
+		maxX = 800;
+		maxY = 600;
 		JFrame frame = new Ventana(this);
 		controlador = new Controlador(frame);
 		Color c = new Color(112,173,208);

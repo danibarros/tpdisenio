@@ -30,15 +30,12 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		JComboBox combo = new JComboBox(items.toArray());
 		JTextField field1 = new JTextField("");
 		JTextField field2 = new JTextField("");
-		JTextField field3 = new JTextField(""); //Esto es nuevo
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
 		panel.add(field1);
 		panel.add(new JLabel("Ingrese su edad"));
 		panel.add(field2);
-		panel.add(new JLabel("Ingrese la Fecha en forma de DDMMAAAA"));//Esto es nuevo
-		panel.add(field3);// Esto es nuevo
 		panel.add(new JLabel("Ingrese una noche"));
 		panel.add(combo);
 		
@@ -46,14 +43,13 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) {
-			if(field1.getText().equals("") || field2.getText().equals("")) || field3.getText().equals("")){
+			if(field1.getText().equals("") || field2.getText().equals("")){
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormulario(noches);
 			}
 			datos.add(field1.getText());
 			datos.add(field2.getText());
-			datos.add(field3.getText()); // Esto es nuevo
 			datos.add(items.get(combo.getSelectedIndex()));
 		} else {
 			this.cargarFormulario(noches);

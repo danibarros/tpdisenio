@@ -36,7 +36,7 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Integer fechaCompra ) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		
@@ -50,8 +50,8 @@ public class VentanaInformarEntradasDecorator implements
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
 				
 				cantLineas += 1;
-				vendedor.vender(seleccionados,noche,edad,fechaCompra); // Esto es nuevo
-				imprimirSector(panel,seleccionados.get(sector.getNombre()),vendedor);
+				vendedor.vender(seleccionados,noche,edad);
+				imprimirSector(panel,seleccionados.get(sector.getNombre()),vendedor,sector.getNombre());
 			}
 		}
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de la entrada",
@@ -67,10 +67,12 @@ public class VentanaInformarEntradasDecorator implements
 		return vender;
 	}
 	
-	private void imprimirSector(JPanel panel, List<Butaca> butacas,Vendedor vendedor){
+	private void imprimirSector(JPanel panel, List<Butaca> butacas,Vendedor vendedor,String sector){
 		for (Butaca butaca : butacas) {
+			if(butaca.getFila().getSector().getNombre() == sector){
 			panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));
 			panel.add(new JLabel("Precio: $" + vendedor.getPrecio().get(butaca.getNumero())));
+			}
 		}
 	}
 }

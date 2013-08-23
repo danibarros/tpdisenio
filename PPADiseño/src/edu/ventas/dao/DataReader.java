@@ -156,7 +156,7 @@ public class DataReader implements DataReaderDAO {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		String input;
-		input = "1818-11-11";
+		input = "2013-12-20";
 		try {
 			date = format.parse(input);
 		} catch (ParseException e) {

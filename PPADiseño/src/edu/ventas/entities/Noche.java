@@ -13,14 +13,18 @@ public class Noche {
 	private Date horaInicio = new Date();
     private List<Entrada> entrada = new ArrayList<Entrada>();
     private Estadio estadio;
-    private Integer fecha;
-
+    
 	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Date horaInicio) {
 		this.estadio = estadio;
 		this.bandas = bandas;
 		this.numeroDeNoches = numeroDeNoches;
 		this.horaInicio = horaInicio;
-		this.fecha = 15092013; //DDMMAAAA Esto es nuevo
+		//this.fecha  //DDMMAAAA Esto es nuevo 
+		/*1. si la fecha por "casualidad" la definis como Integer CONVIENE usar este formato YYYYMMDD.
+		 * 2. es una fecha y existe el tipo de dato Date.
+		 * 3. horaInicio es la fecha!
+		 * fin del comunicado
+		 * */
 	}
 
 	public Estadio getEstadio() {
@@ -31,9 +35,6 @@ public class Noche {
 		this.estadio = estadio;
 	}
 	
-	public Integer getFecha() { //Esto es nuevo
-		return fecha;
-	}
 	
 	public List<Entrada> getEntrada() {
 		return entrada;
