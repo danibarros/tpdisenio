@@ -64,7 +64,6 @@ public class Controlador {
     	apeYNom = datos.get(0);
     	edad = Integer.parseInt(datos.get(1));
     	numeroNoche = Integer.parseInt(datos.get(2));
-    	fechaCompra = Integer.parseInt(datos.get(3)); // Esto es nuevo
 	}
 	
 	public void elegirButaca(){
@@ -84,7 +83,7 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,fechaCompra); //Esto es nuevo
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
 	}
 
 	public boolean isCompraAseptada() {
