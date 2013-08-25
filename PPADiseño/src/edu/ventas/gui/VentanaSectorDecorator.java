@@ -67,21 +67,21 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 						"resources/ButacaNoDisponible.png"));
 				cutbutton.setName(String.valueOf(butaca.getNumero()));
 				cutbutton.addActionListener(this);
-				panelFila.add(cutbutton);
 				cutbutton.setBackground(Color.RED);
 				ImageIcon press = new ImageIcon(
 						"resources/ButacaNoDisponible.png");
 				cutbutton.setPressedIcon(press);
+				panelFila.add(cutbutton);
 			} else {
 				cutbutton = new JButton(new ImageIcon(
 						"resources/ButacaNoDisponible.png"));
 				cutbutton.setName(String.valueOf(butaca.getNumero()));
 				cutbutton.addActionListener(this);
-				panelFila.add(cutbutton);
 				cutbutton.setBackground(Color.BLUE);
 				ImageIcon press = new ImageIcon(
 						"resources/ButacaNoDisponible.png");
 				cutbutton.setPressedIcon(press);
+				panelFila.add(cutbutton);
 			}
 		}
 		panelFila.setSize(panel.getWidth(), cutbutton.getHeight());
