@@ -13,16 +13,17 @@ import javax.swing.JTextField;
 import edu.ventas.entities.Noche;
 
 public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
-
+	
 	@Override
 	public void dibujar() {
 
 	}
 
 	public List<String> cargarFormulario(List<Noche> noches) {
+	
 		List<String> items = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
-
+		
 		for (Noche noche : noches) {
 			items.add(String.valueOf(noche.getNumeroDeNoches()));
 		}
@@ -44,13 +45,15 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		
 		if (result == JOptionPane.OK_OPTION) {
 			if(field1.getText().equals("") || field2.getText().equals("")){
+				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormulario(noches);
-			}
+			}else{
 			datos.add(field1.getText());
 			datos.add(field2.getText());
 			datos.add(items.get(combo.getSelectedIndex()));
+			}
 		} else {
 			this.cargarFormulario(noches);
 		}
