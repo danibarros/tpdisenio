@@ -20,18 +20,18 @@ public class Vendedor {
 		    value = seleccionados.get(key);
 		    
 		    for (Butaca butacas : value) {
-		    	// if(cantJubilados != 0){ 
-		    	// 		edad = 70;
-		    	//		cantJubilados = cantJubilados - 1;
-		    	//	else if (cantMenores != 0){
-		    	//		edad = 15;
-		    	//		cantMenores = cantMenores - 1;
-		    	//  else{
-		    	//		edad = 25;
-		    	// 		cantMayores = cantMayores - 1;
-		    	//		}
-		    	//    }
-		    	//  }
+		    	 if(cantJubilados != 0){ 
+		    	 		edad = 70;
+		    			cantJubilados = cantJubilados - 1;
+		    		else if (cantMenores != 0){
+		    			edad = 15;
+		    			cantMenores = cantMenores - 1;
+		    		else{
+		    			edad = 25;
+		    	 		cantMayores = cantMayores - 1;
+		    			}
+		    	    }
+		    	  }
 		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butacas,noche));
 		    	for (Butaca butaca : value) {
 		    		listaPrecios.put(butaca.getNumero(),this.precioFinal);
