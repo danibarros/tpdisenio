@@ -36,7 +36,7 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad/*,Int cantJubilados,Int cantMenores,Int cantMayores*/) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Int cantJubilados,Int cantMenores,Int cantMayores) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		
@@ -50,7 +50,7 @@ public class VentanaInformarEntradasDecorator implements
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
 				
 				cantLineas += 1;
-				vendedor.vender(seleccionados,noche,edad/*,cantJubilados,cantMenores,cantMayores*/);
+				vendedor.vender(seleccionados,noche,edad,cantJubilados,cantMenores,cantMayores);
 				imprimirSector(panel,seleccionados.get(sector.getNombre()),vendedor,sector.getNombre());
 			}
 		}
