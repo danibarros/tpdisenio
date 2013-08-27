@@ -56,9 +56,9 @@ public class Entrada {
 		this.noche = noche;
 	}
 
-	public int getNumeroDeEntrada() {
-		return numeroDeEntrada;
-	}
+//	public int getNumeroDeEntrada() { Ya esta arriba
+//		return numeroDeEntrada;
+//	}
 
 	public void setNumeroDeEntrada(int numeroDeEntrada) {
 		this.numeroDeEntrada = numeroDeEntrada;
