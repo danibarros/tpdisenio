@@ -37,6 +37,9 @@ public class Controlador {
 	double precio;
 	private Vendedor vendedor;
 	private Estadio estadio;
+  //private int cantJubilados;
+  //private int cantMayores;
+  //private int cantMenores;
 	private boolean compraAseptada = false;
 	
 	
@@ -64,6 +67,9 @@ public class Controlador {
     	apeYNom = datos.get(0);
     	edad = Integer.parseInt(datos.get(1));
     	numeroNoche = Integer.parseInt(datos.get(2));
+    //	cantJubilados = datos.get(3);
+    //  cantMenores = datos.get(4);
+    //	cantMayores = datos.get(5);
 	}
 	
 	public void elegirButaca(){
@@ -83,7 +89,7 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad/*,cantJubilados,cantMenores,cantMayores*/);
 	}
 
 	public boolean isCompraAseptada() {
