@@ -13,10 +13,6 @@ public class Vendedor {
 	
 	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad) {
 		String key;
-		//int cantJubilados; Esto debe venir de alguna ventana
-		//int cantMenores;
-		//int cantMayores;
-		
 		List<Butaca> value;
 		Iterator iterator = seleccionados.keySet().iterator();
 		while (iterator.hasNext()) {
@@ -24,7 +20,7 @@ public class Vendedor {
 		    value = seleccionados.get(key);
 		    
 		    for (Butaca butacas : value) {
-		    	// if(cantJubilados != 0){
+		    	// if(cantJubilados != 0){ estas Cant. deben venir de alguna ventana
 		    	// 		edad = 70;
 		    	//	else if (cantMenores != 0){
 		    	//		edad = 15;
