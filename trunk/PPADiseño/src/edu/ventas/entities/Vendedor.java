@@ -22,10 +22,13 @@ public class Vendedor {
 		    for (Butaca butacas : value) {
 		    	// if(cantJubilados != 0){ 
 		    	// 		edad = 70;
+		    	//		cantJubilados = cantJubilados - 1;
 		    	//	else if (cantMenores != 0){
 		    	//		edad = 15;
+		    	//		cantMenores = cantMenores - 1;
 		    	//  else{
 		    	//		edad = 25;
+		    	// 		cantMayores = cantMayores - 1;
 		    	//		}
 		    	//    }
 		    	//  }
