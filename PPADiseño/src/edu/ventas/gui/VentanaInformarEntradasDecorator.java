@@ -36,7 +36,7 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Int cantJubilados,Int cantMenores,Int cantMayores) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,int cantJubilados,int cantMenores,int cantMayores) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		

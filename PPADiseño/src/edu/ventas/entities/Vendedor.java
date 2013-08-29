@@ -11,7 +11,7 @@ public class Vendedor {
 	private double precioFinal;
 	private HashMap <Integer,Double> listaPrecios = new HashMap<Integer,Double>();
 	
-	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad/*,Int cantJubilados,Int cantMenores, Int cantMayores*/) {
+	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad,int cantJubilados,int cantMenores, int cantMayores) {
 		String key;
 		List<Butaca> value;
 		Iterator iterator = seleccionados.keySet().iterator();
@@ -19,40 +19,45 @@ public class Vendedor {
 		    key = (String) iterator.next();
 		    value = seleccionados.get(key);
 		    
-		    for (Butaca butacas : value) {
-		    	 if(cantJubilados != 0){ 
-		    	 		edad = 70;
-		    			cantJubilados = cantJubilados - 1;
-		    		else if (cantMenores != 0){
-		    			edad = 15;
-		    			cantMenores = cantMenores - 1;
-		    		else{
-		    			edad = 25;
-		    	 		cantMayores = cantMayores - 1;
-		    			}
-		    	    }
-		    	  }
-		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butacas,noche));
-		    	for (Butaca butaca : value) {
-		    		listaPrecios.put(butaca.getNumero(),this.precioFinal);
-			    	 
-				}
-		    	 
-				
-				
-			}
 		    
-		}	
+		    	for (Butaca butaca : value) {
+		    		calcularPrecio(key,noche,this.generarEntrada(butaca,noche),cantJubilados,cantMenores,cantMayores);
+		    		if (cantJubilados >0){
+		    			cantJubilados-=1;
+		    			}
+		    		
+		    		else if(cantMenores>0){
+		    			cantMenores-=1;
+		    		}
+		    		else if(cantMayores>0){
+		    			cantMayores-=1;
+		    		}
+		    		listaPrecios.put(butaca.getNumero(),this.precioFinal);
+			    }
+		    }
+		}
+		    
+			
 		
-	}
+	
 
-	private void calcularPrecio(String sector,Noche noche,Integer edad,Entrada entrada){ 
+	private void calcularPrecio(String sector,Noche noche,Entrada entrada,Integer cantJubilados,Integer cantMenores,Integer cantMayores){ 
 		Date fechaActual = new Date();
 				
 		this.precioFinal = entrada.calcularPrecioBase() + noche.precioDeLaNoche();
-		this.precioFinal = realizarDescuento(edad,entrada);		
-		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000)) //Esto es nuevo
-			this.precioFinal = precioFinal - 100; //Esto es nuevo, nose cuanto es el descuento por anticipada
+		if (cantJubilados >0){
+			this.precioFinal = realizarDescuento("Jubilado",entrada);
+			}
+		else if(cantMenores>0){
+			this.precioFinal = realizarDescuento("Menor",entrada);
+			}
+		else if(cantMayores>0){
+			this.precioFinal = realizarDescuento("Mayor",entrada);
+			}
+				
+		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000)){ 
+			this.precioFinal = precioFinal - 100;
+			} 
 	}
 	
 	public Map<Integer,Double> getPrecio(){
@@ -68,15 +73,15 @@ public class Vendedor {
 		return entrada;
 	};
 	
-	private double realizarDescuento(int edad, Entrada entrada) {
-		if (edad < 18 & entrada.calcularPrecioBase() > 100) {
+	private double realizarDescuento(String tipo, Entrada entrada) {
+		if (tipo == "Menor" & entrada.calcularPrecioBase() > 100) {
 			return this.precioFinal * 0.8;
 
-		} else if (edad < 18 & entrada.calcularPrecioBase() > 50
+		} else if (tipo=="Menor" & entrada.calcularPrecioBase() > 50
 				& entrada.calcularPrecioBase() < 100) {
 			return this.precioFinal - 10;
 
-		} else if (edad > 65) {
+		} else if (tipo=="Jubilado") {
 			return this.precioFinal * 0.85;
 
 		} else {

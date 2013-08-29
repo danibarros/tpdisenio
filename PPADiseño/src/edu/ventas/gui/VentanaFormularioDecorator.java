@@ -30,19 +30,19 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox combo = new JComboBox(items.toArray());
 		JTextField field1 = new JTextField("");
-		JTextField field2 = new JTextField("");
+		JTextField field2 = new JTextField("0");
+		JTextField field3 = new JTextField("0");
+		JTextField field4 = new JTextField("0");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
 		panel.add(field1);
-		panel.add(new JLabel("Ingrese su edad"));
-		panel.add(field2);
 		panel.add(new JLabel("Ingrese Cantidad De Jubilados"));
-    	panel.add(field3);
+    	panel.add(field2);
 		panel.add(new JLabel("Ingrese Cantidad De Menores"));
-		panel.add(field4);
+		panel.add(field3);
     	panel.add(new JLabel("Ingrese Cantidad De Mayores"));
-		panel.add(field5);
+		panel.add(field4);
 		panel.add(new JLabel("Ingrese una noche"));
 		panel.add(combo);
 		
@@ -50,7 +50,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) {
-			if(field1.getText().equals("") || field2.getText().equals("") || field3.getText().equals("") || field4.getText().equals("") || field5.getText().equals("")) { 
+			if(field1.getText().equals("") || field2.getText().equals("") || field3.getText().equals("") || field4.getText().equals("") ) { 
 				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
@@ -60,7 +60,6 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			datos.add(field2.getText());
 			datos.add(field3.getText());
 			datos.add(field4.getText());
-			datos.add(field5.getText());
 			datos.add(items.get(combo.getSelectedIndex()));
 			}
 		} else {
