@@ -19,7 +19,7 @@ public class Vendedor {
 		    key = (String) iterator.next();
 		    value = seleccionados.get(key);
 		    if(seleccionados.size() != (cantJubilados + cantMenores + cantMayores)){
-		    	/*deberia hacer algo*/
+		    	/*deberia volver a la pantalla de seleccion de butacas, nose como se haria.*/
 		    }
 		    for (Butaca butacas : value) {
 		    	 if(cantJubilados != 0){ 
