@@ -11,7 +11,7 @@ public class Vendedor {
 	private double precioFinal;
 	private HashMap <Integer,Double> listaPrecios = new HashMap<Integer,Double>();
 	
-	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad,int cantJubilados,int cantMenores, int cantMayores) {
+	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,int cantJubilados,int cantMenores, int cantMayores) {
 		String key;
 		List<Butaca> value;
 		Iterator iterator = seleccionados.keySet().iterator();
