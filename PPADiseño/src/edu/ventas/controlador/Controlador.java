@@ -89,7 +89,7 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,cantJubilados,cantMenores,cantMayores);
 	}
 
 	public boolean isCompraAseptada() {
