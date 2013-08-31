@@ -12,13 +12,10 @@ import edu.ventas.dao.DataReaderDAO;
 import edu.ventas.entities.Banda;
 import edu.ventas.entities.Butaca;
 import edu.ventas.entities.Estadio;
-import edu.ventas.entities.Fila;
 import edu.ventas.entities.Noche;
 import edu.ventas.entities.PuntoDeVenta;
-import edu.ventas.entities.Sector;
 import edu.ventas.entities.Vendedor;
 import edu.ventas.gui.VentanaConButacasDecorator;
-import edu.ventas.gui.VentanaDespedidaDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
 import edu.ventas.gui.VentanaInformarEntradasDecorator;
 import edu.ventas.gui.VentanaInicioDecorator;
@@ -66,10 +63,10 @@ public class Controlador {
     	datos = form.cargarFormulario(noches);
     	apeYNom = datos.get(0);
     	
-    	numeroNoche = Integer.parseInt(datos.get(1));
-    	cantJubilados = Integer.parseInt(datos.get(2));
-    	cantMenores =Integer.parseInt(datos.get(3));
-    	cantMayores = Integer.parseInt(datos.get(4));
+    	cantJubilados = Integer.parseInt(datos.get(1));
+    	cantMenores =Integer.parseInt(datos.get(2));
+    	cantMayores = Integer.parseInt(datos.get(3));
+    	numeroNoche = Integer.parseInt(datos.get(4));
 	}
 	
 	public void elegirButaca(){

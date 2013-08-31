@@ -30,9 +30,9 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox combo = new JComboBox(items.toArray());
 		JTextField field1 = new JTextField("");
-		JTextField field2 = new JTextField("0");
-		JTextField field3 = new JTextField("0");
-		JTextField field4 = new JTextField("0");
+		JTextField field2 = new JTextField("");
+		JTextField field3 = new JTextField("");
+		JTextField field4 = new JTextField("");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
