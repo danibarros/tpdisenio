@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.ventas.entities.Banda" table="BANDA">
+        <id name="nombre" type="string">
+            <column name="nombre" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="categoria" type="int">
+            <column name="categoria" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
