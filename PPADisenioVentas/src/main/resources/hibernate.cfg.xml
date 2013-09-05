@@ -5,20 +5,20 @@
 <hibernate-configuration>
    <session-factory>
    <property name="hibernate.dialect">
-      org.hibernate.dialect.Oracle11gDialec
+      org.hibernate.dialect.MySQLDialect
    </property>
    <property name="hibernate.connection.driver_class">
-      oracle.jdbc.driver.OracleDrive
+      com.mysql.jdbc.Driver
    </property>
    <!-- Assume test is the database name -->
    <property name="hibernate.connection.url">
-      jdbc:oracle:thin://localhost/test
+      jdbc:mysql://localhost:3306/ppadisenio
    </property>
    <property name="hibernate.connection.username">
       root
    </property>
    <property name="hibernate.connection.password">
-      root123
+      root
    </property>
 
    <!-- List of XML mapping files -->

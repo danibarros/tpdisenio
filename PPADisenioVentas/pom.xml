@@ -28,6 +28,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+		</resource>
+	</resources>
 	<dependencies>
 		<dependency>
 			<groupId>PPADisenioCore</groupId>
