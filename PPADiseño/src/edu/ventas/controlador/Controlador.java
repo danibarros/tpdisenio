@@ -37,9 +37,9 @@ public class Controlador {
 	double precio;
 	private Vendedor vendedor;
 	private Estadio estadio;
-	private Integer cantJubilados;
-	private Integer cantMayores;
-	private Integer cantMenores;
+	private int cantJubilados;
+	private int cantMayores;
+	private int cantMenores;
 	private boolean compraAseptada = false;
 	
 	
@@ -89,7 +89,7 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,cantJubilados,cantMenores,cantMayores);
 	}
 
 	public boolean isCompraAseptada() {
