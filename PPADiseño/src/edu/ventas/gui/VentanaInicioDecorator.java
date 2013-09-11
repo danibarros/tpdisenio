@@ -35,9 +35,10 @@ public class VentanaInicioDecorator {
 		
 		if(items.get(combo.getSelectedIndex()) != "Organizar"){
 				cargarFormulario(puntosDeVenta);
-		}//else{
-		//acá debería mandar a "generar diagramación" 
-		//}
+		}else{
+			VentanaOrganizador organizador = new VentanaOrganizador();
+			organizador.cargarOrganizador();
+		}
 	}
 	public List<String> cargarFormulario(List<PuntoDeVenta> puntosDeVenta) {
 		List<String> items = new ArrayList<String>();
