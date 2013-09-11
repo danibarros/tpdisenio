@@ -29,29 +29,24 @@
 					<dependencies>
 						<!-- specify the dependent jdbc driver here -->
 						<dependency>
-							<groupId>postgresql</groupId>
-							<artifactId>postgresql</artifactId>
-							<version>8.1-407.jdbc3</version>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>${version.mysql.connector}</version>
 						</dependency>
 					</dependencies>
 
 					<!-- common configuration shared by all executions -->
 					<configuration>
-						<driver>org.postgresql.Driver</driver>
-						<url>jdbc:postgressql://localhost:5432:yourdb</url>
-						<username>postgres</username>
-						<password>password</password>
-						<!-- You can comment out username/password configurations and have 
-							maven to look them up in your settings.xml using ${settingsKey} -->
-						<settingsKey>sensibleKey</settingsKey>
-						<!--all executions are ignored if -Dmaven.test.skip=true -->
-						<skip>${maven.test.skip}</skip>
+						<driver>com.mysql.jdbc.Driver</driver>
+						<url>jdbc:mysql://localhost/</url>
+						<username>root</username>
+						<password>root</password>
 					</configuration>
 
 					<executions>
 						<execution>
-							<id>create-schema</id>
-							<phase>crear esquema</phase>
+							<id>drop-and-recreate-db</id>
+							<phase>process-test-resources</phase>
 							<goals>
 								<goal>execute</goal>
 							</goals>
