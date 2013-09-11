@@ -16,6 +16,27 @@ import edu.ventas.entities.Vendedor;
 
 public class VentanaInicioDecorator {
 
+	public void elegir(List<PuntoDeVenta> puntosDeVenta){
+		List<String> items = new ArrayList<String>();
+		items.add("Organizar");
+		items.add("Vender");
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		JComboBox combo = new JComboBox(items.toArray());
+		
+		JPanel panel = new JPanel(new GridLayout(0, 1));
+		
+		
+		panel.add(new JLabel("Seleccione Función"));
+		panel.add(combo);
+		
+		int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+		if(items.get(combo.getSelectedIndex()) != "Organizar"){
+				cargarFormulario(puntosDeVenta);
+		}
+	}
 	public List<String> cargarFormulario(List<PuntoDeVenta> puntosDeVenta) {
 		List<String> items = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
