@@ -16,7 +16,7 @@ import edu.ventas.entities.Vendedor;
 
 public class VentanaInicioDecorator {
 
-	public void elegir(List<PuntoDeVenta> puntosDeVenta){
+	public List<String> elegir(List<PuntoDeVenta> puntosDeVenta){
 		List<String> items = new ArrayList<String>();
 		items.add("Organizar");
 		items.add("Vender");
@@ -34,10 +34,10 @@ public class VentanaInicioDecorator {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if(items.get(combo.getSelectedIndex()) != "Organizar"){
-				cargarFormulario(puntosDeVenta);
+				return cargarFormulario(puntosDeVenta);
 		}else{
 			VentanaOrganizador organizador = new VentanaOrganizador();
-			organizador.cargarOrganizador();
+			return organizador.cargarOrganizador();
 		}
 	}
 	public List<String> cargarFormulario(List<PuntoDeVenta> puntosDeVenta) {
