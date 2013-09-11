@@ -54,6 +54,8 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 		} else {
 			this.cargarOrganizador();
 		}
+		VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
+		despedida.dibujardos();
 		return datos;
 	}
 }

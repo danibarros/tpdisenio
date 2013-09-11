@@ -14,4 +14,11 @@ public class VentanaDespedidaDecorator  implements VentanaDecoratorInterface{
 				"Gracias por la compra!, vuelva pronto!");
 		System.exit(0);
 	}
+	
+	
+	public void dibujardos() {
+		JOptionPane.showMessageDialog(null,
+				"Sus datos han sido guardados");
+		System.exit(0);
+	}
 }
