@@ -50,7 +50,7 @@ public class VentanaInformarEntradasDecorator implements
 				panel.add(new JLabel("Sector:" + sector.getNombre()));
 				
 				cantLineas += 1;
-				vendedor.vender(seleccionados,noche,edad,cantJubilados,cantMenores,cantMayores);
+				vendedor.vender(seleccionados,noche,cantJubilados,cantMenores,cantMayores);
 				imprimirSector(panel,seleccionados.get(sector.getNombre()),vendedor,sector.getNombre());
 			}
 		}

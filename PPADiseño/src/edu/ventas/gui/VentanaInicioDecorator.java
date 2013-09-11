@@ -18,6 +18,7 @@ public class VentanaInicioDecorator {
 
 	public List<String> elegir(List<PuntoDeVenta> puntosDeVenta){
 		List<String> items = new ArrayList<String>();
+		
 		items.add("Organizar");
 		items.add("Vender");
 		
@@ -34,15 +35,17 @@ public class VentanaInicioDecorator {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if(items.get(combo.getSelectedIndex()) != "Organizar"){
-				return cargarFormulario(puntosDeVenta);
+			 return cargarFormulario(puntosDeVenta);
 		}else{
 			VentanaOrganizador organizador = new VentanaOrganizador();
 			return organizador.cargarOrganizador();
+			
 		}
 	}
 	public List<String> cargarFormulario(List<PuntoDeVenta> puntosDeVenta) {
 		List<String> items = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
+		
 
 		for (PuntoDeVenta puntoDeVenta : puntosDeVenta) {
 			items.add(String.valueOf(puntoDeVenta.getNombre()));
