@@ -10,6 +10,25 @@
 		<module>../PPADisenioCore</module>
 		<module>../PPADisenioVentas</module>
 	</modules>
+	<profiles>
+		<profile>
+			<id>profile-development</id>
+			<properties>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.url>jdbc:mysql://localhost/localhost</db.url>
+				<db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>environment</name>
+					<value>dev</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -20,44 +39,6 @@
 						<source>1.7</source>
 						<target>1.7</target>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>sql-maven-plugin</artifactId>
-					<version>1.5</version>
-
-					<dependencies>
-						<!-- specify the dependent jdbc driver here -->
-						<dependency>
-							<groupId>mysql</groupId>
-							<artifactId>mysql-connector-java</artifactId>
-							<version>${version.mysql.connector}</version>
-						</dependency>
-					</dependencies>
-
-					<!-- common configuration shared by all executions -->
-					<configuration>
-						<driver>com.mysql.jdbc.Driver</driver>
-						<url>jdbc:mysql://localhost/</url>
-						<username>root</username>
-						<password>root</password>
-					</configuration>
-
-					<executions>
-						<execution>
-							<id>drop-and-recreate-db</id>
-							<phase>process-test-resources</phase>
-							<goals>
-								<goal>execute</goal>
-							</goals>
-							<configuration>
-								<autocommit>true</autocommit>
-								<srcFiles>
-									<srcFile>src/main/resources/PPA scrip creacion inicial.sql</srcFile>
-								</srcFiles>
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
