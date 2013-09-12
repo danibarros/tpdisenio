@@ -154,17 +154,10 @@ public class DataReader implements DataReaderDAO {
 	}
 
 	public List<Noche> getNoches(Set<Banda> bandas) {
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Time date = new Time(90);
-//		String input;
-//		input = "2013-12-20";
-//		try {
-//			date = format.parse(input);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		Noche noche1 = new Noche(null, 1, bandas, date);
+		noche1.setNumero(1);
 		List<Noche> noches = new ArrayList<Noche>();
 		noches.add(noche1);
 		return noches;
