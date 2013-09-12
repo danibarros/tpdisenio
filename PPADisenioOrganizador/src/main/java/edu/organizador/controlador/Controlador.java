@@ -34,9 +34,9 @@ public class Controlador {
 	private Banda banda;
 	private Noche noche;
 	
-public List<String> organiza(){
+public void organiza(){
 	VentanaOrganizador organizador = new VentanaOrganizador();
-	return organizador.cargarOrganizador();
+	organizador.cargarOrganizador();
 }
 
 }
