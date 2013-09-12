@@ -16,7 +16,7 @@ import edu.ventas.entities.Vendedor;
 
 public class VentanaInicioDecorator {
 
-	public void elegir(List<PuntoDeVenta> puntosDeVenta){
+	public List<String> elegir(List<PuntoDeVenta> puntosDeVenta){
 		List<String> items = new ArrayList<String>();
 		items.add("Organizar");
 		items.add("Vender");
