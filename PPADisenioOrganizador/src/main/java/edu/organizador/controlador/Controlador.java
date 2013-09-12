@@ -27,16 +27,20 @@ import edu.ventas.gui.VentanaInicioDecorator;
 
 public class Controlador {
 	
-	private String nombreBanda;
-	private int categoriaBanda;
-	private String horarioInicio;
+	
 	private String estadio;
 	private Banda banda;
 	private Noche noche;
 	
 public void organiza(){
+	List<String> datos = new ArrayList<String>();
+	
 	VentanaOrganizador organizador = new VentanaOrganizador();
-	organizador.cargarOrganizador();
+	datos = organizador.cargarOrganizador();
+	banda.setNombre(datos.get(0));
+    banda.setCategoria(Integer.parseInt(datos.get(1)));
+ //   noche.setHoraInicio(Date.parse(datos.get(2)));
+	
 }
 
 }
