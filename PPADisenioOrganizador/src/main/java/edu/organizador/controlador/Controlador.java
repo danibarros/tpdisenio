@@ -34,13 +34,14 @@ public class Controlador {
 	
 public void organiza(){
 	List<String> datos = new ArrayList<String>();
+	DateFormat hora = new SimpleDateFormat("hh:mm:ss");
 	
 	VentanaOrganizador organizador = new VentanaOrganizador();
 	datos = organizador.cargarOrganizador();
 	banda.setNombre(datos.get(0));
     banda.setCategoria(Integer.parseInt(datos.get(1)));
- //   noche.setHoraInicio(Date.parse(datos.get(2)));
-	
+    noche.setHoraInicio(hora.parse(datos.get(2)));
+	estadio = datos.get(3);
 }
 
 }
