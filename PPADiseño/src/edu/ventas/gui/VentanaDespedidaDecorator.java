@@ -21,4 +21,5 @@ public class VentanaDespedidaDecorator  implements VentanaDecoratorInterface{
 				"Sus datos han sido guardados");
 		System.exit(0);
 	}
+
 }

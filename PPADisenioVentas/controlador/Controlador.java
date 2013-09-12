@@ -51,10 +51,11 @@ public class Controlador {
 		DataReaderDAO dataReader = new DataReader();
 		puntosDeVenta = dataReader.getPuntosDeVenta();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		inicio.cargarFormulario(puntosDeVenta);
+		inicio.elegir(puntosDeVenta);
 		vendedor = new Vendedor();
 		
 	}
+
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
 		DataReaderDAO dataReader = new DataReader();
