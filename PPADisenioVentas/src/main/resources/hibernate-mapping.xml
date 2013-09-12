@@ -2,13 +2,266 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="edu.ventas.entities.Banda" table="BANDA">
-        <id name="nombre" type="string">
-            <column name="nombre" precision="5" scale="0" />
-            <generator class="assigned" />
-        </id>
-        <property name="categoria" type="int">
-            <column name="categoria" length="20" not-null="true" />
-        </property>
-    </class>
+
+	<class name="edu.ventas.entities.Banda" table="bandas">
+		<id name="idBanda" type="int">
+			<column name="banda_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		<property name="categoria" type="int">
+			<column name="Categorias_categoria_id" length="20" not-null="true" />
+		</property>
+		<property name="nombre" type="int">
+			<column name="banda_name" length="20" not-null="true" />
+		</property>
+	</class>
+
+	<class name="edu.ventas.entities.Butaca" table="butacas">
+		<id name="idButaca" type="int">
+			<column name="butaca_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		<property name="numero" type="int">
+			<column name="butaca_numero" length="20" not-null="true" />
+		</property>
+		<property name="fila" type="edu.ventas.entities.Fila">
+			<column name="Filas_fila_id" length="20" not-null="true" />
+		</property>
+		<property name="disponible" type="org.hibernate.type.NumericBooleanType">
+			<column name="disponible"  not-null="true" />
+		</property>
+	</class>
+	
+	<class name="edu.ventas.entities.Pais" table="paises">
+		<id name="idPais" type="int">
+			<column name="pais_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		<property name="nombre" type="String">
+			<column name="pais_name" length="20" not-null="true" />
+		</property>
+	</class>
+	
+	<class name="edu.ventas.entities.Provincia" table="provincias">
+		<id name="idProvincia" type="int">
+			<column name="provincia_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="nombre" type="String">
+			<column name="provincia_name" length="20" not-null="true" />
+		</property>
+		
+		<property name="pais" type="edu.ventas.entities.Pais">
+			<column name="Paises_pais_id" length="20" not-null="true" />
+		</property>
+		
+	</class>
+	
+	<class name="edu.ventas.entities.Localidad" table="Localidades">
+		<id name="idLocalidad" type="int">
+			<column name="localidad_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="nombre" type="String">
+			<column name="localidad_name" length="20" not-null="true" />
+		</property>
+		
+		<property name="provincia" type="edu.ventas.entities.Provincia">
+			<column name="Provincias_provincia_id" length="20" not-null="true" />
+		</property>
+	</class>
+	
+	<class name="edu.ventas.entities.PuntoDeVenta" table="puntos_venta">
+		<id name="idPunto" type="int">
+			<column name="puntos_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+
+
+
+		<property name="nombre" type="String">
+			<column name="punto_name" length="20" not-null="true" />
+		</property>
+		<property name="direccion" type="String">
+			<column name="punto_direccion" length="20" not-null="true" />
+		</property>
+		
+		<property name="festival" type="edu.ventas.entities.Festival">
+			<column name="Festival_festival_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="localidad" type="edu.ventas.entities.Localidad">
+			<column name="Localidades_localidad_id" length="20" not-null="true" />
+		</property>
+		
+	</class>
+	
+	<class name="edu.ventas.entities.Entrada" table="entradas">
+		<id name="numeroDeEntrada" type="int">
+			<column name="entrda_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="Noche" type="edu.ventas.entities.Noche">
+			<column name="Noches_noche_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="codigoDeBarra" type="long">
+			<column name="codigo_barra" length="20" not-null="true" />
+		</property>
+		
+		<property name="fecha" type="date">
+			<column name="entrada_fecha" length="20" not-null="true" />
+		</property>
+		
+		<property name="precio" type="float">
+			<column name="entrada_precio" length="20" not-null="true" />
+		</property>
+				
+		<property name="tipo" type="char">
+			<column name="entrada_tipo" length="20" not-null="true" />
+		</property>
+		
+		<property name="clienteNombre" type="String">
+			<column name="cliente_name" length="20" not-null="true" />
+		</property>
+		
+		<property name="clienteDNI" type="int">
+			<column name="cliente_dni" length="20" not-null="true" />
+		</property>
+		
+	</class>
+	
+	<class name="edu.ventas.entities.Estadio" table="estadios">
+		<id name="idEstadio" type="int">
+			<column name="estadio_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="nombre" type="String">
+			<column name="estadio_nombre" length="20" not-null="true" />
+		</property>
+		
+		<property name="localidad" type="edu.ventas.entities.Localidad">
+			<column name="Localidades_localidad_id" length="20" not-null="true" />
+		</property>
+	</class>
+	
+	<class name="edu.ventas.entities.Festival" table="festival">
+		<id name="idFestival" type="int">
+			<column name="festival_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="estadio" type="edu.ventas.entities.Estadio">
+			<column name="Estadios_estadio_id" length="20" not-null="true" />
+		</property>
+	</class>
+	
+	<class name="edu.ventas.entities.Festival" table="festival">
+		<id name="idFestival" type="int">
+			<column name="festival_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="estadio" type="edu.ventas.entities.Estadio">
+			<column name="Estadios_estadio_id" length="20" not-null="true" />
+		</property>
+	</class>
+	
+		
+	<class name="edu.ventas.entities.Fila" table="filas">
+		<id name="idFila" type="int">
+			<column name="fila_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="sector" type="edu.ventas.entities.Sector">
+			<column name="Sectores_sector_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="numero" type="int">
+			<column name="fila_numero" length="20" not-null="true" />
+		</property>
+		
+		<property name="precioFila" type="int">
+			<column name="precio_base" length="20" not-null="true" />
+		</property>
+		
+	</class>
+	
+	<class name="edu.ventas.entities.Noche" table="noches">
+		<id name="idNoche" type="int">
+			<column name="Noche_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="festival" type="edu.ventas.entities.Festival">
+			<column name="Festival_festival_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="estadio" type="edu.ventas.entities.Estadio">
+			<column name="Estadios_estadio_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="fecha" type="Date">
+			<column name="noche_fecha" length="20" not-null="true" />
+		</property>
+		
+		<property name="horaInicio" type="Time">
+			<column name="noche_hora_inicio" length="20" not-null="true" />
+		</property>
+		
+		<property name="numero" type="int">
+			<column name="noche_numero" length="20" not-null="true" />
+		</property>
+		
+	</class>
+	
+	<class name="edu.ventas.entities.Sector" table="sectores">
+		<id name="idSector" type="int">
+			<column name="sector_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="estadio" type="edu.ventas.entities.Estadio">
+			<column name="Estadios_estadio_id" length="20" not-null="true" />
+		</property>
+		
+		<property name="color" type="String">
+			<column name="sector_color" length="20" not-null="true" />
+		</property>
+		
+		<property name="precioSector" type="float">
+			<column name="precio_base" length="20" not-null="true" />
+		</property>
+	</class> 
+
+	<class name="edu.ventas.entities.Vendedor" table="vendedores">
+		<id name="idVendedor" type="int">
+			<column name="vendedor_id" precision="5" scale="0" />
+			<generator class="assigned" />
+		</id>
+		
+		<property name="nombre" type="String">
+			<column name="Vendedor_nombre" length="20" not-null="true" />
+		</property>
+		
+		<property name="usuario" type="String">
+			<column name="Vendedor_user" length="20" not-null="true" />
+		</property>
+		
+		<property name="contrasenia" type="String">
+			<column name="Vendedor_pass" length="20" not-null="true" />
+		</property>
+
+		<property name="puntoDeVenta" type="edu.ventas.entities.PuntoDeVenta">
+			<column name="punto_venta_id" length="20" not-null="true" />
+		</property>
+		
+	</class> 
+
 </hibernate-mapping>

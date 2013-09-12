@@ -8,8 +8,13 @@ import java.util.Map;
 
 public class Vendedor {
 	
+	private int idVendedor;
+	private String nombre;
+	private String usuario;
+	private String contrasenia;
 	private double precioFinal;
 	private HashMap <Integer,Double> listaPrecios = new HashMap<Integer,Double>();
+	private PuntoDeVenta puntoDeVenta;
 	
 	public void vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer edad,Integer cantJubilados,Integer cantMenores, Integer cantMayores) {
 		String key;

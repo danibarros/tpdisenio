@@ -1,5 +1,6 @@
 package edu.ventas.entities;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,16 +9,47 @@ import java.util.Set;
 
 public class Noche {
 
-	private int numeroDeNoches;
+	private int idNoche;
 	private Set<Banda> bandas = new HashSet<Banda>();
-	private Date horaInicio = new Date();
+	private Time horaInicio;
     private List<Entrada> entrada = new ArrayList<Entrada>();
     private Estadio estadio;
+    private Festival festival;
+    private Date fecha;
+    private int numero;
     
-	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Date horaInicio) {
+	public Festival getFestival() {
+		return festival;
+	}
+
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public void setHoraInicio(Time horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Time horaInicio) {
 		this.estadio = estadio;
 		this.bandas = bandas;
-		this.numeroDeNoches = numeroDeNoches;
+		this.idNoche = numeroDeNoches;
 		this.horaInicio = horaInicio;
 		//this.fecha  //DDMMAAAA Esto es nuevo 
 		/*1. si la fecha por "casualidad" la definis como Integer CONVIENE usar este formato YYYYMMDD.
@@ -56,12 +88,12 @@ public class Noche {
 		return max;
 	}
 
-	public int getNumeroDeNoches() {
-		return numeroDeNoches;
+	public int getIdNoche() {
+		return idNoche;
 	}
 
-	public void setNumeroDeNoches(int numeroDeNoches) {
-		this.numeroDeNoches = numeroDeNoches;
+	public void setIdNoche(int idNoche) {
+		this.idNoche = idNoche;
 	}
 
 	public Set<Banda> getBandas() {
@@ -72,12 +104,8 @@ public class Noche {
 		this.bandas = bandas;
 	}
 
-	public Date getHoraInicio() {
+	public Time getHoraInicio() {
 		return horaInicio;
-	}
-
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
 	}
 
 	public int precioDeLaNoche() {

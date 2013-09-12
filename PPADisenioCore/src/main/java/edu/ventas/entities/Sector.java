@@ -5,10 +5,14 @@ import java.util.List;
 
 public class Sector {
 
+	private int idSector;
 	private String nombre;
 	private List<Fila> filas = new ArrayList<Fila>();
-	private int precioSector;
+	private float precioSector;
 	private char ubicacion;
+	private String color;
+	private Estadio estadio;
+	
 
 	public Sector(String nombre, List<Fila> filas, int precioSector,
 			char ubicacion) {
@@ -26,12 +30,12 @@ public class Sector {
 		ubicacion = this.ubicacion;
 	}
 
-	public int getPrecioSector() {
+	public float getPrecioSector() {
 
 		return this.precioSector;
 	}
 
-	public void setPrecioSector(int precioSector) {
+	public void setPrecioSector(float precioSector) {
 		this.precioSector = precioSector;
 	}
 

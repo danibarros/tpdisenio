@@ -8,6 +8,15 @@ public class Festival {
 	private String nombre;
 	private Estadio estadio;
 	private List<Noche> noches = new ArrayList<Noche>();
+	private int idFestival;
+	
+	public int getIdFestival() {
+		return idFestival;
+	}
+
+	public void setIdFestival(int idFestival) {
+		this.idFestival = idFestival;
+	}
 
 	public Festival(String nombre, Estadio estadio, List<Noche> noches) {
 		this.nombre = nombre;

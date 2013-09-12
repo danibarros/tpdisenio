@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Fila {
 
+	private int idFila;
 	private int numero;
 	private List<Butaca> butacas = new ArrayList<Butaca>();
 	private int precioFila;

@@ -4,6 +4,15 @@ public class Banda {
 
 	private String nombre;
 	private int categoria;
+	private int idBanda;
+
+	public int getIdBanda() {
+		return idBanda;
+	}
+
+	public void setIdBanda(int idBanda) {
+		this.idBanda = idBanda;
+	}
 
 	public Banda(String nombre, int categoria) {
 		this.nombre = nombre;

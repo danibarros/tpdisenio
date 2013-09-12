@@ -6,7 +6,9 @@ import java.util.List;
 public abstract class CentroDeVenta {
 	private String nombre;
 	protected List<PuntoDeVenta> puntosDeVenta = new ArrayList<PuntoDeVenta>();
-
+	
+	
+	
 	public int vender(Entrada entrada) {
 		return 2;
 	}
