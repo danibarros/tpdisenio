@@ -66,10 +66,10 @@ public class Controlador {
     	datos = form.cargarFormulario(noches);
     	apeYNom = datos.get(0);
     	edad = Integer.parseInt(datos.get(1));
-    	numeroNoche = Integer.parseInt(datos.get(2));
-    	cantJubilados = Integer.parseInt(datos.get(3));
-    	cantMenores = Integer.parseInt(datos.get(4));
-    	cantMayores = Integer.parseInt(datos.get(5));
+    	cantJubilados = Integer.parseInt(datos.get(2));
+    	cantMenores = Integer.parseInt(datos.get(3));
+    	cantMayores = Integer.parseInt(datos.get(4));
+    	numeroNoche = Integer.parseInt(datos.get(5));
 	}
 	
 	public void elegirButaca(){

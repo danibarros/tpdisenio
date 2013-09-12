@@ -25,7 +25,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		List<String> datos = new ArrayList<String>();
 		
 		for (Noche noche : noches) {
-			items.add(String.valueOf(noche.getNumeroDeNoches()));
+			items.add(String.valueOf(noche.getNumero()));
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox combo = new JComboBox(items.toArray());

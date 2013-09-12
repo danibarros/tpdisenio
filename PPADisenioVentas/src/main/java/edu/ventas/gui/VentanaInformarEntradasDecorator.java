@@ -43,7 +43,7 @@ public class VentanaInformarEntradasDecorator implements
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Noche:"));
-		panel.add(new JLabel(String.valueOf(noche.getNumeroDeNoches())));
+		panel.add(new JLabel(String.valueOf(noche.getNumero())));
 
 		for (Sector sector : sectores) {
 			if (seleccionados.containsKey(sector.getNombre())){
