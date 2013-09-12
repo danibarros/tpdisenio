@@ -36,8 +36,8 @@ public class VentanaInicioDecorator {
 		if(items.get(combo.getSelectedIndex()) != "Organizar"){
 				return cargarFormulario(puntosDeVenta);
 		}else{
-			VentanaOrganizador organizador = new VentanaOrganizador();
-			return organizador.cargarOrganizador();
+			Controlador controlador = new Controlador();
+			controlador.organiza();
 		}
 	}
 

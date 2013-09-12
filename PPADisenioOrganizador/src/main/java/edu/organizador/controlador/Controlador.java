@@ -33,6 +33,11 @@ public class Controlador {
 	private String estadio;
 	private Banda banda;
 	private Noche noche;
+	
+public List<String> organiza(){
+	VentanaOrganizador organizador = new VentanaOrganizador();
+	return organizador.cargarOrganizador();
+}
 
 }
 
