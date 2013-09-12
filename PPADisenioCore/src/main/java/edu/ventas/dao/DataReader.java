@@ -170,5 +170,59 @@ public class DataReader implements DataReaderDAO {
 		return noches;
 	}
 
+	@Override
+	public void setCategorias(Map<Integer, Integer> categorias) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setButacas1(List<Butaca> butacas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setButacas2(List<Butaca> butacas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFilas(List<Fila> filas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSectores(List<Sector> sectores) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPuntosDeVenta(List<PuntoDeVenta> puntosDeVenta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setBandas(Set<Banda> bandas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNoches(List<Noche> noches) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEstadio(Estadio estadio) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

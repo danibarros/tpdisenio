@@ -23,4 +23,14 @@ public interface DataReaderDAO {
 	public Set<Banda> getBandas();
 	public List<Noche> getNoches(Set<Banda> bandas);
 	public Estadio getEstadio(List<Sector> sectores,List<PuntoDeVenta> puntos);
+	
+	public void setCategorias(Map<Integer, Integer> categorias);
+	public void setButacas1(List<Butaca> butacas);
+	public void setButacas2(List<Butaca> butacas);
+	public void setFilas(List<Fila> filas);
+	public void setSectores(List<Sector> sectores);
+	public void setPuntosDeVenta(List<PuntoDeVenta> puntosDeVenta);
+	public void setBandas(Set<Banda> bandas);
+	public void setNoches(List<Noche> noches);
+	public void setEstadio(Estadio estadio);
 }
