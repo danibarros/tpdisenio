@@ -26,6 +26,13 @@ import edu.ventas.gui.VentanaInicioDecorator;
 
 
 public class Controlador {
+	
+	private String nombreBanda;
+	private int categoriaBanda;
+	private String horarioInicio;
+	private String estadio;
+	private Banda banda;
+	private Noche noche;
 
 }
 
