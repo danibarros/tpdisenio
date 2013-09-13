@@ -2,6 +2,7 @@ package edu.ventas.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.persistence.HibernateUtil;
 
@@ -11,111 +12,137 @@ import edu.ventas.entities.*;
 public class DataReaderHibernate implements DataBaseReader {
 
 	@Override
-	public void setBanda(Banda banda) {
+	public void createBanda(Banda banda) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(banda);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setButaca(Butaca butaca) {
+	public void createButaca(Butaca butaca) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(butaca);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setCentroDeVenta(CentroDeVenta centroDeVenta) {
+	public void createCentroDeVenta(CentroDeVenta centroDeVenta) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(centroDeVenta);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setEntrada(Entrada entrada) {
+	public void createEntrada(Entrada entrada) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(entrada);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setEstadio(Estadio estadio) {
+	public void createEstadio(Estadio estadio) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(estadio);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setFestival(Festival festival) {
+	public void createFestival(Festival festival) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(festival);
 		s.flush();
-		s.close();
+		t.commit();
+		s.close();	
 	}
 
 	@Override
-	public void setFila(Fila fila) {
+	public void createFila(Fila fila) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(fila);
 		s.flush();
+		t.commit();
 		s.close();	
 	}
 
 	@Override
-	public void setLocalidad(Localidad localidad) {
+	public void createLocalidad(Localidad localidad) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(localidad);
 		s.flush();
+		t.commit();
 		s.close();	
 	}
 
 	@Override
-	public void setPais(Pais pais) {
+	public void createPais(Pais pais) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(pais);
 		s.flush();
+		t.commit();
 		s.close();	
 	}
 
 	@Override
-	public void setProvincia(Provincia provincia) {
+	public void createProvincia(Provincia provincia) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(provincia);
 		s.flush();
+		t.commit();
 		s.close();	
 	}
 
 	@Override
-	public void setPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+	public void createPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(puntoDeVenta);
 		s.flush();
-		s.close();	
+		t.commit();
+		s.close();		
 	}
 
 	@Override
-	public void setSector(Sector sector) {
+	public void createSector(Sector sector) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(sector);
 		s.flush();
-		s.close();	
+		t.commit();
+		s.close();		
 	}
 
 	@Override
-	public void setVendedor(Vendedor vendedor) {
+	public void createVendedor(Vendedor vendedor) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
 		s.save(vendedor);
 		s.flush();
-		s.close();	
+		t.commit();
+		s.close();		
 	}
 
 	@Override
-	public Banda getBanda(int idBanda) {
+	public Banda getBanda(int idBanda) {		
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -164,8 +191,12 @@ public class DataReaderHibernate implements DataBaseReader {
 
 	@Override
 	public Pais getPais(int idPais) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		Pais pais = new Pais();
+		pais = (Pais) s.get(pais.getClass(),idPais);
+		s.close();		
+		return pais;
 	}
 
 	@Override
@@ -190,6 +221,214 @@ public class DataReaderHibernate implements DataBaseReader {
 	public Vendedor getVendedor(int idVendedor) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void dropBanda(Banda banda) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(banda);
+		s.flush();
+		t.commit();
+		s.close();		
+	}
+
+	@Override
+	public void dropButaca(Butaca butaca) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(butaca);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropCentroDeVenta(CentroDeVenta centroDeVenta) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(centroDeVenta);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropEntrada(Entrada entrada) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(entrada);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropEstadio(Estadio estadio) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(estadio);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropFestival(Festival festival) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(festival);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropFila(Fila fila) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(fila);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropLocalidad(Localidad localidad) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(localidad);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropPais(Pais pais) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(pais);
+		s.flush();
+		t.commit();
+		s.close();		
+	}
+
+	@Override
+	public void dropProvincia(Provincia provincia) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(provincia);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(puntoDeVenta);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropSector(Sector sector) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(sector);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void dropVendedor(Vendedor vendedor) {
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = s.beginTransaction();
+		s.delete(vendedor);
+		s.flush();
+		t.commit();
+		s.close();	
+	}
+
+	@Override
+	public void setBanda(Banda banda) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setButaca(Butaca butaca) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCentroDeVenta(CentroDeVenta centroDeVenta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEntrada(Entrada entrada) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEstadio(Estadio estadio) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFestival(Festival festival) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFila(Fila fila) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLocalidad(Localidad localidad) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPais(Pais pais) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setProvincia(Provincia provincia) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSector(Sector sector) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVendedor(Vendedor vendedor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
