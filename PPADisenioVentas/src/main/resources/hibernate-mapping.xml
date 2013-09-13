@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-mapping>
-
+ 
 	<class name="edu.ventas.entities.Banda" table="bandas">
 		<id name="idBanda" type="int">
 			<column name="banda_id" precision="5" scale="0" />
@@ -37,18 +37,16 @@
 			<column name="pais_id" precision="5" scale="0" />
 			<generator class="assigned" />
 		</id>
-		<property name="nombre" type="String">
-			<column name="pais_name" length="20" not-null="true" />
-		</property>
+		 <property name="nombre"  type="string" column="pais_name"/>
 	</class>
 	
-	<class name="edu.ventas.entities.Provincia" table="provincias">
+	 <class name="edu.ventas.entities.Provincia" table="provincias">
 		<id name="idProvincia" type="int">
 			<column name="provincia_id" precision="5" scale="0" />
 			<generator class="assigned" />
 		</id>
 		
-		<property name="nombre" type="String">
+		<property name="nombre" type="string">
 			<column name="provincia_name" length="20" not-null="true" />
 		</property>
 		
@@ -64,7 +62,7 @@
 			<generator class="assigned" />
 		</id>
 		
-		<property name="nombre" type="String">
+		<property name="nombre" type="string">
 			<column name="localidad_name" length="20" not-null="true" />
 		</property>
 		
@@ -82,10 +80,10 @@
 
 
 
-		<property name="nombre" type="String">
+		<property name="nombre" type="string">
 			<column name="punto_name" length="20" not-null="true" />
 		</property>
-		<property name="direccion" type="String">
+		<property name="direccion" type="string">
 			<column name="punto_direccion" length="20" not-null="true" />
 		</property>
 		
@@ -125,7 +123,7 @@
 			<column name="entrada_tipo" length="20" not-null="true" />
 		</property>
 		
-		<property name="clienteNombre" type="String">
+		<property name="clienteNombre" type="string">
 			<column name="cliente_name" length="20" not-null="true" />
 		</property>
 		
@@ -141,23 +139,12 @@
 			<generator class="assigned" />
 		</id>
 		
-		<property name="nombre" type="String">
+		<property name="nombre" type="string">
 			<column name="estadio_nombre" length="20" not-null="true" />
 		</property>
 		
 		<property name="localidad" type="edu.ventas.entities.Localidad">
 			<column name="Localidades_localidad_id" length="20" not-null="true" />
-		</property>
-	</class>
-	
-	<class name="edu.ventas.entities.Festival" table="festival">
-		<id name="idFestival" type="int">
-			<column name="festival_id" precision="5" scale="0" />
-			<generator class="assigned" />
-		</id>
-		
-		<property name="estadio" type="edu.ventas.entities.Estadio">
-			<column name="Estadios_estadio_id" length="20" not-null="true" />
 		</property>
 	</class>
 	
@@ -231,7 +218,7 @@
 			<column name="Estadios_estadio_id" length="20" not-null="true" />
 		</property>
 		
-		<property name="color" type="String">
+		<property name="color" type="string">
 			<column name="sector_color" length="20" not-null="true" />
 		</property>
 		
@@ -246,15 +233,15 @@
 			<generator class="assigned" />
 		</id>
 		
-		<property name="nombre" type="String">
+		<property name="nombre" type="string">
 			<column name="Vendedor_nombre" length="20" not-null="true" />
 		</property>
 		
-		<property name="usuario" type="String">
+		<property name="usuario" type="string">
 			<column name="Vendedor_user" length="20" not-null="true" />
 		</property>
 		
-		<property name="contrasenia" type="String">
+		<property name="contrasenia" type="string">
 			<column name="Vendedor_pass" length="20" not-null="true" />
 		</property>
 
@@ -262,6 +249,6 @@
 			<column name="punto_venta_id" length="20" not-null="true" />
 		</property>
 		
-	</class> 
+	</class>  
 
 </hibernate-mapping>
