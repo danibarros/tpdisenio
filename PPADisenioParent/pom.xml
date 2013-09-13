@@ -9,6 +9,7 @@
 	<modules>
 		<module>../PPADisenioCore</module>
 		<module>../PPADisenioVentas</module>
+		<module>../PPADisenioOrganizador</module>
 	</modules>
 	<profiles>
 		<profile>
