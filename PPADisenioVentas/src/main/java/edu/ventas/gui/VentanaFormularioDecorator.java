@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.ventas.entities.Noche;
+import edu.core.entities.Noche;
 
 public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 	

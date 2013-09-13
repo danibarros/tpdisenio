@@ -19,15 +19,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.ventas.entities.Banda;
-import edu.ventas.entities.Butaca;
-import edu.ventas.entities.Estadio;
-import edu.ventas.entities.Festival;
-import edu.ventas.entities.Fila;
-import edu.ventas.entities.Noche;
-import edu.ventas.entities.PuntoDeVenta;
-import edu.ventas.entities.Sector;
-import edu.ventas.entities.Vendedor;
+import edu.core.entities.Banda;
+import edu.core.entities.Butaca;
+import edu.core.entities.Estadio;
+import edu.core.entities.Festival;
+import edu.core.entities.Fila;
+import edu.core.entities.Noche;
+import edu.core.entities.PuntoDeVenta;
+import edu.core.entities.Sector;
+import edu.core.entities.Vendedor;
 import edu.ventas.gui.UIPrincipal;
 
 public class Main {

@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.ventas.entities.Butaca;
-import edu.ventas.entities.Fila;
-import edu.ventas.entities.Noche;
-import edu.ventas.entities.Sector;
-import edu.ventas.entities.Vendedor;
+import edu.core.entities.Butaca;
+import edu.core.entities.Fila;
+import edu.core.entities.Noche;
+import edu.core.entities.Sector;
+import edu.core.entities.Vendedor;
 
 public class VentanaInformarEntradasDecorator implements
 		VentanaDecoratorInterface {

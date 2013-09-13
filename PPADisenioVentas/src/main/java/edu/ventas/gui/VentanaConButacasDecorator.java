@@ -18,12 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import edu.core.entities.Butaca;
+import edu.core.entities.Estadio;
+import edu.core.entities.Fila;
+import edu.core.entities.Noche;
+import edu.core.entities.Sector;
 import edu.ventas.controlador.Controlador;
-import edu.ventas.entities.Butaca;
-import edu.ventas.entities.Estadio;
-import edu.ventas.entities.Fila;
-import edu.ventas.entities.Noche;
-import edu.ventas.entities.Sector;
 
 public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		ActionListener {

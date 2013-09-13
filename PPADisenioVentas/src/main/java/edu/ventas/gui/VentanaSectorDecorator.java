@@ -11,10 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.ventas.entities.Butaca;
-import edu.ventas.entities.Estadio;
-import edu.ventas.entities.Fila;
-import edu.ventas.entities.Sector;
+import edu.core.entities.Butaca;
+import edu.core.entities.Estadio;
+import edu.core.entities.Fila;
+import edu.core.entities.Sector;
 
 public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		ActionListener {

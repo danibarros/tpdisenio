@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import edu.ventas.entities.PuntoDeVenta;
-import edu.ventas.entities.Vendedor;
+import edu.core.entities.PuntoDeVenta;
+import edu.core.entities.Vendedor;
 
 public class VentanaInicioDecorator {
 

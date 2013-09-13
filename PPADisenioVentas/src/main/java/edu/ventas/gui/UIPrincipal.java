@@ -52,8 +52,6 @@ public class UIPrincipal extends WindowAdapter {
 		pedirDatosIniciales();
 		venta();
 	}
-	
-	
 
 	public void iniciarJuego() {	 
 		numWindows++;
