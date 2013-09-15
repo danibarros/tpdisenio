@@ -51,7 +51,7 @@ public class Controlador {
 		DataReaderDAO dataReader = new DataReader();
 		puntosDeVenta = dataReader.getPuntosDeVenta();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		inicio.elegir(puntosDeVenta);
+		inicio.cargarFormulario(puntosDeVenta);
 		vendedor = new Vendedor();
 		
 	}
