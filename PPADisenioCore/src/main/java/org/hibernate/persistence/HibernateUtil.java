@@ -27,6 +27,7 @@ public class HibernateUtil {
 		configuration.setProperty("hibernate.connection.username", "root");
 		configuration.setProperty("hibernate.connection.password", "root");
 		configuration.setProperty("hibernate.order_updates", "true");
+		configuration.setProperty("hibernate.show_sql", "true");
 		
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())
