@@ -19,12 +19,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.persistence.HibernateUtil;
+
+import edu.core.dao.PaisDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
 import edu.core.entities.Festival;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
+import edu.core.entities.Pais;
 import edu.core.entities.PuntoDeVenta;
 import edu.core.entities.Sector;
 import edu.core.entities.Vendedor;
@@ -34,7 +40,13 @@ public class Main {
 
 	public static void main(String[] args) throws ParseException, IOException {
 
-		createAndShowGUI();
+		Pais pais = new Pais();
+		pais.setNombre("Argentina");
+		PaisDAO pasi = new PaisDAO();
+		pasi.save(pais);
+		pasi.getPaisByIdPais(1);
+		
+//		createAndShowGUI();
 	}
 
 	private static void createAndShowGUI() {
