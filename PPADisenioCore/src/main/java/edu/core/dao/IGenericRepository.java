@@ -23,5 +23,5 @@ public interface IGenericRepository<T, ID extends Serializable> {
 	public abstract Collection<T> find(String query);	
 	public T load(ID id) throws Exception;
 	public void delete(T entity);
-	public void update(T entity,ID id);
+	public void update(T entity);
 }

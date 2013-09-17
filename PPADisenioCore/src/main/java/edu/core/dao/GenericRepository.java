@@ -15,7 +15,7 @@ import org.hibernate.persistence.HibernateUtil;
 public abstract class GenericRepository<T,ID extends Serializable> implements IGenericRepository<T,ID> {
 
 	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	private Session session;
+	protected static Session session;
 	
 	@SuppressWarnings("unchecked")
 	public Class<T> entityClass = getDomainClass();
@@ -53,6 +53,7 @@ public abstract class GenericRepository<T,ID extends Serializable> implements IG
 	public void save(T entity)
 	{
 		session.save(entity);
+		session.beginTransaction().commit();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -75,9 +76,9 @@ public abstract class GenericRepository<T,ID extends Serializable> implements IG
 	}
 
 	@Override
-	public void update(T entity, ID id) {
-		T entityRecuperada = findById(id);
-		session.update(entityRecuperada);		
+	public void update(T entity) {
+		session.update(entity);		
+		session.beginTransaction().commit();
 	}
 	
 }

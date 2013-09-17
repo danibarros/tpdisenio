@@ -6,9 +6,11 @@
 <hibernate-mapping>
 
 	<class name="edu.core.entities.Pais" table="paises">
-		<id name="idPais" type="int" column="pais_id" />
+		<id name="idPais" type="java.lang.Integer" column="pais_id" >
+		 <generator class="increment"/>
+		 </id>
 		<property name="nombre" column="pais_name" type="string" />
-		<list name="provincias" table="provincias">
+		<list name="provincias" table="provincias" lazy="false" fetch="select">
 			<key column="Paises_pais_id" />
 			<list-index column="provincia_id"  />
 			<one-to-many class="edu.core.entities.Provincia" />
@@ -16,13 +18,30 @@
 	</class>
 
 	<class name="edu.core.entities.Provincia" table="provincias">
-		<id name="idProvincia" type="int">
+		<id name="idProvincia" type="java.lang.Integer">
 			<column name="provincia_id" precision="5" scale="0" />
-		</id>
+			<generator class="increment"/>
+		 </id>
 		<property name="nombre" type="string">
 			<column name="provincia_name"  />
 		</property>
-		<many-to-one name="pais" class="edu.core.entities.Pais"	column="Paises_pais_id"  />
+		<many-to-one name="pais" class="edu.core.entities.Pais"	column="Paises_pais_id" lazy="false" fetch="select" />
+		<list name="localidades" table="localidades" lazy="false" fetch="select">
+			<key column="Provincias_provincia_id" />
+			<list-index column="localidad_id"  />
+			<one-to-many class="edu.core.entities.Localidad" />
+		</list>
+	</class>
+	
+	<class name="edu.core.entities.Localidad" table="localidades">
+		<id name="idLocalidad" type="java.lang.Integer">
+			<column name="localidad_id" precision="5" scale="0" />
+			<generator class="increment"/>
+		 </id>
+		<property name="nombre" type="string">
+			<column name="localidad_name"  />
+		</property>
+		<many-to-one name="provincia" class="edu.core.entities.Provincia"	column="Provincias_provincia_id" lazy="false" fetch="select"  />
 	</class>
 
 </hibernate-mapping>

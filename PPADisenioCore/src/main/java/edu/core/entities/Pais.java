@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pais {
-	private int idPais;
+	private Integer idPais;
 	private String nombre;
 	private List<Provincia> provincias = new ArrayList<Provincia>();
 	
@@ -14,10 +14,10 @@ public class Pais {
 	public void setProvincias(List<Provincia> provincias) {
 		this.provincias = provincias;
 	}
-	public int getIdPais() {
+	public Integer getIdPais() {
 		return idPais;
 	}
-	public void setIdPais(int idPais) {
+	public void setIdPais(Integer idPais) {
 		this.idPais = idPais;
 	}
 	public String getNombre() {

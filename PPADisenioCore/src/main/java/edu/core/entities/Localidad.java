@@ -5,16 +5,15 @@ import java.util.List;
 
 public class Localidad {
 
-	private int idLocalidad;
+	private Integer idLocalidad;
 	protected Provincia provincia ;
 	private String nombre;
-	public int getIdLocalidad() {
+	public Integer getIdLocalidad() {
 		return idLocalidad;
 	}
-	public void setIdLocalidad(int idLocalidad) {
+	public void setIdLocalidad(Integer idLocalidad) {
 		this.idLocalidad = idLocalidad;
 	}
-
 	public Provincia getProvincia() {
 		return provincia;
 	}
