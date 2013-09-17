@@ -11,7 +11,7 @@ import org.hibernate.persistence.HibernateUtil;
 import edu.core.entities.Pais;
 import edu.core.entities.Provincia;
 
-public class PaisDAO extends GenericRepository<Pais, Long>{
+public class PaisDAO extends GenericRepository<Pais, Integer>{
 
 	private Session session;
 
