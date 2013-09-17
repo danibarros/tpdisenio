@@ -1,0 +1,20 @@
+package edu.organizador.gui;
+
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+
+public class VentanaBanda implements VentanaDecoratorInterface {
+	}
+	
+public void cargarformularioBandas(){
+	
+	}
