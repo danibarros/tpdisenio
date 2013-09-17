@@ -53,9 +53,16 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		for (Banda banda : bandas) {
 			comboBandas.addItem(banda.getNombre());
 		}
+		comboBandas.addItem("ninguna");
 		
 		panel.add(comboBandas);
-
+		if(items.get(combo.getSelectedIndex()) != "ninguna"){
+			VentanaBandasDecorator ventana = new VentanaBandasDecorator();
+			ventana.formularioBandas();
+		}else{
+			System.exit(0);
+			}
+		
 		frame.add(panel);
 		frame.setVisible(true);
 	}
