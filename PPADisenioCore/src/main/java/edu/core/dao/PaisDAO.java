@@ -11,7 +11,7 @@ import org.hibernate.persistence.HibernateUtil;
 import edu.core.entities.Pais;
 import edu.core.entities.Provincia;
 
-public class PaisDAO {
+public class PaisDAO extends GenericRepository<Pais, Long>{
 
 	private Session session;
 
@@ -27,12 +27,11 @@ public class PaisDAO {
 		
 		String hql = "select a from Provincia a inner join a.pais t where t.idPais = :idPais ";
 		Query query = session.createQuery(hql);
-		query.setInteger("idPais", pais.getIdPais());
+		query.setLong("idPais", pais.getIdPais());
 		
 		List<Provincia> provincias = (List<Provincia>) query.list();
 		
 		return  provincias;
 	}
 
-	
 }

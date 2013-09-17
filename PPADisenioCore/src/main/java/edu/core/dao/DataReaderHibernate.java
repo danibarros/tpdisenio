@@ -1,5 +1,6 @@
 package edu.core.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,7 +14,7 @@ import edu.core.entities.PuntoDeVenta;
 import edu.core.entities.Sector;
 
 public class DataReaderHibernate implements DataReaderDAO {
-
+	
 	@Override
 	public Map<Integer, Integer> getCategorias(int line, int worksheet) {
 		// TODO Auto-generated method stub
@@ -118,7 +119,6 @@ public class DataReaderHibernate implements DataReaderDAO {
 
 	@Override
 	public void setEstadio(Estadio estadio) {
-		
 		
 	}
 

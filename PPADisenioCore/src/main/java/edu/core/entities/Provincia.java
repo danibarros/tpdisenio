@@ -1,7 +1,7 @@
 package edu.core.entities;
 
 public class Provincia {
-	private int idProvincia ;
+	private Long idProvincia ;
 	private String nombre ;
 	private Pais pais;
 
@@ -11,10 +11,10 @@ public class Provincia {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-	public int getIdProvincia() {
+	public Long getIdProvincia() {
 		return idProvincia;
 	}
-	public void setIdProvincia(int idProvincia) {
+	public void setIdProvincia(Long idProvincia) {
 		this.idProvincia = idProvincia;
 	}
 	public String getNombre() {
