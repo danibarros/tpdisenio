@@ -8,9 +8,6 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-	// private static SessionFactory sessionFactory;
-	// private static ServiceRegistry serviceRegistry;
-
 	private static SessionFactory configureSessionFactory()
 			throws HibernateException {
 		Configuration configuration = new Configuration();
