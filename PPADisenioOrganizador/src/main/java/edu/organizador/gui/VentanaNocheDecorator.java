@@ -50,26 +50,31 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		for (Banda banda : bandas) {
 			items.add(banda.getNombre());
 		}
+		
+		frame.add(panel);
+		frame.setVisible(true);
+		
+		items.add("pastillas");
+		items.add("vela");
 		items.add("ninguna");
 		
-		JComboBox<String> comboBandas = new JComboBox<String>(items.toArray());
+		JComboBox comboBandas = new JComboBox(items.toArray());
 		
 		comboBandas.setName("cmbBandas");
 		comboBandas.addActionListener(this);
 		
 		panel.add(comboBandas);
 		if(items.get(comboBandas.getSelectedIndex()) != "ninguna"){
-			VentanaBandasDecorator ventana = new VentanaBandasDecorator();
-			ventana.cargarFormularioBandas((items.get(comboBandas.getSelectedIndex()));
-		}  
+			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
+			ventana.cargarFormularioBandas(items.get(comboBandas.getSelectedIndex()));
+			}  
 		else{
 			VentanaAlertDecorator alert = new VentanaAlertDecorator();
 			alert.despedir();
 			System.exit(0);
+			
 			}
 		
-		frame.add(panel);
-		frame.setVisible(true);
 	}
 
 	@Override
@@ -83,4 +88,5 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
