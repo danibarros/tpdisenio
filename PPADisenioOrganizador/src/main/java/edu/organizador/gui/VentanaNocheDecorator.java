@@ -36,6 +36,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	List<Fila> filas;
 
 	public void formularioNoche(Noche noche, JFrame frame){
+		
+		List<String> datos = new ArrayList<String>();
 		List<String> items = new ArrayList<String>();
 		DataReaderDAO dataReader = new DataReader();
 		noche.getHoraInicio();
@@ -59,8 +61,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		panel.add(comboBandas);
 		if(items.get(comboBandas.getSelectedIndex()) != "ninguna"){
 			VentanaBandasDecorator ventana = new VentanaBandasDecorator();
-			ventana.cargarFormularioBandas((items.get(comboBandas.getSelectedIndex()));
-		}
+			datos = ventana.cargarFormularioBandas((items.get(comboBandas.getSelectedIndex()));
+		} /*aun falta almacenar estos datos*/ 
 		else{
 			System.exit(0);
 			}
