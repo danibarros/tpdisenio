@@ -16,7 +16,7 @@ public class VentanaBanda implements VentanaDecoratorInterface {
 	}
 	
 public List<String> cargarFormularioBandas(string nombreBanda){
-
+	
 	List<String> datos = new ArrayList<String>();
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
