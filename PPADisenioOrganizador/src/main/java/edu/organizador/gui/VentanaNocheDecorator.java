@@ -63,6 +63,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			ventana.cargarFormularioBandas((items.get(comboBandas.getSelectedIndex()));
 		}  
 		else{
+			VentanaAlertDecorator alert = new VentanaAlertDecorator();
+			alert.despedir();
 			System.exit(0);
 			}
 		
