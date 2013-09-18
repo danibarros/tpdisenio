@@ -46,6 +46,6 @@ public List<String> cargarFormularioBandas(string nombreBanda){
 		this.cargarFormularioBandas(nombreBanda);
 		}
 	}
-	return datos;
+	return datos; /*aun falta almacenar estos datos*/
 	
 }
