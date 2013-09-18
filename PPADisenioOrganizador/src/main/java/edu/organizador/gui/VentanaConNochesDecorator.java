@@ -37,7 +37,9 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			noches.add(noche);
 			noche.setNumero(i + 1);
 			comboNoches.addItem(String.valueOf(noche.getNumero()));
+			
 		}
+		comboNoches.addItem("ninguna");
 	}
 
 	@Override
