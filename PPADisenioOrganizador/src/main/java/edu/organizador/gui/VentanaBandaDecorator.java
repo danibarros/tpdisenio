@@ -12,10 +12,15 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.BorderLayout;
 
-public class VentanaBanda implements VentanaDecoratorInterface {
-	}
+public class VentanaBandaDecorator implements VentanaDecoratorInterface {
+
+
+@Override
+public void dibujar() {
+
+}
 	
-public List<String> cargarFormularioBandas(string nombreBanda){
+public List<String> cargarFormularioBandas(String nombreBanda){
 	
 	List<String> datos = new ArrayList<String>();
 	
@@ -30,22 +35,26 @@ public List<String> cargarFormularioBandas(string nombreBanda){
 	panel.add(new JLabel("Ingrese Id de la Banda"));
 	panel.add(field2);
 	
+	int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
+			 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	
 	if (result == JOptionPane.OK_OPTION) {
 			if(field1.getText().equals("") || field2.getText().equals("")) { 
-				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
+				System.exit(0);
 				this.cargarFormularioBandas(nombreBanda);
 				}
 			else{
 				datos.add(nombreBanda);
 				datos.add(field1.getText());
 				datos.add(field2.getText());
+				return datos;  /*aun falta almacenar estos datos*/
 				}
-	else{
-		this.cargarFormularioBandas(nombreBanda);
+	}else{
+		System.exit(0);
 		}
-	}
-	return datos; /*aun falta almacenar estos datos*/
+	return datos;
 	
+	}
 }
