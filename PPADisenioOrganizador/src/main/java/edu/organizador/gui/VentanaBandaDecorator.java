@@ -36,14 +36,16 @@ public List<String> cargarFormularioBandas(string nombreBanda){
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormularioBandas(nombreBanda);
-	}else{
-	datos.add(nombreBanda);
-	datos.add(field1.getText());
-	datos.add(field2.getText());
-	}else{
+				}
+			else{
+				datos.add(nombreBanda);
+				datos.add(field1.getText());
+				datos.add(field2.getText());
+				}
+	else{
 		this.cargarFormularioBandas(nombreBanda);
 		}
-	
-	return datos;
 	}
+	return datos;
+	
 }
