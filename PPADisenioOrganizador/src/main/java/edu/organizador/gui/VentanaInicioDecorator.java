@@ -46,7 +46,7 @@ public class VentanaInicioDecorator {
 			SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 			datos.add(formater.format(picker.getDate()));
 		} else {
-			this.cargarFormulario();
+			System.exit(0);
 		}
 		return datos;
 	}
