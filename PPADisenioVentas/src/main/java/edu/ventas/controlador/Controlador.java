@@ -7,8 +7,11 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.NocheDAO;
+import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
@@ -41,6 +44,10 @@ public class Controlador {
 	private Integer cantMayores;
 	private Integer cantMenores;
 	private boolean compraAseptada = false;
+	private Set<Banda> bandas;
+	private List<Noche> noches;
+	private Set<Banda> lasBandas;
+	private List<Noche> lasNoches;
 	
 	
 	public Controlador(JFrame frame){
@@ -48,8 +55,8 @@ public class Controlador {
 	}
 	
 	public void iniciarJuego(){
-		DataReaderDAO dataReader = new DataReader();
-		puntosDeVenta = dataReader.getPuntosDeVenta();
+		PuntoDeVentaDAO puntoDeVentaDAO = new PuntoDeVentaDAO();
+		puntosDeVenta=puntoDeVentaDAO.getPuntosDeVenta();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(puntosDeVenta);
 		vendedor = new Vendedor();
@@ -57,9 +64,10 @@ public class Controlador {
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
-		DataReaderDAO dataReader = new DataReader();
-		Set<Banda> bandas = dataReader.getBandas();
-		List<Noche> noches = dataReader.getNoches(bandas);
+		BandaDAO bandaDAO = new BandaDAO();
+		NocheDAO nocheDAO = new NocheDAO();
+		bandas = bandaDAO.getBandas();
+		noches =nocheDAO.getNoches(bandas);
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
@@ -73,9 +81,11 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-		DataReaderDAO dataReader = new DataReader();
-		Set<Banda> lasBandas = dataReader.getBandas();
-		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
+		DataReader dataReader = new DataReader ();
+		BandaDAO bandaDAO = new BandaDAO();
+		NocheDAO nocheDAO = new NocheDAO();
+		lasBandas = bandaDAO.getBandas();
+		lasNoches =nocheDAO.getNoches(lasBandas);
 		
 		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
         nocheElegida = lasNoches.get(this.numeroNoche -1);
