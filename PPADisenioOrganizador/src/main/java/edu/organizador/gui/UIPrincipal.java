@@ -34,8 +34,13 @@ public class UIPrincipal extends WindowAdapter {
 		JLabel cartel = new JLabel(icon, JLabel.CENTER);
 		frame.add(cartel);
 		frame.setVisible(true);
+		logIn();
 		iniciarJuego();
 		organizar();
+	}
+	
+	public void logIn(){
+		controlador.logIn();
 	}
 
 	public void iniciarJuego() {	 

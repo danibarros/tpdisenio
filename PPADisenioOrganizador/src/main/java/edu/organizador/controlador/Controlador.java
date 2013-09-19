@@ -15,6 +15,7 @@ import edu.core.entities.Categoria;
 import edu.core.entities.Noche;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
+import edu.organizador.gui.VentanaLoginDecorator;
 
 public class Controlador {
 	private JFrame frame;
@@ -24,6 +25,12 @@ public class Controlador {
 	public Controlador(JFrame frame) {
 		this.frame = frame;
 	}
+	
+    public void logIn(){
+    	List<String> datos;
+    	VentanaLoginDecorator login = new VentanaLoginDecorator();
+    	datos = login.login();
+    }
 	
 	public void iniciarJuego(){
 		DataReaderDAO dataReader = new DataReader();
