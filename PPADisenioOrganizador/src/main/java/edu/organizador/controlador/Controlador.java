@@ -33,8 +33,8 @@ public class Controlador {
 		Set<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
-		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)));
-		ventana.seleccionarNoches(frame);
+		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
+		ventana.seleccionarNoches();
 	}
 
 }
