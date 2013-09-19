@@ -29,6 +29,7 @@ import edu.core.entities.Sector;
 import external.utils.CheckComboBox;
 
 
+import java.awt.Color;
 
 public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		ActionListener {
@@ -53,7 +54,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		for (Banda banda : bandas) {
 			options.add(banda.getNombre());
 		}
-
+		panel.setBackground(Color.blue);
 		CheckComboBox check = new CheckComboBox(options);
 		JComboBox<String> estadios = new JComboBox<String>();
 		
