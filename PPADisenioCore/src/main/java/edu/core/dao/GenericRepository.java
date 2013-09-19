@@ -14,7 +14,7 @@ import org.hibernate.persistence.HibernateUtil;
 
 public abstract class GenericRepository<T,ID extends Serializable> implements IGenericRepository<T,ID> {
 
-	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	protected SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 	protected static Session session;
 	
 	@SuppressWarnings("unchecked")
