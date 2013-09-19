@@ -40,7 +40,7 @@ public List<String> cargarFormularioBandas(){
 	int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
 			 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	
-	if (result == JOptionPane.OK_OPTION) {
+	if (result == JOptionPane.OK_OPTION) { 
 			if(field1.getText().equals("") || field2.getText().equals("")) { 
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
@@ -50,11 +50,12 @@ public List<String> cargarFormularioBandas(){
 			else{
 				datos.add(field1.getText());
 				datos.add(field2.getText());
-				return datos;  /*aun falta almacenar estos datos*/
-			}
+				return datos; 
+				}
 	}else{
 		System.exit(0);
-		}
+	
+	}
 	return datos;
 	
 	}
