@@ -68,7 +68,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		btnComprar.addActionListener(this);
 
 		for (Sector unSector : this.estadio.getSectores()) {
-			comboSectores.addItem(unSector.getNombre());
+			comboSectores.addItem(unSector.getColor());
 		}
 		panel.setSize(comboSectores.getWidth(), comboSectores.getHeight());
 		pnlBottom.setSize(comboSectores.getWidth(), comboSectores.getHeight());

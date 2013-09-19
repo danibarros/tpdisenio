@@ -32,7 +32,7 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		seleccionados = butacasSeleccionadas;
 		Sector sectorEncontrado = null;
 		for (Sector sector2 : sectores) {
-			if (sector2.getNombre().equals(sector)) {
+			if (sector2.getColor().equals(sector)) {
 				sectorEncontrado = sector2;
 				break;
 			}
