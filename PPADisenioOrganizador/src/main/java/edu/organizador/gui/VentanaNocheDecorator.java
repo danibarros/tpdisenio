@@ -28,6 +28,8 @@ import edu.core.entities.Noche;
 import edu.core.entities.Sector;
 import external.utils.CheckComboBox;
 
+
+
 public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		ActionListener {
 	JPanel panel;
@@ -35,6 +37,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
+	
 
 	public void formularioNoche(Noche noche, JFrame frame){
 		
@@ -54,7 +57,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		CheckComboBox check = new CheckComboBox(options);
 		JComboBox<String> estadios = new JComboBox<String>();
 		
-		estadios.addItem("river");
+		estadios.addItem("River");
 		estadios.addItem("Boca");
 		
 		JPanel grid = new JPanel(new GridLayout(0,1));
@@ -69,7 +72,17 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		JButton button = new JButton();
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
-
+		
+		
+		
+		JPanel pnlBottom = new JPanel();
+		frame.add(pnlBottom, BorderLayout.SOUTH);
+		JButton btnComprar = new JButton();
+		btnComprar.setName("btnBandas");
+		btnComprar.setText("Formulario de Bandas");
+		btnComprar.addActionListener(this);
+		pnlBottom.add(btnComprar, BorderLayout.NORTH);
+		
 		JSpinner spinner= new JSpinner();
 		spinner.setModel(model);
 		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
@@ -79,10 +92,17 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		frame.setVisible(true);
 		
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String event = e.getActionCommand();
+		switch (event) {
+		case "Formulario de Bandas":
+			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
+			ventana.cargarFormularioBandas("asd");
+			break;
+		default:
+			break;
+		}
 		
 	}
 
