@@ -84,7 +84,6 @@ public class Noche {
 	public int mayorCategoria() {
 		int max = -1;
 		for (Banda unaBanda : this.bandas) {
-
 			if (max < unaBanda.getCategoria().getIdCategoria()) {
 				max = unaBanda.getCategoria().getIdCategoria();
 			}
