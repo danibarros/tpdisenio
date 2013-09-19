@@ -6,9 +6,12 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import edu.core.dao.BandaDAO;
+import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
 import edu.core.entities.Banda;
+import edu.core.entities.Categoria;
 import edu.core.entities.Noche;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
@@ -35,6 +38,14 @@ public class Controlador {
 		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
 		ventana.seleccionarNoches();
+	}
+
+	public void guardarBanda(List<String> datos) {
+		CategoriaDAO categoriaDAO = new CategoriaDAO();
+		Categoria categoria = categoriaDAO.findById(1);
+		Banda banda = new Banda(datos.get(0), categoria);
+		BandaDAO bandaDAO = new BandaDAO();
+		bandaDAO.save(banda);	
 	}
 
 }

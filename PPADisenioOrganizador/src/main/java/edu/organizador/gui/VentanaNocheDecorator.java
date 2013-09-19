@@ -26,6 +26,7 @@ import edu.core.entities.Butaca;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.Sector;
+import edu.organizador.controlador.Controlador;
 import external.utils.CheckComboBox;
 
 
@@ -34,7 +35,7 @@ import java.awt.Color;
 public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		ActionListener {
 	JPanel panel;
-
+	JFrame frame;
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
@@ -54,7 +55,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		for (Banda banda : bandas) {
 			options.add(banda.getNombre());
 		}
-		panel.setBackground(Color.blue);
+		Color c = new Color(112,173,208);
+		panel.setBackground(c);
 		CheckComboBox check = new CheckComboBox(options);
 		JComboBox<String> estadios = new JComboBox<String>();
 		
@@ -98,8 +100,10 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		String event = e.getActionCommand();
 		switch (event) {
 		case "Formulario de Bandas":
+			Controlador controlador = new Controlador(frame);
 			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
-			ventana.cargarFormularioBandas("asd");
+			List<String> datos = ventana.cargarFormularioBandas();
+			controlador.guardarBanda(datos);
 			break;
 		default:
 			break;

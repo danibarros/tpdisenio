@@ -9,30 +9,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.core.entities.Banda;
+
 import java.awt.Color;
 import java.awt.BorderLayout;
 
 public class VentanaBandaDecorator implements VentanaDecoratorInterface {
 
+	Banda banda;
 
 @Override
 public void dibujar() {
 
 }
 	
-public List<String> cargarFormularioBandas(String nombreBanda){
+public List<String> cargarFormularioBandas(){
 	
 	List<String> datos = new ArrayList<String>();
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	JTextField field1 = new JTextField("");
 	JTextField field2 = new JTextField("");
 	
 	JPanel panel = new JPanel(new GridLayout(0, 1));
 	
+	panel.add(new JLabel("Ingrese nombre de la banda"));
+	panel.add(field1);	
 	panel.add(new JLabel("Ingrese Categoria de la Banda"));
-	panel.add(field1);
-	panel.add(new JLabel("Ingrese Id de la Banda"));
 	panel.add(field2);
 	
 	int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
@@ -43,14 +45,13 @@ public List<String> cargarFormularioBandas(String nombreBanda){
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				System.exit(0);
-				this.cargarFormularioBandas(nombreBanda);
+				this.cargarFormularioBandas();
 				}
 			else{
-				datos.add(nombreBanda);
 				datos.add(field1.getText());
 				datos.add(field2.getText());
 				return datos;  /*aun falta almacenar estos datos*/
-				}
+			}
 	}else{
 		System.exit(0);
 		}
