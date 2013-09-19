@@ -6,13 +6,13 @@
 <hibernate-mapping>
 
 	<class name="edu.core.entities.Pais" table="paises">
-		<id name="idPais" type="java.lang.Integer" column="pais_id" >
-		 <generator class="increment"/>
-		 </id>
+		<id name="idPais" type="java.lang.Integer" column="pais_id">
+			<generator class="increment" />
+		</id>
 		<property name="nombre" column="pais_name" type="string" />
 		<list name="provincias" table="provincias" lazy="false" fetch="select">
 			<key column="Paises_pais_id" />
-			<list-index column="provincia_id"  />
+			<list-index column="provincia_id" />
 			<one-to-many class="edu.core.entities.Provincia" />
 		</list>
 	</class>
@@ -20,28 +20,196 @@
 	<class name="edu.core.entities.Provincia" table="provincias">
 		<id name="idProvincia" type="java.lang.Integer">
 			<column name="provincia_id" precision="5" scale="0" />
-			<generator class="increment"/>
-		 </id>
+			<generator class="increment" />
+		</id>
 		<property name="nombre" type="string">
-			<column name="provincia_name"  />
+			<column name="provincia_name" />
 		</property>
-		<many-to-one name="pais" class="edu.core.entities.Pais"	column="Paises_pais_id" lazy="false" fetch="select" />
+		<many-to-one name="pais" class="edu.core.entities.Pais"
+			column="Paises_pais_id" lazy="false" fetch="select" />
 		<list name="localidades" table="localidades" lazy="false" fetch="select">
 			<key column="Provincias_provincia_id" />
-			<list-index column="localidad_id"  />
+			<list-index column="localidad_id" />
 			<one-to-many class="edu.core.entities.Localidad" />
 		</list>
 	</class>
-	
+
 	<class name="edu.core.entities.Localidad" table="localidades">
 		<id name="idLocalidad" type="java.lang.Integer">
 			<column name="localidad_id" precision="5" scale="0" />
-			<generator class="increment"/>
-		 </id>
+			<generator class="increment" />
+		</id>
 		<property name="nombre" type="string">
-			<column name="localidad_name"  />
+			<column name="localidad_name" />
 		</property>
-		<many-to-one name="provincia" class="edu.core.entities.Provincia"	column="Provincias_provincia_id" lazy="false" fetch="select"  />
+		<list name="estadios" table="estadios" lazy="false" fetch="select">
+			<key column="Localidades_localidad_id" />
+			<list-index column="estadio_id" />
+			<one-to-many class="edu.core.entities.Estadio" />
+		</list>
+		<list name="puntosDeVenta" table="puntos_venta" lazy="false"
+			fetch="select">
+			<key column="Localidades_localidad_id" />
+			<list-index column="puntos_id" />
+			<one-to-many class="edu.core.entities.PuntoDeVenta" />
+		</list>
+		<many-to-one name="provincia" class="edu.core.entities.Provincia"
+			column="Provincias_provincia_id" lazy="false" fetch="select" />
 	</class>
+
+	<class name="edu.core.entities.Festival" table="festival">
+		<id name="idFestival" type="java.lang.Integer">
+			<column name="festival_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="nombre" column="festival_name" type="java.lang.String" />
+		<many-to-one name="estadio" class="edu.core.entities.Estadio"
+			column="Estadios_estadio_id" />
+		<list name="noches" table="noches" lazy="false" fetch="select">
+			<key column="Festivales_festival_id" />
+			<list-index column="noche_id" />
+			<one-to-many class="edu.core.entities.Noche" />
+		</list>
+	</class>
+
+	<class name="edu.core.entities.Noche" table="festival">
+		<id name="idNoche" type="java.lang.Integer">
+			<column name="noche_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="fecha" column="noche_fecha" type="java.lang.Date" />
+		<property name="horaInicio" column="noche_hora_inicio" type="java.lang.Time" />
+		<property name="numero" column="noche_numero" type="java.lang.Integer" />
+		<many-to-one name="estadio" class="edu.core.entities.Estadio"
+			column="Estadios_estadio_id" />
+		<many-to-one name="festival" class="edu.core.entities.Festival"
+			column="Festivales_festival_id" />
+		<list name="bandas" table="bandas" lazy="false" fetch="select">
+			<key column="Noches_noche_id" />
+			<list-index column="banda_id" />
+			<one-to-many class="edu.core.entities.Banda" />
+		</list>
+		<list name="entradas" table="bandas" lazy="false" fetch="select">
+			<key column="Noches_noche_id" />
+			<list-index column="banda_id" />
+			<one-to-many class="edu.core.entities.Banda" />
+		</list>
+	</class>
+
+	<class name="edu.core.entities.PuntoDeVenta" table="puntos_venta">
+		<id name="idPunto" type="java.lang.Integer">
+			<column name="punto_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="festival" class="edu.core.entities.Festival"
+			column="Festivales_festival_id" />
+		<list name="Entrada" table="entradas" lazy="false" fetch="select">
+			<key column="Festivales_festival_id" />
+			<list-index column="entrada_id" />
+			<one-to-many class="edu.core.entities.Entrada" />
+		</list>
+		<many-to-one name="localidad" class="edu.core.entities.Localidad"
+			column="Localidades_localidad_id" />
+		<property name="nombre" column="punto_name" type="java.lang.String" />
+		<property name="direccion" column="punto_direccion" type="java.lang.String" />
+	</class>
+
+	<class name="edu.core.entities.Estadio" table="estadios">
+		<id name="idEstadio" type="java.lang.Integer">
+			<column name="estadio_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="nombre" column="estadio_nombre" type="java.lang.String" />
+		<list name="sectores" table="sectores" lazy="false" fetch="select">
+			<key column="Estadio_estadio_id" />
+			<list-index column="sector_id" />
+			<one-to-many class="edu.core.entities.Sector" />
+		</list>
+		<many-to-one name="localidad" class="edu.core.entities.Localidad"
+			column="Localidades_localidad_id" />
+	</class>
+
+	<class name="edu.core.entities.Sector" table="Sectores">
+		<id name="idSector" type="java.lang.Integer">
+			<column name="sector_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="color" column="sector_color" type="string" />
+		<property name="precioSector" column="precio_base" type="java.lang.Float" />
+		<list name="filas" table="filas" lazy="false" fetch="select">
+			<key column="Sectores_sector_id" />
+			<list-index column="fila_id" />
+			<one-to-many class="edu.core.entities.Fila" />
+		</list>
+		<many-to-one name="estadio" class="edu.core.entities.Estadio"
+			column="Estadios_estadio_id" lazy="false" fetch="select" />
+	</class>
+
+	<class name="edu.core.entities.Fila" table="filas">
+		<id name="idFila" type="java.lang.Integer">
+			<column name="fila_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="numero" column="fila_numero" type="java.lang.Integer" />
+		<property name="precioFila" column="precio_base" type="java.lang.Float" />
+		<list name="butacas" table="filas" lazy="false" fetch="select">
+			<key column="Filas_fila_id" />
+			<list-index column="butaca_id" />
+			<one-to-many class="edu.core.entities.Butaca" />
+		</list>
+		<many-to-one name="sector" class="edu.core.entities.Sector"
+			column="Sectores_sector_id" lazy="false" fetch="select" />
+	</class>
+
+	<class name="edu.core.entities.Butaca" table="butacas">
+		<id name="idButaca" type="java.lang.Integer">
+			<column name="butaca_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="numero" column="butaca_numero" type="java.lang.Integer" />
+		<property name="disponible" column="disponible" type="java.lang.Boolean" />
+		<many-to-one name="fila" class="edu.core.entities.Fila"
+			column="Filas_fila_id" lazy="false" fetch="select" />
+	</class>
+
+	<class name="edu.core.entities.Entrada" table="entradas">
+		<id name="numeroDeEntrada" type="java.lang.Integer">
+			<column name="entrada_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="butaca" class="edu.core.entities.Butaca"
+			column="Butaca_butaca_id" lazy="false" fetch="select" />
+		<many-to-one name="noche" class="edu.core.entities.Noche"
+			column="Noches_noche_id" lazy="false" fetch="select" />
+		<property name="codigoDeBarra" column="codigo_barra" type="string" />
+		<property name="numeroDeEntrada" column="butaca_numero" type="java.lang.Integer" />
+		<property name="precio" column="entrada_precio" type="java.lang.Float" />
+		<property name="fecha" column="entrada_fecha" type="java.lang.Date" />
+		<property name="tipo" column="entrada_tipo" type="string" />
+		<property name="clienteNombre" column="cliente_name" type="string" />
+		<property name="clienteDNI" column="cliente_dni" type="java.lang.Integer" />
+		<property name="anticipada" column="entrada_anticipada" type="java.lang.Boolean" />
+	</class>
+
+
+	<class name="edu.core.entities.Banda" table="bandas">
+		<id name="idBanda" type="java.lang.Integer">
+			<column name="banda_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="nombre" column="banda_name" type="string" />
+		<property name="disponible" column="disponible" type="java.lang.Boolean" />
+		<many-to-one name="categoria" class="edu.core.entities.Categoria"
+			column="Categorias_categoria_id" lazy="false" fetch="select" />
+	</class>
+
+	<class name="edu.core.entities.Categoria" table="categorias">
+		<id name="idCategoria" type="java.lang.Integer">
+			<column name="categoria_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="precio" column="categoria_precio" type="java.lang.Float" />
+	</class>
+
 
 </hibernate-mapping>

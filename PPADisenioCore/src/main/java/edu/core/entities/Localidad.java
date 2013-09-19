@@ -8,6 +8,28 @@ public class Localidad {
 	private Integer idLocalidad;
 	protected Provincia provincia ;
 	private String nombre;
+	private List<Estadio> estadios ;
+	private List<PuntoDeVenta> puntosDeVenta;
+	
+	public List<PuntoDeVenta> getPuntosDeVenta() {
+		return puntosDeVenta;
+	}
+
+	public void setPuntosDeVenta(List<PuntoDeVenta> puntosDeVenta) {
+		this.puntosDeVenta = puntosDeVenta;
+	}
+
+	public Localidad(){
+		this.estadios = new ArrayList<Estadio>();
+		this.puntosDeVenta = new ArrayList<PuntoDeVenta>();
+	}
+	
+	public List<Estadio> getEstadios() {
+		return estadios;
+	}
+	public void setEstadios(List<Estadio> estadios) {
+		this.estadios = estadios;
+	}
 	public Integer getIdLocalidad() {
 		return idLocalidad;
 	}

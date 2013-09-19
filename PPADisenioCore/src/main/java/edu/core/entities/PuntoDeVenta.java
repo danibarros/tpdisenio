@@ -7,10 +7,14 @@ public class PuntoDeVenta extends CentroDeVenta {
 
 	private int idPunto;
 	private Festival festival;
-	protected List<Entrada> Entradas = new ArrayList<Entrada>();
+	protected List<Entrada> entradas ;
 	private Localidad localidad;
 	private String nombre;
 	private String direccion;
+	
+	public PuntoDeVenta() {
+		this.entradas = new ArrayList<Entrada>();
+	}
 	
 	public int getIdPunto() {
 		return idPunto;
@@ -37,11 +41,11 @@ public class PuntoDeVenta extends CentroDeVenta {
 	}
 
 	public List<Entrada> getEntradas() {
-		return Entradas;
+		return entradas;
 	}
 
 	public void setEntradas(List<Entrada> entradas) {
-		Entradas = entradas;
+		this.entradas = entradas;
 	}
 
 	public String getNombre() {

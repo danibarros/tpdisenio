@@ -6,28 +6,45 @@ import java.util.List;
 public class Sector {
 
 	private int idSector;
-	private String nombre;
-	private List<Fila> filas = new ArrayList<Fila>();
+	private List<Fila> filas ;
 	private float precioSector;
-	private char ubicacion;
-	private String color;
 	private Estadio estadio;
+	private String color;
 	
+	public Sector(){
+		this.filas = new ArrayList<Fila>();
+	}
+	
+	public int getIdSector() {
+		return idSector;
+	}
 
-	public Sector(String nombre, List<Fila> filas, int precioSector,
-			char ubicacion) {
-		this.nombre = nombre;
+	public void setIdSector(int idSector) {
+		this.idSector = idSector;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Estadio getEstadio() {
+		return estadio;
+	}
+
+	public void setEstadio(Estadio estadio) {
+		this.estadio = estadio;
+	}
+
+	
+	
+	public Sector(String color, List<Fila> filas, int precioSector) {
 		this.filas = filas;
 		this.precioSector = precioSector;
-		this.ubicacion = ubicacion;
-	}
-
-	public char getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(char ubicacion) {
-		ubicacion = this.ubicacion;
+		this.color = color;
 	}
 
 	public float getPrecioSector() {
@@ -45,14 +62,6 @@ public class Sector {
 
 	public void setFilas(List<Fila> filas) {
 		this.filas = filas;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 }

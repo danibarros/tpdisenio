@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Estadio extends CentroDeVenta {
-
-	private static List<Sector> sectores = new ArrayList<Sector>();
-	private String nombre;
+	
 	private int IdEstadio;
+	private static List<Sector> sectores ;
+	private String nombre;
 	private Localidad localidad;
 
+	public Estadio(){
+		this.sectores = new ArrayList<Sector>();
+	}
+	
 	public int getIdEstadio() {
 		return IdEstadio;
 	}

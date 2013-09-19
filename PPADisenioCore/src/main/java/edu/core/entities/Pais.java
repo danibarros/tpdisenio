@@ -6,7 +6,11 @@ import java.util.List;
 public class Pais {
 	private Integer idPais;
 	private String nombre;
-	private List<Provincia> provincias = new ArrayList<Provincia>();
+	private List<Provincia> provincias ;
+	
+	public Pais(){
+		this.provincias = new ArrayList<Provincia>();
+	}
 	
 	public List<Provincia> getProvincias() {
 		return provincias;

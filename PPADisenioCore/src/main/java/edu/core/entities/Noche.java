@@ -12,14 +12,14 @@ public class Noche {
 	private int idNoche;
 	private Set<Banda> bandas = new HashSet<Banda>();
 	private Time horaInicio;
-    private List<Entrada> entrada = new ArrayList<Entrada>();
+    private List<Entrada> entradas;
     private Estadio estadio;
     private Festival festival;
     private Date fecha;
     private int numero;
     
     public Noche(){
-    	
+    	this.entradas  = new ArrayList<Entrada>();
     }
     
 	public Festival getFestival() {
@@ -73,11 +73,11 @@ public class Noche {
 	
 	
 	public List<Entrada> getEntrada() {
-		return entrada;
+		return entradas;
 	}
 
-	public void setEntrada(List<Entrada> entrada) {
-		this.entrada = entrada;
+	public void setEntrada(List<Entrada> entradas) {
+		this.entradas = entradas;
 	}
 
 	public int mayorCategoria() {

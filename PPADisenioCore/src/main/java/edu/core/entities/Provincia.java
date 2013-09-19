@@ -7,7 +7,11 @@ public class Provincia {
 	private Integer idProvincia ;
 	private String nombre ;
 	private Pais pais;
-	private List<Localidad> localidades = new ArrayList<Localidad>();
+	private List<Localidad> localidades ;
+	
+	public Provincia(){
+		this.localidades = new ArrayList<Localidad>();
+	}
 
 	public List<Localidad> getLocalidades() {
 		return localidades;

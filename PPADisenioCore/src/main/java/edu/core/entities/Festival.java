@@ -7,8 +7,12 @@ public class Festival {
 
 	private String nombre;
 	private Estadio estadio;
-	private List<Noche> noches = new ArrayList<Noche>();
+	private List<Noche> noches ;
 	private int idFestival;
+	
+	public Festival(){
+		this.noches = new ArrayList<Noche>();
+	}
 	
 	public int getIdFestival() {
 		return idFestival;

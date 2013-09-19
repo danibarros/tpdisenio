@@ -23,6 +23,10 @@ public class Butaca {
 		this.disponible = disponible;
 	}
 
+	public Butaca(){
+		
+	}
+	
 	public Butaca(int numero) {
 		this.numero = numero;
 	}
