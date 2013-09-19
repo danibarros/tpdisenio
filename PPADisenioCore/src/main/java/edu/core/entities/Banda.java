@@ -13,6 +13,10 @@ public class Banda {
 	public void setIdBanda(int idBanda) {
 		this.idBanda = idBanda;
 	}
+	
+	public Banda(){
+		
+	}
 
 	public Banda(String nombre, Categoria categoria) {
 		this.nombre = nombre;

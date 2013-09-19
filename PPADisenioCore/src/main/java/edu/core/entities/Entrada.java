@@ -6,7 +6,7 @@ public class Entrada {
 	
 	private Butaca butaca;
 	
-	private long codigoDeBarra;
+	private int codigoDeBarra;
 
 	private Noche noche;
 	
@@ -16,7 +16,7 @@ public class Entrada {
 	
 	private float precio;
 	
-	private char tipo;
+	private String tipo;
 	
 	private String clienteNombre;
 	
@@ -24,6 +24,9 @@ public class Entrada {
 	
 	private boolean anticipada;
 	
+	public Entrada(){
+		
+	}
 
 	public boolean isAnticipada() {
 		return anticipada;
@@ -55,12 +58,12 @@ public class Entrada {
 	}
 
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
 
-	public void setTipo(char tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
@@ -117,11 +120,11 @@ public class Entrada {
 		return this.butaca;
 	}
 
-	public long getCodigoDeBarra() {
+	public int getCodigoDeBarra() {
 		return codigoDeBarra;
 	}
 
-	public void setCodigoDeBarra(long codigoDeBarra) {
+	public void setCodigoDeBarra(int codigoDeBarra) {
 		this.codigoDeBarra = codigoDeBarra;
 	}
 

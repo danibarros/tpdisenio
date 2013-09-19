@@ -2,7 +2,7 @@ package edu.core.entities;
 
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
 public class Noche {
 
 	private int idNoche;
-	private Set<Banda> bandas;
+	private List<Banda> bandas;
 	private Time horaInicio;
     private List<Entrada> entradas;
     private Estadio estadio;
@@ -20,7 +20,7 @@ public class Noche {
     
     public Noche(){
     	this.entradas  = new ArrayList<Entrada>();
-    	this.bandas = new HashSet<Banda>();
+    	this.bandas = new ArrayList<Banda>();
     }
     
 	public Festival getFestival() {
@@ -51,7 +51,7 @@ public class Noche {
 		this.horaInicio = horaInicio;
 	}
 
-	public Noche(Estadio estadio,int numeroDeNoches, Set<Banda> bandas, Time horaInicio) {
+	public Noche(Estadio estadio,int numeroDeNoches, List<Banda> bandas, Time horaInicio) {
 		this.estadio = estadio;
 		this.bandas = bandas;
 		this.idNoche = numeroDeNoches;
@@ -84,6 +84,7 @@ public class Noche {
 	public int mayorCategoria() {
 		int max = -1;
 		for (Banda unaBanda : this.bandas) {
+
 			if (max < unaBanda.getCategoria().getIdCategoria()) {
 				max = unaBanda.getCategoria().getIdCategoria();
 			}
@@ -99,11 +100,11 @@ public class Noche {
 		this.idNoche = idNoche;
 	}
 
-	public Set<Banda> getBandas() {
+	public List<Banda> getBandas() {
 		return bandas;
 	}
 
-	public void setBandas(Set<Banda> bandas) {
+	public void setBandas(List<Banda> bandas) {
 		this.bandas = bandas;
 	}
 
