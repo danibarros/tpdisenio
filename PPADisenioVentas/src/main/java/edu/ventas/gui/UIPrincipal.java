@@ -44,7 +44,7 @@ public class UIPrincipal extends WindowAdapter {
 		Color c = new Color(112,173,208);
 		Container con = frame.getContentPane();
 		con.setBackground(c);
-		ImageIcon icon = new ImageIcon("resources/presentacion.gif");
+		ImageIcon icon = new ImageIcon(getClass().getResource("/presentacion.gif"));
 		JLabel cartel = new JLabel(icon, JLabel.CENTER);
 		frame.add(cartel);
 		frame.setVisible(true);
