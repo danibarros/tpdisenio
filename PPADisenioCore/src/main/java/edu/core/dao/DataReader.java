@@ -13,6 +13,7 @@ import java.util.Set;
 
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
+import edu.core.entities.Categoria;
 import edu.core.entities.Estadio;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
@@ -113,11 +114,11 @@ public class DataReader implements DataReaderDAO {
 	public List<Sector> getSectores(List<Fila> filas) {
 		List<Fila> filas1 = filas.subList(0, 5);
 		List<Fila> filas2 = filas.subList(5, 8);
-		Sector sector = new Sector("Sector1", filas1, 50, 'A');
+		Sector sector = new Sector("Sector1", filas1, 50);
 		for (Fila fila : filas1) {
 			fila.setSector(sector);
 		}
-		Sector sector2 = new Sector("Sector2", filas2, 25, 'B');
+		Sector sector2 = new Sector("Sector2", filas2, 25);
 		for (Fila fila : filas2) {
 			fila.setSector(sector2);
 		}
@@ -143,9 +144,10 @@ public class DataReader implements DataReaderDAO {
 	}
 
 	public Set<Banda> getBandas() {
-		Banda banda1 = new Banda("las patillas", 1);
-		Banda banda2 = new Banda("ntvg", 2);
-		Banda banda3 = new Banda("metallica", 4);
+		Categoria categoria = new Categoria();
+		Banda banda1 = new Banda("las patillas", categoria);
+		Banda banda2 = new Banda("ntvg", categoria);
+		Banda banda3 = new Banda("metallica", categoria);
 		Set<Banda> bandas = new HashSet<Banda>();
 		bandas.add(banda1);
 		bandas.add(banda2);

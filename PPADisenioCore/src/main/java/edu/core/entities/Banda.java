@@ -3,7 +3,7 @@ package edu.core.entities;
 public class Banda {
 
 	private String nombre;
-	private int categoria;
+	private Categoria categoria;
 	private int idBanda;
 
 	public int getIdBanda() {
@@ -14,16 +14,16 @@ public class Banda {
 		this.idBanda = idBanda;
 	}
 
-	public Banda(String nombre, int categoria) {
+	public Banda(String nombre, Categoria categoria) {
 		this.nombre = nombre;
 		this.categoria = categoria;
 	}
 
-	public int getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(int categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 

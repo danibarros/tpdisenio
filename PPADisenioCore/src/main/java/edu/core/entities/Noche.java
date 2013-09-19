@@ -10,7 +10,7 @@ import java.util.Set;
 public class Noche {
 
 	private int idNoche;
-	private Set<Banda> bandas = new HashSet<Banda>();
+	private Set<Banda> bandas;
 	private Time horaInicio;
     private List<Entrada> entradas;
     private Estadio estadio;
@@ -20,6 +20,7 @@ public class Noche {
     
     public Noche(){
     	this.entradas  = new ArrayList<Entrada>();
+    	this.bandas = new HashSet<Banda>();
     }
     
 	public Festival getFestival() {
@@ -72,11 +73,11 @@ public class Noche {
 	}
 	
 	
-	public List<Entrada> getEntrada() {
+	public List<Entrada> getEntradas() {
 		return entradas;
 	}
 
-	public void setEntrada(List<Entrada> entradas) {
+	public void setEntradas(List<Entrada> entradas) {
 		this.entradas = entradas;
 	}
 
@@ -84,9 +85,8 @@ public class Noche {
 		int max = -1;
 		for (Banda unaBanda : this.bandas) {
 
-			if (max < unaBanda.getCategoria()) {
-
-				max = unaBanda.getCategoria();
+			if (max < unaBanda.getCategoria().getIdCategoria()) {
+				max = unaBanda.getCategoria().getIdCategoria();
 			}
 		}
 		return max;
