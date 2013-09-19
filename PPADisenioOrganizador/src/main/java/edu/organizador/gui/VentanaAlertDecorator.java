@@ -9,9 +9,4 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"No se haga el vivo y complete los campos correctamente!");
 	}
-	
-	public void despedir() {
-		JOptionPane.showMessageDialog(null,
-				"Adios");
-	}
 }
