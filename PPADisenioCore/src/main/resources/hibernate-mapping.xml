@@ -77,8 +77,8 @@
 			<column name="noche_id" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
-		<property name="fecha" column="noche_fecha" type="java.lang.Date" />
-		<property name="horaInicio" column="noche_hora_inicio" type="java.lang.Time" />
+		<property name="fecha" column="noche_fecha" type="java.sql.Date" />
+		<property name="horaInicio" column="noche_hora_inicio" type="java.sql.Time" />
 		<property name="numero" column="noche_numero" type="java.lang.Integer" />
 		<many-to-one name="estadio" class="edu.core.entities.Estadio"
 			column="Estadios_estadio_id" />
@@ -103,7 +103,7 @@
 		</id>
 		<many-to-one name="festival" class="edu.core.entities.Festival"
 			column="Festivales_festival_id" />
-		<list name="Entrada" table="entradas" lazy="false" fetch="select">
+		<list name="entradas" table="entradas" lazy="false" fetch="select">
 			<key column="Festivales_festival_id" />
 			<list-index column="entrada_id" />
 			<one-to-many class="edu.core.entities.Entrada" />
@@ -184,7 +184,7 @@
 		<property name="codigoDeBarra" column="codigo_barra" type="string" />
 		<property name="numeroDeEntrada" column="butaca_numero" type="java.lang.Integer" />
 		<property name="precio" column="entrada_precio" type="java.lang.Float" />
-		<property name="fecha" column="entrada_fecha" type="java.lang.Date" />
+		<property name="fecha" column="entrada_fecha" type="java.sql.Date" />
 		<property name="tipo" column="entrada_tipo" type="string" />
 		<property name="clienteNombre" column="cliente_name" type="string" />
 		<property name="clienteDNI" column="cliente_dni" type="java.lang.Integer" />
@@ -198,7 +198,6 @@
 			<generator class="increment" />
 		</id>
 		<property name="nombre" column="banda_name" type="string" />
-		<property name="disponible" column="disponible" type="java.lang.Boolean" />
 		<many-to-one name="categoria" class="edu.core.entities.Categoria"
 			column="Categorias_categoria_id" lazy="false" fetch="select" />
 	</class>
