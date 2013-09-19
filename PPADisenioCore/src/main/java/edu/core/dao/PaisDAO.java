@@ -27,5 +27,13 @@ public class PaisDAO extends GenericRepository<Pais, Integer>{
 	public Pais getPaisById(Integer idPais){
 		return (Pais) session.get(Pais.class, idPais);
 	}
+	
+	public List<Pais> getAllPais(){
+		
+		String hql = "from Pais ";
+		Query query = session.createQuery(hql);
+		List<Pais> paises = (List<Pais>) query.list();
+		return  paises;
+	}
 
 }

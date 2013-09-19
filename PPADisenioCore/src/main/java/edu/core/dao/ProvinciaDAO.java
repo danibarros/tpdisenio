@@ -9,6 +9,7 @@ import org.hibernate.persistence.HibernateUtil;
 import edu.core.entities.Localidad;
 import edu.core.entities.Pais;
 import edu.core.entities.Provincia;
+import edu.core.entities.PuntoDeVenta;
 
 public class ProvinciaDAO extends GenericRepository<Provincia, Integer>{
 	
@@ -26,4 +27,12 @@ public class ProvinciaDAO extends GenericRepository<Provincia, Integer>{
 		
 		return  localidades;
 	}
+	
+	public List<Provincia> getAllProvincias(){
+		String hql = " from Provincia";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Provincia> result = (List<Provincia>) query.list();
+		return result;
+	}
+	
 }
