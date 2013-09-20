@@ -62,6 +62,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		
 		estadios.addItem("River");
 		estadios.addItem("Boca");
+		estadios.addItem("Huracan");
 		
 		JPanel grid = new JPanel(new GridLayout(0,1));
 		
@@ -76,7 +77,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
 		
-		
+	//	int cant;
+	//	cant = (check.getSelectedItems()).length;
 		
 		JPanel pnlBottom = new JPanel();
 		frame.add(pnlBottom, BorderLayout.SOUTH);
