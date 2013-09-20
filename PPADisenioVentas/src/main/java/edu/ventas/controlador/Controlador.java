@@ -56,7 +56,7 @@ public class Controlador {
 	
 	public void iniciarJuego(){
 		PuntoDeVentaDAO puntoDeVentaDAO = new PuntoDeVentaDAO();
-		puntosDeVenta=puntoDeVentaDAO.getPuntosDeVenta();
+		puntosDeVenta=puntoDeVentaDAO.getAllPuntosDeVenta();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(puntosDeVenta);
 		vendedor = new Vendedor();
@@ -66,8 +66,8 @@ public class Controlador {
 		List<String> datos = new ArrayList<String>();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		bandas = bandaDAO.getBandas();
-		noches =nocheDAO.getNoches(bandas);
+		bandas = bandaDAO.getAllBandas();
+		noches =nocheDAO.getAllNoches();
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
@@ -85,7 +85,7 @@ public class Controlador {
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
 		lasBandas = bandaDAO.getAllBandas();
-		lasNoches =nocheDAO.getNoches(lasBandas);
+		lasNoches =nocheDAO.getAllNoches();
 		
 		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
         nocheElegida = lasNoches.get(this.numeroNoche -1);
@@ -108,6 +108,11 @@ public class Controlador {
 
 	public void setCompraAseptada(boolean compraAseptada) {
 		this.compraAseptada = compraAseptada;
+	}
+
+	public void logIn() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
