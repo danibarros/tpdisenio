@@ -40,7 +40,7 @@ public class Controlador {
 	
 	public void organizarNoches(){
 		DataReaderDAO dataReader = new DataReader();
-		Set<Banda> lasBandas = dataReader.getBandas();
+		List<Banda> lasBandas = dataReader.getBandas();
 		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
 		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);

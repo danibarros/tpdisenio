@@ -50,7 +50,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			panel = new JPanel(new GridBagLayout());
 		frame.setVisible(false);
 		panel.removeAll();
-		Set<Banda> bandas = dataReader.getBandas();
+		List<Banda> bandas = dataReader.getBandas();
 		Set<Object> options = new HashSet<>();
 		for (Banda banda : bandas) {
 			options.add(banda.getNombre());
