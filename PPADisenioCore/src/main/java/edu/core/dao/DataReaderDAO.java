@@ -20,8 +20,8 @@ public interface DataReaderDAO {
 	public List<Fila> getFilas(List<Butaca> butacas, List<Butaca> butacasX);
 	public List<Sector> getSectores(List<Fila> filas);
 	public List<PuntoDeVenta> getPuntosDeVenta();
-	public Set<Banda> getBandas();
-	public List<Noche> getNoches(Set<Banda> bandas);
+	public List<Banda> getBandas();
+	public List<Noche> getNoches(List<Banda> bandas);
 	public Estadio getEstadio(List<Sector> sectores,List<PuntoDeVenta> puntos);
 	
 	public void setCategorias(Map<Integer, Integer> categorias);
