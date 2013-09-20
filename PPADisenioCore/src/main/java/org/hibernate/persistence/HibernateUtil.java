@@ -19,7 +19,6 @@ public class HibernateUtil {
 				"org.hibernate.dialect.MySQLDialect");
 		configuration.setProperty("hibernate.connection.driver_class",
 				"com.mysql.jdbc.Driver");
-		
 		configuration.setProperty("hibernate.connection.url",
 				"jdbc:mysql://localhost:3306/ppa_disenio");
 		configuration.setProperty("hibernate.transaction.factory_class",
@@ -28,6 +27,7 @@ public class HibernateUtil {
 		configuration.setProperty("hibernate.connection.password", "root");
 		configuration.setProperty("hibernate.order_updates", "true");
 		configuration.setProperty("hibernate.show_sql", "true");
+		configuration.setProperty("hibernate.current_session_context_class", "org.hibernate.context.ThreadLocalSessionContext");
 		
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())

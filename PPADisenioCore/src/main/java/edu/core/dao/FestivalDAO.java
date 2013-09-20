@@ -12,9 +12,13 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 
 	public List<Festival> getAllFestivales(){
 		String hql = "from Festival";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = session.createQuery(hql);
 		List<Festival> result = (List<Festival>) query.list();
 		return result;
+	}
+	
+	public Festival getFestivalById(Integer id){
+		return (Festival) session.get(Festival.class, id);
 	}
 	
 }

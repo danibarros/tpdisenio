@@ -11,9 +11,13 @@ public class ButacaDAO extends GenericRepository<Butaca, Integer>{
 	
 	public List<Butaca> getAllButacas(){
 		String hql = "from Butaca";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = session.createQuery(hql);
 		List<Butaca> result = (List<Butaca>) query.list();
 		return result;
+	}
+	
+	public Butaca getButacaById(Integer id){
+		return (Butaca) session.get(Butaca.class, id);
 	}
 
 }

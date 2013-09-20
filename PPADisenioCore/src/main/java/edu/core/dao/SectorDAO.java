@@ -10,9 +10,13 @@ import edu.core.entities.Sector;
 
 public class SectorDAO extends GenericRepository<Sector, Integer>{
 	
+	public Sector getSectorById(Integer id){
+		return (Sector) session.get(Sector.class, id);
+	}
+	
 	public List<Sector> getAllSectores(){
 		String hql = " from Sector";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = session.createQuery(hql);
 		List<Sector> result = (List<Sector>) query.list();
 		return result;
 	}

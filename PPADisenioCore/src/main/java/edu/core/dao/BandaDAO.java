@@ -12,8 +12,22 @@ public class BandaDAO extends GenericRepository<Banda, Integer>{
 
 	public List<Banda> getAllBandas(){
 		String hql = "from Banda";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = session.createQuery(hql);
 		List<Banda> result = (List<Banda>) query.list();
 		return result;
 	}
+
+	public Banda getBandaById(Integer id){
+		return (Banda) session.get(Banda.class, id);
+	}
+	
+	public Banda getBandaByNombre(String nombre){
+		
+		String hql = "from Banda where nombre = :bandaNombre ";
+		Query query = session.createQuery(hql);
+		query.setString("bandaNombre", nombre);
+		Banda result = (Banda) query.list().get(0);
+		return result;
+	}
+	
 }
