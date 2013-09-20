@@ -44,7 +44,6 @@ public List<String> cargarFormularioBandas(){
 			if(field1.getText().equals("") || field2.getText().equals("")) { 
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
-				System.exit(0);
 				this.cargarFormularioBandas();
 				}
 			else{
