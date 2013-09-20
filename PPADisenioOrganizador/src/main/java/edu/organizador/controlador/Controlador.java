@@ -10,6 +10,7 @@ import edu.core.dao.BandaDAO;
 import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.NocheDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Noche;
@@ -21,6 +22,8 @@ public class Controlador {
 	private JFrame frame;
 	private String estadio;
 	List<String> datos = new ArrayList<String>();
+	private List<Banda> lasBandas;
+	private List<Noche> lasNoches;
 
 	public Controlador(JFrame frame) {
 		this.frame = frame;
@@ -39,9 +42,10 @@ public class Controlador {
 	}
 	
 	public void organizarNoches(){
-		DataReaderDAO dataReader = new DataReader();
-		List<Banda> lasBandas = dataReader.getBandas();
-		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
+		BandaDAO bandaDAO = new BandaDAO();
+		NocheDAO nocheDAO = new NocheDAO();
+		lasBandas = bandaDAO.getAllBandas();
+		lasNoches =nocheDAO.getAllNoches();
 		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
 		ventana.seleccionarNoches();
