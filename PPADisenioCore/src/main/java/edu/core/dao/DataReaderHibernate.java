@@ -52,13 +52,13 @@ public class DataReaderHibernate implements DataReaderDAO {
 	}
 
 	@Override
-	public Set<Banda> getBandas() {
+	public List<Banda> getBandas() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Noche> getNoches(Set<Banda> bandas) {
+	public List<Noche> getNoches(List<Banda> bandas) {
 		// TODO Auto-generated method stub
 		return null;
 	}
