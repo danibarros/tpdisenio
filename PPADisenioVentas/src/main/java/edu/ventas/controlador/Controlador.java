@@ -44,9 +44,9 @@ public class Controlador {
 	private Integer cantMayores;
 	private Integer cantMenores;
 	private boolean compraAseptada = false;
-	private Set<Banda> bandas;
+	private List<Banda> bandas;
 	private List<Noche> noches;
-	private Set<Banda> lasBandas;
+	private List<Banda> lasBandas;
 	private List<Noche> lasNoches;
 	
 	
@@ -84,7 +84,7 @@ public class Controlador {
 		DataReader dataReader = new DataReader ();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		lasBandas = bandaDAO.getBandas();
+		lasBandas = bandaDAO.getAllBandas();
 		lasNoches =nocheDAO.getNoches(lasBandas);
 		
 		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
@@ -97,7 +97,7 @@ public class Controlador {
 	}
 	
 	public void vender(){
-    	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
+		VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
     	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores);
 	}
