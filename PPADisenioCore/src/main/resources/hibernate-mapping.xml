@@ -84,10 +84,10 @@
 			column="Estadios_estadio_id" />
 		<many-to-one name="festival" class="edu.core.entities.Festival"
 			column="Festival_festival_id" />
-		<list name="entradas" table="bandas" lazy="false" fetch="select">
+		<list name="entradas" table="entradas" lazy="false" fetch="select">
 			<key column="Noches_noche_id" />
-			<list-index column="banda_id" />
-			<one-to-many class="edu.core.entities.Banda" />
+			<list-index column="entrda_id" />
+			<one-to-many class="edu.core.entities.Entrada" />
 		</list>
 	</class>
 
@@ -116,7 +116,7 @@
 		</id>
 		<property name="nombre" column="estadio_nombre" type="java.lang.String" />
 		<list name="sectores" table="sectores" lazy="false" fetch="select">
-			<key column="Estadio_estadio_id" />
+			<key column="Estadios_estadio_id" />
 			<list-index column="sector_id" />
 			<one-to-many class="edu.core.entities.Sector" />
 		</list>
@@ -147,7 +147,7 @@
 		</id>
 		<property name="numero" column="fila_numero" type="java.lang.Integer" />
 		<property name="precioFila" column="precio_base" type="java.lang.Float" />
-		<list name="butacas" table="filas" lazy="false" fetch="select">
+		<list name="butacas" table="butacas" lazy="false" fetch="select">
 			<key column="Filas_fila_id" />
 			<list-index column="butaca_id" />
 			<one-to-many class="edu.core.entities.Butaca" />
