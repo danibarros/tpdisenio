@@ -39,7 +39,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
-	int cant;
+	
 
 	public void formularioNoche(Noche noche, JFrame frame){
 		
@@ -77,14 +77,13 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
 		
-		cant = (check.getSelectedItems()).length; 
-	//	para que aparesca un formulario de banda por cada banda selecionada.
+		
 		
 		JPanel pnlBottom = new JPanel();
 		frame.add(pnlBottom, BorderLayout.SOUTH);
 		JButton btnComprar = new JButton();
 		btnComprar.setName("btnBandas");
-		btnComprar.setText("Formulario de Bandas");
+		btnComprar.setText("Agregar Bandas");
 		btnComprar.addActionListener(this);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
 		
@@ -101,13 +100,11 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		switch (event) {
-		case "Formulario de Bandas":
+		case "Agregar Bandas":
 			Controlador controlador = new Controlador(frame);
-			for(int i = 0; i < cant; i++){
-				VentanaBandaDecorator ventana = new VentanaBandaDecorator();
-				List<String> datos = ventana.cargarFormularioBandas();
-				controlador.guardarBanda(datos);
-				}
+			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
+			List<String> datos = ventana.cargarFormularioBandas();
+			controlador.guardarBanda(datos);
 			break;
 		default:
 			break;
