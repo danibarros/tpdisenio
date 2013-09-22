@@ -10,10 +10,6 @@ import edu.organizador.gui.UIPrincipal;
 public class Main {
 
 	public static void main(String[] args) throws ParseException, IOException {
-		Categoria categoria = new Categoria();
-		categoria.setPrecio(100);
-		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		categoriaDAO.save(categoria);
 		createAndShowGUI();
 	}
 

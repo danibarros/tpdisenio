@@ -31,7 +31,8 @@ public List<String> cargarFormularioBandas(){
 	JTextField field2 = new JTextField("");
 	
 	JPanel panel = new JPanel(new GridLayout(0, 1));
-	
+	Color c = new Color(112,173,208);
+	panel.setBackground(c);
 	panel.add(new JLabel("Ingrese nombre de la banda"));
 	panel.add(field1);	
 	panel.add(new JLabel("Ingrese Categoria de la Banda"));

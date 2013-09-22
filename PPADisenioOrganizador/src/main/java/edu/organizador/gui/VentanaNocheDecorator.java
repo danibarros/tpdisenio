@@ -66,6 +66,8 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		
 		JPanel grid = new JPanel(new GridLayout(0,1));
 		
+		grid.setBackground(c);
+		
 		check.setName("cmbBandas");
 		check.addActionListener(this);
 		grid.add(new JLabel("Elija el estadio"));
@@ -77,15 +79,15 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
 		
-		
-		
 		JPanel pnlBottom = new JPanel();
+		pnlBottom.setBackground(c);
 		frame.add(pnlBottom, BorderLayout.SOUTH);
 		JButton btnComprar = new JButton();
 		btnComprar.setName("btnBandas");
-		btnComprar.setText("Agregar Bandas");
+		btnComprar.setText("Agregar Nueva Banda");
 		btnComprar.addActionListener(this);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
+		
 		
 		JSpinner spinner= new JSpinner();
 		spinner.setModel(model);
