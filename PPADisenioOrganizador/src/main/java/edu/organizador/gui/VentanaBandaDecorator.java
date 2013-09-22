@@ -16,7 +16,7 @@ import java.awt.BorderLayout;
 
 public class VentanaBandaDecorator implements VentanaDecoratorInterface {
 
-	Banda banda;
+	 Banda banda;
 
 @Override
 public void dibujar() {
@@ -49,7 +49,8 @@ public List<String> cargarFormularioBandas(){
 			else{
 				datos.add(field1.getText());
 				datos.add(field2.getText());
-				return datos; 
+				return datos;
+				
 				}
 	}else{
 		System.exit(0);
