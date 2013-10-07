@@ -10,6 +10,7 @@ import edu.core.dao.BandaDAO;
 import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.DataReaderHibernate;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Noche;
@@ -39,9 +40,8 @@ public class Controlador {
 	}
 	
 	public void organizarNoches(){
-		DataReaderDAO dataReader = new DataReader();
-		Set<Banda> lasBandas = dataReader.getBandas();
-		List<Noche> lasNoches = dataReader.getNoches(lasBandas);
+		BandaDAO bandaDAO = new BandaDAO();
+		Set<Banda> bandas = (Set<Banda>) bandaDAO.findAll();
 		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
 		ventana.seleccionarNoches();
