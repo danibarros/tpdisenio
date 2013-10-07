@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.core.entities.Noche;
+import java.util.Arrays;
 
 public class VentanaLoginDecorator {
 
@@ -34,13 +35,35 @@ public class VentanaLoginDecorator {
 				alert.dibujar();
 				login();
 			}else{
-				datos.add(field1.getText());
-				datos.add(String.copyValueOf(field2.getPassword()));
+				char[] input = field2.getPassword();
+		        if (isPasswordCorrect(input)) {
+		        	datos.add(field1.getText());
+					datos.add(String.copyValueOf(field2.getPassword()));
+		        }else{
+		        	VentanaAlertDecorator alert = new VentanaAlertDecorator();
+					alert.errorpass();
+					login();
+		        }
 			}
-		} else {
+		   }else{
 			System.exit(0);
 		}
 		return datos;
 	}
 	
+	private static boolean isPasswordCorrect(char[] input) {
+	    boolean isCorrect = true;
+	    char[] correctPassword = { 'b', 'u', 'g', 'a', 'b', 'o', 'o' };
+
+	    if (input.length != correctPassword.length) {
+	        isCorrect = false;
+	    } else {
+	        isCorrect = Arrays.equals (input, correctPassword);
+	    }
+
+	    //Zero out the password.
+	    Arrays.fill(correctPassword,'0');
+
+	    return isCorrect;
+	}
 }
