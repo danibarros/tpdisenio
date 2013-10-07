@@ -37,6 +37,7 @@ public class UIPrincipal extends WindowAdapter {
 		logIn();
 		iniciarJuego();
 		organizar();
+		elegirBandas();
 	}
 	
 	public void logIn(){
@@ -53,6 +54,17 @@ public class UIPrincipal extends WindowAdapter {
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
 		controlador.organizarNoches();
+	
 	}
+	
+	public void elegirBandas() {	 
+		numWindows++;
+		System.out.println("Number of windows: " + numWindows);
+		controlador.seleccionarBandas();
+	
+	}
+	
+
+	
 
 }

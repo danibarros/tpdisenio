@@ -14,6 +14,7 @@ import edu.core.dao.NocheDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Noche;
+import edu.organizador.gui.VentanaBandaDecorator;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
 import edu.organizador.gui.VentanaLoginDecorator;
@@ -24,6 +25,7 @@ public class Controlador {
 	List<String> datos = new ArrayList<String>();
 	private List<Banda> lasBandas;
 	private List<Noche> lasNoches;
+	
 
 	public Controlador(JFrame frame) {
 		this.frame = frame;
@@ -37,8 +39,12 @@ public class Controlador {
 	
 	public void iniciarJuego(){
 		DataReaderDAO dataReader = new DataReader();
-		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		datos = inicio.cargarFormulario();
+		
+//		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
+//		datos = inicio.cargarFormulario();
+		
+		VentanaBandaDecorator inicio = new VentanaBandaDecorator();
+		datos = inicio.cargarFormularioBandas();
 	}
 	
 	public void organizarNoches(){
@@ -49,6 +55,14 @@ public class Controlador {
 		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
 		ventana.seleccionarNoches();
+	}
+	
+	public void seleccionarBandas(){
+		DataReaderDAO dataReader = new DataReader();
+		
+		VentanaBandaDecorator inicio = new VentanaBandaDecorator();
+		datos = inicio.cargarFormularioBandas();
+		guardarBanda(datos);
 	}
 
 	public void guardarBanda(List<String> datos) {
