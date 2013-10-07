@@ -9,4 +9,10 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"No se haga el vivo y complete los campos correctamente!");
 	}
+	
+	public void errorpass(){
+		JOptionPane.showMessageDialog(null,
+				"Contraseña Incorrecta!");
+		}
 }
+
