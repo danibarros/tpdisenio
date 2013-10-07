@@ -7,8 +7,11 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.NocheDAO;
+import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
@@ -42,6 +45,8 @@ public class Controlador {
 	private Integer cantMayores;
 	private Integer cantMenores;
 	private boolean compraAseptada = false;
+	private Set<Banda> bandas;
+	private List<Noche> noches;
 	
 	
 	public Controlador(JFrame frame){
@@ -66,8 +71,8 @@ public class Controlador {
 		List<String> datos = new ArrayList<String>();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		bandas = bandaDAO.getAllBandas();
-		noches =nocheDAO.getAllNoches();
+		bandas = (Set<Banda>) bandaDAO.getAllBandas();
+		noches = nocheDAO.getAllNoches();
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
@@ -84,11 +89,11 @@ public class Controlador {
 		DataReader dataReader = new DataReader ();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		lasBandas = bandaDAO.getAllBandas();
-		lasNoches =nocheDAO.getAllNoches();
+		bandas = (Set<Banda>) bandaDAO.getAllBandas();
+		noches =nocheDAO.getAllNoches();
 		
 		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
-        nocheElegida = lasNoches.get(this.numeroNoche -1);
+        nocheElegida = noches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
     	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
