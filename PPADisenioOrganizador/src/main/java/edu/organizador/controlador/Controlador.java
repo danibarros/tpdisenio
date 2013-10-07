@@ -40,11 +40,10 @@ public class Controlador {
 	public void iniciarJuego(){
 		DataReaderDAO dataReader = new DataReader();
 		
-//		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-//		datos = inicio.cargarFormulario();
+		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
+		datos = inicio.cargarFormulario();
 		
-		VentanaBandaDecorator inicio = new VentanaBandaDecorator();
-		datos = inicio.cargarFormularioBandas();
+		
 	}
 	
 	public void organizarNoches(){
