@@ -36,13 +36,20 @@ public class VentanaLoginDecorator {
 				login();
 			}else{
 				char[] input = field2.getPassword();
-		        if (isPasswordCorrect(input)) {
+				String id = field1.getText();
+				if ((isPasswordCorrect(input)) && (id.equalsIgnoreCase("utndiseño"))) {
 		        	datos.add(field1.getText());
 					datos.add(String.copyValueOf(field2.getPassword()));
 		        }else{
-		        	VentanaAlertDecorator alert = new VentanaAlertDecorator();
-					alert.errorpass();
-					login();
+		        	if(id.equalsIgnoreCase("utndiseño") == false){
+		        		VentanaAlertDecorator alert = new VentanaAlertDecorator();
+		        		alert.errorid();
+		        		login();
+		        	}else{
+		        		VentanaAlertDecorator alert = new VentanaAlertDecorator();
+						alert.errorpass();
+						login();
+		        	}
 		        }
 			}
 		   }else{

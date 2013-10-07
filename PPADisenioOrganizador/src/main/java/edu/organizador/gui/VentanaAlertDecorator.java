@@ -14,5 +14,10 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"Contraseña Incorrecta!");
 		}
+	
+	public void errorid(){
+		JOptionPane.showMessageDialog(null,
+				"Id Incorrecto!");
+		}
 }
 
