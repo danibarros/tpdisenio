@@ -7,11 +7,8 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
-import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
-import edu.core.dao.NocheDAO;
-import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
@@ -25,6 +22,7 @@ import edu.ventas.gui.VentanaDespedidaDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
 import edu.ventas.gui.VentanaInformarEntradasDecorator;
 import edu.ventas.gui.VentanaInicioDecorator;
+import edu.ventas.gui.VentanaLoginDecorator;
 
 
 
@@ -44,15 +42,17 @@ public class Controlador {
 	private Integer cantMayores;
 	private Integer cantMenores;
 	private boolean compraAseptada = false;
-	private List<Banda> bandas;
-	private List<Noche> noches;
-	private List<Banda> lasBandas;
-	private List<Noche> lasNoches;
 	
 	
 	public Controlador(JFrame frame){
 		this.frame = frame;
 	}
+	
+    public void logIn(){
+    	List<String> datos;
+    	VentanaLoginDecorator login = new VentanaLoginDecorator();
+    	datos = login.login();
+    }
 	
 	public void iniciarJuego(){
 		PuntoDeVentaDAO puntoDeVentaDAO = new PuntoDeVentaDAO();
@@ -97,7 +97,7 @@ public class Controlador {
 	}
 	
 	public void vender(){
-		VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
+    	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
     	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores);
 	}
@@ -108,11 +108,6 @@ public class Controlador {
 
 	public void setCompraAseptada(boolean compraAseptada) {
 		this.compraAseptada = compraAseptada;
-	}
-
-	public void logIn() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
