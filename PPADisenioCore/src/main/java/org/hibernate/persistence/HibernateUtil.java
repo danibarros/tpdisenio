@@ -27,7 +27,6 @@ public class HibernateUtil {
 		configuration.setProperty("hibernate.connection.password", "root");
 		configuration.setProperty("hibernate.order_updates", "true");
 		configuration.setProperty("hibernate.show_sql", "true");
-		configuration.setProperty("hibernate.current_session_context_class", "org.hibernate.context.ThreadLocalSessionContext");
 		
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())
