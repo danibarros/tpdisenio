@@ -61,7 +61,6 @@ public class VentanaLoginDecorator {
 	private static boolean isPasswordCorrect(char[] input) {
 	    boolean isCorrect = true;
 	    char[] correctPassword = { 'b', 'u', 'g', 'a', 'b', 'o', 'o' };
-
 	    if (input.length != correctPassword.length) {
 	        isCorrect = false;
 	    } else {

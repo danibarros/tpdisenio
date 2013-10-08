@@ -3,13 +3,17 @@ package edu.organizador.gui;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.core.dao.CategoriaDAO;
 import edu.core.entities.Banda;
+import edu.core.entities.Categoria;
 
 import java.awt.Color;
 import java.awt.BorderLayout;
@@ -27,29 +31,40 @@ public List<String> cargarFormularioBandas(){
 	
 	List<String> datos = new ArrayList<String>();
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	JTextField field1 = new JTextField("");
+	JTextField txtNombreBanda = new JTextField("");
 	JTextField field2 = new JTextField("");
 	
-	JPanel panel = new JPanel(new GridLayout(0, 1));
+	CategoriaDAO categoriaDAO = new CategoriaDAO();
 	
-	panel.add(new JLabel("Ingrese nombre de la banda"));
-	panel.add(field1);	
-	panel.add(new JLabel("Ingrese Categoria de la Banda"));
-	panel.add(field2);
+	JPanel panel = new JPanel(new GridLayout(0, 1));
+	JLabel lblNombreBanda = new JLabel("Ingrese nombre de la banda");
+	JLabel lblCategoria = new JLabel("Ingrese Categoria de la Banda");
+	JComboBox cmbCategoria = new JComboBox<String>();
+	
+	Set<Categoria> categorias = categoriaDAO.findAll();
+	for (Categoria categoria : categorias) {
+		cmbCategoria.addItem(categoria.getIdCategoria());
+	}
+	
+	
+	panel.add(lblNombreBanda);
+	panel.add(txtNombreBanda);	
+	panel.add(lblCategoria);
+	panel.add(cmbCategoria);
 	
 	int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
 			 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	
 	if (result == JOptionPane.OK_OPTION) { 
-			if(field1.getText().equals("") || field2.getText().equals("")) { 
+			if(txtNombreBanda.getText().equals("") || cmbCategoria.getSelectedItem().toString().equals("")) { 
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				System.exit(0);
 				this.cargarFormularioBandas();
 				}
 			else{
-				datos.add(field1.getText());
-				datos.add(field2.getText());
+				datos.add(txtNombreBanda.getText());
+				datos.add( cmbCategoria.getSelectedItem().toString());
 				return datos; 
 				}
 	}else{

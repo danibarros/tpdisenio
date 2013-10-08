@@ -7,7 +7,7 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 	@Override
 	public void dibujar() {
 		JOptionPane.showMessageDialog(null,
-				"No se haga el vivo y complete los campos correctamente!");
+				"Complete los campos correctamente para poder continuar.");
 	}
 	
 	public void errorpass(){

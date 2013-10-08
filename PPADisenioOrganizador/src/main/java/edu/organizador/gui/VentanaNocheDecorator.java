@@ -19,16 +19,18 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
+import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.EstadioDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
+import edu.core.entities.Estadio;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.Sector;
 import edu.organizador.controlador.Controlador;
 import external.utils.CheckComboBox;
-
 
 import java.awt.Color;
 
@@ -39,46 +41,53 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
-	
 
-	public void formularioNoche(Noche noche, JFrame frame){
-		
-		DataReaderDAO dataReader = new DataReader();
+	public void formularioNoche(Noche noche, JFrame frame) {
+
+		BandaDAO bandaDao = new BandaDAO();
+		EstadioDAO estadioDao = new EstadioDAO();
+
 		noche.getHoraInicio();
-		
+
 		if (panel == null)
 			panel = new JPanel(new GridBagLayout());
 		frame.setVisible(false);
 		panel.removeAll();
-		List<Banda> bandas = dataReader.getBandas();
+		Set<Banda> bandas = bandaDao.findAll();
 		Set<Object> options = new HashSet<>();
 		for (Banda banda : bandas) {
 			options.add(banda.getNombre());
 		}
-		Color c = new Color(112,173,208);
+		Color c = new Color(112, 173, 208);
 		panel.setBackground(c);
-		CheckComboBox check = new CheckComboBox(options);
-		JComboBox<String> estadios = new JComboBox<String>();
-		
-		estadios.addItem("River");
-		estadios.addItem("Boca");
-		estadios.addItem("Huracan");
-		
-		JPanel grid = new JPanel(new GridLayout(0,1));
-		
+		CheckComboBox chkcmbBandas = new CheckComboBox(options);
+
+		JComboBox<String> cmbEstadios = new JComboBox<String>();
+		JLabel lblEstadio = new JLabel("Elija el estadio");
+		JLabel lblBandas = new JLabel("Elija las bandas que desea");
+		JLabel lblHoraInicio = new JLabel("Ingrese hora de inicio");
+
+		Set<Estadio> estadios = estadioDao.findAll();
+
+		for (Estadio estadio : estadios) {
+			cmbEstadios.addItem(estadio.getNombre());
+		}
+
+		JPanel grid = new JPanel(new GridLayout(0, 1));
+
 		grid.setBackground(c);
-		
-		check.setName("cmbBandas");
-		check.addActionListener(this);
-		grid.add(new JLabel("Elija el estadio"));
-		grid.add(estadios);
-		grid.add(new JLabel("Elija las bandas que desea"));
-		grid.add(check);
-		grid.add(new JLabel("Ingrese hora de inicio"));
-		JButton button = new JButton();
+
+		chkcmbBandas.setName("cmbBandas");
+		chkcmbBandas.addActionListener(this);
+		grid.add(lblEstadio);
+		grid.add(cmbEstadios);
+		grid.add(lblBandas);
+		grid.add(chkcmbBandas);
+		grid.add(lblHoraInicio);
+//		JButton button = new JButton();
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
-		
+
 		JPanel pnlBottom = new JPanel();
 		pnlBottom.setBackground(c);
 		frame.add(pnlBottom, BorderLayout.SOUTH);
@@ -87,17 +96,17 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		btnComprar.setText("Agregar Nueva Banda");
 		btnComprar.addActionListener(this);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
-		
-		
-		JSpinner spinner= new JSpinner();
+
+		JSpinner spinner = new JSpinner();
 		spinner.setModel(model);
 		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
 		grid.add(spinner);
 		panel.add(grid);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setVisible(true);
-		
+
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
@@ -111,13 +120,13 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		default:
 			break;
 		}
-		
+
 	}
 
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

@@ -33,7 +33,11 @@ public class BandaDAO extends GenericRepository<Banda, Integer>{
 	}
 	@Override
 	public Set<Banda> findAll(){
-		Set<Banda> bandas = new HashSet<Banda>(super.findAll());
+		
+		String hql = "from Banda";
+		Query query = session.createQuery(hql);
+		Set<Banda> bandas =new HashSet<Banda>(query.list());
+		
 		return bandas;
 	}
 	

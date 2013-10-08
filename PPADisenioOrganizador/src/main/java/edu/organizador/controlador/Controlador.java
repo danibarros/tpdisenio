@@ -40,9 +40,6 @@ public class Controlador {
 	}
 	
 	public void organizarNoches(){
-		BandaDAO bandaDAO = new BandaDAO();
-		Set<Banda> bandas = bandaDAO.findAll();
-		
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
 		ventana.seleccionarNoches();
 	}
