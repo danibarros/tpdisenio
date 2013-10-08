@@ -11,7 +11,7 @@ public class VentanaDespedidaDecorator  implements VentanaDecoratorInterface{
 	@Override
 	public void dibujar() {
 		JOptionPane.showMessageDialog(null,
-				"Gracias por la compra!, vuelva pronto!");
-		System.exit(0);
+				"Se ha cargado el horario de la banda!!, si desea no cargar mas, a continuacion toque cancelar!");
+		
 	}
 }

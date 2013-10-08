@@ -1,17 +1,28 @@
 package edu.organizador.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.core.dao.BandaDAO;
+import edu.core.entities.Banda;
+
 
 public class VentanaOrganizador implements VentanaDecoratorInterface {
-
+	JFrame frame;
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
@@ -22,16 +33,26 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 		
 		List<String> datos = new ArrayList<String>();
 		
-		JTextField field1 = new JTextField("");
-		JTextField field2 = new JTextField("");
+
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");
-		JPanel panel = new JPanel(new GridLayout(0, 1));
+		JPanel panel = new JPanel(new GridLayout());
+		Color c = new Color(112, 173, 208);
+		panel.setBackground(c);
+		
 
-		panel.add(new JLabel("Ingrese el nombre de la banda"));
-		panel.add(field1);
-		panel.add(new JLabel("Ingrese la categoria de la banda"));
-		panel.add(field2);
+		BandaDAO bandaDao = new BandaDAO();
+		
+		JComboBox<String> cmbBandas = new JComboBox<String>();
+		Set<Banda> bandas = bandaDao.findAll();
+		
+		for (Banda banda : bandas) {
+				cmbBandas.addItem(banda.getNombre());
+		}
+		
+		panel.add(new JLabel("Seleccione la banda"));
+		panel.add(cmbBandas);
+		cmbBandas.addItem("river");
 		panel.add(new JLabel("Ingrese el horario de inicio"));
     	panel.add(field3);
 		panel.add(new JLabel("Ingrese el Estadio"));
@@ -41,21 +62,25 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) {
-			if(field1.getText().equals("") || field2.getText().equals("") || field3.getText().equals("")|| field4.getText().equals("") ) { 
+			if(field3.getText().equals("")|| field4.getText().equals("") ) { 
 				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
+				this.cargarOrganizador();
 			}else{
-			datos.add(field1.getText());
-			datos.add(field2.getText());
+			
 			datos.add(field3.getText());
 			datos.add(field4.getText());
+			VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
+			despedida.dibujar();
+			this.cargarOrganizador();
+			
 			}
 		} else {
-			this.cargarOrganizador();
+			JOptionPane.showMessageDialog(null,
+					"Se ha realizado la diagramacion del festival, muchas gracias!!");
+			System.exit(0);
 		}
-		VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
-		despedida.dibujar();
 		return datos;
 	}
 }

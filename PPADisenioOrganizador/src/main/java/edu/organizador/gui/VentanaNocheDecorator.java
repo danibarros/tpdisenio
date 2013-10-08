@@ -92,10 +92,17 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		pnlBottom.setBackground(c);
 		frame.add(pnlBottom, BorderLayout.SOUTH);
 		JButton btnComprar = new JButton();
+		JButton btnOrganizar = new JButton();
 		btnComprar.setName("btnBandas");
 		btnComprar.setText("Agregar Nueva Banda");
 		btnComprar.addActionListener(this);
+		btnOrganizar.setName("btnOrganizarNoche");
+		btnOrganizar.setText("Realizar diagramacion");
+		btnOrganizar.addActionListener(this);
+		pnlBottom.add(btnOrganizar, BorderLayout.WEST);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
+		
+		
 
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(model);
@@ -117,6 +124,12 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			List<String> datos = ventana.cargarFormularioBandas();
 			controlador.guardarBanda(datos);
 			break;
+		case "Realizar diagramacion":
+			Controlador controlador1 = new Controlador(frame);
+			VentanaOrganizador ventanaOrganizador = new VentanaOrganizador();
+			ventanaOrganizador.cargarOrganizador();
+			break;
+			
 		default:
 			break;
 		}
