@@ -102,7 +102,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		switch (event) {
-		case "Agregar Bandas":
+		case "Agregar Nueva Banda":
 			Controlador controlador = new Controlador(frame);
 			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
 			List<String> datos = ventana.cargarFormularioBandas();
