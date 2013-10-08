@@ -1,6 +1,8 @@
 package edu.core.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 
@@ -28,6 +30,11 @@ public class BandaDAO extends GenericRepository<Banda, Integer>{
 		query.setString("bandaNombre", nombre);
 		Banda result = (Banda) query.list().get(0);
 		return result;
+	}
+	@Override
+	public Set<Banda> findAll(){
+		Set<Banda> bandas = new HashSet<Banda>(super.findAll());
+		return bandas;
 	}
 	
 }
