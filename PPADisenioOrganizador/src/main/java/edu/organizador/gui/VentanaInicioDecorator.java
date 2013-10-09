@@ -71,7 +71,8 @@ public class VentanaInicioDecorator {
 			}
 			
 		} else {
-			this.cargarFormulario();
+			VentanaLoginDecorator login = new VentanaLoginDecorator();
+			login.login();
 		}
 		return festival;
 	}

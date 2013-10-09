@@ -23,6 +23,7 @@ import edu.core.entities.Banda;
 
 public class VentanaOrganizador implements VentanaDecoratorInterface {
 	JFrame frame;
+	List<String> datos = new ArrayList<String>();
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
@@ -31,7 +32,6 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 	
 	public List<String> cargarOrganizador() {
 		
-		List<String> datos = new ArrayList<String>();
 
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");
@@ -54,8 +54,7 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 		cmbBandas.addItem("river");
 		panel.add(new JLabel("Ingrese el horario de inicio"));
     	panel.add(field3);
-		panel.add(new JLabel("Ingrese el Estadio"));
-		panel.add(field4);
+		
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Diagramación",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -67,9 +66,9 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 				alert.dibujar();
 				this.cargarOrganizador();
 			}else{
-			
+			datos.add((String) cmbBandas.getSelectedItem());
 			datos.add(field3.getText());
-			datos.add(field4.getText());
+			
 			VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
 			despedida.dibujar();
 			this.cargarOrganizador();
@@ -78,7 +77,7 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"Se ha realizado la diagramacion del festival, muchas gracias!!");
-			System.exit(0);
+			
 		}
 		return datos;
 	}

@@ -57,5 +57,20 @@ public class Controlador {
 		FestivalDAO festivalDAO = new FestivalDAO();
 		festivalDAO.save(festival);	
 	}
+	
+	public void guardarHorariosBanda( List<String> datos){
+		Banda banda = new Banda();
+		BandaDAO bandaDAO = new BandaDAO();
+		int i = 0;
+		
+		while (datos.size()>=i){
+//			banda.setHorario(datos.get(i+1));
+			banda.setNombre(datos.get(i));
+			// Aca iria el metodo creado en el bandaDao, donde inserta en la tabla
+			//noche-banda, la banda y el horario
+			i=i+2;
+		}
+		
+	}
 
 }

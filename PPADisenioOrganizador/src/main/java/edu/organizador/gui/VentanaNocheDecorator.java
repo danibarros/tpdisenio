@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -94,14 +95,19 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		frame.add(pnlBottom, BorderLayout.SOUTH);
 		JButton btnComprar = new JButton();
 		JButton btnOrganizar = new JButton();
+		JButton btnFinalizar = new JButton();
 		btnComprar.setName("btnBandas");
 		btnComprar.setText("Agregar Nueva Banda");
 		btnComprar.addActionListener(this);
 		btnOrganizar.setName("btnOrganizarNoche");
 		btnOrganizar.setText("Realizar diagramacion");
 		btnOrganizar.addActionListener(this);
+		btnFinalizar.setName("btnFinalizar");
+		btnFinalizar.setText("Finalizar Diagramacion");
+		btnFinalizar.addActionListener(this);
 		pnlBottom.add(btnOrganizar, BorderLayout.WEST);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
+		pnlBottom.add(btnFinalizar, BorderLayout.NORTH);
 		
 		
 
@@ -126,9 +132,16 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			controlador.guardarBanda(datos);
 			break;
 		case "Realizar diagramacion":
+			Controlador controlador1 = new Controlador(frame);
 			VentanaOrganizador ventanaOrganizador = new VentanaOrganizador();
-			ventanaOrganizador.cargarOrganizador();
+			List<String> datosBandaHorarios = ventanaOrganizador.cargarOrganizador();
+			controlador1.guardarHorariosBanda(datosBandaHorarios);
+			
 			break;
+		case "Finalizar Diagramacion":
+			JOptionPane.showMessageDialog(null,
+					"Gracias por realizar la diagramacion del festival!!");
+			System.exit(0);
 		default:
 			break;
 		}
