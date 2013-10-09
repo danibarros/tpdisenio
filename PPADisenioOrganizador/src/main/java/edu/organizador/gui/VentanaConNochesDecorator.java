@@ -43,23 +43,25 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	}
 
 	public void seleccionarNoches() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-		JPanel panel = new JPanel();
+		
 		frame.getContentPane().removeAll();
-		frame.add(panel, BorderLayout.NORTH);
-
+		
 		comboNoches.setName("cmbNoches");
 		comboNoches.addActionListener(this);
-
-		panel.setSize(comboNoches.getWidth(), comboNoches.getHeight());
-		frame.setSize(800, 600);
 		
-		panel.add(new JLabel("Elija la noche que desea organizar"));
-		panel.add(comboNoches);
+		JPanel pnlPrincipal = new JPanel();
+		pnlPrincipal.setSize(comboNoches.getWidth(), comboNoches.getHeight());
+		pnlPrincipal.add(new JLabel("Elija la noche que desea organizar"));
+		pnlPrincipal.add(comboNoches);
+		pnlPrincipal.setVisible(true);		 
+
+		frame.add(pnlPrincipal, BorderLayout.NORTH);
+		frame.setSize(800,600);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
-		panel.setVisible(true);
+
 		ventana.formularioNoche(noches.get(Integer.valueOf(comboNoches.getSelectedItem().toString()) - 1 ),frame);
+		
 		while (pause) {
 			try {
 				Thread.sleep(1);

@@ -11,8 +11,10 @@ import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
 import edu.core.dao.DataReaderHibernate;
+import edu.core.dao.FestivalDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
+import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
@@ -50,6 +52,11 @@ public class Controlador {
 		Banda banda = new Banda(datos.get(0), categoria);
 		BandaDAO bandaDAO = new BandaDAO();
 		bandaDAO.save(banda);	
+	}
+	
+	public void guardarNoches(Festival festival) {
+		FestivalDAO festivalDAO = new FestivalDAO();
+		festivalDAO.save(festival);	
 	}
 
 }
