@@ -54,6 +54,8 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 		cmbBandas.addItem("river");
 		panel.add(new JLabel("Ingrese el horario de inicio"));
     	panel.add(field3);
+    	panel.add(new JLabel("Ingrese la duracion en el escenario de la banda"));
+    	panel.add(field4);
 		
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Diagramación",
@@ -68,6 +70,7 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 			}else{
 			datos.add((String) cmbBandas.getSelectedItem());
 			datos.add(field3.getText());
+			datos.add(field4.getText());
 			
 			VentanaDespedidaDecorator despedida = new VentanaDespedidaDecorator();
 			despedida.dibujar();

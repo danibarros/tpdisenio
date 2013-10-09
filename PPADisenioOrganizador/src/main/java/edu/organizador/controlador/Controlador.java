@@ -68,7 +68,7 @@ public class Controlador {
 			banda.setNombre(datos.get(i));
 			// Aca iria el metodo creado en el bandaDao, donde inserta en la tabla
 			//noche-banda, la banda y el horario
-			i=i+2;
+			i=i+3;
 		}
 		
 	}
