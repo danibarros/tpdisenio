@@ -35,14 +35,13 @@ public class Controlador {
     	datos = login.login();
     }
 	
-	public void iniciarJuego(){
-		DataReaderDAO dataReader = new DataReader();
+	public Festival iniciarJuego(){
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		datos = inicio.cargarFormulario();
+		return inicio.cargarFormulario();
 	}
 	
-	public void organizarNoches(){
-		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
+	public void organizarNoches(Festival nuevoFestival){
+		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(nuevoFestival, frame);
 		ventana.seleccionarNoches();
 	}
 

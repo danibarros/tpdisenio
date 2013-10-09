@@ -25,58 +25,57 @@ public class VentanaBandaDecorator implements VentanaDecoratorInterface {
 	Banda banda;
 	private JFrame frame;
 
-@Override
-public void dibujar() {
+	@Override
+	public void dibujar() {
 
-}
-	
-public List<String> cargarFormularioBandas(){
-	
-	List<String> datos = new ArrayList<String>();
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	JTextField txtNombreBanda = new JTextField("");
-	JTextField field2 = new JTextField("");
-	
-	
-//	CategoriaDAO categoriaDAO = new CategoriaDAO();
-	
-	JPanel panel = new JPanel(new GridLayout(0, 1));
-	JLabel lblNombreBanda = new JLabel("Ingrese nombre de la banda");
-	JLabel lblCategoria = new JLabel("Ingrese Categoria de la Banda");
-	JComboBox cmbCategoria = new JComboBox<String>();
-	
-//	Set<Categoria> categorias = categoriaDAO.findAll();
-//	for (Categoria categoria : categorias) {
-//		cmbCategoria.addItem(categoria.getIdCategoria());
-//	}
-	
-	
-	panel.add(lblNombreBanda);
-	panel.add(txtNombreBanda);	
-	panel.add(lblCategoria);
-	panel.add(cmbCategoria);
-	
-	int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
-			 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-	
-	if (result == JOptionPane.OK_OPTION) { 
-			if(txtNombreBanda.getText().equals("") || cmbCategoria.getSelectedItem().toString().equals("")) { 
+	}
+
+	public List<String> cargarFormularioBandas() {
+
+		List<String> datos = new ArrayList<String>();
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		JTextField txtNombreBanda = new JTextField("");
+		JTextField field2 = new JTextField("");
+
+		CategoriaDAO categoriaDAO = new CategoriaDAO();
+
+		JPanel panel = new JPanel(new GridLayout(0, 1));
+		JLabel lblNombreBanda = new JLabel("Ingrese nombre de la banda");
+		JLabel lblCategoria = new JLabel("Ingrese Categoria de la Banda");
+		JComboBox cmbCategoria = new JComboBox<String>();
+
+		Set<Categoria> categorias = categoriaDAO.findAll();
+		for (Categoria categoria : categorias) {
+			cmbCategoria.addItem(categoria.getIdCategoria());
+		}
+
+		panel.add(lblNombreBanda);
+		panel.add(txtNombreBanda);
+		panel.add(lblCategoria);
+		panel.add(cmbCategoria);
+
+		int result = JOptionPane.showConfirmDialog(null, panel, "Selección",
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+		if (result == JOptionPane.OK_OPTION) {
+			if (txtNombreBanda.getText().equals("")
+					|| cmbCategoria.getSelectedItem().toString().equals("")) {
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormularioBandas();
-				}
-			else{
+			} else {
 				datos.add(txtNombreBanda.getText());
 				datos.add(cmbCategoria.getSelectedItem().toString());
-				return datos; 
-				}
-	}else{
-		
-		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
-		ventana.seleccionarNoches();
-	
-	}
-	return datos;
-	
+				return datos;
+			}
+		} else {
+			//
+			// VentanaConNochesDecorator ventana = new
+			// VentanaConNochesDecorator(Integer.valueOf(datos.get(1)), frame);
+			// ventana.seleccionarNoches();
+
+		}
+		return datos;
+
 	}
 }

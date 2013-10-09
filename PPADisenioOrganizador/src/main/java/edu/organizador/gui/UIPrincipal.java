@@ -11,48 +11,47 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import edu.core.entities.Festival;
 import edu.organizador.controlador.Controlador;
 
 public class UIPrincipal extends WindowAdapter {
 	public int numWindows = 0;
-	private Point lastLocation = null;
-	private int maxX = 500;
-	private int maxY = 500;
 	JFrame frame;
 	Controlador controlador;
 	
 	public UIPrincipal() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		maxX = 800;
-		maxY = 600;
+		
 		JFrame frame = new Ventana(this);
 		controlador = new Controlador(frame);
-		Color c = new Color(112,173,208);
 		Container con = frame.getContentPane();
-		con.setBackground(c);
+		con.setBackground(new Color(112,173,208));
 		ImageIcon icon = new ImageIcon(getClass().getResource("/presentacion.gif"));
 		JLabel cartel = new JLabel(icon, JLabel.CENTER);
+	
 		frame.add(cartel);
+		frame.setSize(800,600);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
+		
 		logIn();
-		iniciarJuego();
-		organizar();
+		Festival nuevoFestival = iniciarJuego();
+		organizar(nuevoFestival);
 	}
 	
 	public void logIn(){
 		controlador.logIn();
 	}
 
-	public void iniciarJuego() {	 
+	public Festival iniciarJuego() {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		controlador.iniciarJuego();
+		return controlador.iniciarJuego();
 	}
 	
-	public void organizar() {	 
+	public void organizar(Festival nuevoFestival) {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		controlador.organizarNoches();
+		controlador.organizarNoches(nuevoFestival);
 	}
 
 }

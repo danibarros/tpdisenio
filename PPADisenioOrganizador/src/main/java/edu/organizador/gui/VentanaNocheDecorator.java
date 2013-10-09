@@ -89,6 +89,22 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
 
+		JPanel pnlBottom = new JPanel();
+		pnlBottom.setBackground(c);
+		frame.add(pnlBottom, BorderLayout.SOUTH);
+		JButton btnComprar = new JButton();
+		JButton btnOrganizar = new JButton();
+		btnComprar.setName("btnBandas");
+		btnComprar.setText("Agregar Nueva Banda");
+		btnComprar.addActionListener(this);
+		btnOrganizar.setName("btnOrganizarNoche");
+		btnOrganizar.setText("Realizar diagramacion");
+		btnOrganizar.addActionListener(this);
+		pnlBottom.add(btnOrganizar, BorderLayout.WEST);
+		pnlBottom.add(btnComprar, BorderLayout.NORTH);
+		
+		
+
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(model);
 		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
@@ -96,32 +112,33 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		panel.add(grid);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setVisible(true);
-		
-		estadioEncontrado = getEstadioPorNombre(estadios, cmbEstadios.getSelectedItem().toString());
-		noche.setEstadio(estadioEncontrado);
 
 	}
-	
-	private Estadio getEstadioPorNombre(Set<Estadio> estadios, String nombre){
-		Estadio estadioEncontrado = new Estadio();
-		for (Estadio estadio : estadios) {
-			if (estadio.getNombre() == nombre){
-				return estadioEncontrado;
-			}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String event = e.getActionCommand();
+		switch (event) {
+		case "Agregar Nueva Banda":
+			Controlador controlador = new Controlador(frame);
+			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
+			List<String> datos = ventana.cargarFormularioBandas();
+			controlador.guardarBanda(datos);
+			break;
+		case "Realizar diagramacion":
+			VentanaOrganizador ventanaOrganizador = new VentanaOrganizador();
+			ventanaOrganizador.cargarOrganizador();
+			break;
+		default:
+			break;
 		}
-		return estadioEncontrado;
+
 	}
-	
+
 	@Override
 	public void dibujar() {
 		// TODO Auto-generated method stub
 
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

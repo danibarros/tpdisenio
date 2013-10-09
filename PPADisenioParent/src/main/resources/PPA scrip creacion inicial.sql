@@ -203,3 +203,5 @@ CREATE TABLE ppa_disenio.Vendedores (
 		references Puntos_venta(puntos_id)
 			on delete no action
 );
+
+ALTER TABLE ppa_disenio.Festival ADD fecha_inicio DATE;

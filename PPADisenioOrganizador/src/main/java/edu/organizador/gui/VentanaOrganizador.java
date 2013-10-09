@@ -32,7 +32,6 @@ public class VentanaOrganizador implements VentanaDecoratorInterface {
 	public List<String> cargarOrganizador() {
 		
 		List<String> datos = new ArrayList<String>();
-		
 
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");

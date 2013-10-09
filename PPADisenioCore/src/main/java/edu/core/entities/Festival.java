@@ -1,5 +1,6 @@
 package edu.core.entities;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Festival {
 	private Estadio estadio;
 	private List<Noche> noches ;
 	private int idFestival;
+	private Date fechaInicio;
 	
 	public Festival(){
 		this.noches = new ArrayList<Noche>();
@@ -50,6 +52,14 @@ public class Festival {
 
 	public void setNoches(List<Noche> noches) {
 		this.noches = noches;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 }

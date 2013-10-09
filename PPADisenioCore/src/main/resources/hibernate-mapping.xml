@@ -63,6 +63,7 @@
 			<generator class="increment" />
 		</id>
 		<property name="nombre" column="festival_name" type="java.lang.String" />
+		<property name="fechaInicio" column="fecha_inicio" type="java.sql.Date" />
 		<many-to-one name="estadio" class="edu.core.entities.Estadio"
 			column="Estadios_estadio_id" />
 		<list name="noches" table="noches" lazy="false" fetch="select">
