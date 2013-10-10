@@ -18,7 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
+import javax.swing.table.TableModel;
 
 import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
@@ -42,33 +44,39 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
+	Noche noche; 
+	
+	BandaDAO bandaDao = new BandaDAO();
+	EstadioDAO estadioDao = new EstadioDAO();
 
 	public void formularioNoche(Noche noche, JFrame frame) {
-
-		BandaDAO bandaDao = new BandaDAO();
-		EstadioDAO estadioDao = new EstadioDAO();
-		Estadio estadioEncontrado = new Estadio();
-
-		noche.getHoraInicio();
+		
+		this.noche = noche;
+		this.frame = frame;
 
 		if (panel == null)
 			panel = new JPanel(new GridBagLayout());
 		frame.setVisible(false);
 		panel.removeAll();
+		
+		
 		Set<Banda> bandas = bandaDao.findAll();
 		Set<Object> options = new HashSet<>();
 		for (Banda banda : bandas) {
 			options.add(banda.getNombre());
 		}
-		Color c = new Color(112, 173, 208);
-		panel.setBackground(c);
 		CheckComboBox chkcmbBandas = new CheckComboBox(options);
 
+		Color c = new Color(112, 173, 208);
+		panel.setBackground(c);
+		
 		JComboBox<String> cmbEstadios = new JComboBox<String>();
 		JLabel lblEstadio = new JLabel("Elija el estadio");
 		JLabel lblBandas = new JLabel("Elija las bandas que desea");
-		JLabel lblHoraInicio = new JLabel("Ingrese hora de inicio");
-
+		JButton btnComprar = new JButton();
+		JButton btnOrganizar = new JButton();
+		JButton btnFinalizar = new JButton();
+		
 		Set<Estadio> estadios = estadioDao.findAll();
 
 		for (Estadio estadio : estadios) {
@@ -79,42 +87,41 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 
 		grid.setBackground(c);
 
-		chkcmbBandas.setName("cmbBandas");
+		cmbEstadios.addActionListener(this);
 		chkcmbBandas.addActionListener(this);
+		btnComprar.addActionListener(this);
+		btnOrganizar.addActionListener(this);
+		btnFinalizar.addActionListener(this);
+		
+		cmbEstadios.setActionCommand("Estadio Seleccionado");
+		chkcmbBandas.setActionCommand("Banda Seleccionada");
+		btnComprar.setActionCommand("Agregar Banda");
+		btnOrganizar.setActionCommand("Realizar diagramacion");
+		btnFinalizar.setActionCommand("Finalizar Diagramacion");
+		
+		btnComprar.setText("Agregar Nueva Banda");
+		btnOrganizar.setText("Realizar diagramacion");
+		btnFinalizar.setText("Finalizar Diagramacion");
+		
+		
+		
 		grid.add(lblEstadio);
 		grid.add(cmbEstadios);
 		grid.add(lblBandas);
 		grid.add(chkcmbBandas);
-		grid.add(lblHoraInicio);
+		
+		
 
-		SpinnerDateModel model = new SpinnerDateModel();
-		model.setCalendarField(Calendar.MINUTE);
-
+		//cmbEstadios.setSelectedItem(this.noche.getEstadio().getNombre());
+		
 		JPanel pnlBottom = new JPanel();
 		pnlBottom.setBackground(c);
 		frame.add(pnlBottom, BorderLayout.SOUTH);
-		JButton btnComprar = new JButton();
-		JButton btnOrganizar = new JButton();
-		JButton btnFinalizar = new JButton();
-		btnComprar.setName("btnBandas");
-		btnComprar.setText("Agregar Nueva Banda");
-		btnComprar.addActionListener(this);
-		btnOrganizar.setName("btnOrganizarNoche");
-		btnOrganizar.setText("Realizar diagramacion");
-		btnOrganizar.addActionListener(this);
-		btnFinalizar.setName("btnFinalizar");
-		btnFinalizar.setText("Finalizar Diagramacion");
-		btnFinalizar.addActionListener(this);
+
 		pnlBottom.add(btnOrganizar, BorderLayout.WEST);
 		pnlBottom.add(btnComprar, BorderLayout.NORTH);
 		pnlBottom.add(btnFinalizar, BorderLayout.NORTH);
-		
-		
 
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(model);
-		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
-		grid.add(spinner);
 		panel.add(grid);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setVisible(true);
@@ -125,11 +132,16 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		switch (event) {
-		case "Agregar Nueva Banda":
+		case "Estadio Seleccionado":
+			break;
+		case "Banda Seleccionada":
+			break;
+		case "Agregar Banda":
 			Controlador controlador = new Controlador(frame);
 			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
 			List<String> datos = ventana.cargarFormularioBandas();
 			controlador.guardarBanda(datos);
+			this.formularioNoche(this.noche, this.frame);
 			break;
 		case "Realizar diagramacion":
 			Controlador controlador1 = new Controlador(frame);

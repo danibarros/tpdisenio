@@ -20,12 +20,10 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		ActionListener {
 
 	private List<Noche> noches = new ArrayList<Noche>();
-	private int noche;
 	private boolean pause = true;
-	private JComboBox<String> comboNoches = new JComboBox<String>();
-	private VentanaNocheDecorator ventana = new VentanaNocheDecorator();
+	private JComboBox<String> comboNoches ;
+	private VentanaNocheDecorator ventana;
 	private JFrame frame;
-	private JPanel panel;
 
 //	public VentanaConNochesDecorator(int cantNoches, JFrame frame) {
 //		int i;
@@ -40,10 +38,13 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	
 	public VentanaConNochesDecorator(Festival nuevoFestival, JFrame frame) {
 		this.frame = frame;
+		this.comboNoches = new JComboBox<String>();
+		this.ventana = new VentanaNocheDecorator();
 		this.noches = nuevoFestival.getNoches();
 		for (Noche noche : noches) {
 			comboNoches.addItem(noche.getFecha().toString());
 		}
+		this.comboNoches.setActionCommand("Noche Seleccionada");
 	}
 
 	@Override
@@ -87,13 +88,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 
 		String event = e.getActionCommand();
 		switch (event) {
-		case "comboBoxChanged":
-			JComboBox cb = (JComboBox) e.getSource();
-			if (cb.getName().equalsIgnoreCase("cmbNoches")) {
-				String newSelection = (String) cb.getSelectedItem();
-				noche = Integer.valueOf(newSelection);
-				ventana.formularioNoche(noches.get(noche -1),frame);
-			}
+		case "Noche Seleccionada":
+				ventana.formularioNoche(noches.get(comboNoches.getSelectedIndex()),frame);
 			break;
 		default:
 			break;
