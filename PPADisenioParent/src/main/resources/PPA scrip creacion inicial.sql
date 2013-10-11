@@ -130,28 +130,7 @@ CREATE TABLE ppa_disenio.Butacas (
       ON UPDATE NO ACTION
 );
 
-CREATE TABLE ppa_disenio.Entradas (
-  entrda_id INTEGER UNSIGNED NOT NULL ,
-  Noches_noche_id INTEGER UNSIGNED NOT NULL,
-  Puntos_venta_punto_id INTEGER UNSIGNED NOT NULL,
-  codigo_barra INTEGER UNSIGNED NOT NULL,
-  entrada_fecha DATE NOT NULL,
-  entrada_precio FLOAT NOT NULL,
-  entrada_tipo VARCHAR(1) NOT NULL,
-  cliente_name VARCHAR(50) NOT NULL,
-  cliente_dni INTEGER UNSIGNED NOT NULL,
-  entrada_anticipada BOOL NULL,
-  PRIMARY KEY(entrda_id),
-  INDEX Entradas_FKIndex1(Noches_noche_id),
-  FOREIGN KEY(Noches_noche_id)
-    REFERENCES Noches(noche_id)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION,
-	FOREIGN KEY (Puntos_venta_puntos_id)
-		REFERENCES Puntos_venta(puntos_id)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
+
 
 CREATE TABLE ppa_disenio.banda_noche (
   Noches_noche_id INTEGER UNSIGNED NOT NULL,
@@ -179,7 +158,6 @@ CREATE TABLE ppa_disenio.Puntos_venta (
   punto_direccion VARCHAR(45) NULL,
   PRIMARY KEY(puntos_id),
   INDEX Puntos_venta_FKIndex1(Localidades_localidad_id),
-  INDEX Puntos_venta_FKIndex2(Entradas_entrda_id),
   INDEX Puntos_venta_FKIndex3(Festival_festival_id),
   FOREIGN KEY(Localidades_localidad_id)
     REFERENCES Localidades(localidad_id)
@@ -189,6 +167,29 @@ CREATE TABLE ppa_disenio.Puntos_venta (
     REFERENCES Festival(festival_id)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
+);
+
+CREATE TABLE ppa_disenio.Entradas (
+  entrada_id INTEGER UNSIGNED NOT NULL ,
+  Noches_noche_id INTEGER UNSIGNED NOT NULL,
+  Puntos_venta_punto_id INTEGER UNSIGNED NOT NULL,
+  codigo_barra INTEGER UNSIGNED NOT NULL,
+  entrada_fecha DATE NOT NULL,
+  entrada_precio FLOAT NOT NULL,
+  entrada_tipo VARCHAR(1) NOT NULL,
+  cliente_name VARCHAR(50) NOT NULL,
+  cliente_dni INTEGER UNSIGNED NOT NULL,
+  entrada_anticipada BOOL NULL,
+  PRIMARY KEY (entrada_id),
+  INDEX Entradas_FKIndex1(Noches_noche_id),
+  FOREIGN KEY (Noches_noche_id)
+    REFERENCES `Noches`(`noche_id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  FOREIGN KEY (Puntos_venta_punto_id)
+	REFERENCES `Puntos_venta`(`puntos_id`)
+	  ON DELETE NO ACTION
+	  ON UPDATE NO ACTION
 );
 
 CREATE TABLE ppa_disenio.Vendedores (
