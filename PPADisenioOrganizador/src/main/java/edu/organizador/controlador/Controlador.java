@@ -23,6 +23,7 @@ import edu.organizador.gui.VentanaLoginDecorator;
 public class Controlador {
 	private JFrame frame;
 	private String estadio;
+	private Festival festival = new Festival();
 	List<String> datos = new ArrayList<String>();
 
 	public Controlador(JFrame frame) {
@@ -35,14 +36,15 @@ public class Controlador {
     	datos = login.login();
     }
 	
-	public Festival iniciarJuego(){
+	public void iniciarJuego(){
+		DataReaderDAO dataReader = new DataReader();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		return inicio.cargarFormulario();
+		inicio.cargarFormulario(festival);
 	}
 	
-	public void organizarNoches(Festival nuevoFestival){
-		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(nuevoFestival, frame);
-		ventana.seleccionarNoches();
+	public void organizarNoches(){
+		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
+		festival.setNoches(ventana.seleccionarNoches());
 	}
 
 	public void guardarBanda(List<String> datos) {
