@@ -19,10 +19,7 @@ import edu.core.entities.Noche;
 
 public class VentanaInicioDecorator {
 
-	public Festival cargarFormulario() {
-
-		Festival festival = new Festival();
-		List<String> datos = new ArrayList<String>();
+	public void cargarFormulario(Festival festival) {
 
 		JTextField txtNombreFestival = new JTextField("");
 		JTextField txtDuracionDias = new JTextField("");
@@ -49,7 +46,7 @@ public class VentanaInicioDecorator {
 			if (txtNombreFestival.getText().equals("")) {
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
-				this.cargarFormulario();
+				this.cargarFormulario(festival);
 			}
 
 			java.sql.Date date =  new java.sql.Date(dteFechaInicio.getDate().getTime());
@@ -74,6 +71,5 @@ public class VentanaInicioDecorator {
 			VentanaLoginDecorator login = new VentanaLoginDecorator();
 			login.login();
 		}
-		return festival;
 	}
 }
