@@ -31,6 +31,7 @@ public class BandaDAO extends GenericRepository<Banda, Integer>{
 		Banda result = (Banda) query.list().get(0);
 		return result;
 	}
+	
 	@Override
 	public Set<Banda> findAll(){
 		
