@@ -11,16 +11,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import edu.core.entities.Festival;
 import edu.organizador.controlador.Controlador;
 
 public class UIPrincipal extends WindowAdapter {
 	public int numWindows = 0;
+	private Point lastLocation = null;
+	private int maxX = 500;
+	private int maxY = 500;
 	JFrame frame;
 	Controlador controlador;
 	
 	public UIPrincipal() {
-		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		maxX = 800;
+		maxY = 600;
 		JFrame frame = new Ventana(this);
 		controlador = new Controlador(frame);
 		Container con = frame.getContentPane();
@@ -29,29 +33,26 @@ public class UIPrincipal extends WindowAdapter {
 		JLabel cartel = new JLabel(icon, JLabel.CENTER);
 	
 		frame.add(cartel);
-		frame.setSize(800,600);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
-		
 		logIn();
-		Festival nuevoFestival = iniciarJuego();
-		organizar(nuevoFestival);
+		iniciarJuego();
+		organizar();
 	}
 	
 	public void logIn(){
 		controlador.logIn();
 	}
 
-	public Festival iniciarJuego() {	 
+	public void iniciarJuego() {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		return controlador.iniciarJuego();
+		controlador.iniciarJuego();
 	}
 	
-	public void organizar(Festival nuevoFestival) {	 
+	public void organizar() {	 
 		numWindows++;
 		System.out.println("Number of windows: " + numWindows);
-		controlador.organizarNoches(nuevoFestival);
+		controlador.organizarNoches();
 	}
 
 }
