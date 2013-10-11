@@ -73,8 +73,8 @@ public class CheckComboBox extends JComboBox {
        }
 
        reset();
-   }
 
+   }
    public Object[] getSelectedItems() {
        Set ret = new TreeSet(); // alphabetically
        for (Map.Entry<Object,Boolean> entry : mapObjSelected.entrySet()) {
@@ -279,18 +279,6 @@ public class CheckComboBox extends JComboBox {
                 str = strs.toString();
             }
             return defaultRenderer.getListCellRendererComponent(list, str, index, isSelected, cellHasFocus);
-        }
-    }
-
-    class ObjCheckBox extends JCheckBox {
-        private final Object obj;
-        public ObjCheckBox(final Object obj) {
-            super(obj.toString());
-            this.obj = obj;
-        }
-
-        public Object getObj() {
-            return obj;
         }
     }
 
