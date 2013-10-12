@@ -61,7 +61,7 @@ public class Controlador {
 	
 	public void iniciarJuego(){
 		PuntoDeVentaDAO puntoDeVentaDAO = new PuntoDeVentaDAO();
-		puntosDeVenta=puntoDeVentaDAO.getAllPuntosDeVenta();
+		puntosDeVenta= (List<PuntoDeVenta>) puntoDeVentaDAO.findAll();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(puntosDeVenta);
 		vendedor = new Vendedor();
@@ -71,7 +71,7 @@ public class Controlador {
 		List<String> datos = new ArrayList<String>();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		bandas = (Set<Banda>) bandaDAO.getAllBandas();
+		bandas = (Set<Banda>) bandaDAO.findAll();
 		noches = nocheDAO.getAllNoches();
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
