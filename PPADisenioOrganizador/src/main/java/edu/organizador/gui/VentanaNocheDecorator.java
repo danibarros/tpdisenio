@@ -55,16 +55,20 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		this.noche = noche;
 		BandaDAO bandaDao = new BandaDAO();
 		EstadioDAO estadioDao = new EstadioDAO();
-		Estadio estadioEncontrado = new Estadio();
+		totalBandas = bandaDao.findAll();
+		listaBandas = new ArrayList<Banda>(totalBandas);
+		Set<Object> options = new HashSet<>();
+		Color c = new Color(112, 173, 208);
+		JComboBox<String> cmbEstadios = new JComboBox<String>();
+		JLabel lblEstadio = new JLabel("Elija el estadio");
+		JLabel lblBandas = new JLabel("Elija las bandas que desea");
+		JLabel lblHoraInicio = new JLabel("Ingrese hora de inicio");
+		Set<Estadio> totalEstadios = estadioDao.findAll();
+		JPanel grid = new JPanel(new GridLayout(0, 1));
 
 		if (panel == null)
 			panel = new JPanel(new GridBagLayout());
 		panel.removeAll();
-		totalBandas = bandaDao.findAll();
-		listaBandas = new ArrayList<Banda>(totalBandas);
-
-		Set<Object> options = new HashSet<>();
-		Color c = new Color(112, 173, 208);
 		panel.setBackground(c);
 		for (Banda banda : totalBandas) {
 			options.add(banda.getNombre());
@@ -80,18 +84,13 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			chkcmbBandas.addSelectedItems(objects);
 		}
 
-		JComboBox<String> cmbEstadios = new JComboBox<String>();
 		cmbEstadios.setName("cmbEstadio");
 		cmbEstadios.addActionListener(this);
 
 		if (noche.getEstadio() != null) {
 			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
 		}
-		JLabel lblEstadio = new JLabel("Elija el estadio");
-		JLabel lblBandas = new JLabel("Elija las bandas que desea");
-		JLabel lblHoraInicio = new JLabel("Ingrese hora de inicio");
 
-		Set<Estadio> totalEstadios = estadioDao.findAll();
 		listaEstadios = new ArrayList<Estadio>(totalEstadios);
 
 		for (Estadio estadio : totalEstadios) {
@@ -114,8 +113,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
 		}
 
-		JPanel grid = new JPanel(new GridLayout(0, 1));
-
+		grid.setSize(500, 500);
 		grid.setBackground(c);
 
 		chkcmbBandas.setName("cmbBandas");
@@ -135,19 +133,10 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 
 		grid.add(spinner);
 		panel.add(grid);
+		panel.setSize(500,500);
 
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setVisible(true);
-	}
-
-	private Estadio getEstadioPorNombre(Set<Estadio> estadios, String nombre) {
-		Estadio estadioEncontrado = new Estadio();
-		for (Estadio estadio : estadios) {
-			if (estadio.getNombre() == nombre) {
-				return estadioEncontrado;
-			}
-		}
-		return estadioEncontrado;
 	}
 
 	private Banda buscarBanda(Set<Banda> bandas, String nombre) {

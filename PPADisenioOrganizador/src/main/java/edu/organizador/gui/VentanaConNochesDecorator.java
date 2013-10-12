@@ -46,25 +46,24 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	}
 
 	public List<Noche> seleccionarNoches() {
+		JPanel pnlPrincipal = new JPanel();
+		JPanel pnlBottom = new JPanel();
+		Color c = new Color(112, 173, 208);
+		JButton btnComprar = new JButton();
+		JButton btnOrganizar = new JButton();
 	
 		frame.getContentPane().removeAll();
 		
 		comboNoches.setName("cmbNoches");
 		comboNoches.addActionListener(this);			
 		
-		JPanel pnlPrincipal = new JPanel();
 		pnlPrincipal.setSize(comboNoches.getWidth(), comboNoches.getHeight());
 		pnlPrincipal.add(new JLabel("Elija la noche que desea organizar"));
-		pnlPrincipal.add(comboNoches);
-	
-		JPanel pnlBottom = new JPanel();
+		pnlPrincipal.add(comboNoches);	
 		
-		Color c = new Color(112, 173, 208);
 		pnlBottom.setBackground(c);
 		frame.add(pnlBottom, BorderLayout.SOUTH);
 		
-		JButton btnComprar = new JButton();
-		JButton btnOrganizar = new JButton();
 		btnComprar.setName("btnBandas");
 		btnComprar.setText("Agregar Nueva Banda");
 		btnComprar.addActionListener(this);
@@ -115,8 +114,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			
 		case "Realizar diagramacion":
 			Controlador controlador1 = new Controlador(frame);
-			VentanaOrganizador ventanaOrganizador = new VentanaOrganizador();
-			ventanaOrganizador.cargarOrganizador();
+			VentanaCargarBandas ventanaOrganizador = new VentanaCargarBandas();
+			ventanaOrganizador.cargarBandas();
 			break;	
 			
 		case "Agregar Nueva Banda":
