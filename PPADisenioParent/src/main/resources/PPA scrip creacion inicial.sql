@@ -36,6 +36,8 @@ CREATE TABLE ppa_disenio.Bandas (
       ON UPDATE NO ACTION
 );
 
+
+
 CREATE TABLE ppa_disenio.Localidades (
   localidad_id INTEGER UNSIGNED NOT NULL ,
   Provincias_provincia_id INTEGER UNSIGNED NOT NULL,
@@ -206,6 +208,7 @@ CREATE TABLE ppa_disenio.Vendedores (
 );
 
 ALTER TABLE ppa_disenio.Festival ADD fecha_inicio DATE;
+ALTER TABLE ppa_disenio.Festival ADD fest_nombre varchar(30);
 
 INSERT INTO ppa_disenio.paises (pais_id,pais_name) values (1,'Argentina');
 INSERT INTO ppa_disenio.provincias (provincia_id,Paises_pais_id,provincia_name)
@@ -216,4 +219,24 @@ VALUES (1,1,'Banfield');
 
 select * from ppa_disenio.estadios;
 INSERT INTO ppa_disenio.estadios (estadio_id,Localidades_localidad_id,estadio_nombre)
-values (2,1,'Lanu');
+values (1,1,'Lanu');
+
+insert into provincias values (2,1,'CABA'); /*provincia*/
+insert into localidades values (2,1,'CABA'); /*localidad*/
+insert into estadios values (2,2,'River'); /*estadio*/
+insert into estadios values (3,2,'Obras'); /*estadio*/
+
+insert into bandas values (2,2,'Tren Loco');
+insert into bandas values (3,3,'Rata Blanca');
+insert into bandas values (4,3,'Almafuerte');
+insert into bandas values (5,4,'Metallica');
+insert into bandas values (6,4,'Black Sabbat');
+
+insert into Sectores values (1,2,'Verde',50.0);
+insert into Sectores values (2,2,'Azul',80.0);
+insert into Sectores values (3,2,'Dorado',150.0);
+
+
+insert into festival values (1,2,'2013-12-18','Isenbeck Cumbia'); /*festival*/
+insert into puntos_venta values (1,1,2,'estadio','direccion estadio'); /* punto de venta */
+
