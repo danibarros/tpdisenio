@@ -56,6 +56,7 @@ public class VentanaInicioDecorator {
 		
 		panel.add(new JLabel("Ingrese su nombre de vendedor"));
 		panel.add(field1);
+		
 		panel.add(new JLabel("Ingrese el Punto de venta"));
 		panel.add(combo);
 		
@@ -68,9 +69,28 @@ public class VentanaInicioDecorator {
 				alert.dibujar();
 				this.cargarFormulario(puntosDeVenta);
 			}
-			datos.add(field1.getText());
-			datos.add(items.get(combo.getSelectedIndex()));
-		} else {
+			char letra = "T";
+			if(field1.getText.contains("0"){ letra = "F"; }
+			if(field1.getText.contains("1"){ letra = "F"; }
+			if(field1.getText.contains("2"){ letra = "F"; }
+			if(field1.getText.contains("3"){ letra = "F"; }
+			if(field1.getText.contains("4"){ letra = "F"; }
+			if(field1.getText.contains("5"){ letra = "F"; }
+			if(field1.getText.contains("6"){ letra = "F"; }
+			if(field1.getText.contains("7"){ letra = "F"; }
+			if(field1.getText.contains("8"){ letra = "F"; }
+			if(field1.getText.contains("9"){ letra = "F"; }
+			
+			if(letra = "T"){
+				datos.add(field1.getText());
+				datos.add(items.get(combo.getSelectedIndex()));
+			}else{
+				VentanaAlertDecorator alert = new VentanaAlertDecorator();
+				alert.dibujar();
+				this.cargarFormulario(puntosDeVenta);
+				}
+		}else{
+			System.exit(0);
 			this.cargarFormulario(puntosDeVenta);
 		}
 		return datos;

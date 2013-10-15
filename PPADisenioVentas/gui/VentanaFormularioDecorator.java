@@ -67,6 +67,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			datos.add(items.get(combo.getSelectedIndex()));
 			}
 		} else {
+			System.exit(0);
 			this.cargarFormulario(noches);
 		}
 		return datos;
