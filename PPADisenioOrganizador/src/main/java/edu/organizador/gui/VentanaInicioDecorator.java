@@ -68,6 +68,7 @@ public class VentanaInicioDecorator {
 			}
 			
 		} else {
+			System.exit(0);
 			VentanaLoginDecorator login = new VentanaLoginDecorator();
 			login.login();
 		}
