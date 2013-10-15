@@ -69,19 +69,19 @@ public class VentanaInicioDecorator {
 				alert.dibujar();
 				this.cargarFormulario(puntosDeVenta);
 			}
-			char letra = "T";
-			if(field1.getText.contains("0"){ letra = "F"; }
-			if(field1.getText.contains("1"){ letra = "F"; }
-			if(field1.getText.contains("2"){ letra = "F"; }
-			if(field1.getText.contains("3"){ letra = "F"; }
-			if(field1.getText.contains("4"){ letra = "F"; }
-			if(field1.getText.contains("5"){ letra = "F"; }
-			if(field1.getText.contains("6"){ letra = "F"; }
-			if(field1.getText.contains("7"){ letra = "F"; }
-			if(field1.getText.contains("8"){ letra = "F"; }
-			if(field1.getText.contains("9"){ letra = "F"; }
+			boolean letra = true;
+			if(field1.getText.contains("0"){ letra = false; }
+			if(field1.getText.contains("1"){ letra = false; }
+			if(field1.getText.contains("2"){ letra = false; }
+			if(field1.getText.contains("3"){ letra = false; }
+			if(field1.getText.contains("4"){ letra = false; }
+			if(field1.getText.contains("5"){ letra = false; }
+			if(field1.getText.contains("6"){ letra = false; }
+			if(field1.getText.contains("7"){ letra = false; }
+			if(field1.getText.contains("8"){ letra = false; }
+			if(field1.getText.contains("9"){ letra = false; }
 			
-			if(letra = "T"){
+			if(letra = true){
 				datos.add(field1.getText());
 				datos.add(items.get(combo.getSelectedIndex()));
 			}else{
