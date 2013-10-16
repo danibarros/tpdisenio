@@ -19,5 +19,15 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"Id Incorrecto!");
 		}
+	
+	public void datoNoNumerio(String dato){
+		JOptionPane.showMessageDialog(null,
+				"El dato ingresado "+dato+ " debe ser numerico");
+		}
+	
+	public void datoNumerio(String dato){
+		JOptionPane.showMessageDialog(null,
+				"El dato ingresado "+dato+ " no debe ser numerico");
+		}
 }
 
