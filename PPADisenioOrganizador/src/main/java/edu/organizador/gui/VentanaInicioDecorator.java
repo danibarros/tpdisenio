@@ -48,6 +48,18 @@ public class VentanaInicioDecorator {
 				alert.dibujar();
 				this.cargarFormulario(festival);
 			}
+			
+			if (!isNumeric(txtDuracionDias.getText())) {
+				VentanaAlertDecorator alert = new VentanaAlertDecorator();
+				alert.datoNoNumerio(txtDuracionDias.getText());
+				this.cargarFormulario(festival);
+			}
+			
+			if (isNumeric(txtNombreFestival.getText())) {
+				VentanaAlertDecorator alert = new VentanaAlertDecorator();
+				alert.datoNumerio(txtNombreFestival.getText());
+				this.cargarFormulario(festival);
+			}
 
 			java.sql.Date date =  new java.sql.Date(dteFechaInicio.getDate().getTime());
 			festival.setNombre(txtNombreFestival.getText());
@@ -69,8 +81,15 @@ public class VentanaInicioDecorator {
 			
 		} else {
 			System.exit(0);
-			VentanaLoginDecorator login = new VentanaLoginDecorator();
-			login.login();
+		}
+	}
+	
+	private static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
 		}
 	}
 }
