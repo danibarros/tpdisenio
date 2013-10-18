@@ -2,7 +2,6 @@ package edu.organizador.controlador;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -10,12 +9,13 @@ import edu.core.dao.BandaDAO;
 import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
-import edu.core.dao.DataReaderHibernate;
-import edu.core.dao.FestivalDAO;
+import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Festival;
-import edu.core.entities.Noche;
+import edu.core.requests.UserValidationRequest;
+import edu.core.utils.Validator;
+import edu.organizador.gui.VentanaAlertDecorator;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
 import edu.organizador.gui.VentanaLoginDecorator;
@@ -31,9 +31,17 @@ public class Controlador {
 	}
 	
     public void logIn(){
-    	List<String> datos;
+    	VendedorDAO vendedorDao = new VendedorDAO();
+    	UserValidationRequest request;
+    	VentanaAlertDecorator alert = new VentanaAlertDecorator();
+    	Validator validator = new Validator();
     	VentanaLoginDecorator login = new VentanaLoginDecorator();
-    	datos = login.login();
+    	request = login.login();
+    	request.setVendedorDao(vendedorDao);
+    	if(!validator.validateUser(request)){
+			alert.errorid();
+			logIn();
+    	}    	
     }
 	
 	public void iniciarJuego(){
@@ -53,11 +61,6 @@ public class Controlador {
 		Banda banda = new Banda(datos.get(0), categoria);
 		BandaDAO bandaDAO = new BandaDAO();
 		bandaDAO.save(banda);	
-	}
-	
-	public void guardarNoches(Festival festival) {
-		FestivalDAO festivalDAO = new FestivalDAO();
-		festivalDAO.save(festival);	
 	}
 	
 	public void guardarHorariosBanda( List<String> datos){
