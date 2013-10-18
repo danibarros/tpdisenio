@@ -1,23 +1,19 @@
 package edu.organizador.gui;
 
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import edu.core.entities.Noche;
-import java.util.Arrays;
+import edu.core.requests.UserValidationRequest;
 
 public class VentanaLoginDecorator {
 
-	public List<String> login(){
-		List<String> datos = new ArrayList<String>();
+	public UserValidationRequest login(){
+		UserValidationRequest request = new UserValidationRequest();
 		JTextField field1 = new JTextField("");
 		JPasswordField field2 = new JPasswordField("");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
@@ -30,46 +26,18 @@ public class VentanaLoginDecorator {
 		
 		if (result == JOptionPane.OK_OPTION) {
 			if(field1.getText().equals("") || field2.getPassword().equals("")) { 
-				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				login();
 			}else{
 				char[] input = field2.getPassword();
 				String id = field1.getText();
-				if ((isPasswordCorrect(input)) && (id.equalsIgnoreCase("utndiseño"))) {
-		        	datos.add(field1.getText());
-					datos.add(String.copyValueOf(field2.getPassword()));
-		        }else{
-		        	if(id.equalsIgnoreCase("utndiseño") == false){
-		        		VentanaAlertDecorator alert = new VentanaAlertDecorator();
-		        		alert.errorid();
-		        		login();
-		        	}else{
-		        		VentanaAlertDecorator alert = new VentanaAlertDecorator();
-						alert.errorpass();
-						login();
-		        	}
-		        }
+				request.setUser(id);
+				request.setPass(String.valueOf(input));
 			}
 		   }else{
 			System.exit(0);
 		}
-		return datos;
-	}
-	
-	private static boolean isPasswordCorrect(char[] input) {
-	    boolean isCorrect = true;
-	    char[] correctPassword = { 'b', 'u', 'g', 'a', 'b', 'o', 'o' };
-	    if (input.length != correctPassword.length) {
-	        isCorrect = false;
-	    } else {
-	        isCorrect = Arrays.equals (input, correctPassword);
-	    }
-
-	    //Zero out the password.
-	    Arrays.fill(correctPassword,'0');
-
-	    return isCorrect;
+		return request;
 	}
 }

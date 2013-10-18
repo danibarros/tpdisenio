@@ -61,7 +61,7 @@ public class VentanaInicioDecorator {
 				this.cargarFormulario(festival);
 			}
 
-			java.sql.Date date =  new java.sql.Date(dteFechaInicio.getDate().getTime());
+			Date date =  new Date(dteFechaInicio.getDate().getTime());
 			festival.setNombre(txtNombreFestival.getText());
 			festival.setFechaInicio(date);
 			

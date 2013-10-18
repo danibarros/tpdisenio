@@ -10,14 +10,9 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 				"Complete los campos correctamente para poder continuar.");
 	}
 	
-	public void errorpass(){
-		JOptionPane.showMessageDialog(null,
-				"Contraseña Incorrecta!");
-		}
-	
 	public void errorid(){
 		JOptionPane.showMessageDialog(null,
-				"Id Incorrecto!");
+				"Usuario o contraseña incorrectos");
 		}
 	
 	public void datoNoNumerio(String dato){
