@@ -67,6 +67,62 @@ public class Vendedor {
 		
 	};
 	
+	public int getIdVendedor() {
+		return idVendedor;
+	}
+
+	public void setIdVendedor(int idVendedor) {
+		this.idVendedor = idVendedor;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
+	public double getPrecioFinal() {
+		return precioFinal;
+	}
+
+	public void setPrecioFinal(double precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+
+	public HashMap<Integer, Double> getListaPrecios() {
+		return listaPrecios;
+	}
+
+	public void setListaPrecios(HashMap<Integer, Double> listaPrecios) {
+		this.listaPrecios = listaPrecios;
+	}
+
+	public PuntoDeVenta getPuntoDeVenta() {
+		return puntoDeVenta;
+	}
+
+	public void setPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+		this.puntoDeVenta = puntoDeVenta;
+	}
+	
 	private Entrada generarEntrada(Butaca butaca,Noche noche){
 		
 		
