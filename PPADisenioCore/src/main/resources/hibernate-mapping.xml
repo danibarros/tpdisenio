@@ -33,6 +33,25 @@
 			<one-to-many class="edu.core.entities.Localidad" />
 		</list>
 	</class>
+	
+	<class name="edu.core.entities.Vendedor" table="vendedores">		    
+		<id name="idVendedor" type="java.lang.Integer">
+			<column name="vendedor_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="nombre" type="string">
+			<column name="vendedor_nombre" />
+		</property>
+		<property name="usuario" type="string">
+			<column name="vendedor_user" />
+		</property>
+		<property name="contrasenia" type="string">
+			<column name="vendedor_pass" />
+		</property>
+		
+		<many-to-one name="puntoDeVenta" class="edu.core.entities.PuntoDeVenta"
+			column="Punto_Venta_id" lazy="false" fetch="select" />
+	</class>
 
 	<class name="edu.core.entities.Localidad" table="localidades">
 		<id name="idLocalidad" type="java.lang.Integer">
