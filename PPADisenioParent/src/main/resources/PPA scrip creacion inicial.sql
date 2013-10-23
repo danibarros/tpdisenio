@@ -127,18 +127,12 @@ CREATE TABLE ppa_disenio.Butacas (
 
 
 CREATE TABLE ppa_disenio.banda_noche (
-    Noches_noche_id INTEGER UNSIGNED NOT NULL,
+    bano_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+	Noches_noche_id INTEGER UNSIGNED NOT NULL,
     Bandas_banda_id INTEGER UNSIGNED NOT NULL,
     orden INTEGER USIGNED NOT NULL,
-    INDEX banda_noche_FKIndex1 (Bandas_banda_id),
-    INDEX banda_noche_FKIndex2 (Noches_noche_id),
-    UNIQUE INDEX banda_noche_unique_banda_per_noche (Bandas_banda_id , Noches_noche_id),
-    FOREIGN KEY (Bandas_banda_id)
-        REFERENCES Bandas (banda_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (Noches_noche_id)
-        REFERENCES Noches (noche_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+    
+    UNIQUE INDEX banda_noche_unique_banda_per_noche (Bandas_banda_id , Noches_noche_id)
 );
 
 CREATE TABLE ppa_disenio.Puntos_venta (
@@ -159,18 +153,9 @@ CREATE TABLE ppa_disenio.Puntos_venta (
 );
 
 CREATE TABLE ppa_disenio.Punto_festival (
-    pufe_id INTEGER UNSIGNED NOT NULL,
+    pufe_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
     Festival_festival_id INTEGER UNSIGNED NOT NULL,
-    Puntos_venta_puntos_id INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (pufe_id , Festival_festival_id , Puntos_venta_puntos_id),
-    INDEX Punto_festival_FKIndex1 (Festival_festival_id),
-    INDEX Punto_festival_FKIndex2 (Puntos_venta_puntos_id),
-    FOREIGN KEY (Festival_festival_id)
-        REFERENCES Festival (festival_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (Puntos_venta_puntos_id)
-        REFERENCES Puntos_venta (puntos_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+    Puntos_venta_puntos_id INTEGER UNSIGNED NOT NULL
 );
 
 CREATE TABLE ppa_disenio.Entradas (
