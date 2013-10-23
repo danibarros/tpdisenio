@@ -129,8 +129,7 @@ CREATE TABLE ppa_disenio.Butacas (
 CREATE TABLE ppa_disenio.banda_noche (
     Noches_noche_id INTEGER UNSIGNED NOT NULL,
     Bandas_banda_id INTEGER UNSIGNED NOT NULL,
-    hora_inicio TIME NOT NULL,
-    hora_fin TIME NOT NULL,
+    orden INTEGER USIGNED NOT NULL,
     INDEX banda_noche_FKIndex1 (Bandas_banda_id),
     INDEX banda_noche_FKIndex2 (Noches_noche_id),
     UNIQUE INDEX banda_noche_unique_banda_per_noche (Bandas_banda_id , Noches_noche_id),
