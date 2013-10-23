@@ -13,6 +13,7 @@ import edu.core.requests.UserValidationRequest;
 public class VentanaLoginDecorator {
 
 	public UserValidationRequest login(){
+		
 		UserValidationRequest request = new UserValidationRequest();
 		JTextField field1 = new JTextField("");
 		JPasswordField field2 = new JPasswordField("");
@@ -36,8 +37,11 @@ public class VentanaLoginDecorator {
 				request.setPass(String.valueOf(input));
 			}
 		   }else{
-			System.exit(0);
-		}
+			   int resultado = JOptionPane.showConfirmDialog(null, null, "Quiere salir", 
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+						if (resultado == JOptionPane.OK_OPTION) {
+							System.exit(0);}
+			}
 		return request;
 	}
 }
