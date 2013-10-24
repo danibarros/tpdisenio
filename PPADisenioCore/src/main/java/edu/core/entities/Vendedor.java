@@ -36,19 +36,13 @@ public class Vendedor {
 		    	 }else{
 		    			edad = 25;
 		    	 		cantMayores = cantMayores - 1;
-		    			
-		    	    
+		    				    
 		    	  }
 		    	this.calcularPrecio(key,noche,edad,this.generarEntrada(butacas,noche));
 		    	for (Butaca butaca : value) {
-		    		listaPrecios.put(butaca.getNumero(),this.precioFinal);
-			    	 
-				}
-		    	 
-				
-				
+		    		listaPrecios.put(butaca.getNumero(),this.precioFinal); 
+				}		
 			}
-		    
 		}	
 		
 	}

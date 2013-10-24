@@ -16,9 +16,11 @@ import edu.core.entities.Festival;
 import edu.core.requests.UserValidationRequest;
 import edu.core.utils.Validator;
 import edu.organizador.gui.VentanaAlertDecorator;
+import edu.organizador.gui.VentanaCargarBandas;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
 import edu.organizador.gui.VentanaLoginDecorator;
+import external.utils.TablesHavingSameData;
 
 public class Controlador {
 	private JFrame frame;
@@ -53,6 +55,8 @@ public class Controlador {
 	public void organizarNoches(){
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
 		festival.setNoches(ventana.seleccionarNoches());
+		
+		
 	}
 
 	public void guardarBanda(List<String> datos) {

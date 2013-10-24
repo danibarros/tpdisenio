@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import edu.core.entities.Noche;
 import edu.organizador.controlador.Controlador;
+import external.utils.TablesHavingSameData;
 
 public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		ActionListener {
@@ -113,9 +114,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			break;
 			
 		case "Realizar diagramacion":
-			Controlador controlador1 = new Controlador(frame);
-			VentanaCargarBandas ventanaOrganizador = new VentanaCargarBandas();
-			ventanaOrganizador.cargarBandas();
+			TablesHavingSameData tabla = new TablesHavingSameData(noches.get(noche -1).getBandas());
+			tabla.createAndShowGUI();
 			break;	
 			
 		case "Agregar Nueva Banda":
