@@ -130,7 +130,7 @@ CREATE TABLE ppa_disenio.banda_noche (
     bano_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
 	Noches_noche_id INTEGER UNSIGNED NOT NULL,
     Bandas_banda_id INTEGER UNSIGNED NOT NULL,
-    orden INTEGER USIGNED NOT NULL,
+    orden INTEGER UNSIGNED NOT NULL,
     
     UNIQUE INDEX banda_noche_unique_banda_per_noche (Bandas_banda_id , Noches_noche_id)
 );
@@ -319,10 +319,10 @@ insert into ppa_disenio.noches values (1,1,2,'2013-12-18','20:00',1);
 insert into ppa_disenio.noches values (2,1,2,'2013-12-19','20:00',2);
 
 /* bandas noche 1 "Isenbeck Cumbia" */
-insert into ppa_disenio.banda_noche values (1,8,'20:00','20:59');
-insert into ppa_disenio.banda_noche values (1,6,'21:00','21:59');
+insert into ppa_disenio.banda_noche values (1,1,8,1);
+insert into ppa_disenio.banda_noche values (2,1,6,2);
 /* bandas noche 2 "Isenbeck Cumbia" */
-insert into ppa_disenio.banda_noche values (2,7,'20:00','21:29');
+insert into ppa_disenio.banda_noche values (3,2,7,1);
 
 /* vendedores */
 insert into ppa_disenio.vendedores values (1,'Diego','diegob','bugaboo',1);
