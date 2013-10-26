@@ -22,9 +22,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-public class TablesHavingSameData extends JFrame implements TableModelListener, ActionListener
+
+public class TablaOrdenBandas extends JFrame implements TableModelListener, ActionListener
 {
-    ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2122919742115350637L;
+	ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
     MyTableModel model1;
     JTable table1;
     Container c;
@@ -32,12 +38,10 @@ public class TablesHavingSameData extends JFrame implements TableModelListener, 
     JPanel pnlBottom;
     List<Banda> bandas;
 	
-    public TablesHavingSameData(List<Banda> bandas){
-    	this.bandas = bandas;
-    }
-    
-    public List<Banda> createAndShowGUI()
+ 
+    public List<Banda> dibujar(List<Banda> bandas)
     {
+    	this.bandas = bandas;
     	c  = getContentPane();
     	pnlBottom = new JPanel();
     	int i = 0;
@@ -45,14 +49,11 @@ public class TablesHavingSameData extends JFrame implements TableModelListener, 
     	for (Banda banda : bandas) {
     		ArrayList<String> datos = new ArrayList<String>();
     		String nombre = bandas.get(i).getNombre();
-    		datos.add(String.valueOf(i + 1));
+    		i++;
+    		datos.add(String.valueOf(i));
     		datos.add(nombre);
     		data.add(datos);
 		}
-    	
-       
-        data.add(new ArrayList<String>(){{add("2");add("Derake");}});
-        data.add(new ArrayList<String>(){{add("3");add("Archie");}});
     	
 		JButton btnComprar = new JButton();
 		btnComprar.setName("ordenar");
@@ -69,20 +70,20 @@ public class TablesHavingSameData extends JFrame implements TableModelListener, 
         c.add(jsTable1);
         c.add(pnlBottom);
         setSize(500,300);
-        setVisible(true);
+        this.setVisible(true);
         
-		while (pause) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		this.getContentPane().removeAll();
-		
-		ordenarBandas();
+////		while (pause) {
+////			try {
+////				Thread.sleep(1);
+////			} catch (InterruptedException e) {
+////				// TODO Auto-generated catch block
+////				e.printStackTrace();
+////			}
+////		}
+//		
+////		this.getContentPane().removeAll();
+//		
+////		ordenarBandas();
 		
 		return bandas;
     }
@@ -100,7 +101,11 @@ public class TablesHavingSameData extends JFrame implements TableModelListener, 
     
     private class MyTableModel extends AbstractTableModel
     {
-        String columns[] ;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -2136795410228169159L;
+		String columns[] ;
         String sTableName;
         public MyTableModel(String tableName)
         {
@@ -155,7 +160,7 @@ public class TablesHavingSameData extends JFrame implements TableModelListener, 
 				alert.dibujar();
 				data.clear();
 				this.getContentPane().removeAll();
-				createAndShowGUI();
+				dibujar(bandas);
 			}else{
 				pause = false;
 			}

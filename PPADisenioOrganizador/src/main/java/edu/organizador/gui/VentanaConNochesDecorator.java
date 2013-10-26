@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 
 import edu.core.entities.Noche;
 import edu.organizador.controlador.Controlador;
-import external.utils.TablesHavingSameData;
+import external.utils.TablaOrdenBandas;
 
 public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		ActionListener {
 
 	private List<Noche> noches = new ArrayList<Noche>();
-	private int noche;
+	private int noche = 1;
 	private boolean pause = true;
 	private JComboBox<String> comboNoches = new JComboBox<String>();
 	private VentanaNocheDecorator ventana = new VentanaNocheDecorator();
@@ -114,8 +114,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			break;
 			
 		case "Realizar diagramacion":
-			TablesHavingSameData tabla = new TablesHavingSameData(noches.get(noche -1).getBandas());
-			tabla.createAndShowGUI();
+			TablaOrdenBandas tabla = new TablaOrdenBandas();
+			tabla.dibujar(noches.get(noche -1).getBandas());
 			break;	
 			
 		case "Agregar Nueva Banda":

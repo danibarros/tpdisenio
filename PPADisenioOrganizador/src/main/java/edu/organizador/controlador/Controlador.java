@@ -16,11 +16,11 @@ import edu.core.entities.Festival;
 import edu.core.requests.UserValidationRequest;
 import edu.core.utils.Validator;
 import edu.organizador.gui.VentanaAlertDecorator;
-import edu.organizador.gui.VentanaCargarBandas;
+//import edu.organizador.gui.VentanaCargarBandas;
 import edu.organizador.gui.VentanaConNochesDecorator;
 import edu.organizador.gui.VentanaInicioDecorator;
 import edu.organizador.gui.VentanaLoginDecorator;
-import external.utils.TablesHavingSameData;
+import external.utils.TablaOrdenBandas;
 
 public class Controlador {
 	private JFrame frame;
