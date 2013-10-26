@@ -89,7 +89,7 @@ public class Controlador {
 		DataReader dataReader = new DataReader ();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
-		bandas = (Set<Banda>) bandaDAO.getAllBandas();
+		//bandas = (Set<Banda>) bandaDAO.getAllBandas();
 		noches =nocheDAO.getAllNoches();
 		
 		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
