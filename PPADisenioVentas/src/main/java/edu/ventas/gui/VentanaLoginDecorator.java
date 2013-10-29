@@ -12,11 +12,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.core.entities.Noche;
+import edu.core.requests.UserValidationRequest;
+import edu.ventas.gui.VentanaAlertDecorator;
 
 public class VentanaLoginDecorator {
 
-	public List<String> login(){
-		List<String> datos = new ArrayList<String>();
+	public UserValidationRequest login(){
+		UserValidationRequest request = new UserValidationRequest();
 		JTextField field1 = new JTextField("");
 		JPasswordField field2 = new JPasswordField("");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
@@ -29,18 +31,19 @@ public class VentanaLoginDecorator {
 		
 		if (result == JOptionPane.OK_OPTION) {
 			if(field1.getText().equals("") || field2.getPassword().equals("")) { 
-				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				login();
 			}else{
-				datos.add(field1.getText());
-				datos.add(String.copyValueOf(field2.getPassword()));
+				char[] input = field2.getPassword();
+				String id = field1.getText();
+				request.setUser(id);
+				request.setPass(String.valueOf(input));
 			}
-		} else {
+		   }else{
 			System.exit(0);
 		}
-		return datos;
+		return request;
 	}
 	
 }

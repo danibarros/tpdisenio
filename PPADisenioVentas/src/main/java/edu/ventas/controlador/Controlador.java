@@ -10,16 +10,22 @@ import javax.swing.JFrame;
 import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.FestivalDAO;
 import edu.core.dao.NocheDAO;
 import edu.core.dao.PuntoDeVentaDAO;
+import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
+import edu.core.entities.Festival;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.PuntoDeVenta;
 import edu.core.entities.Sector;
 import edu.core.entities.Vendedor;
+import edu.core.requests.UserValidationRequest;
+import edu.core.utils.Validator;
+import edu.ventas.gui.VentanaAlertDecorator;
 import edu.ventas.gui.VentanaConButacasDecorator;
 import edu.ventas.gui.VentanaDespedidaDecorator;
 import edu.ventas.gui.VentanaFormularioDecorator;
@@ -54,9 +60,22 @@ public class Controlador {
 	}
 	
     public void logIn(){
-    	List<String> datos;
+    	VendedorDAO vendedorDao = new VendedorDAO();
+    	UserValidationRequest request;
+    	VentanaAlertDecorator alert = new VentanaAlertDecorator();
+    	Validator validator = new Validator();
     	VentanaLoginDecorator login = new VentanaLoginDecorator();
-    	datos = login.login();
+    	request = login.login();
+    	request.setVendedorDao(vendedorDao);
+    	if(!validator.validateUser(request)){
+			alert.errorid();
+			logIn();
+    	}    
+    	
+    	if(this.vendedor == null){
+    		this.vendedor = vendedorDao.getVendedorByUser(request.getUser());	
+    	}
+    	
     }
 	
 	public void iniciarJuego(){
@@ -65,7 +84,7 @@ public class Controlador {
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(puntosDeVenta);
 		vendedor = new Vendedor();
-		
+
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
@@ -96,7 +115,7 @@ public class Controlador {
         nocheElegida = noches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
-    	VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
+		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
     	sectores = butaca.seleccionarButacas();
     	
 	}
