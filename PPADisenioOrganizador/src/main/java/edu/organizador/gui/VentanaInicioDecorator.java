@@ -16,6 +16,7 @@ import org.jdesktop.swingx.JXDatePicker;
 
 import edu.core.entities.Festival;
 import edu.core.entities.Noche;
+import edu.core.utils.Validator;
 
 public class VentanaInicioDecorator {
 
@@ -43,19 +44,20 @@ public class VentanaInicioDecorator {
 				JOptionPane.PLAIN_MESSAGE);
 
 		if (result == JOptionPane.OK_OPTION) {
+			Validator validador = new Validator();
 			if (txtNombreFestival.getText().equals("")) {
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormulario(festival);
 			}
 			
-			if (!isNumeric(txtDuracionDias.getText())) {
+			if (!validador.isNumeric(txtDuracionDias.getText())) {
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.datoNoNumerio(txtDuracionDias.getText());
 				this.cargarFormulario(festival);
 			}
 			
-			if (isNumeric(txtNombreFestival.getText())) {
+			if (validador.isNumeric(txtNombreFestival.getText())) {
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.datoNumerio(txtNombreFestival.getText());
 				this.cargarFormulario(festival);
@@ -90,12 +92,4 @@ public class VentanaInicioDecorator {
 		}
 	}
 	
-	private static boolean isNumeric(String cadena){
-		try {
-			Integer.parseInt(cadena);
-			return true;
-		} catch (NumberFormatException nfe){
-			return false;
-		}
-	}
 }
