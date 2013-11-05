@@ -59,7 +59,7 @@ public class Controlador {
 
 	public void guardarBanda(List<String> datos) {
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.findById(1);
+		Categoria categoria = categoriaDAO.findById(Integer.parseInt(datos.get(1)));
 		Banda banda = new Banda(datos.get(0), categoria);
 		BandaDAO bandaDAO = new BandaDAO();
 		bandaDAO.save(banda);	
