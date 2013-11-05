@@ -27,7 +27,7 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 	public void dibujarSector(JFrame frame, String sector, Estadio estadio,
 			List<Butaca> butacasSeleccionadas) {
 		JButton cutbutton = new JButton(new ImageIcon(
-				"resources/ButacaNoDisponible.png"));
+				"src/main/resources/ButacaOcupada.png"));
 		sectores = estadio.getSectores();
 		seleccionados = butacasSeleccionadas;
 		Sector sectorEncontrado = null;
@@ -64,22 +64,22 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		for (Butaca butaca : butacas) {
 			if (!seleccionados.isEmpty() && seleccionados.contains(butaca)) {
 				cutbutton = new JButton(new ImageIcon(
-						"resources/ButacaNoDisponible.png"));
+						"src/main/resources/ButacaOcupada.png"));
 				cutbutton.setName(String.valueOf(butaca.getNumero()));
 				cutbutton.addActionListener(this);
 				cutbutton.setBackground(Color.RED);
 				ImageIcon press = new ImageIcon(
-						"resources/ButacaNoDisponible.png");
+						"src/main/resources/ButacaOcupada.png");
 				cutbutton.setPressedIcon(press);
 				panelFila.add(cutbutton);
 			} else {
 				cutbutton = new JButton(new ImageIcon(
-						"resources/ButacaNoDisponible.png"));
+						"src/main/resources/ButacaOcupada.png"));
 				cutbutton.setName(String.valueOf(butaca.getNumero()));
 				cutbutton.addActionListener(this);
 				cutbutton.setBackground(Color.BLUE);
 				ImageIcon press = new ImageIcon(
-						"resources/ButacaNoDisponible.png");
+						"src/main/resources/ButacaOcupada.png");
 				cutbutton.setPressedIcon(press);
 				panelFila.add(cutbutton);
 			}

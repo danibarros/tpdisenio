@@ -30,7 +30,6 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox combo = new JComboBox(items.toArray());
 		JTextField field1 = new JTextField("");
-		JTextField field2 = new JTextField("");
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");
 		JTextField field5 = new JTextField("");
@@ -38,8 +37,6 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
 		panel.add(field1);
-		panel.add(new JLabel("Ingrese su edad"));
-		panel.add(field2);
 		panel.add(new JLabel("Ingrese Cantidad De Jubilados"));
     	panel.add(field3);
 		panel.add(new JLabel("Ingrese Cantidad De Menores"));
@@ -53,14 +50,13 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) {
-			if(field1.getText().equals("") || field2.getText().equals("") || field3.getText().equals("") || field4.getText().equals("") || field5.getText().equals("")) { 
+			if(field1.getText().equals("") || field3.getText().equals("") || field4.getText().equals("") || field5.getText().equals("")) { 
 				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormulario(noches);
 			}else{
 			datos.add(field1.getText());
-			datos.add(field2.getText());
 			datos.add(field3.getText());
 			datos.add(field4.getText());
 			datos.add(field5.getText());
