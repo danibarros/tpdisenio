@@ -28,7 +28,7 @@ import edu.ventas.gui.VentanaInicioDecorator;
 public class Controlador {
 
 	private String apeYNom;
-	private int edad;
+	
 	private int numeroNoche;
 	private List<PuntoDeVenta> puntosDeVenta;
 	private JFrame frame;
@@ -66,11 +66,11 @@ public class Controlador {
 		
     	datos = form.cargarFormulario(noches);
     	apeYNom = datos.get(0);
-    	edad = Integer.parseInt(datos.get(1));
-    	numeroNoche = Integer.parseInt(datos.get(2));
-    	cantJubilados = Integer.parseInt(datos.get(3));
-    	cantMenores = Integer.parseInt(datos.get(4));
-    	cantMayores = Integer.parseInt(datos.get(5));
+    	//edad = Integer.parseInt(datos.get(1));
+    	numeroNoche = Integer.parseInt(datos.get(1));
+    	cantJubilados = Integer.parseInt(datos.get(2));
+    	cantMenores = Integer.parseInt(datos.get(3));
+    	cantMayores = Integer.parseInt(datos.get(4));
 	}
 	
 	public void elegirButaca(){
