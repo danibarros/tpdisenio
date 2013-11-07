@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,11 +35,11 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");
 		JTextField field5 = new JTextField("");
+		
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
 		panel.add(field1);
-		
 		panel.add(new JLabel("Ingrese Cantidad De Jubilados"));
     	panel.add(field3);
 		panel.add(new JLabel("Ingrese Cantidad De Menores"));
@@ -48,7 +49,8 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		panel.add(new JLabel("Ingrese una noche"));
 		panel.add(combo);
 		
-		int result = JOptionPane.showConfirmDialog(null, panel, "Datos del comprador",
+		
+		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Compra",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
 		if (result == JOptionPane.OK_OPTION) 
@@ -74,7 +76,8 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		} 
 		else 
 		{
-			this.cargarFormulario(noches);
+			datos=null;
+			
 		}
 		return datos;
 

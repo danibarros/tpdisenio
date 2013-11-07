@@ -40,7 +40,7 @@ public class Controlador {
 	private String apeYNom;
 	private int edad;
 	private int numeroNoche;
-	private List<PuntoDeVenta> puntosDeVenta;
+	private PuntoDeVenta puntoDeVentaDeVendedor;
 	private JFrame frame;
 	private Map<String,List<Butaca>> sectores = null;
 	private Noche nocheElegida;
@@ -78,13 +78,10 @@ public class Controlador {
     	
     }
 	
-	public void iniciarJuego(){
-		PuntoDeVentaDAO puntoDeVentaDAO = new PuntoDeVentaDAO();
-		puntosDeVenta= (List<PuntoDeVenta>) puntoDeVentaDAO.findAll();
+	public void iniciarJuego()
+	{
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
-		inicio.cargarFormulario(puntosDeVenta);
-		vendedor = new Vendedor();
-
+		inicio.cargarFormulario(this.vendedor);
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
@@ -96,12 +93,17 @@ public class Controlador {
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
     	datos = form.cargarFormulario(noches);
-    	apeYNom = datos.get(0);
-    	edad = Integer.parseInt(datos.get(1));
-    	cantJubilados = Integer.parseInt(datos.get(2));
-    	cantMenores = Integer.parseInt(datos.get(3));
-    	cantMayores = Integer.parseInt(datos.get(4));
-    	numeroNoche = Integer.parseInt(datos.get(5));
+    	if (null != datos) {
+    		apeYNom = datos.get(0);
+        	edad = Integer.parseInt(datos.get(1));
+        	cantJubilados = Integer.parseInt(datos.get(2));
+        	cantMenores = Integer.parseInt(datos.get(3));
+        	cantMayores = Integer.parseInt(datos.get(4));
+        	numeroNoche = Integer.parseInt(datos.get(5));
+		}
+    	else
+    		this.logIn();
+    	
 	}
 	
 	public void elegirButaca(){
