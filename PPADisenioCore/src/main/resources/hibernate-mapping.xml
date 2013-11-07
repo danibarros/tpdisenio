@@ -203,6 +203,29 @@
 		<property name="anticipada" column="entrada_anticipada" type="java.lang.Boolean" />
 	</class>
 
+ 	<class name="edu.core.entities.AsignacionBanda" table="banda_noche">
+		<id name="idAsignacion" type="java.lang.Integer">
+			<column name="bano_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="orden" column="orden" type="java.lang.Integer" />
+		<many-to-one name="banda" class="edu.core.entities.Banda"
+			column="Bandas_banda_id" lazy="false" fetch="select" />
+		
+		<many-to-one name="noche" class="edu.core.entities.Noche"
+			column="Noches_noche_id" lazy="false" fetch="select" />
+	</class> 
+	
+ 	<class name="edu.core.entities.AsignacionPuntoVenta" table="punto_festival">
+		<id name="AsignacioId" type="java.lang.Integer">
+			<column name="pufe_id" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="festival" class="edu.core.entities.Festival"
+			column="festival_festival_id" lazy="false" fetch="select" />
+		<many-to-one name="puntoVenta" class="edu.core.entities.PuntoDeVenta"
+			column="punto_venta_puntos_id" lazy="false" fetch="select" />
+	</class> 
 
 	<class name="edu.core.entities.Banda" table="bandas">
 		<id name="idBanda" type="java.lang.Integer">
@@ -221,6 +244,5 @@
 		</id>
 		<property name="precio" column="categoria_precio" type="java.lang.Float" />
 	</class>
-
 
 </hibernate-mapping>
