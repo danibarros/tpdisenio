@@ -1,6 +1,7 @@
 package edu.core.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 
@@ -14,6 +15,13 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 		String hql = "from Festival";
 		Query query = session.createQuery(hql);
 		List<Festival> result = (List<Festival>) query.list();
+		return result;
+	}
+	
+	public Set<Festival> findAll(){
+		String hql = "from Festival";
+		Query query = session.createQuery(hql);
+		Set<Festival> result = (Set<Festival>) query.list();
 		return result;
 	}
 	
