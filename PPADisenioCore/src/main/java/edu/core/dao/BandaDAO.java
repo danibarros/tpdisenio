@@ -7,8 +7,6 @@ import java.util.Set;
 import org.hibernate.Query;
 
 import edu.core.entities.Banda;
-import edu.core.entities.Noche;
-import edu.core.entities.Pais;
 
 public class BandaDAO extends GenericRepository<Banda, Integer>{
 
