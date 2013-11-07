@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.PuntoDeVenta;
 import edu.core.entities.Vendedor;
@@ -27,7 +28,11 @@ public class VentanaInicioDecorator {
 		
 		panel.add(new JLabel("Bienvenido: "+vendedor.getNombre()));
 		
-		panel.add(new JLabel("Usted esta en el punto de Venta: "+vendedor.getPuntoDeVenta()));
+		PuntoDeVentaDAO puntoVentaDao = new PuntoDeVentaDAO();
+		
+		PuntoDeVenta puntoVenta = puntoVentaDao.getPuntoDeVentaById(vendedor.getPuntoDeVenta());
+		
+		panel.add(new JLabel("Usted esta en el punto de Venta: "+ puntoVenta.getNombre()));
 		
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos del vendedor",
