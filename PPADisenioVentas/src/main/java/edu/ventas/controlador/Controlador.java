@@ -100,10 +100,10 @@ public class Controlador {
     	datos = form.cargarFormulario(festivales);
     	if (null != datos) {
     		apeYNom = datos.get(0);
-    		cantJubilados = Integer.parseInt(datos.get(1));
-    		cantMenores = Integer.parseInt(datos.get(2));
-    		cantMayores = Integer.parseInt(datos.get(3));
-    		numeroNoche = Integer.parseInt(datos.get(4));
+    		cantJubilados = Integer.parseInt(datos.get(1).trim());
+    		cantMenores = Integer.parseInt(datos.get(2).trim());
+    		cantMayores = Integer.parseInt(datos.get(3).trim());
+    		numeroNoche = Integer.parseInt(datos.get(4).trim());
     		festival = String.valueOf(datos.get(5));
 		}
     	else
@@ -122,7 +122,9 @@ public class Controlador {
         nocheElegida = noches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
-		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame);
+		int cantidadButacas = cantJubilados + cantMayores + cantMenores;
+		
+		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame,cantidadButacas);
     	sectores = butaca.seleccionarButacas();
     	
 	}

@@ -31,6 +31,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	private Estadio estadio;
 	private Noche noche;
 	private String sector;
+	private int cantidadButacas;
 	VentanaSectorDecorator ventanaSector = new VentanaSectorDecorator();
 	JFrame frame;
 	JPanel panel;
@@ -38,10 +39,11 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	Map<String, List<Butaca>> sectores = new HashMap<String, List<Butaca>>();
 
 	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida,
-			JFrame frame) {
+			JFrame frame, int cantidadButacas) {
 		this.estadio = estadio;
 		this.noche = nocheElegida;
 		this.frame = frame;
+		this.cantidadButacas = cantidadButacas;
 	}
 
 	@Override
@@ -126,7 +128,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 				String newSelection = (String) cb.getSelectedItem();
 				sector = newSelection;
 				ventanaSector.dibujarSector(frame, sector, estadio,
-						ventanaSector.seleccionados);
+						ventanaSector.seleccionados,cantidadButacas);
 				agregarSeleccionados(ventanaSector.seleccionados, sector);
 			}
 			break;

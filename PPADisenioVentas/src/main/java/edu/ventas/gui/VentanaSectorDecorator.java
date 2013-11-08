@@ -23,9 +23,13 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
 	List<Sector> sectores;
 	List<Fila> filas;
+	private int maximoSeleccionado;
 
 	public void dibujarSector(JFrame frame, String sector, Estadio estadio,
-			List<Butaca> butacasSeleccionadas) {
+			List<Butaca> butacasSeleccionadas,int maximoSeleccionado) {
+		
+		this.maximoSeleccionado = maximoSeleccionado;
+		
 		JButton cutbutton = new JButton(new ImageIcon(
 				"src/main/resources/ButacaOcupada.png"));
 		sectores = estadio.getSectores();
@@ -95,8 +99,10 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		String nombre = btn.getName();
 
 		if (btn.getBackground() == Color.BLUE) {
+			if(seleccionados.size() <= maximoSeleccionado){
 			btn.setBackground(Color.RED);
 			seleccionados.add(sacarButaca(nombre));
+			}
 		} else {
 			seleccionados.remove(sacarButaca(nombre));
 			btn.setBackground(Color.BLUE);
