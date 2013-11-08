@@ -40,6 +40,7 @@ public class Controlador {
 	private String apeYNom;
 	private int edad;
 	private int numeroNoche;
+	private String festival;
 	private PuntoDeVenta puntoDeVentaDeVendedor;
 	private JFrame frame;
 	private Map<String,List<Butaca>> sectores = null;
@@ -53,6 +54,7 @@ public class Controlador {
 	private boolean compraAseptada = false;
 	private Set<Banda> bandas;
 	private List<Noche> noches;
+	private List<Festival> festivales;
 	
 	
 	public Controlador(JFrame frame){
@@ -85,21 +87,24 @@ public class Controlador {
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
-		BandaDAO bandaDAO = new BandaDAO();
-		NocheDAO nocheDAO = new NocheDAO();
-		bandas = (Set<Banda>) bandaDAO.findAll();
-		noches = nocheDAO.getAllNoches();
+		FestivalDAO festivalDAO = new FestivalDAO();
+//		BandaDAO bandaDAO = new BandaDAO();
+//		NocheDAO nocheDAO = new NocheDAO();
+//		
+//		bandas = (Set<Banda>) bandaDAO.findAll();
+//		noches = nocheDAO.getAllNoches();
+		festivales = festivalDAO.getAllFestivales();
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
-    	datos = form.cargarFormulario(noches);
+    	datos = form.cargarFormulario(festivales);
     	if (null != datos) {
     		apeYNom = datos.get(0);
-        	edad = Integer.parseInt(datos.get(1));
-        	cantJubilados = Integer.parseInt(datos.get(2));
-        	cantMenores = Integer.parseInt(datos.get(3));
-        	cantMayores = Integer.parseInt(datos.get(4));
-        	numeroNoche = Integer.parseInt(datos.get(5));
+    		cantJubilados = Integer.parseInt(datos.get(1));
+    		cantMenores = Integer.parseInt(datos.get(2));
+    		cantMayores = Integer.parseInt(datos.get(3));
+    		numeroNoche = Integer.parseInt(datos.get(4));
+    		festival = String.valueOf(datos.get(5));
 		}
     	else
     		this.logIn();
@@ -125,7 +130,7 @@ public class Controlador {
 	public void vender(){
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores,festival);
 	}
 
 	public boolean isCompraAseptada() {

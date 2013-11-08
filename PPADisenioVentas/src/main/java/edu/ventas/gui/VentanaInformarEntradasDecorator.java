@@ -36,12 +36,14 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Integer cantJubilados,Integer cantMenores,Integer cantMayores) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Integer cantJubilados,Integer cantMenores,Integer cantMayores,String festival) {
 		int cantLineas = 0;
 		cantLineas += 2;
 		
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
+		panel.add(new JLabel("Festival :"));
+		panel.add(new JLabel(festival));
 		panel.add(new JLabel("Noche:"));
 		panel.add(new JLabel(String.valueOf(noche.getNumero())));
 

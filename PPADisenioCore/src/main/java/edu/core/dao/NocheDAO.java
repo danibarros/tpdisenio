@@ -30,5 +30,4 @@ public class NocheDAO extends GenericRepository<Noche, Integer> {
 		return (Noche) session.get(Noche.class, id);
 	}
 	
-	
 }

@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.core.dao.FestivalDAO;
+import edu.core.dao.NocheDAO;
+import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 
 public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
@@ -20,16 +23,27 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 
 	}
 
-	public List<String> cargarFormulario(List<Noche> noches) {
+	public List<String> cargarFormulario(List<Festival> festivales) {
 	
-		List<String> items = new ArrayList<String>();
+		List<String> itemsFestival = new ArrayList<String>();
+		List<String> itemsNoche = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
 		
-		for (Noche noche : noches) {
-			items.add(String.valueOf(noche.getNumero()));
+		for (Festival festival : festivales) {
+			itemsFestival.add(String.valueOf(festival.getNombre()));
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		JComboBox combo = new JComboBox(items.toArray());
+		JComboBox comboFestival = new JComboBox(itemsFestival.toArray());
+		
+		FestivalDAO festDAO = new FestivalDAO();
+		for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
+			if (noche != null) {
+				itemsNoche.add(String.valueOf(noche.getNumero()));
+			}
+		};
+		
+		JComboBox comboNoche = new JComboBox(itemsNoche.toArray());
+		
 		JTextField field1 = new JTextField("");
 		
 		JTextField field3 = new JTextField("");
@@ -46,9 +60,10 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		panel.add(field4);
     	panel.add(new JLabel("Ingrese Cantidad De Mayores"));
 		panel.add(field5);
-		panel.add(new JLabel("Ingrese una noche"));
-		panel.add(combo);
-		
+		panel.add(new JLabel("Seleccione el festival"));
+		panel.add(comboFestival);
+		panel.add(new JLabel("Seleccione la noche"));
+		panel.add(comboNoche);
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Compra",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -60,17 +75,17 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
-				this.cargarFormulario(noches);
+				this.cargarFormulario(festivales);
 			}
 			else
 			{
 				
 				datos.add(field1.getText());
-				
 				datos.add(field3.getText());
 				datos.add(field4.getText());
 				datos.add(field5.getText());
-				datos.add(items.get(combo.getSelectedIndex()));
+				datos.add(itemsNoche.get(comboNoche.getSelectedIndex()));
+				datos.add(itemsFestival.get(comboFestival.getSelectedIndex()));
 				
 			}
 		} 
