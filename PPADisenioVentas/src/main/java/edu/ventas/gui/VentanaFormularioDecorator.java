@@ -1,6 +1,8 @@
 package edu.ventas.gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,16 @@ import edu.core.dao.NocheDAO;
 import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 
-public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
+
+public class VentanaFormularioDecorator implements VentanaDecoratorInterface, ActionListener {
 	
 	@Override
 	public void dibujar() {
 
 	}
+	
+	private JComboBox<String> comboFestival;
+	private JComboBox<String> comboNoche;
 
 	public List<String> cargarFormulario(List<Festival> festivales) {
 	
@@ -32,8 +38,9 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		for (Festival festival : festivales) {
 			itemsFestival.add(String.valueOf(festival.getNombre()));
 		}
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		JComboBox comboFestival = new JComboBox(itemsFestival.toArray());
+	
+		//@SuppressWarnings({ "unchecked", "rawtypes" })
+		comboFestival = new JComboBox(itemsFestival.toArray());
 		
 		FestivalDAO festDAO = new FestivalDAO();
 		for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
@@ -42,7 +49,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			}
 		};
 		
-		JComboBox comboNoche = new JComboBox(itemsNoche.toArray());
+		comboNoche = new JComboBox(itemsNoche.toArray());
 		
 		JTextField field1 = new JTextField("");
 		
@@ -64,6 +71,10 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 		panel.add(comboFestival);
 		panel.add(new JLabel("Seleccione la noche"));
 		panel.add(comboNoche);
+		
+		
+		comboFestival.setActionCommand("ComboFestivalChange");
+		comboFestival.addActionListener(this);
 		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Compra",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -95,6 +106,29 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface {
 			
 		}
 		return datos;
+
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+
+		String event = e.getActionCommand();
+		switch (event) {
+		case "ComboFestivalChange":
+			
+			FestivalDAO festDAO = new FestivalDAO();
+			
+			comboNoche.removeAllItems();
+			for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
+				if (noche != null) {
+					comboNoche.addItem(String.valueOf(noche.getNumero()));
+				}
+			};
+			
+			break;
+
+		default:
+			break;
+		}
 
 	}
 }
