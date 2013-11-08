@@ -49,7 +49,8 @@ public class VentanaInformarEntradasDecorator implements
 
 		for (Sector sector : sectores) {
 			if (seleccionados.containsKey(sector.getColor())){
-				panel.add(new JLabel("Sector:" + sector.getColor()));
+				panel.add(new JLabel("Sector:" ));
+				panel.add(new JLabel( sector.getColor()));
 				
 				cantLineas += 1;
 				vendedor.vender(seleccionados,noche,edad,cantJubilados,cantMenores,cantMayores);

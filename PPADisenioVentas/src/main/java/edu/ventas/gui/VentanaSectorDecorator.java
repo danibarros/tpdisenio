@@ -99,7 +99,7 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		String nombre = btn.getName();
 
 		if (btn.getBackground() == Color.BLUE) {
-			if(seleccionados.size() <= maximoSeleccionado){
+			if(seleccionados.size() < maximoSeleccionado){
 			btn.setBackground(Color.RED);
 			seleccionados.add(sacarButaca(nombre));
 			}
