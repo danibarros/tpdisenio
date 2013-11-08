@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.jboss.logging.MessageBundle;
+
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
 import edu.core.entities.Fila;
@@ -134,7 +136,14 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 			break;
 		case "Comprar entradas":
 			JButton btn = (JButton) e.getSource();
-			pause = false;
+			if(ventanaSector.seleccionados.size() == cantidadButacas){
+				pause = false;
+			}else
+			{
+		        int faltantes = cantidadButacas - ventanaSector.seleccionados.size();
+				JOptionPane.showMessageDialog(frame,"Todavia faltan " + String.valueOf(faltantes) + " butacas por seleccionar." ) ;
+			}
+			
 			break;
 		default:
 			break;
