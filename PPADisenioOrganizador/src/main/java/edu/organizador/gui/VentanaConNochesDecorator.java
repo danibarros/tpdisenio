@@ -27,6 +27,7 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	private boolean pause = true;
 	private JComboBox<String> comboNoches = new JComboBox<String>();
 	private VentanaNocheDecorator ventana = new VentanaNocheDecorator();
+	private VentanaAlertDecorator alert = new VentanaAlertDecorator();
 	private JFrame frame;
 	private JPanel panel;
 
@@ -92,7 +93,7 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 				e.printStackTrace();
 			}
 		}
-		
+		alert.odenDeBandas();
 		frame.getContentPane().removeAll();
 		
 		return noches;
