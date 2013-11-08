@@ -71,19 +71,6 @@ public class TablaOrdenBandas extends JFrame implements TableModelListener, Acti
         c.add(pnlBottom);
         setSize(500,300);
         this.setVisible(true);
-        
-////		while (pause) {
-////			try {
-////				Thread.sleep(1);
-////			} catch (InterruptedException e) {
-////				// TODO Auto-generated catch block
-////				e.printStackTrace();
-////			}
-////		}
-//		
-////		this.getContentPane().removeAll();
-//		
-////		ordenarBandas();
 		
 		return bandas;
     }

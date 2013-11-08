@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import org.hibernate.queries.FestivalQuery;
+
 import edu.core.dao.BandaDAO;
 import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
@@ -26,6 +28,7 @@ public class Controlador {
 	private String estadio;
 	private Festival festival = new Festival();
 	List<String> datos = new ArrayList<String>();
+	VentanaAlertDecorator alert = new VentanaAlertDecorator();
 
 	public Controlador(JFrame frame) {
 		this.frame = frame;
@@ -34,7 +37,6 @@ public class Controlador {
     public void logIn(){
     	VendedorDAO vendedorDao = new VendedorDAO();
     	UserValidationRequest request;
-    	VentanaAlertDecorator alert = new VentanaAlertDecorator();
     	Validator validator = new Validator();
     	VentanaLoginDecorator login = new VentanaLoginDecorator();
     	request = login.login();
@@ -49,6 +51,11 @@ public class Controlador {
 		DataReaderDAO dataReader = new DataReader();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(festival);
+		FestivalQuery festivalQuery = new FestivalQuery();
+		if(festivalQuery.getEstadiosFechas(festival.getEstadio().getIdEstadio(), festival.getFechaInicio())){
+			alert.estadioOcupado();
+			inicio.cargarFormulario(festival);
+		}
 	}
 	
 	public void organizarNoches(){

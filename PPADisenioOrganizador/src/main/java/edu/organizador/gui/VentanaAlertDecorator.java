@@ -24,5 +24,15 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"El dato ingresado "+dato+ " no debe ser numerico");
 		}
+	
+	public void estadioOcupado(){
+		JOptionPane.showMessageDialog(null,
+				"El estadio va a estar ocupado en esos dias elegidos");
+		}
+	
+	public void odenDeBandas(){
+		JOptionPane.showMessageDialog(null,
+				"Bandas ordenadas con exito");
+		}
 }
 

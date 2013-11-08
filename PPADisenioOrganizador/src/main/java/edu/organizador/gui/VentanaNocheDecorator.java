@@ -47,23 +47,18 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 	Noche noche;
 	Set<Banda> totalBandas;
 	List<Banda> listaBandas;
-	List<Estadio> listaEstadios;
 	CheckComboBox chkcmbBandas;
 
 	public void formularioNoche(Noche noche, JFrame frame) {
 
 		this.noche = noche;
 		BandaDAO bandaDao = new BandaDAO();
-		EstadioDAO estadioDao = new EstadioDAO();
 		totalBandas = bandaDao.findAll();
 		listaBandas = new ArrayList<Banda>(totalBandas);
 		Set<Object> options = new HashSet<>();
 		Color c = new Color(112, 173, 208);
-		JComboBox<String> cmbEstadios = new JComboBox<String>();
-		JLabel lblEstadio = new JLabel("Elija el estadio");
 		JLabel lblBandas = new JLabel("Elija las bandas que desea");
 		JLabel lblHoraInicio = new JLabel("Ingrese hora de inicio");
-		Set<Estadio> totalEstadios = estadioDao.findAll();
 		JPanel grid = new JPanel(new GridLayout(0, 1));
 
 		if (panel == null)
@@ -84,21 +79,18 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			chkcmbBandas.addSelectedItems(objects);
 		}
 
-		cmbEstadios.setName("cmbEstadio");
-		cmbEstadios.addActionListener(this);
-
-		if (noche.getEstadio() != null) {
-			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
-		}
-
-		listaEstadios = new ArrayList<Estadio>(totalEstadios);
-
-		for (Estadio estadio : totalEstadios) {
-			cmbEstadios.addItem(estadio.getNombre());
-		}
-		if (noche.getEstadio() != null) {
-			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
-		}
+//		if (noche.getEstadio() != null) {
+//			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
+//		}
+//
+//		listaEstadios = new ArrayList<Estadio>(totalEstadios);
+//
+//		for (Estadio estadio : totalEstadios) {
+//			cmbEstadios.addItem(estadio.getNombre());
+//		}
+//		if (noche.getEstadio() != null) {
+//			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
+//		}
 
 		List<Banda> bandasEncontradas = new ArrayList<Banda>();
 		if (chkcmbBandas.getSelectedItems() != null) {
@@ -108,18 +100,16 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			}
 		}
 		noche.setBandas(bandasEncontradas);
-
-		if (cmbEstadios.getSelectedItem() != null) {
-			noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
-		}
+		
+//		if (cmbEstadios.getSelectedItem() != null) {
+//			noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
+//		}
 
 		grid.setSize(500, 500);
 		grid.setBackground(c);
 
 		chkcmbBandas.setName("cmbBandas");
 		chkcmbBandas.addActionListener(this);
-		grid.add(lblEstadio);
-		grid.add(cmbEstadios);
 		grid.add(lblBandas);
 		grid.add(chkcmbBandas);
 		grid.add(lblHoraInicio);

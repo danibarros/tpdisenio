@@ -1,12 +1,16 @@
 package edu.organizador.gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,6 +18,9 @@ import javax.swing.JTextField;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import edu.core.dao.BandaDAO;
+import edu.core.dao.EstadioDAO;
+import edu.core.entities.Estadio;
 import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 import edu.core.utils.Validator;
@@ -21,16 +28,28 @@ import edu.core.utils.Validator;
 public class VentanaInicioDecorator {
 
 	public void cargarFormulario(Festival festival) {
-
+		List<Estadio> listaEstadios;
+		EstadioDAO estadioDao = new EstadioDAO();
+		Set<Estadio> totalEstadios = estadioDao.findAll();
+		JComboBox<String> cmbEstadios = new JComboBox<String>();
+		cmbEstadios.setName("cmbEstadio");
+		
+		for (Estadio estadio : totalEstadios) {
+			cmbEstadios.addItem(estadio.getNombre());
+		}
+		
 		JTextField txtNombreFestival = new JTextField("");
 		JTextField txtDuracionDias = new JTextField("");
 		JLabel lblNombreFestival = new JLabel("Ingrese nombre del festival");
+		JLabel lblNombreEstadio = new JLabel("Elija estadio");
 		JLabel lblDuracionDias = new JLabel("Ingrese duracion en dias");
 		JLabel lblFechaInicio = new JLabel("Ingrese fecha de inicio");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(lblNombreFestival);
 		panel.add(txtNombreFestival);
+		panel.add(lblNombreEstadio);
+		panel.add(cmbEstadios);
 		JXDatePicker dteFechaInicio = new JXDatePicker();
 		dteFechaInicio.setDate(Calendar.getInstance().getTime());
 		dteFechaInicio.setFormats(new SimpleDateFormat("dd.MM.yyyy"));
@@ -71,12 +90,21 @@ public class VentanaInicioDecorator {
 
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
+			Date diaCalculado = cal.getTime();
+			festival.setFechaInicio( new java.sql.Date(diaCalculado.getTime()));
+			listaEstadios = new ArrayList<Estadio>(totalEstadios);
+			
+			if (cmbEstadios.getSelectedItem() != null) {
+				festival.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
+			}
 
 			for (int i = 0; i < cantDias; i++) {
 				Noche noche = new Noche();
-				Date diaCalculado = cal.getTime();
 				noche.setFestival(festival);
 				noche.setFecha( new java.sql.Date(diaCalculado.getTime()));
+				if (cmbEstadios.getSelectedItem() != null) {
+					noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
+				}
 				festival.getNoches().add(noche);
 				cal.add(Calendar.DATE, 1);
 			}
