@@ -30,7 +30,7 @@ public class VentanaInicioDecorator {
 		
 		PuntoDeVentaDAO puntoVentaDao = new PuntoDeVentaDAO();
 		
-		PuntoDeVenta puntoVenta = puntoVentaDao.getPuntoDeVentaById(vendedor.getPuntoDeVenta());
+		PuntoDeVenta puntoVenta = puntoVentaDao.getPuntoDeVentaById(vendedor.getPuntoDeVenta().getIdPunto());
 		
 		panel.add(new JLabel("Usted esta en el punto de Venta: "+ puntoVenta.getNombre()));
 		

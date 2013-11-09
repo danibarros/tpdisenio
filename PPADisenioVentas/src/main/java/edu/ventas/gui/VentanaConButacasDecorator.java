@@ -70,6 +70,10 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		btnComprar.setName("btnComprar");
 		btnComprar.setText("Comprar entradas");
 		btnComprar.addActionListener(this);
+		JButton btnSalir = new JButton();
+		btnSalir.setName("btnSalir");
+		btnSalir.setText("Salir");
+		btnSalir.addActionListener(this);
 
 		for (Sector unSector : this.estadio.getSectores()) {
 			comboSectores.addItem(unSector.getColor());
@@ -145,6 +149,9 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 			}
 			
 			break;
+		case "Salir":
+				VentanaLoginDecorator ventana = new VentanaLoginDecorator();
+					ventana.login();
 		default:
 			break;
 		}
