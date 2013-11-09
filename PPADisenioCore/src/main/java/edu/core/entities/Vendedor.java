@@ -109,8 +109,8 @@ public class Vendedor {
 		this.listaPrecios = listaPrecios;
 	}
 
-	public Integer getPuntoDeVenta() {
-		return puntoDeVenta.getIdPunto();
+	public PuntoDeVenta getPuntoDeVenta() {
+		return puntoDeVenta;
 	}
 
 	public void setPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
