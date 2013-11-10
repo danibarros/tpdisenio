@@ -16,6 +16,7 @@ import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
+import edu.core.entities.Entrada;
 import edu.core.entities.Estadio;
 import edu.core.entities.Festival;
 import edu.core.entities.Fila;
@@ -47,6 +48,7 @@ public class Controlador {
 	private Noche nocheElegida;
 	double precio;
 	private Vendedor vendedor;
+	private Entrada entrada;
 	private Estadio estadio;
 	private Integer cantJubilados;
 	private Integer cantMayores;
@@ -130,9 +132,10 @@ public class Controlador {
 	}
 	
 	public void vender(){
+		
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
     	
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,vendedor,edad,cantJubilados,cantMenores,cantMayores,festival);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festival);
 	}
 
 	public boolean isCompraAseptada() {

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.core.entities.Butaca;
+import edu.core.entities.Entrada;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.Sector;
@@ -36,10 +37,11 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Vendedor vendedor,Integer edad,Integer cantJubilados,Integer cantMenores,Integer cantMayores,String festival) {
+	public boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Integer cantJubilados,Integer cantMenores,Integer cantMayores,String festival) 
+	{
 		int cantLineas = 0;
 		cantLineas += 2;
-		
+		Set<Entrada> entradas;
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Festival :"));
@@ -53,8 +55,9 @@ public class VentanaInformarEntradasDecorator implements
 				panel.add(new JLabel( sector.getColor()));
 				
 				cantLineas += 1;
-				vendedor.vender(seleccionados,noche,edad,cantJubilados,cantMenores,cantMayores);
-				imprimirSector(panel,seleccionados.get(sector.getColor()),vendedor,sector.getColor());
+				Vendedor vendedor = new Vendedor();
+				entradas=vendedor.vender(seleccionados,noche,cantJubilados,cantMenores,cantMayores);
+				imprimirSector(panel,seleccionados.get(sector.getColor()),entradas,sector.getColor());
 			}
 		}
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de la entrada",
@@ -65,16 +68,25 @@ public class VentanaInformarEntradasDecorator implements
     		despedida.dibujar();
 		} else{
 			frame.getContentPane().removeAll();
+			
 		}
 		panel.setVisible(true);
 		return vender;
 	}
 	
-	private void imprimirSector(JPanel panel, List<Butaca> butacas,Vendedor vendedor,String sector){
-		for (Butaca butaca : butacas) {
-			if(butaca.getFila().getSector().getColor() == sector){
-			panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));
-			panel.add(new JLabel("Precio: $" + vendedor.getPrecio().get(butaca.getNumero())));
+	private void imprimirSector(JPanel panel, List<Butaca> butacas,Set<Entrada> entradas,String sector)
+	{
+		Entrada entrada=null;;
+		for (Butaca butaca : butacas) 
+		{
+			if(butaca.getFila().getSector().getColor() == sector)
+			{
+				panel.add(new JLabel("Butaca N°"+ String.valueOf(butaca.getNumero())));
+				for (Entrada ent : entradas) {
+					if (ent.getButaca()==butaca)
+							entrada=ent;
+				}
+				panel.add(new JLabel("Precio: $" + entrada.getPrecioFinal()));
 			}
 		}
 	}

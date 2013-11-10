@@ -139,9 +139,9 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 			}
 			break;
 		case "Comprar entradas":
-			JButton btn = (JButton) e.getSource();
 			if(ventanaSector.seleccionados.size() == cantidadButacas){
 				pause = false;
+				
 			}else
 			{
 		        int faltantes = cantidadButacas - ventanaSector.seleccionados.size();

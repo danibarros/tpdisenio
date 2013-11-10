@@ -14,9 +14,11 @@ public class VentanaDespedidaDecorator  implements VentanaDecoratorInterface{
 	public void dibujar() {
 		JOptionPane.showMessageDialog(null,
 				"Gracias por la compra!, vuelva pronto!");
-		VentanaFormularioDecorator ventana = new VentanaFormularioDecorator();
 		
+		VentanaFormularioDecorator ventana = new VentanaFormularioDecorator();
 		ventana.dibujar();
+		
+		
 		
 
 	}
