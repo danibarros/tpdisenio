@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.EstadioDAO;
 import edu.core.dao.FestivalDAO;
 import edu.core.dao.NocheDAO;
 import edu.core.dao.PuntoDeVentaDAO;
@@ -57,6 +58,7 @@ public class Controlador {
 	private Set<Banda> bandas;
 	private List<Noche> noches;
 	private List<Festival> festivales;
+	private FestivalDAO festivalDAO = new FestivalDAO();
 	
 	
 	public Controlador(JFrame frame){
@@ -89,7 +91,7 @@ public class Controlador {
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
-		FestivalDAO festivalDAO = new FestivalDAO();
+		
 //		BandaDAO bandaDAO = new BandaDAO();
 //		NocheDAO nocheDAO = new NocheDAO();
 //		
@@ -107,6 +109,8 @@ public class Controlador {
     		cantMayores = Integer.parseInt(datos.get(3).trim());
     		numeroNoche = Integer.parseInt(datos.get(4).trim());
     		festival = String.valueOf(datos.get(5));
+    		
+    		
 		}
     	else
     		this.logIn();
@@ -114,13 +118,16 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
+		Festival festElegido=festivalDAO.getFestivalByName(festival);
+		
 		DataReader dataReader = new DataReader ();
 		BandaDAO bandaDAO = new BandaDAO();
 		NocheDAO nocheDAO = new NocheDAO();
+		EstadioDAO estadioDao =  new EstadioDAO();
 		//bandas = (Set<Banda>) bandaDAO.getAllBandas();
 		noches =nocheDAO.getAllNoches();
 		
-		estadio = dataReader.getEstadio(dataReader.getSectores(dataReader.getFilas(dataReader.getButacas1(), dataReader.getButacas2())),dataReader.getPuntosDeVenta());
+		estadio = estadioDao.getEstadioById(festElegido.getEstadio().getIdEstadio());
         nocheElegida = noches.get(this.numeroNoche -1);
 		nocheElegida.setEstadio(estadio);
         
