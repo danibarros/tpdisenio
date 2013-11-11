@@ -30,16 +30,16 @@ public class NocheDAO extends GenericRepository<Noche, Integer> {
 		return (Noche) session.get(Noche.class, id);
 	}
 
-	public Double getPrecioNocheById(int idNoche) {
+	public Float getPrecioNocheById(int idNoche) {
 		String hql = "select categoria_precio from categorias " 
 			+	"where categoria_id = "
 			+	"(select MAX(b.Categorias_categoria_id) from Noches n, banda_noche bn,Bandas b "
 			+	"where n.noche_id = :nochenum and " 
 			+	"bn.Noches_noche_id  = :nochenum and " 
 			+	"bn.Bandas_banda_id = b.banda_id)";
-		Query query = session.createQuery(hql);
+		Query query = session.createSQLQuery(hql);
 		query.setInteger("nochenum", idNoche);
-		return (Double) query.list().get(0);
+		return (Float) query.list().get(0);
 		
 	}
 	
