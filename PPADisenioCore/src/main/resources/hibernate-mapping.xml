@@ -61,17 +61,6 @@
 		<property name="nombre" type="string">
 			<column name="localidad_name" />
 		</property>
-		<list name="estadios" table="estadios" lazy="false" fetch="select">
-			<key column="Localidades_localidad_id" />
-			<list-index column="estadio_id" />
-			<one-to-many class="edu.core.entities.Estadio" />
-		</list>
-		<list name="puntosDeVenta" table="puntos_venta" lazy="false"
-			fetch="select">
-			<key column="Localidades_localidad_id" />
-			<list-index column="puntos_id" />
-			<one-to-many class="edu.core.entities.PuntoDeVenta" />
-		</list>
 		<many-to-one name="provincia" class="edu.core.entities.Provincia"
 			column="Provincias_provincia_id" lazy="false" fetch="select" />
 	</class>
@@ -134,14 +123,14 @@
 			<column name="estadio_id" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
+		<many-to-one name="localidad" class="edu.core.entities.Localidad"
+			column="Localidades_localidad_id" />
 		<property name="nombre" column="estadio_nombre" type="java.lang.String" />
 		<list name="sectores" table="sectores" lazy="false" fetch="select">
 			<key column="Estadios_estadio_id" />
 			<list-index column="sector_id" />
 			<one-to-many class="edu.core.entities.Sector" />
 		</list>
-		<many-to-one name="localidad" class="edu.core.entities.Localidad"
-			column="Localidades_localidad_id" />
 	</class>
 
 	<class name="edu.core.entities.Sector" table="Sectores">

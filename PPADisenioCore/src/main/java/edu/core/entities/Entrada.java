@@ -118,7 +118,7 @@ public class Entrada {
 		ButacaDAO butacaDao = new ButacaDAO();
 
 				
-		return butacaDao.getPrecioById(this.butaca.getIdButaca()+1);
+		return butacaDao.getPrecioById(this.butaca.getIdButaca());
 	}
 	
 	public int getNuemroDeEntrada(){

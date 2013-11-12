@@ -10,14 +10,16 @@ import javax.swing.JFrame;
 import edu.core.dao.BandaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
-import edu.core.dao.FestivalDAO;
 import edu.core.dao.EstadioDAO;
+import edu.core.dao.FestivalDAO;
+import edu.core.dao.LocalidadDAO;
 import edu.core.dao.NocheDAO;
+import edu.core.dao.PaisDAO;
+import edu.core.dao.ProvinciaDAO;
 import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
-import edu.core.entities.Entrada;
 import edu.core.entities.Estadio;
 import edu.core.entities.Festival;
 import edu.core.entities.Fila;
@@ -49,7 +51,6 @@ public class Controlador {
 	private Noche nocheElegida;
 	double precio;
 	private Vendedor vendedor;
-	private Entrada entrada;
 	private Estadio estadio;
 	private Integer cantJubilados;
 	private Integer cantMayores;
@@ -58,7 +59,6 @@ public class Controlador {
 	private Set<Banda> bandas;
 	private List<Noche> noches;
 	private List<Festival> festivales;
-	private FestivalDAO festivalDAO = new FestivalDAO();
 	
 	
 	public Controlador(JFrame frame){
@@ -91,7 +91,7 @@ public class Controlador {
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
-		
+		FestivalDAO festivalDAO = new FestivalDAO();
 //		BandaDAO bandaDAO = new BandaDAO();
 //		NocheDAO nocheDAO = new NocheDAO();
 //		
@@ -109,8 +109,6 @@ public class Controlador {
     		cantMayores = Integer.parseInt(datos.get(3).trim());
     		numeroNoche = Integer.parseInt(datos.get(4).trim());
     		festival = String.valueOf(datos.get(5));
-    		
-    		
 		}
     	else
     		this.logIn();
@@ -118,22 +116,41 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-		Festival festElegido=festivalDAO.getFestivalByName(festival);
+
+
 		
-		DataReader dataReader = new DataReader ();
-		BandaDAO bandaDAO = new BandaDAO();
-		NocheDAO nocheDAO = new NocheDAO();
-		EstadioDAO estadioDao =  new EstadioDAO();
-		//bandas = (Set<Banda>) bandaDAO.getAllBandas();
-		noches =nocheDAO.getAllNoches();
+		FestivalDAO festDAO = new FestivalDAO();
 		
-		estadio = estadioDao.getEstadioById(festElegido.getEstadio().getIdEstadio());
-        nocheElegida = noches.get(this.numeroNoche -1);
-		nocheElegida.setEstadio(estadio);
+		Festival festivalSeleccionado = festDAO.getFestivalByName(festival);
+		
+		PaisDAO pdao = new PaisDAO();
+		LocalidadDAO ldao = new LocalidadDAO();
+		ProvinciaDAO prodao = new ProvinciaDAO();
+		FestivalDAO fdao = new FestivalDAO();
+		EstadioDAO edao = new EstadioDAO();
+		
+
+		pdao.getAllPais();
+		prodao.getAllProvincias();
+		ldao.getAllLocalidades();
+		edao.getAllEstadios();
+		for (Festival fest : fdao.getAllFestivales()) {
+			if(fest.getNombre().equals(festival.trim())){
+				festivalSeleccionado = fest;
+			}
+			
+		}
+		
+		
+		for (Noche noche : festivalSeleccionado.getNoches()) {
+			if(noche != null && noche.getNumero() == numeroNoche){
+				nocheElegida = noche;
+			}
+		}
         
 		int cantidadButacas = cantJubilados + cantMayores + cantMenores;
 		
-		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(estadio,nocheElegida,frame,cantidadButacas);
+		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(nocheElegida.getEstadio(),nocheElegida,frame,cantidadButacas);
     	sectores = butaca.seleccionarButacas();
     	
 	}
@@ -141,8 +158,8 @@ public class Controlador {
 	public void vender(){
 		
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
-    	
     	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festival);
+    	
 	}
 
 	public boolean isCompraAseptada() {

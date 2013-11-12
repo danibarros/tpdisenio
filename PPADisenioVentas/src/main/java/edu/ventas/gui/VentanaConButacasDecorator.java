@@ -76,7 +76,9 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		btnSalir.addActionListener(this);
 
 		for (Sector unSector : this.estadio.getSectores()) {
-			comboSectores.addItem(unSector.getColor());
+			if (unSector != null) {
+				comboSectores.addItem(unSector.getColor());
+			}
 		}
 		panel.setSize(comboSectores.getWidth(), comboSectores.getHeight());
 		pnlBottom.setSize(comboSectores.getWidth(), comboSectores.getHeight());
@@ -134,24 +136,26 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 				String newSelection = (String) cb.getSelectedItem();
 				sector = newSelection;
 				ventanaSector.dibujarSector(frame, sector, estadio,
-						ventanaSector.seleccionados,cantidadButacas);
+						ventanaSector.seleccionados, cantidadButacas);
 				agregarSeleccionados(ventanaSector.seleccionados, sector);
 			}
 			break;
 		case "Comprar entradas":
-			if(ventanaSector.seleccionados.size() == cantidadButacas){
+			if (ventanaSector.seleccionados.size() == cantidadButacas) {
 				pause = false;
-				
-			}else
-			{
-		        int faltantes = cantidadButacas - ventanaSector.seleccionados.size();
-				JOptionPane.showMessageDialog(frame,"Todavia faltan " + String.valueOf(faltantes) + " butacas por seleccionar." ) ;
+
+			} else {
+				int faltantes = cantidadButacas
+						- ventanaSector.seleccionados.size();
+				JOptionPane.showMessageDialog(frame,
+						"Todavia faltan " + String.valueOf(faltantes)
+								+ " butacas por seleccionar.");
 			}
-			
+
 			break;
 		case "Salir":
-				VentanaLoginDecorator ventana = new VentanaLoginDecorator();
-					ventana.login();
+			VentanaLoginDecorator ventana = new VentanaLoginDecorator();
+			ventana.login();
 		default:
 			break;
 		}

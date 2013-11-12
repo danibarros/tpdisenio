@@ -11,6 +11,13 @@ public class Localidad {
 	private List<Estadio> estadios ;
 	private List<PuntoDeVenta> puntosDeVenta;
 	
+	public Integer getIdLocalidad() {
+		return idLocalidad;
+	}
+	public void setIdLocalidad(Integer idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
+	
 	public List<PuntoDeVenta> getPuntosDeVenta() {
 		return puntosDeVenta;
 	}
@@ -30,12 +37,7 @@ public class Localidad {
 	public void setEstadios(List<Estadio> estadios) {
 		this.estadios = estadios;
 	}
-	public Integer getIdLocalidad() {
-		return idLocalidad;
-	}
-	public void setIdLocalidad(Integer idLocalidad) {
-		this.idLocalidad = idLocalidad;
-	}
+	
 	public Provincia getProvincia() {
 		return provincia;
 	}
