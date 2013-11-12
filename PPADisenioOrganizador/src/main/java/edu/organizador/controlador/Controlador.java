@@ -11,6 +11,7 @@ import edu.core.dao.BandaDAO;
 import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
+import edu.core.dao.FestivalDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
@@ -61,7 +62,6 @@ public class Controlador {
 	public void organizarNoches(){
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
 		festival.setNoches(ventana.seleccionarNoches());
-		
 	}
 
 	public void guardarBanda(List<String> datos) {
@@ -85,6 +85,13 @@ public class Controlador {
 			i=i+3;
 		}
 		
+	}
+	
+	public void terminarFestival(){
+		FestivalDAO festivalDAO = new FestivalDAO();
+		VentanaFinal ventanaFinal = new VentanaFinal(festival);
+		ventanaFinal.dibujar();
+		festivalDAO.save(festival);
 	}
 
 }

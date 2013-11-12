@@ -16,13 +16,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.core.entities.Noche;
+import edu.core.requests.NocheRequest;
 import edu.organizador.controlador.Controlador;
 import external.utils.TablaOrdenBandas;
 
 public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		ActionListener {
 
-	private List<Noche> noches = new ArrayList<Noche>();
+	private List<NocheRequest> noches = new ArrayList<NocheRequest>();
+	private List<Noche> listaNoches = new ArrayList<Noche>();
 	private int noche = 1;
 	private boolean pause = true;
 	private JComboBox<String> comboNoches = new JComboBox<String>();
@@ -34,11 +36,14 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	public VentanaConNochesDecorator(int cantNoches, JFrame frame) {
 		int i;
 		this.frame = frame;
+		
 		for(i=0;i<cantNoches;i++){
 			Noche noche = new Noche();
-			noches.add(noche);
+			NocheRequest nocheRequest = new NocheRequest();
 			noche.setNumero(i + 1);
 			comboNoches.addItem(String.valueOf(noche.getNumero()));	
+			nocheRequest.setNoche(noche);
+			noches.add(nocheRequest);
 		}
 	}
 
@@ -53,6 +58,7 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		Color c = new Color(112, 173, 208);
 		JButton btnComprar = new JButton();
 		JButton btnOrganizar = new JButton();
+		JButton btnTerminar = new JButton();
 	
 		frame.getContentPane().removeAll();
 		
@@ -75,6 +81,11 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		btnOrganizar.setText("Realizar diagramacion");
 		btnOrganizar.addActionListener(this);
 		pnlBottom.add(btnOrganizar, BorderLayout.NORTH);
+		
+		btnTerminar.setName("btnTerminar");
+		btnTerminar.setText("Terminar Festival");
+		btnTerminar.addActionListener(this);
+		pnlBottom.add(btnTerminar, BorderLayout.NORTH);
 
 		pnlPrincipal.setVisible(true);
 		
@@ -83,8 +94,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 
-		ventana.formularioNoche(noches.get(comboNoches.getSelectedIndex()),frame);
-		
+		ventana.formularioNoche(noches.get(comboNoches.getSelectedIndex()).getNoche(),frame);
+
 		while (pause) {
 			try {
 				Thread.sleep(1);
@@ -93,10 +104,9 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 				e.printStackTrace();
 			}
 		}
-		alert.odenDeBandas();
 		frame.getContentPane().removeAll();
 		
-		return noches;
+		return listaNoches;
 		
 	}
 
@@ -104,26 +114,30 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	public void actionPerformed(ActionEvent e) {
 
 		String event = e.getActionCommand();
+		Controlador controlador = new Controlador(frame);
 		switch (event) {
 		case "comboBoxChanged":
 			JComboBox cb = (JComboBox) e.getSource();
 			if (cb.getName().equalsIgnoreCase("cmbNoches")) {
 				String newSelection = (String) cb.getSelectedItem();
 				noche = Integer.valueOf(newSelection);
-				ventana.formularioNoche(noches.get(noche -1),frame);
+				ventana.formularioNoche(noches.get(noche -1).getNoche(),frame);
 			}
 			break;
 			
 		case "Realizar diagramacion":
 			TablaOrdenBandas tabla = new TablaOrdenBandas();
-			tabla.dibujar(noches.get(noche -1).getBandas());
+			tabla.dibujar(noches.get(noche -1));
 			break;	
 			
 		case "Agregar Nueva Banda":
-			Controlador controlador = new Controlador(frame);
 			VentanaBandaDecorator ventana = new VentanaBandaDecorator();
 			List<String> datos = ventana.cargarFormularioBandas();
 			controlador.guardarBanda(datos);
+			break;
+			
+		case "Terminar Festival":
+			pause = false;
 			break;
 			
 		default:

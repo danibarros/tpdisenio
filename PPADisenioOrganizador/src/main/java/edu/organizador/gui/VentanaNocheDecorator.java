@@ -34,6 +34,7 @@ import edu.core.entities.Estadio;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.Sector;
+import edu.core.requests.NocheRequest;
 import edu.organizador.controlador.Controlador;
 import external.utils.CheckComboBox;
 import external.utils.ObjCheckBox;
@@ -156,7 +157,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			if (cb.getName().equalsIgnoreCase("cmbBandas")) {
 				if (chkcmbBandas.getSelectedItems() != null)
 					noche.setBandas(sacarDeCheckbox(chkcmbBandas));
-			}
+			}		
 			break;
 			case "Finalizar Diagramacion":
 				JOptionPane.showMessageDialog(null,

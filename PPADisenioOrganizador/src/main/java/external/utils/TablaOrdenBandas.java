@@ -12,6 +12,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 import edu.core.entities.Banda;
+import edu.core.requests.NocheRequest;
 import edu.organizador.gui.VentanaAlertDecorator;
 
 import java.awt.Container;
@@ -19,8 +20,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class TablaOrdenBandas extends JFrame implements TableModelListener, ActionListener
@@ -36,21 +39,30 @@ public class TablaOrdenBandas extends JFrame implements TableModelListener, Acti
     Container c;
     boolean pause = true;
     JPanel pnlBottom;
-    List<Banda> bandas;
-	
+    Map<Banda,Integer> bandas = new HashMap<Banda,Integer>();
+    NocheRequest noche = null;
  
-    public List<Banda> dibujar(List<Banda> bandas)
+    public void dibujar(NocheRequest noche)
     {
-    	this.bandas = bandas;
+    	this.noche = noche;
+    	if(noche.getBandas() != null)
+    		this.bandas = noche.getBandas();
+    	else{
+    		int i = 1;
+    		for (Banda banda : noche.getNoche().getBandas()) {
+    			this.bandas.put(banda, i);	
+    			noche.setBandas(bandas);
+    			i++;
+    		}
+    	}
+ 
     	c  = getContentPane();
     	pnlBottom = new JPanel();
-    	int i = 0;
     	
-    	for (Banda banda : bandas) {
+    	for (Banda banda : bandas.keySet()) {
     		ArrayList<String> datos = new ArrayList<String>();
-    		String nombre = bandas.get(i).getNombre();
-    		i++;
-    		datos.add(String.valueOf(i));
+    		String nombre = banda.getNombre();
+    		datos.add(String.valueOf(bandas.get(banda)));
     		datos.add(nombre);
     		data.add(datos);
 		}
@@ -71,8 +83,7 @@ public class TablaOrdenBandas extends JFrame implements TableModelListener, Acti
         c.add(pnlBottom);
         setSize(500,300);
         this.setVisible(true);
-		
-		return bandas;
+
     }
     @Override
     public void tableChanged(TableModelEvent evt)
@@ -142,14 +153,23 @@ public class TablaOrdenBandas extends JFrame implements TableModelListener, Acti
 		switch (event) {
 		case "Ordenar Bandas":
 			JButton btn = (JButton) e.getSource();
+			if(table1.getSelectedColumn() == 0){
+				VentanaAlertDecorator alert = new VentanaAlertDecorator();
+				alert.seleccionDeColumna();
+				data.clear();
+				this.getContentPane().removeAll();
+				dibujar(noche);
+				break;
+			}
 			if(validarDatos()){
+				ordenarBandas();
+				this.dispose();
+			}else{
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				data.clear();
 				this.getContentPane().removeAll();
-				dibujar(bandas);
-			}else{
-				pause = false;
+				dibujar(noche);
 			}
 			break;
 		default:
@@ -173,23 +193,19 @@ public class TablaOrdenBandas extends JFrame implements TableModelListener, Acti
 	}
 	
 	private void ordenarBandas(){
-		int cantBandas = bandas.size();
-		List<Banda> bandasDup = bandas;
-		int i;
-		int menor = cantBandas + 1;
-		int numeroBanda = 0;
-		for (i = 0;i<cantBandas;i++){
-			for(ArrayList<String> datos : data){
-				if (menor > Integer.valueOf(datos.get(0))){
-					menor = Integer.valueOf(datos.get(0));
-					for (Banda banda : bandas){
-						if (datos.get(1).equals(banda.getNombre()))
-							numeroBanda = bandas.indexOf(banda);
-					}
-				}
-			}
-			bandasDup.add(bandas.get(numeroBanda - 1));
+		Banda banda = null;
+		for(ArrayList<String> dato : data){
+			banda = buscarBanda(dato.get(1));
+			bandas.put(banda, Integer.valueOf(dato.get(0)));
 		}
-		bandas = bandasDup;
 	}
+	
+	private Banda buscarBanda(String nombre){
+		for(Banda banda : bandas.keySet()){
+			if(banda.getNombre().equals(nombre))
+				return banda;
+		}
+		return null;
+	}
+
 }

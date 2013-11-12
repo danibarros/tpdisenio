@@ -34,5 +34,10 @@ public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 		JOptionPane.showMessageDialog(null,
 				"Bandas ordenadas con exito");
 		}
+	
+	public void seleccionDeColumna() {
+		JOptionPane.showMessageDialog(null,
+				"Antes de salir no deben quedar columnas seleccionadas");
+	}
 }
 
