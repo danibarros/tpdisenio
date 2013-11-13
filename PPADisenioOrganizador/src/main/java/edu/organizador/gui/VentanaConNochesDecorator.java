@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.core.entities.Banda;
 import edu.core.entities.Noche;
 import edu.core.requests.NocheRequest;
 import edu.organizador.controlador.Controlador;
@@ -105,9 +109,28 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			}
 		}
 		frame.getContentPane().removeAll();
+		ordenarBandas();
 		
 		return listaNoches;
 		
+	}
+
+	private void ordenarBandas() {
+		Map<Banda,Integer> bandas;
+		SortedMap<Integer,Banda> bandasOrdenadas = new TreeMap<Integer,Banda>();
+		int numeroBanda;
+		for (NocheRequest request : noches) {
+			bandas = request.getBandas();
+			bandasOrdenadas.clear();
+			for(Banda banda : request.getNoche().getBandas()){
+				numeroBanda = bandas.get(banda);
+				bandasOrdenadas.put(numeroBanda, banda);
+			}
+			List<Banda> listaBandas = new ArrayList<Banda>(bandasOrdenadas.values());
+			request.getNoche().setBandas(listaBandas);
+			listaNoches.add(request.getNoche());
+		}
+		bandas=null;	
 	}
 
 	@Override

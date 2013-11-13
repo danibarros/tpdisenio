@@ -16,10 +16,12 @@ import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Festival;
+import edu.core.requests.NocheRequest;
 import edu.core.requests.UserValidationRequest;
 import edu.core.utils.Validator;
 import edu.organizador.gui.VentanaAlertDecorator;
 import edu.organizador.gui.VentanaConNochesDecorator;
+import edu.organizador.gui.VentanaFinal;
 import edu.organizador.gui.VentanaInicioDecorator;
 import edu.organizador.gui.VentanaLoginDecorator;
 import external.utils.TablaOrdenBandas;
@@ -30,6 +32,7 @@ public class Controlador {
 	private Festival festival = new Festival();
 	List<String> datos = new ArrayList<String>();
 	VentanaAlertDecorator alert = new VentanaAlertDecorator();
+	private List<NocheRequest> noches;
 
 	public Controlador(JFrame frame) {
 		this.frame = frame;
@@ -62,6 +65,12 @@ public class Controlador {
 	public void organizarNoches(){
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
 		festival.setNoches(ventana.seleccionarNoches());
+		insertarNochesOrdenadasAlFestival();
+	}
+
+	private void insertarNochesOrdenadasAlFestival() {
+//		noches
+		
 	}
 
 	public void guardarBanda(List<String> datos) {
@@ -89,7 +98,7 @@ public class Controlador {
 	
 	public void terminarFestival(){
 		FestivalDAO festivalDAO = new FestivalDAO();
-		VentanaFinal ventanaFinal = new VentanaFinal(festival);
+		VentanaFinal ventanaFinal = new VentanaFinal(festival, frame);
 		ventanaFinal.dibujar();
 		festivalDAO.save(festival);
 	}
