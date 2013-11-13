@@ -192,6 +192,19 @@ CREATE TABLE ppa_disenio.Vendedores (
         on delete no action
 );
 
+CREATE TABLE ppa_disenio.Organizadores (
+    orga_id integer unsigned primary key,
+    orga_nombre varchar(50),
+    orga_user varchar(15) not null,
+    orga_pass varchar(15) not null,
+    orga_fest_id integer unsigned not null,
+    INDEX Festival_FKIndex (orga_fest_id),
+    unique (orga_user),
+    foreign key (orga_fest_id)
+        references Festival (festival_id)
+        on delete no action
+);
+
 INSERT INTO ppa_disenio.paises (pais_id,pais_name) values (0,'Argentina');
 /*provincias*/
 INSERT INTO ppa_disenio.provincias (provincia_id,Paises_pais_id,provincia_name)
