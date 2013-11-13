@@ -137,25 +137,29 @@ CREATE TABLE ppa_disenio.banda_noche (
 
 CREATE TABLE ppa_disenio.Puntos_venta (
     puntos_id INTEGER UNSIGNED NOT NULL,
-    Festival_festival_id INTEGER UNSIGNED NOT NULL,
     Localidades_localidad_id INTEGER UNSIGNED NOT NULL,
     punto_name VARCHAR(50) NOT NULL,
     punto_direccion VARCHAR(45) NULL,
     PRIMARY KEY (puntos_id),
     INDEX Puntos_venta_FKIndex1 (Localidades_localidad_id),
-    INDEX Puntos_venta_FKIndex3 (Festival_festival_id),
+    
     FOREIGN KEY (Localidades_localidad_id)
         REFERENCES Localidades (localidad_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (Festival_festival_id)
-        REFERENCES Festival (festival_id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
+    
 );
 
 CREATE TABLE ppa_disenio.Punto_festival (
     pufe_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
     Festival_festival_id INTEGER UNSIGNED NOT NULL,
-    Puntos_venta_puntos_id INTEGER UNSIGNED NOT NULL
+    Puntos_venta_puntos_id INTEGER UNSIGNED NOT NULL,
+	
+	FOREIGN KEY (Festival_festival_id)
+        REFERENCES Festival (festival_id)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY (Puntos_venta_puntos_id)
+        REFERENCES Puntos_venta (puntos_id)
+        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE ppa_disenio.Entradas (
@@ -322,7 +326,7 @@ insert into ppa_disenio.bandas values (7,2,'La Liga');
 /* festvales */
 insert into ppa_disenio.festival values (0,1,'2013-12-18','Isenbeck Cumbia'); 
 /* puntos de venta */
-insert into ppa_disenio.puntos_venta values (0,0,1,'estadio','direccion estadio'); 
+insert into ppa_disenio.puntos_venta values (0,0,'estadio','direccion estadio'); 
 
 /* puntos del "Isenbeck Cumbia" */
 insert into ppa_disenio.punto_festival values (0,0,0);
@@ -338,11 +342,11 @@ insert into ppa_disenio.banda_noche values (1,0,5,1);
 insert into ppa_disenio.banda_noche values (2,1,6,0);
 
 /* vendedores */
-insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',1);
-insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',1);
-insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',1);
-insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',1);
-insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',1);
+insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',0);
+insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',0);
+insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',0);
+insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',0);
+insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',0);
 
 insert into ppa_disenio.organizadores values (0,'Diego','diegob','bugaboo',0);
 insert into ppa_disenio.organizadores values (1,'Dani','danib','bugaboo',0);
