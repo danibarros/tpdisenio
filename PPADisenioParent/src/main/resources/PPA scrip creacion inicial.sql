@@ -338,8 +338,14 @@ insert into ppa_disenio.banda_noche values (1,0,5,1);
 insert into ppa_disenio.banda_noche values (2,1,6,0);
 
 /* vendedores */
-insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',0);
-insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',0);
-insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',0);
-insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',0);
-insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',0);
+insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',1);
+insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',1);
+insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',1);
+insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',1);
+insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',1);
+
+insert into ppa_disenio.organizadores values (0,'Diego','diegob','bugaboo',0);
+insert into ppa_disenio.organizadores values (1,'Dani','danib','bugaboo',0);
+insert into ppa_disenio.organizadores values (2,'Ger','gerb','bugaboo',0);
+insert into ppa_disenio.organizadores values (3,'Emi','emic','bugaboo',0);
+insert into ppa_disenio.organizadores values (4,'Nacho','nachov','bugaboo',0);
