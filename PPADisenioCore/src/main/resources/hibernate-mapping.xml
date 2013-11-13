@@ -105,8 +105,7 @@
 			<column name="puntos_id" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
-		<many-to-one name="festival" class="edu.core.entities.Festival"
-			column="Festival_festival_id" />
+		
 		<list name="entradas" table="entradas" lazy="false" fetch="select">
 			<key column="Puntos_venta_punto_id" />
 			<list-index column="entrada_id" />
