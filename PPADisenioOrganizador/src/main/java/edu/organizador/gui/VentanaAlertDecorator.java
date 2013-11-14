@@ -4,10 +4,11 @@ import javax.swing.JOptionPane;
 
 public class VentanaAlertDecorator implements VentanaDecoratorInterface {
 
+	
 	@Override
 	public void dibujar() {
 		JOptionPane.showMessageDialog(null,
-				"Complete los campos correctamente para poder continuar.");
+				"Complete los campos correctamente para poder continuar.!!");
 	}
 	
 	public void errorid(){

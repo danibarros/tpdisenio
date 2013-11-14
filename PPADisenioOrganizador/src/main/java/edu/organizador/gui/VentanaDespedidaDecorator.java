@@ -10,6 +10,7 @@ public class VentanaDespedidaDecorator  implements VentanaDecoratorInterface{
 	
 	@Override
 	public void dibujar() {
+		
 		JOptionPane.showMessageDialog(null,
 				"El Festival ha sido organizado con exito!");
 		

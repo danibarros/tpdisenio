@@ -15,7 +15,9 @@ public class VentanaLoginDecorator {
 	public UserValidationRequest login(){
 		
 		UserValidationRequest request = new UserValidationRequest();
+		
 		JTextField field1 = new JTextField("");
+		
 		JPasswordField field2 = new JPasswordField("");
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 		panel.add(new JLabel("Usuario"));

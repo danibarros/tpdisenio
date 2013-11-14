@@ -38,7 +38,7 @@ public class VentanaFinal implements VentanaDecoratorInterface{
 		List<Noche> noches = festival.getNoches();
 		
 		for (Noche noche : noches) {
-			panel.add(new JLabel("Noche :"));
+			panel.add(new JLabel("Noche : "));
 			panel.add(new JLabel(String.valueOf(noche.getNumero())));
 			panel.add(new JLabel("Fecha :"));
 			panel.add(new JLabel(String.valueOf(noche.getFecha())));

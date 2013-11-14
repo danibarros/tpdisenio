@@ -36,6 +36,8 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	private VentanaAlertDecorator alert = new VentanaAlertDecorator();
 	private JFrame frame;
 	private JPanel panel;
+	
+	
 
 	public VentanaConNochesDecorator(int cantNoches, JFrame frame) {
 		int i;
