@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.core.dao.EntradaDAO;
+import edu.core.dao.FestivalDAO;
 import edu.core.dao.NocheDAO;
 import edu.core.entities.Butaca;
 import edu.core.entities.Entrada;
@@ -46,7 +47,7 @@ public class VentanaInformarEntradasDecorator implements
 		int cantLineas = 0;
 		cantLineas += 2;
 		Set<Entrada> entradas = new HashSet<Entrada>();
-		Set<Entrada> paraConfirmarVenta = new HashSet<Entrada>();
+		
 		List<Sector> sectores = noche.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Festival :"));
@@ -61,12 +62,10 @@ public class VentanaInformarEntradasDecorator implements
 					panel.add(new JLabel(sector.getColor()));
 
 					cantLineas += 1;
-					Vendedor vendedor = new Vendedor();
-					entradas = vendedor.vender(seleccionados, noche,
-							cantJubilados, cantMenores, cantMayores);
+					
 					imprimirSector(panel, seleccionados.get(sector.getColor()),
 							entradas, sector.getColor());
-					paraConfirmarVenta.addAll(entradas);
+					
 				}
 			}
 		}
@@ -89,6 +88,7 @@ public class VentanaInformarEntradasDecorator implements
 	
 	private void imprimirSector(JPanel panel, List<Butaca> butacas,Set<Entrada> entradas,String sector)
 	{
+		EntradaDAO entradaDao = new EntradaDAO();
 		Entrada entrada=null;;
 		for (Butaca butaca : butacas) 
 		{
@@ -100,6 +100,15 @@ public class VentanaInformarEntradasDecorator implements
 							entrada=ent;
 				}
 				panel.add(new JLabel("Precio: $" + entrada.getPrecioFinal()));
+				
+//				NocheDAO nochedao=new NocheDAO();
+//				FestivalDAO fdao=new FestivalDAO();
+//				
+//				fdao.save(entrada.getNoche().getFestival());
+//				nochedao.save(entrada.getNoche());
+				
+				
+				entradaDao.save(entrada);
 			}
 		}
 	}
