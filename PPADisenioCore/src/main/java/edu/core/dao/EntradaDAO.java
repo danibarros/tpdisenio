@@ -21,5 +21,7 @@ public class EntradaDAO extends GenericRepository<Entrada, Integer>{
 	public Entrada getEntradaById(Integer id){
 		return (Entrada) session.get(Entrada.class, id);
 	}
+	
+	
 
 }

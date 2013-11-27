@@ -11,30 +11,27 @@ import edu.core.dao.NocheDAO;
 
 public class Entrada {
 	
-	private Butaca butaca;
-	
+	private Butaca butaca;	
 	private int codigoDeBarra;
-
 	private Noche noche;
-	
 	private int numeroDeEntrada;
-	
 	private Date fecha;
-	
 	private float precio;
-	
 	private String tipo;
-	
 	private String clienteNombre;
-	
-	private int clienteDNI;
-	
 	private boolean anticipada;
-	
 	private double precioFinal;
+	private Festival festival;
 	
 	
-	
+	public Festival getFestival() {
+		return festival;
+	}
+
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
+
 	public boolean isAnticipada() {
 		return anticipada;
 	}
@@ -88,27 +85,18 @@ public class Entrada {
 	}
 
 
-	public int getClienteDNI() {
-		return clienteDNI;
-	}
-
-
-	public void setClienteDNI(int clienteDNI) {
-		this.clienteDNI = clienteDNI;
-	}
-
 
 	public int getNumeroDeEntrada() {
 		return numeroDeEntrada;
 	}
 
 
-	public Entrada( Butaca butaca, Noche noche) {
+	public Entrada( Butaca butaca, Noche noche, Festival fest) {
 		
-		this.butaca = butaca;
-		this.noche = noche;
-		
-		this.codigoDeBarra=123123;
+		setButaca(butaca);
+		setNoche(noche);
+		setFestival(fest);
+		setCodigoDeBarra(generarCodigo());
 		
 	}
 
@@ -174,12 +162,17 @@ public class Entrada {
 				
 		double pBase,pNoche=0.0;
 		
+		setTipo("Adulto");
 		pBase=calcularPrecioBase(); 
 		pNoche=nocheDao.getPrecioNocheById(noche.getIdNoche());
 		this.precioFinal = pBase + pNoche;
 			
-		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
-			this.precioFinal = precioFinal - 100; 
+		if (nocheDao.getNocheById(noche.getIdNoche()).getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
+			{
+				this.precioFinal = precioFinal - 100;
+				setAnticipada(true);
+			
+			}
 		return precioFinal;
 	}
 	
@@ -190,13 +183,15 @@ public class Entrada {
 		
 		double pBase,pNoche=0.0;
 		
+		setTipo("Jubilado");
+		
 		pBase=calcularPrecioBase(); 
 		System.out.println("PRECIO BASE: "+pBase);
 		pNoche=nocheDao.getPrecioNocheById(noche.getIdNoche());
 		System.out.println("PRECIO NOCHE: "+pNoche);
 		this.precioFinal = pBase + pNoche - (pBase / 15);
 			
-		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
+		if (nocheDao.getNocheById(noche.getIdNoche()).getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
 			this.precioFinal = precioFinal - 100; 
 		return precioFinal;
 		
@@ -209,11 +204,13 @@ public class Entrada {
 		
 		double pBase,pNoche=0.0;
 		
+		setTipo("Menor");
+		
 		pBase=calcularPrecioBase(); 
 		pNoche=nocheDao.getPrecioNocheById(noche.getIdNoche());
 		this.precioFinal = pBase + pNoche - descuentitoMenores(pBase);
 			
-		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
+		if (nocheDao.getNocheById(noche.getIdNoche()).getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
 			this.precioFinal = precioFinal - 100; 
 		return precioFinal;
 		

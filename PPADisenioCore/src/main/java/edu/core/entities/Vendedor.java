@@ -21,10 +21,6 @@ public class Vendedor {
 	private PuntoDeVenta puntoDeVenta;
 	
 	
-	
-	
-	
-	
 	public int getIdVendedor() {
 		return idVendedor;
 	}
@@ -66,7 +62,7 @@ public class Vendedor {
 	}
 	
 
-	public HashSet<Entrada> vender(Map<String, List<Butaca>> seleccionados, Noche noche,Integer cantJubilados,Integer cantMenores, Integer cantMayores) 
+	public HashSet<Entrada> vender(Map<String, List<Butaca>> seleccionados,Festival fest ,Noche noche,Integer cantJubilados,Integer cantMenores, Integer cantMayores) 
 	{
 		String key;
 		List<Butaca> value;
@@ -78,7 +74,7 @@ public class Vendedor {
 		    
 		    for (Butaca butacas : value) 
 		    {
-		    	Entrada entrada = new Entrada( butacas, noche);
+		    	Entrada entrada = new Entrada( butacas, noche, fest);
 		    	 if(cantJubilados != 0)
 		    	 { 
 		    	 	cantJubilados--;
