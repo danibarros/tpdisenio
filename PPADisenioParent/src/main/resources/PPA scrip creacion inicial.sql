@@ -315,10 +315,7 @@ insert into ppa_disenio.bandas values (7,2,'La Liga');
 /* festvales */
 insert into ppa_disenio.festival values (0,1,'2013-12-18','Isenbeck Cumbia'); 
 /* puntos de venta */
-insert into ppa_disenio.puntos_venta values (0,0,'estadio','direccion estadio'); 
-
-/* puntos del "Isenbeck Cumbia" */
-insert into ppa_disenio.punto_festival values (0,0,0);
+insert into ppa_disenio.puntos_venta values (0,0,'estadio','direccion estadio',0); 
 
 /* noches de "Isenbeck Cumbia" */
 insert into ppa_disenio.noches values (0,0,1,'2013-12-18','20:00',1);
