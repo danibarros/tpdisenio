@@ -80,5 +80,11 @@ public abstract class GenericRepository<T,ID extends Serializable> implements IG
 		session.update(entity);		
 		session.beginTransaction().commit();
 	}
+
+	public void close()
+	{
+		session.clear();
+		session.beginTransaction().commit();
+	}
 	
 }

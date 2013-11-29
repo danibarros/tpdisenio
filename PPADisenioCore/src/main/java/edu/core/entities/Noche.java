@@ -13,8 +13,6 @@ public class Noche {
 	private List<Banda> bandas;
 	private Time horaInicio;
 
-    private Estadio estadio;
-    //private Festival festival;
     private Date fecha;
     private int numero;
     
@@ -22,14 +20,6 @@ public class Noche {
     	
     	this.bandas = new ArrayList<Banda>();
     }
-    
-//	public Festival getFestival() {
-//		return festival;
-//	}
-
-//	public void setFestival(Festival festival) {
-//		this.festival = festival;
-//	}
 
 	public Date getFecha() {
 		return fecha;
@@ -51,8 +41,7 @@ public class Noche {
 		this.horaInicio = horaInicio;
 	}
 
-	public Noche(Estadio estadio,int numeroDeNoches, List<Banda> bandas, Time horaInicio) {
-		this.estadio = estadio;
+	public Noche(int numeroDeNoches, List<Banda> bandas, Time horaInicio) {
 		this.bandas = bandas;
 		this.idNoche = numeroDeNoches;
 		this.horaInicio = horaInicio;
@@ -63,16 +52,6 @@ public class Noche {
 		 * fin del comunicado
 		 * */
 	}
-
-	public Estadio getEstadio() {
-		return estadio;
-	}
-
-	public void setEstadio(Estadio estadio) {
-		this.estadio = estadio;
-	}
-	
-	
 
 	public int mayorCategoria() {
 		int max = -1;

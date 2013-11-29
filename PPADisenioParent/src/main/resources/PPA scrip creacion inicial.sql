@@ -140,6 +140,7 @@ CREATE TABLE ppa_disenio.Puntos_venta (
     Localidades_localidad_id INTEGER UNSIGNED NOT NULL,
     punto_name VARCHAR(50) NOT NULL,
     punto_direccion VARCHAR(45) NULL,
+    punto_fest_id INTEGER UNSIGNED,
     PRIMARY KEY (puntos_id),
     INDEX Puntos_venta_FKIndex1 (Localidades_localidad_id),
     
@@ -149,18 +150,6 @@ CREATE TABLE ppa_disenio.Puntos_venta (
     
 );
 
-CREATE TABLE ppa_disenio.Punto_festival (
-    pufe_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
-    Festival_festival_id INTEGER UNSIGNED NOT NULL,
-    Puntos_venta_puntos_id INTEGER UNSIGNED NOT NULL,
-	
-	FOREIGN KEY (Festival_festival_id)
-        REFERENCES Festival (festival_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
-	FOREIGN KEY (Puntos_venta_puntos_id)
-        REFERENCES Puntos_venta (puntos_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
-);
 
 CREATE TABLE ppa_disenio.Entradas (
     entrada_id INTEGER UNSIGNED NOT NULL,

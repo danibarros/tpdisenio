@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.core.entities.Banda;
+import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 import edu.core.requests.NocheRequest;
 import edu.organizador.controlador.Controlador;

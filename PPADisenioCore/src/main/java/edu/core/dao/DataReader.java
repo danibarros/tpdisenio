@@ -155,16 +155,6 @@ public class DataReader implements DataReaderDAO {
 		return bandas;
 	}
 
-	public List<Noche> getNoches(List<Banda> bandas) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Time date = new Time(90);
-		Noche noche1 = new Noche(null, 1, bandas, date);
-		noche1.setNumero(1);
-		List<Noche> noches = new ArrayList<Noche>();
-		noches.add(noche1);
-		return noches;
-	}
-
 	@Override
 	public void setCategorias(Map<Integer, Integer> categorias) {
 		// TODO Auto-generated method stub
@@ -217,6 +207,12 @@ public class DataReader implements DataReaderDAO {
 	public void setEstadio(Estadio estadio) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Noche> getNoches(List<Banda> bandas) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

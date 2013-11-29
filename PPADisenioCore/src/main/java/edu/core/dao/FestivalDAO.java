@@ -28,7 +28,6 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 	public Festival getFestivalById(Integer id){
 		return (Festival) session.get(Festival.class, id);
 	}
-
 	
 	public Festival getFestivalByName(String nombre){
 		
@@ -37,6 +36,11 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 		query.setString("festivalNombre", nombre);
 		Festival result = (Festival) query.list().get(0);
 		return result;
+	}
+	
+	public void commit(){
+        session.flush();
+        session.clear();
 	}
 	
 	

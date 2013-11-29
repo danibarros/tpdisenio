@@ -14,8 +14,6 @@ import edu.core.dao.EstadioDAO;
 import edu.core.dao.FestivalDAO;
 import edu.core.dao.LocalidadDAO;
 import edu.core.dao.NocheDAO;
-import edu.core.dao.PaisDAO;
-import edu.core.dao.ProvinciaDAO;
 import edu.core.dao.PuntoDeVentaDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
@@ -59,6 +57,12 @@ public class Controlador {
 	private Set<Banda> bandas;
 	private List<Noche> noches;
 	private List<Festival> festivales;
+	private Festival festivalSeleccionado;
+	private VendedorDAO vendedorDao = new VendedorDAO();
+	
+	private LocalidadDAO ldao = new LocalidadDAO();
+	private FestivalDAO fdao = new FestivalDAO();
+	private EstadioDAO edao = new EstadioDAO();
 	
 	
 	public Controlador(JFrame frame){
@@ -66,7 +70,6 @@ public class Controlador {
 	}
 	
     public void logIn(){
-    	VendedorDAO vendedorDao = new VendedorDAO();
     	UserValidationRequest request;
     	VentanaAlertDecorator alert = new VentanaAlertDecorator();
     	Validator validator = new Validator();
@@ -91,13 +94,7 @@ public class Controlador {
 	}
 	public void pedirDatosIniciales(){
 		List<String> datos = new ArrayList<String>();
-		FestivalDAO festivalDAO = new FestivalDAO();
-//		BandaDAO bandaDAO = new BandaDAO();
-//		NocheDAO nocheDAO = new NocheDAO();
-//		
-//		bandas = (Set<Banda>) bandaDAO.findAll();
-//		noches = nocheDAO.getAllNoches();
-		festivales = festivalDAO.getAllFestivales();
+		festivales = fdao.getAllFestivales();
 
 		VentanaFormularioDecorator form = new VentanaFormularioDecorator();
 		
@@ -116,24 +113,9 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-
-
 		
-		FestivalDAO festDAO = new FestivalDAO();
+		festivalSeleccionado = fdao.getFestivalByName(festival);
 		
-		Festival festivalSeleccionado = festDAO.getFestivalByName(festival);
-		
-		PaisDAO pdao = new PaisDAO();
-		LocalidadDAO ldao = new LocalidadDAO();
-		ProvinciaDAO prodao = new ProvinciaDAO();
-		FestivalDAO fdao = new FestivalDAO();
-		EstadioDAO edao = new EstadioDAO();
-		
-
-		pdao.getAllPais();
-		prodao.getAllProvincias();
-		ldao.getAllLocalidades();
-		edao.getAllEstadios();
 		for (Festival fest : fdao.getAllFestivales()) {
 			if(fest.getNombre().equals(festival.trim())){
 				festivalSeleccionado = fest;
@@ -150,7 +132,7 @@ public class Controlador {
         
 		int cantidadButacas = cantJubilados + cantMayores + cantMenores;
 		
-		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(nocheElegida.getEstadio(),nocheElegida,frame,cantidadButacas);
+		VentanaConButacasDecorator butaca = new VentanaConButacasDecorator(festivalSeleccionado.getEstadio(),nocheElegida,frame,cantidadButacas);
     	sectores = butaca.seleccionarButacas();
     	
 	}
@@ -158,7 +140,7 @@ public class Controlador {
 	public void vender(){
 		
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festival);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festivalSeleccionado);
     	
 	}
 

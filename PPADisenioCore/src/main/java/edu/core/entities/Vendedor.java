@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.hibernate.mapping.Set;
 
+import edu.core.dao.NocheDAO;
+
 public class Vendedor {
 	
 	private int idVendedor;
@@ -64,6 +66,7 @@ public class Vendedor {
 
 	public HashSet<Entrada> vender(Map<String, List<Butaca>> seleccionados,Festival fest ,Noche noche,Integer cantJubilados,Integer cantMenores, Integer cantMayores) 
 	{
+		NocheDAO nocheDao = new NocheDAO();
 		String key;
 		List<Butaca> value;
 		HashSet<Entrada> entradasGeneradas = new HashSet<Entrada>();
@@ -74,7 +77,7 @@ public class Vendedor {
 		    
 		    for (Butaca butacas : value) 
 		    {
-		    	Entrada entrada = new Entrada( butacas, noche, fest);
+		    	Entrada entrada = new Entrada( butacas, noche, nocheDao);
 		    	 if(cantJubilados != 0)
 		    	 { 
 		    	 	cantJubilados--;

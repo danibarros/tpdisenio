@@ -22,6 +22,9 @@ public class EntradaDAO extends GenericRepository<Entrada, Integer>{
 		return (Entrada) session.get(Entrada.class, id);
 	}
 	
+	public void reset(){
+		session.clear();
+	}
 	
 
 }

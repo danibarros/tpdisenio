@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Query;
 
 import edu.core.entities.Banda;
-import edu.core.entities.Provincia;
 import edu.core.entities.PuntoDeVenta;
 
 public class PuntoDeVentaDAO extends GenericRepository<PuntoDeVenta, Integer>{

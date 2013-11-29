@@ -6,12 +6,9 @@ import java.text.ParseException;
 import edu.core.dao.EstadioDAO;
 import edu.core.dao.FestivalDAO;
 import edu.core.dao.LocalidadDAO;
-import edu.core.dao.PaisDAO;
-import edu.core.dao.ProvinciaDAO;
 import edu.core.entities.Estadio;
 import edu.core.entities.Festival;
 import edu.core.entities.Localidad;
-import edu.core.entities.Pais;
 import edu.ventas.gui.UIPrincipal;
 
 public class Main {

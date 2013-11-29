@@ -20,6 +20,7 @@ import edu.core.dao.FestivalDAO;
 import edu.core.dao.NocheDAO;
 import edu.core.entities.Butaca;
 import edu.core.entities.Entrada;
+import edu.core.entities.Festival;
 import edu.core.entities.Fila;
 import edu.core.entities.Noche;
 import edu.core.entities.Sector;
@@ -32,6 +33,7 @@ public class VentanaInformarEntradasDecorator implements
 	JFrame frame;
 	boolean vender = false;
 	int numeroDeEntrada;
+	EntradaDAO entradaDao = new EntradaDAO();
 	
 	
 	public VentanaInformarEntradasDecorator(JFrame frame){
@@ -42,19 +44,21 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public  boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Integer cantJubilados,Integer cantMenores,Integer cantMayores,String festival) 
+	public  boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Integer cantJubilados,Integer cantMenores,Integer cantMayores,Festival festival) 
 	{
 		int cantLineas = 0;
 		cantLineas += 2;
 		Set<Entrada> entradas = new HashSet<Entrada>();
 		
-		List<Sector> sectores = noche.getEstadio().getSectores();
+		List<Sector> sectores = festival.getEstadio().getSectores();
 		panel = new JPanel(new GridLayout(0, cantLineas));
 		panel.add(new JLabel("Festival :"));
-		panel.add(new JLabel(festival));
+		panel.add(new JLabel(festival.getNombre()));
 		panel.add(new JLabel("Noche:"));
 		panel.add(new JLabel(String.valueOf(noche.getNumero())));
 
+		Vendedor vendedor = new Vendedor();
+		entradas = vendedor.vender(seleccionados, festival, noche, cantJubilados, cantMenores, cantMayores);
 		for (Sector sector : sectores) {
 			if(sector != null){
 				if (seleccionados.containsKey(sector.getColor())) {
@@ -69,6 +73,7 @@ public class VentanaInformarEntradasDecorator implements
 				}
 			}
 		}
+
 		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de la entrada",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		
@@ -88,7 +93,6 @@ public class VentanaInformarEntradasDecorator implements
 	
 	private void imprimirSector(JPanel panel, List<Butaca> butacas,Set<Entrada> entradas,String sector)
 	{
-		EntradaDAO entradaDao = new EntradaDAO();
 		Entrada entrada=null;;
 		for (Butaca butaca : butacas) 
 		{
@@ -100,14 +104,6 @@ public class VentanaInformarEntradasDecorator implements
 							entrada=ent;
 				}
 				panel.add(new JLabel("Precio: $" + entrada.getPrecioFinal()));
-				
-//				NocheDAO nochedao=new NocheDAO();
-//				FestivalDAO fdao=new FestivalDAO();
-//				
-//				fdao.save(entrada.getNoche().getFestival());
-//				nochedao.save(entrada.getNoche());
-				
-				
 				entradaDao.save(entrada);
 			}
 		}

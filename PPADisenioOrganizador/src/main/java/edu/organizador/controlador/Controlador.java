@@ -12,10 +12,12 @@ import edu.core.dao.CategoriaDAO;
 import edu.core.dao.DataReader;
 import edu.core.dao.DataReaderDAO;
 import edu.core.dao.FestivalDAO;
+import edu.core.dao.NocheDAO;
 import edu.core.dao.VendedorDAO;
 import edu.core.entities.Banda;
 import edu.core.entities.Categoria;
 import edu.core.entities.Festival;
+import edu.core.entities.Noche;
 import edu.core.requests.NocheRequest;
 import edu.core.requests.UserValidationRequest;
 import edu.core.utils.Validator;
@@ -28,7 +30,6 @@ import external.utils.TablaOrdenBandas;
 
 public class Controlador {
 	private JFrame frame;
-	private String estadio;
 	private Festival festival = new Festival();
 	List<String> datos = new ArrayList<String>();
 	VentanaAlertDecorator alert = new VentanaAlertDecorator();
@@ -48,11 +49,11 @@ public class Controlador {
     	if(!validator.validateUser(request)){
 			alert.errorid();
 			logIn();
-    	}    	
+    	}  
+    	vendedorDao.close();
     }
 	
 	public void iniciarJuego(){
-		DataReaderDAO dataReader = new DataReader();
 		VentanaInicioDecorator inicio = new VentanaInicioDecorator();
 		inicio.cargarFormulario(festival);
 		FestivalQuery festivalQuery = new FestivalQuery();
@@ -60,17 +61,12 @@ public class Controlador {
 			alert.estadioOcupado();
 			inicio.cargarFormulario(festival);
 		}
+		festivalQuery.close();
 	}
 	
 	public void organizarNoches(){
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
 		festival.setNoches(ventana.seleccionarNoches());
-		insertarNochesOrdenadasAlFestival();
-	}
-
-	private void insertarNochesOrdenadasAlFestival() {
-//		noches
-		
 	}
 
 	public void guardarBanda(List<String> datos) {
@@ -79,11 +75,11 @@ public class Controlador {
 		Banda banda = new Banda(datos.get(0), categoria);
 		BandaDAO bandaDAO = new BandaDAO();
 		bandaDAO.save(banda);	
+		bandaDAO.close();
 	}
 	
 	public void guardarHorariosBanda( List<String> datos){
 		Banda banda = new Banda();
-		BandaDAO bandaDAO = new BandaDAO();
 		int i = 0;
 		
 		while (datos.size()>=i){
@@ -98,9 +94,14 @@ public class Controlador {
 	
 	public void terminarFestival(){
 		FestivalDAO festivalDAO = new FestivalDAO();
+//		NocheDAO nocheDAO = new NocheDAO();
 		VentanaFinal ventanaFinal = new VentanaFinal(festival, frame);
 		ventanaFinal.dibujar();
 		festivalDAO.save(festival);
+//		List<Noche> noches = festival.getNoches();
+//		for (Noche noche : noches) {
+//			nocheDAO.save(noche);
+//		}
 	}
 
 }

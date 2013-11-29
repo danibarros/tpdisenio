@@ -26,6 +26,7 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface, Ac
 
 	}
 	
+	private FestivalDAO festDAO = new FestivalDAO();
 	private JComboBox<String> comboFestival;
 	private JComboBox<String> comboNoche;
 
@@ -42,7 +43,6 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface, Ac
 		//@SuppressWarnings({ "unchecked", "rawtypes" })
 		comboFestival = new JComboBox(itemsFestival.toArray());
 		
-		FestivalDAO festDAO = new FestivalDAO();
 		for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
 			if (noche != null) {
 				itemsNoche.add(String.valueOf(noche.getNumero()));
@@ -115,7 +115,6 @@ public class VentanaFormularioDecorator implements VentanaDecoratorInterface, Ac
 		switch (event) {
 		case "ComboFestivalChange":
 			
-			FestivalDAO festDAO = new FestivalDAO();
 			
 			comboNoche.removeAllItems();
 			for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){

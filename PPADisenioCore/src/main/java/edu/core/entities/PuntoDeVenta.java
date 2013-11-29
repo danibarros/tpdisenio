@@ -3,6 +3,10 @@ package edu.core.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Emiliano
+ *
+ */
 public class PuntoDeVenta extends CentroDeVenta {
 
 	private int idPunto;
@@ -31,6 +35,7 @@ public class PuntoDeVenta extends CentroDeVenta {
 	public void setIdPunto(int idPunto) {
 		this.idPunto = idPunto;
 	}
+
 
 	public Festival getFestival() {
 		return festival;

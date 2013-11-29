@@ -102,9 +102,6 @@ public class VentanaInicioDecorator {
 				Noche noche = new Noche();
 				//noche.setFestival(festival);
 				noche.setFecha( new java.sql.Date(diaCalculado.getTime()));
-				if (cmbEstadios.getSelectedItem() != null) {
-					noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
-				}
 				festival.getNoches().add(noche);
 				cal.add(Calendar.DATE, 1);
 			}

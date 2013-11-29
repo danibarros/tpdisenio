@@ -6,7 +6,7 @@ import java.util.List;
 public class Estadio extends CentroDeVenta {
 	
 	private int IdEstadio;
-	private static List<Sector> sectores ;
+	private List<Sector> sectores ;
 	private String nombre;
 	private Localidad localidad;
 
@@ -48,7 +48,7 @@ public class Estadio extends CentroDeVenta {
 		return 0;
 	}
 
-	public static List<Sector> getSectores() {
+	public List<Sector> getSectores() {
 		return sectores;
 	}
 

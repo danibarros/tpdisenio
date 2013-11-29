@@ -6,7 +6,6 @@ import org.hibernate.Query;
 
 import edu.core.entities.Fila;
 import edu.core.entities.Localidad;
-import edu.core.entities.Provincia;
 import edu.core.entities.Sector;
 
 public class LocalidadDAO extends GenericRepository<Localidad, Integer>{

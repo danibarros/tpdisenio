@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import edu.core.entities.Banda;
 import edu.core.entities.Butaca;
 import edu.core.entities.Categoria;
-import edu.core.entities.Pais;
 
 public class CategoriaDAO extends GenericRepository<Categoria, Integer>{
 	
