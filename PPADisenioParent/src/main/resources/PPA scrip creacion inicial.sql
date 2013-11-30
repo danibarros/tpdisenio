@@ -154,7 +154,6 @@ CREATE TABLE ppa_disenio.Puntos_venta (
 CREATE TABLE ppa_disenio.Entradas (
     entrada_id INTEGER UNSIGNED NOT NULL,
     Noches_noche_id INTEGER UNSIGNED NOT NULL,
-    Puntos_venta_punto_id INTEGER UNSIGNED NOT NULL,
     codigo_barra INTEGER UNSIGNED NOT NULL,
     entrada_fecha DATE NOT NULL,
     entrada_precio FLOAT NOT NULL,
@@ -167,9 +166,6 @@ CREATE TABLE ppa_disenio.Entradas (
     FOREIGN KEY (Noches_noche_id)
         REFERENCES `Noches` (`noche_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (Puntos_venta_punto_id)
-        REFERENCES `Puntos_venta` (`puntos_id`)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE ppa_disenio.Vendedores (
