@@ -43,12 +43,13 @@ import java.awt.Color;
 
 public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		ActionListener {
-	JPanel panel;
-	JFrame frame;
-	Noche noche;
-	Set<Banda> totalBandas;
-	List<Banda> listaBandas;
-	CheckComboBox chkcmbBandas;
+	private JSpinner spinner = new JSpinner();
+	private JPanel panel;
+	private JFrame frame;
+	private Noche noche;
+	private Set<Banda> totalBandas;
+	private List<Banda> listaBandas;
+	private CheckComboBox chkcmbBandas;
 
 	public void formularioNoche(Noche noche, JFrame frame) {
 
@@ -118,10 +119,9 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
 
-		JSpinner spinner = new JSpinner();
 		spinner.setModel(model);
 		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
-
+		
 		grid.add(spinner);
 		panel.add(grid);
 		panel.setSize(500,500);
@@ -155,8 +155,9 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		case "comboBoxChanged":
 			JComboBox cb = (JComboBox) e.getSource();
 			if (cb.getName().equalsIgnoreCase("cmbBandas")) {
-				if (chkcmbBandas.getSelectedItems() != null)
+				if (chkcmbBandas.getSelectedItems() != null){
 					noche.setBandas(sacarDeCheckbox(chkcmbBandas));
+				}
 			}		
 			break;
 			case "Finalizar Diagramacion":

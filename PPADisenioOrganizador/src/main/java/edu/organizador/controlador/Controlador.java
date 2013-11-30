@@ -1,6 +1,8 @@
 package edu.organizador.controlador;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -67,6 +69,19 @@ public class Controlador {
 	public void organizarNoches(){
 		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
 		festival.setNoches(ventana.seleccionarNoches());
+		cargarFechas(festival);
+	}
+	
+	private void cargarFechas(Festival festival){
+		int i = 0;
+		Calendar c = Calendar.getInstance();
+		c.setTime(festival.getFechaInicio());
+		List<Noche> noches = new ArrayList<Noche>();
+		for (Noche noche : noches) {
+			c.add(Calendar.DATE, 1);
+			noche.setFecha(c.getTime());
+			i++;
+		}
 	}
 
 	public void guardarBanda(List<String> datos) {
@@ -97,7 +112,8 @@ public class Controlador {
 //		NocheDAO nocheDAO = new NocheDAO();
 		VentanaFinal ventanaFinal = new VentanaFinal(festival, frame);
 		ventanaFinal.dibujar();
-		festivalDAO.save(festival);
+		System.exit(0);
+//		festivalDAO.save(festival);
 //		List<Noche> noches = festival.getNoches();
 //		for (Noche noche : noches) {
 //			nocheDAO.save(noche);
