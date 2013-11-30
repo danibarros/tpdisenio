@@ -104,7 +104,7 @@ public class VentanaInformarEntradasDecorator implements
 							entrada=ent;
 				}
 				panel.add(new JLabel("Precio: $" + entrada.getPrecioFinal()));
-				entradaDao.save(entrada);
+				//entradaDao.save(entrada);
 			}
 		}
 	}
