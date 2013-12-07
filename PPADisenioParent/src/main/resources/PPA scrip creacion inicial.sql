@@ -1,19 +1,19 @@
 CREATE SCHEMA ppa_disenio;
 
 CREATE TABLE ppa_disenio.Paises (
-    pais_id INTEGER UNSIGNED NOT NULL,
+    pais_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     pais_name VARCHAR(45) NOT NULL,
     PRIMARY KEY (pais_id)
 );
 
 CREATE TABLE ppa_disenio.Categorias (
-    categoria_id INTEGER UNSIGNED NOT NULL,
+    categoria_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     categoria_precio FLOAT NOT NULL,
     PRIMARY KEY (categoria_id)
 );
 
 CREATE TABLE ppa_disenio.Provincias (
-    provincia_id INTEGER UNSIGNED NOT NULL,
+    provincia_id INTEGER UNSIGNED NOT NULL  AUTO_INCREMENT,
     Paises_pais_id INTEGER UNSIGNED NOT NULL,
     provincia_name VARCHAR(45) NOT NULL,
     PRIMARY KEY (provincia_id),
@@ -24,7 +24,7 @@ CREATE TABLE ppa_disenio.Provincias (
 );
 
 CREATE TABLE ppa_disenio.Bandas (
-    banda_id INTEGER UNSIGNED NOT NULL,
+    banda_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Categorias_categoria_id INTEGER UNSIGNED NOT NULL,
     banda_name VARCHAR(20) NOT NULL,
     PRIMARY KEY (banda_id),
@@ -37,7 +37,7 @@ CREATE TABLE ppa_disenio.Bandas (
 
 
 CREATE TABLE ppa_disenio.Localidades (
-    localidad_id INTEGER UNSIGNED NOT NULL,
+    localidad_id INTEGER UNSIGNED NOT NULL  AUTO_INCREMENT,
     Provincias_provincia_id INTEGER UNSIGNED NOT NULL,
     localidad_name VARCHAR(45) NOT NULL,
     PRIMARY KEY (localidad_id),
@@ -48,7 +48,7 @@ CREATE TABLE ppa_disenio.Localidades (
 );
 
 CREATE TABLE ppa_disenio.Estadios (
-    estadio_id INTEGER UNSIGNED NOT NULL,
+    estadio_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Localidades_localidad_id INTEGER UNSIGNED NOT NULL,
     estadio_nombre VARCHAR(45) NOT NULL,
     PRIMARY KEY (estadio_id),
@@ -59,7 +59,7 @@ CREATE TABLE ppa_disenio.Estadios (
 );
 
 CREATE TABLE ppa_disenio.Sectores (
-    sector_id INTEGER UNSIGNED NOT NULL,
+    sector_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Estadios_estadio_id INTEGER UNSIGNED NOT NULL,
     sector_color VARCHAR(20) NOT NULL,
     precio_base FLOAT NOT NULL,
@@ -71,32 +71,30 @@ CREATE TABLE ppa_disenio.Sectores (
 );
 
 CREATE TABLE ppa_disenio.Festival (
-    festival_id INTEGER UNSIGNED NOT NULL,
+    festival_id INTEGER UNSIGNED AUTO_INCREMENT,
     Estadios_estadio_id INTEGER UNSIGNED NOT NULL,
     fecha_inicio DATE,
     fest_nombre varchar(30),
     PRIMARY KEY (festival_id),
-    INDEX Festival_FKIndex1 (Estadios_estadio_id),
     FOREIGN KEY (Estadios_estadio_id)
         REFERENCES Estadios (estadio_id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE ppa_disenio.Noches (
-    noche_id INTEGER UNSIGNED NOT NULL,
+    noche_id INTEGER UNSIGNED AUTO_INCREMENT,
     Festival_festival_id INTEGER UNSIGNED,
     noche_fecha DATE NOT NULL,
     noche_hora_inicio TIME NOT NULL,
     noche_numero INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (noche_id),
-    INDEX Noches_FKIndex2 (Festival_festival_id),
-    FOREIGN KEY (Festival_festival_id)
+    PRIMARY KEY (noche_id)
+  /*  FOREIGN KEY (Festival_festival_id)
         REFERENCES Festival (festival_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE NO ACTION ON UPDATE NO ACTION*/
 );
 
 CREATE TABLE ppa_disenio.Filas (
-    fila_id INTEGER UNSIGNED NOT NULL,
+    fila_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Sectores_sector_id INTEGER UNSIGNED NOT NULL,
     fila_numero INTEGER UNSIGNED NOT NULL,
     precio_base FLOAT NOT NULL,
@@ -108,10 +106,9 @@ CREATE TABLE ppa_disenio.Filas (
 );
 
 CREATE TABLE ppa_disenio.Butacas (
-    butaca_id INTEGER UNSIGNED NOT NULL,
+    butaca_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Filas_fila_id INTEGER UNSIGNED NOT NULL,
     butaca_numero INTEGER UNSIGNED NOT NULL,
-    disponible BOOL NULL,
     PRIMARY KEY (butaca_id),
     INDEX Butacas_FKIndex1 (Filas_fila_id),
     FOREIGN KEY (Filas_fila_id)
@@ -122,7 +119,7 @@ CREATE TABLE ppa_disenio.Butacas (
 
 
 CREATE TABLE ppa_disenio.banda_noche (
-    bano_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+    bano_id INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Noches_noche_id INTEGER UNSIGNED NOT NULL,
     Bandas_banda_id INTEGER UNSIGNED NOT NULL,
     orden INTEGER UNSIGNED NOT NULL,
@@ -131,7 +128,7 @@ CREATE TABLE ppa_disenio.banda_noche (
 );
 
 CREATE TABLE ppa_disenio.Puntos_venta (
-    puntos_id INTEGER UNSIGNED NOT NULL,
+    puntos_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Localidades_localidad_id INTEGER UNSIGNED NOT NULL,
     punto_name VARCHAR(50) NOT NULL,
     punto_direccion VARCHAR(45) NULL,
@@ -146,7 +143,7 @@ CREATE TABLE ppa_disenio.Puntos_venta (
 );
 
 CREATE TABLE ppa_disenio.Entradas (
-    entrada_id INTEGER UNSIGNED NOT NULL,
+    entrada_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     Noches_noche_id INTEGER UNSIGNED NOT NULL,
     codigo_barra INTEGER UNSIGNED NOT NULL,
     entrada_fecha DATE NOT NULL,
@@ -163,7 +160,7 @@ CREATE TABLE ppa_disenio.Entradas (
 );
 
 CREATE TABLE ppa_disenio.Vendedores (
-    vendedor_id integer unsigned primary key,
+    vendedor_id integer unsigned primary key AUTO_INCREMENT,
     vendedor_nombre varchar(50),
     vendedor_user varchar(15) not null,
     vendedor_pass varchar(15) not null,
@@ -176,7 +173,7 @@ CREATE TABLE ppa_disenio.Vendedores (
 );
 
 CREATE TABLE ppa_disenio.Organizadores (
-    orga_id integer unsigned primary key,
+    orga_id integer unsigned primary key AUTO_INCREMENT,
     orga_nombre varchar(50),
     orga_user varchar(15) not null,
     orga_pass varchar(15) not null,
@@ -188,144 +185,171 @@ CREATE TABLE ppa_disenio.Organizadores (
         on delete no action
 );
 
-INSERT INTO ppa_disenio.paises (pais_id,pais_name) values (0,'Argentina');
+INSERT INTO ppa_disenio.paises (pais_name) values ('Argentina');
 /*provincias*/
-INSERT INTO ppa_disenio.provincias (provincia_id,Paises_pais_id,provincia_name)
-VALUES (0,0,'Buenos Aires') ;
-insert into ppa_disenio.provincias values (1,0,'CABA'); 
+INSERT INTO ppa_disenio.provincias (Paises_pais_id,provincia_name)
+VALUES (1,'Buenos Aires') ;
+insert into ppa_disenio.provincias (Paises_pais_id,provincia_name)
+ values (1,'CABA'); 
 /*localidades*/
-INSERT INTO ppa_disenio.localidades (localidad_id,Provincias_provincia_id,localidad_name) 
-VALUES (0,0,'Banfield');
-INSERT INTO ppa_disenio.localidades values (1,0,'CABA'); 
+INSERT INTO ppa_disenio.localidades (Provincias_provincia_id,localidad_name) 
+VALUES (1,'Banfield');
+INSERT INTO ppa_disenio.localidades (Provincias_provincia_id,localidad_name) 
+values (2,'CABA'); 
 /*estadios*/
-INSERT INTO ppa_disenio.estadios (estadio_id,Localidades_localidad_id,estadio_nombre)
-values (0,0,'Lanu');
+INSERT INTO ppa_disenio.estadios (Localidades_localidad_id,estadio_nombre)
+values (1,'Lanu');
 	/* Sectores Lanu */
-	insert into ppa_disenio.Sectores values (0,0,'Verde',30.0);
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (1,'Verde',30.0);
 		/* filas sector verde */
-		insert into ppa_disenio.filas values (0,0,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (1,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (0,0,1,true);
-			insert into ppa_disenio.butacas values (1,0,2,true);
-			insert into ppa_disenio.butacas values (2,0,3,true);
-			insert into ppa_disenio.butacas values (3,0,4,true);
-			insert into ppa_disenio.butacas values (4,0,5,true);
-	insert into ppa_disenio.Sectores values (1,0,'Azul',60.0);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (1,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero)  values (1,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero)  values (1,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero)  values (1,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero)  values (1,5);
+
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (1,'Azul',60.0);
 		/* filas sector azul */
-		insert into ppa_disenio.filas values (1,1,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (2,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (5,1,1,true);
-			insert into ppa_disenio.butacas values (6,1,2,true);
-			insert into ppa_disenio.butacas values (7,1,3,true);
-			insert into ppa_disenio.butacas values (8,1,4,true);
-			insert into ppa_disenio.butacas values (9,1,5,true);
-	insert into ppa_disenio.Sectores values (2,0,'Dorado',120.0);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (2,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (2,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (2,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (2,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (2,5);
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (1,'Dorado',120.0);
 		/* filas sector dorado */
-		insert into ppa_disenio.filas values (2,2,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (3,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (10,2,1,true);
-			insert into ppa_disenio.butacas values (11,2,2,true);
-			insert into ppa_disenio.butacas values (12,2,3,true);
-			insert into ppa_disenio.butacas values (13,2,4,true);
-			insert into ppa_disenio.butacas values (14,2,5,true);
-insert into ppa_disenio.estadios values (1,1,'River'); 
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (3,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (3,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (3,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (3,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (3,5);
+
+
+insert into ppa_disenio.estadios (Localidades_localidad_id,estadio_nombre) values (2,'River');
 	/* Sectores River */
-	insert into ppa_disenio.Sectores values (3,1,'Rojo',50.0);
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (2,'Rojo',50.0);
 		/* filas sector rojo */
-		insert into ppa_disenio.filas values (3,3,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (4,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (15,3,1,true);
-			insert into ppa_disenio.butacas values (16,3,2,true);
-			insert into ppa_disenio.butacas values (17,3,3,true);
-			insert into ppa_disenio.butacas values (18,3,4,true);
-			insert into ppa_disenio.butacas values (19,3,5,true);
-	insert into ppa_disenio.Sectores values (4,1,'Blanco',80.0);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (4,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (4,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (4,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (4,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (4,5);
+
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (2,'Blanco',80.0);
 		/* filas sector blanco */
-		insert into ppa_disenio.filas values (4,4,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (5,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (20,4,1,true);
-			insert into ppa_disenio.butacas values (21,4,2,true);
-			insert into ppa_disenio.butacas values (22,4,3,true);
-			insert into ppa_disenio.butacas values (23,4,4,true);
-			insert into ppa_disenio.butacas values (24,4,5,true);
-	insert into ppa_disenio.Sectores values (5,1,'Plateado',150.0);
+			insert into ppa_disenio.butacas(Filas_fila_id,butaca_numero)  values (5,1);
+			insert into ppa_disenio.butacas(Filas_fila_id,butaca_numero)  values (5,2);
+			insert into ppa_disenio.butacas(Filas_fila_id,butaca_numero)  values (5,3);
+			insert into ppa_disenio.butacas(Filas_fila_id,butaca_numero)  values (5,4);
+			insert into ppa_disenio.butacas(Filas_fila_id,butaca_numero)  values (5,5);
+
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (2,'Plateado',150.0);
 		/* filas sector plateado */
-		insert into ppa_disenio.filas values (5,5,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (6,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (25,5,1,true);
-			insert into ppa_disenio.butacas values (26,5,2,true);
-			insert into ppa_disenio.butacas values (27,5,3,true);
-			insert into ppa_disenio.butacas values (28,5,4,true);
-			insert into ppa_disenio.butacas values (29,5,5,true);
-insert into ppa_disenio.estadios values (2,1,'Obras'); 
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (6,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (6,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (6,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (6,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (6,5);
+
+insert into ppa_disenio.estadios (Localidades_localidad_id,estadio_nombre) values (2,'Obras'); 
 	/* Sectores Obras */
-	insert into ppa_disenio.Sectores values (6,2,'Amarillo',60.0);
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (3,'Amarillo',60.0);
 		/* filas sector amarillo */
-		insert into ppa_disenio.filas values (6,6,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (7,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (30,6,1,true);
-			insert into ppa_disenio.butacas values (31,6,2,true);
-			insert into ppa_disenio.butacas values (32,6,3,true);
-			insert into ppa_disenio.butacas values (33,6,4,true);
-			insert into ppa_disenio.butacas values (34,6,5,true);
-	insert into ppa_disenio.Sectores values (7,2,'Naranja',85.0);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (7,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (7,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (7,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (7,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (7,5);
+
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (3,'Naranja',85.0);
 		/* filas sector naraja */
-		insert into ppa_disenio.filas values (7,7,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (8,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (35,7,1,true);
-			insert into ppa_disenio.butacas values (36,7,2,true);
-			insert into ppa_disenio.butacas values (37,7,3,true);
-			insert into ppa_disenio.butacas values (38,7,4,true);
-			insert into ppa_disenio.butacas values (39,7,5,true);
-	insert into ppa_disenio.Sectores values (8,2,'Oro',170.0);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (8,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (8,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (8,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (8,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (8,5);
+
+	insert into ppa_disenio.Sectores (Estadios_estadio_id,sector_color,precio_base) values (3,'Oro',170.0);
 		/* filas sector oro */
-		insert into ppa_disenio.filas values (8,8,0,30.0);
+		insert into ppa_disenio.filas (Sectores_sector_id,fila_numero,precio_base) values (8,1,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (40,8,1,true);
-			insert into ppa_disenio.butacas values (41,8,2,true);
-			insert into ppa_disenio.butacas values (42,8,3,true);
-			insert into ppa_disenio.butacas values (43,8,4,true);
-			insert into ppa_disenio.butacas values (44,8,5,true);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (9,1);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (9,2);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (9,3);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (9,4);
+			insert into ppa_disenio.butacas (Filas_fila_id,butaca_numero) values (9,5);
 
 /* categorias */
-insert into ppa_disenio.categorias values (0,0);
-insert into ppa_disenio.categorias values (1,50);
-insert into ppa_disenio.categorias values (2,100);
-insert into ppa_disenio.categorias values (3,200);
+insert into ppa_disenio.categorias (categoria_precio) values (0);
+insert into ppa_disenio.categorias (categoria_precio) values (50);
+insert into ppa_disenio.categorias (categoria_precio) values (100);
+insert into ppa_disenio.categorias (categoria_precio) values (200);
 /*bandas*/
-insert into ppa_disenio.bandas values (0,3,'Black Sabbat');
-insert into ppa_disenio.bandas values (1,3,'Metallica');
-insert into ppa_disenio.bandas values (2,2,'Almafuerte');
-insert into ppa_disenio.bandas values (3,2,'Rata Blanca');
-insert into ppa_disenio.bandas values (4,1,'Tren Loco');
-insert into ppa_disenio.bandas values (5,2,'Damas Gratis');
-insert into ppa_disenio.bandas values (6,3,'Sonora Dinamita');
-insert into ppa_disenio.bandas values (7,2,'La Liga');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (3,'Black Sabbat');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (3,'Metallica');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (2,'Almafuerte');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (2,'Rata Blanca');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (1,'Tren Loco');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (2,'Damas Gratis');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (3,'Sonora Dinamita');
+insert into ppa_disenio.bandas (Categorias_categoria_id,banda_name) values (2,'La Liga');
 
 /* festvales */
-insert into ppa_disenio.festival values (0,1,'2013-12-18','Isenbeck Cumbia'); 
+insert into ppa_disenio.festival (Estadios_estadio_id,fecha_inicio,fest_nombre) values (2,'2013-12-18','Isenbeck Cumbia'); 
 /* puntos de venta */
-insert into ppa_disenio.puntos_venta values (0,0,'estadio','direccion estadio',0); 
+insert into ppa_disenio.puntos_venta (Localidades_localidad_id,punto_name,punto_direccion,punto_fest_id) values (2,'estadio','direccion estadio',1); 
 
 /* noches de "Isenbeck Cumbia" */
-insert into ppa_disenio.noches values (0,0,'2013-12-18','20:00',1);
-insert into ppa_disenio.noches values (1,0,'2013-12-19','20:00',2);
+insert into ppa_disenio.noches (Festival_festival_id,noche_fecha,noche_hora_inicio,noche_numero) 
+values (1,'2013-12-18','20:00',1);
+insert into ppa_disenio.noches (Festival_festival_id,noche_fecha,noche_hora_inicio,noche_numero) 
+values (1,'2013-12-19','20:00',2); 
 
 /* bandas noche 1 "Isenbeck Cumbia" */
-insert into ppa_disenio.banda_noche values (0,0,7,0);
-insert into ppa_disenio.banda_noche values (1,0,5,1);
+insert into ppa_disenio.banda_noche (Noches_noche_id,bandas_banda_id,orden) values (1,7,1);
+insert into ppa_disenio.banda_noche (Noches_noche_id,bandas_banda_id,orden) values (1,5,2);
 /* bandas noche 2 "Isenbeck Cumbia" */
-insert into ppa_disenio.banda_noche values (2,1,6,0);
+insert into ppa_disenio.banda_noche (Noches_noche_id,bandas_banda_id,orden) values (2,6,1);
 
 /* vendedores */
-insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',0);
-insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',0);
-insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',0);
-insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',0);
-insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',0);
 
-insert into ppa_disenio.organizadores values (0,'Diego','diegob','bugaboo',0);
-insert into ppa_disenio.organizadores values (1,'Dani','danib','bugaboo',0);
-insert into ppa_disenio.organizadores values (2,'Ger','gerb','bugaboo',0);
-insert into ppa_disenio.organizadores values (3,'Emi','emic','bugaboo',0);
-insert into ppa_disenio.organizadores values (4,'Nacho','nachov','bugaboo',0);
+
+insert into ppa_disenio.vendedores (vendedor_nombre,vendedor_user,vendedor_pass,punto_venta_id) 
+values ('Diego Barchiesi','diegob','bugaboo',1);
+insert into ppa_disenio.vendedores (vendedor_nombre,vendedor_user,vendedor_pass,punto_venta_id) 
+values ('Dani Barros','danib','bugaboo',1);
+insert into ppa_disenio.vendedores (vendedor_nombre,vendedor_user,vendedor_pass,punto_venta_id) 
+values ('Ger Berra','gerb','bugaboo',1);
+insert into ppa_disenio.vendedores (vendedor_nombre,vendedor_user,vendedor_pass,punto_venta_id) 
+values ('Emi Cortese','emic','bugaboo',1);
+insert into ppa_disenio.vendedores (vendedor_nombre,vendedor_user,vendedor_pass,punto_venta_id) 
+values ('Nacho Varela','nachov','bugaboo',1);
+
+insert into ppa_disenio.organizadores (orga_nombre,orga_user,orga_pass,orga_fest_id) 
+values ('Diego Barchiesi','diegob','bugaboo',1);
+insert into ppa_disenio.organizadores (orga_nombre,orga_user,orga_pass,orga_fest_id) 
+values ('Dani Barros','danib','bugaboo',1);
+insert into ppa_disenio.organizadores (orga_nombre,orga_user,orga_pass,orga_fest_id) 
+values ('Ger Berra','gerb','bugaboo',1);
+insert into ppa_disenio.organizadores (orga_nombre,orga_user,orga_pass,orga_fest_id) 
+values ('Emi Cortese','emic','bugaboo',1);
+insert into ppa_disenio.organizadores (orga_nombre,orga_user,orga_pass,orga_fest_id) 
+values ('Nacho Varela','nachov','bugaboo',1);
+
+select * from festival;
+select * from noches;
