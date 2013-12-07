@@ -84,17 +84,12 @@ CREATE TABLE ppa_disenio.Festival (
 
 CREATE TABLE ppa_disenio.Noches (
     noche_id INTEGER UNSIGNED NOT NULL,
-    Festival_festival_id INTEGER UNSIGNED NOT NULL,
-    Estadios_estadio_id INTEGER UNSIGNED NOT NULL,
+    Festival_festival_id INTEGER UNSIGNED,
     noche_fecha DATE NOT NULL,
     noche_hora_inicio TIME NOT NULL,
     noche_numero INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (noche_id),
-    INDEX Noches_FKIndex1 (Estadios_estadio_id),
     INDEX Noches_FKIndex2 (Festival_festival_id),
-    FOREIGN KEY (Estadios_estadio_id)
-        REFERENCES Estadios (estadio_id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (Festival_festival_id)
         REFERENCES Festival (festival_id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -150,7 +145,6 @@ CREATE TABLE ppa_disenio.Puntos_venta (
     
 );
 
-
 CREATE TABLE ppa_disenio.Entradas (
     entrada_id INTEGER UNSIGNED NOT NULL,
     Noches_noche_id INTEGER UNSIGNED NOT NULL,
@@ -165,7 +159,7 @@ CREATE TABLE ppa_disenio.Entradas (
     INDEX Entradas_FKIndex1 (Noches_noche_id),
     FOREIGN KEY (Noches_noche_id)
         REFERENCES `Noches` (`noche_id`)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE ppa_disenio.Vendedores (
@@ -314,8 +308,8 @@ insert into ppa_disenio.festival values (0,1,'2013-12-18','Isenbeck Cumbia');
 insert into ppa_disenio.puntos_venta values (0,0,'estadio','direccion estadio',0); 
 
 /* noches de "Isenbeck Cumbia" */
-insert into ppa_disenio.noches values (0,0,1,'2013-12-18','20:00',1);
-insert into ppa_disenio.noches values (1,0,1,'2013-12-19','20:00',2);
+insert into ppa_disenio.noches values (0,0,'2013-12-18','20:00',1);
+insert into ppa_disenio.noches values (1,0,'2013-12-19','20:00',2);
 
 /* bandas noche 1 "Isenbeck Cumbia" */
 insert into ppa_disenio.banda_noche values (0,0,7,0);

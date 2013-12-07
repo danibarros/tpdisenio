@@ -35,7 +35,6 @@ public class Controlador {
 	private Festival festival = new Festival();
 	List<String> datos = new ArrayList<String>();
 	VentanaAlertDecorator alert = new VentanaAlertDecorator();
-	private List<NocheRequest> noches;
 
 	public Controlador(JFrame frame) {
 		this.frame = frame;
@@ -52,7 +51,6 @@ public class Controlador {
 			alert.errorid();
 			logIn();
     	}  
-    	vendedorDao.close();
     }
 	
 	public void iniciarJuego(){
@@ -67,21 +65,8 @@ public class Controlador {
 	}
 	
 	public void organizarNoches(){
-		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival.getNoches().size(), frame);
-		festival.setNoches(ventana.seleccionarNoches());
-		cargarFechas(festival);
-	}
-	
-	private void cargarFechas(Festival festival){
-		int i = 0;
-		Calendar c = Calendar.getInstance();
-		c.setTime(festival.getFechaInicio());
-		List<Noche> noches = new ArrayList<Noche>();
-		for (Noche noche : noches) {
-			c.add(Calendar.DATE, 1);
-			noche.setFecha(c.getTime());
-			i++;
-		}
+		VentanaConNochesDecorator ventana = new VentanaConNochesDecorator(festival, frame);
+		ventana.seleccionarNoches();
 	}
 
 	public void guardarBanda(List<String> datos) {
@@ -90,7 +75,6 @@ public class Controlador {
 		Banda banda = new Banda(datos.get(0), categoria);
 		BandaDAO bandaDAO = new BandaDAO();
 		bandaDAO.save(banda);	
-		bandaDAO.close();
 	}
 	
 	public void guardarHorariosBanda( List<String> datos){
@@ -109,15 +93,10 @@ public class Controlador {
 	
 	public void terminarFestival(){
 		FestivalDAO festivalDAO = new FestivalDAO();
-//		NocheDAO nocheDAO = new NocheDAO();
 		VentanaFinal ventanaFinal = new VentanaFinal(festival, frame);
 		ventanaFinal.dibujar();
-		System.exit(0);
-//		festivalDAO.save(festival);
-//		List<Noche> noches = festival.getNoches();
-//		for (Noche noche : noches) {
-//			nocheDAO.save(noche);
-//		}
+		festivalDAO.save(festival);
+
 	}
 
 }

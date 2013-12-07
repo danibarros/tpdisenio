@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
@@ -40,14 +43,16 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 	
 	
 
-	public VentanaConNochesDecorator(int cantNoches, JFrame frame) {
-		int i;
+	public VentanaConNochesDecorator(Festival festival, JFrame frame) {
+		int i = 0;
 		this.frame = frame;
-		
-		for(i=0;i<cantNoches;i++){
-			Noche noche = new Noche();
+		this.listaNoches =  festival.getNoches();
+		Calendar cal = Calendar.getInstance();
+		for(Noche noche: listaNoches){
 			NocheRequest nocheRequest = new NocheRequest();
-			noche.setNumero(i + 1);
+			noche.setNumero(i++);
+			Time time = new Time(cal.getTime().getHours(), cal.getTime().getMinutes(), cal.getTime().getSeconds());
+			noche.setHoraInicio(time);
 			comboNoches.addItem(String.valueOf(noche.getNumero()));	
 			nocheRequest.setNoche(noche);
 			noches.add(nocheRequest);
@@ -59,7 +64,7 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 
 	}
 
-	public List<Noche> seleccionarNoches() {
+	public void seleccionarNoches() {
 		JPanel pnlPrincipal = new JPanel();
 		JPanel pnlBottom = new JPanel();
 		Color c = new Color(112, 173, 208);
@@ -114,8 +119,6 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 		frame.getContentPane().removeAll();
 		ordenarBandas();
 		
-		return listaNoches;
-		
 	}
 
 	private void ordenarBandas() {
@@ -131,7 +134,9 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			}
 			List<Banda> listaBandas = new ArrayList<Banda>(bandasOrdenadas.values());
 			request.getNoche().setBandas(listaBandas);
-			listaNoches.add(request.getNoche());
+			if(listaNoches.contains(request.getNoche())){
+				listaNoches.get(listaNoches.indexOf(request.getNoche())).setBandas(request.getNoche().getBandas());
+			}
 		}
 		bandas=null;	
 	}

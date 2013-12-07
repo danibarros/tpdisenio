@@ -8,8 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -120,7 +122,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		model.setCalendarField(Calendar.MINUTE);
 
 		spinner.setModel(model);
-		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm a"));
+		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm"));
 		
 		grid.add(spinner);
 		panel.add(grid);
@@ -157,6 +159,12 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			if (cb.getName().equalsIgnoreCase("cmbBandas")) {
 				if (chkcmbBandas.getSelectedItems() != null){
 					noche.setBandas(sacarDeCheckbox(chkcmbBandas));
+					Date d = (Date)spinner.getValue();
+					   Calendar c = Calendar.getInstance();
+					   c.setTime(d);
+					   c.get(Calendar.HOUR);
+					   c.get(Calendar.MINUTE);
+					noche.setHoraInicio(new java.sql.Time(d.getTime()));
 				}
 			}		
 			break;

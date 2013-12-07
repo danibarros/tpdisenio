@@ -82,16 +82,14 @@ public class VentanaInicioDecorator {
 				this.cargarFormulario(festival);
 			}
 
-			Date date =  new Date(dteFechaInicio.getDate().getTime());
+			Date date = dteFechaInicio.getDate();
 			festival.setNombre(txtNombreFestival.getText());
-			festival.setFechaInicio(date);
 			
 			int cantDias = Integer.parseInt(txtDuracionDias.getText().trim());
 
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
-			Date diaCalculado = cal.getTime();
-			festival.setFechaInicio( new java.sql.Date(diaCalculado.getTime()));
+			festival.setFechaInicio(new java.sql.Date(cal.getTime().getTime()));
 			listaEstadios = new ArrayList<Estadio>(totalEstadios);
 			
 			if (cmbEstadios.getSelectedItem() != null) {
@@ -100,8 +98,7 @@ public class VentanaInicioDecorator {
 
 			for (int i = 0; i < cantDias; i++) {
 				Noche noche = new Noche();
-				//noche.setFestival(festival);
-				noche.setFecha( new java.sql.Date(diaCalculado.getTime()));
+				noche.setFecha(new java.sql.Date(cal.getTime().getTime()));
 				festival.getNoches().add(noche);
 				cal.add(Calendar.DATE, 1);
 			}
