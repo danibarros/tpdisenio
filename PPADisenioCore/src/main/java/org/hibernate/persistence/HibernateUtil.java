@@ -1,6 +1,7 @@
 package org.hibernate.persistence;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -9,7 +10,8 @@ import org.hibernate.service.ServiceRegistryBuilder;
 	public class HibernateUtil {
 
 	    private static final SessionFactory sessionFactory = buildSessionFactory();
-
+	    private static Session session = null;
+	    
 	    private static SessionFactory buildSessionFactory() {
 	        try {
 	            // Create the SessionFactory from hibernate.cfg.xml
@@ -42,6 +44,13 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 	    public static SessionFactory getSessionFactory() {
 	        return sessionFactory;
+	    }
+	    
+	    public static Session getSession() {
+	    	if (session == null){
+	    		session = sessionFactory.openSession();
+	    	}
+	        return session;
 	    }
 
 	}

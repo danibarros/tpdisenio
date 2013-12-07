@@ -14,8 +14,7 @@ import org.hibernate.persistence.HibernateUtil;
 
 public abstract class GenericRepository<T,ID extends Serializable> implements IGenericRepository<T,ID> {
 
-	protected SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	protected static Session session;
+	protected static Session session =  HibernateUtil.getSession();
 	
 	@SuppressWarnings("unchecked")
 	public Class<T> entityClass = getDomainClass();
@@ -31,7 +30,6 @@ public abstract class GenericRepository<T,ID extends Serializable> implements IG
 	}
 
 	public GenericRepository() {
-		session = sessionFactory.openSession();
     }
 
 	public T load(ID id) throws Exception

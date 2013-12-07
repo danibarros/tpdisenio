@@ -26,6 +26,14 @@ public class NocheDAO extends GenericRepository<Noche, Integer> {
 		return result;
 	}
 	
+	public int getUltimaNoche(){
+		String sql = "Select Max(noche_id) "
+				+ " from ppa_disenio.noches ";
+		Query query = session.createSQLQuery(sql);
+		int result = (Integer) query.list().get(0);
+		return result;
+	}
+	
 	public Noche getNocheById(Integer id){
 		return (Noche) session.get(Noche.class, id);
 	}

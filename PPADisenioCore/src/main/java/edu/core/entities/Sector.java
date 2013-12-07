@@ -8,7 +8,6 @@ public class Sector {
 	private int idSector;
 	private List<Fila> filas ;
 	private float precioSector;
-	private Estadio estadio;
 	private String color;
 	
 	public Sector(){
@@ -30,16 +29,6 @@ public class Sector {
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-	public Estadio getEstadio() {
-		return estadio;
-	}
-
-	public void setEstadio(Estadio estadio) {
-		this.estadio = estadio;
-	}
-
-	
 	
 	public Sector(String color, List<Fila> filas, int precioSector) {
 		this.filas = filas;

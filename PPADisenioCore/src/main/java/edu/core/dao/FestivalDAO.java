@@ -38,6 +38,14 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 		return result;
 	}
 	
+	public int getUltimoFestival(){
+		String sql = "Select Max(festival_id) "
+				+ " from ppa_disenio.festival ";
+		Query query = session.createSQLQuery(sql);
+		int result = (Integer) query.list().get(0);
+		return result;
+	}
+	
 	public void commit(){
         session.flush();
         session.clear();

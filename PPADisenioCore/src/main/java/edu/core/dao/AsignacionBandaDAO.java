@@ -14,8 +14,6 @@ public class AsignacionBandaDAO extends GenericRepository<AsignacionBanda, Integ
 		query.setLong("idNoche", idNoche);
 		AsignacionBanda asignacion = (AsignacionBanda) query.uniqueResult();
 		
-		sessionFactory.getCurrentSession().clear();
-		
 		return (AsignacionBanda) asignacion;
 	}
 }

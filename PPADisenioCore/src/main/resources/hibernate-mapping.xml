@@ -8,7 +8,7 @@
 	<class name="edu.core.entities.Vendedor" table="vendedores">		    
 		<id name="idVendedor" type="java.lang.Integer">
 			<column name="vendedor_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="nombre" type="string">
 			<column name="vendedor_nombre" />
@@ -27,7 +27,7 @@
 	<class name="edu.core.entities.Localidad" table="localidades">
 		<id name="idLocalidad" type="java.lang.Integer">
 			<column name="localidad_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="nombre" type="string">
 			<column name="localidad_name" />
@@ -37,13 +37,13 @@
 	<class name="edu.core.entities.Festival" table="festival">
 		<id name="idFestival" type="java.lang.Integer">
 			<column name="festival_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="nombre" column="fest_nombre" type="java.lang.String" />
 		<property name="fechaInicio" column="fecha_inicio" type="java.sql.Date" />
-		<many-to-one name="estadio" cascade="all" class="edu.core.entities.Estadio"
-			column="Estadios_estadio_id" lazy="false" fetch="select"/>
-		<list name="noches" table="noches" cascade="all" lazy="false" fetch="select">
+		<many-to-one name="estadio" class="edu.core.entities.Estadio"
+			column="Estadios_estadio_id" fetch="select"/>
+		<list name="noches" table="noches" cascade="all" fetch="select">
 			<key column="Festival_festival_id" />
 			<list-index column="noche_id" />
 			<one-to-many class="edu.core.entities.Noche" />
@@ -53,7 +53,7 @@
 	<class name="edu.core.entities.Noche" table="noches">
 		<id name="idNoche" type="java.lang.Integer">
 			<column name="noche_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="fecha" column="noche_fecha" type="java.sql.Date" />
 		<property name="horaInicio" column="noche_hora_inicio" type="java.sql.Time" />
@@ -63,12 +63,12 @@
 	<class name="edu.core.entities.Estadio" table="estadios">
 		<id name="idEstadio" type="java.lang.Integer">
 			<column name="estadio_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<many-to-one name="localidad" class="edu.core.entities.Localidad"
 			column="Localidades_localidad_id" lazy="false" fetch="select"/>
 		<property name="nombre" column="estadio_nombre" type="java.lang.String" />
-		<list name="sectores" table="sectores" lazy="false" fetch="select">
+		<list name="sectores" table="sectores" fetch="select">
 			<key column="Estadios_estadio_id" />
 			<list-index column="sector_id" />
 			<one-to-many class="edu.core.entities.Sector" />
@@ -78,14 +78,9 @@
 	<class name="edu.core.entities.PuntoDeVenta" table="puntos_venta">
 		<id name="idPunto" type="java.lang.Integer">
 			<column name="puntos_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		
-		<list name="entradas" table="entradas" lazy="false" fetch="select">
-			<key column="Puntos_venta_punto_id" />
-			<list-index column="entrada_id" />
-			<one-to-many class="edu.core.entities.Entrada" />
-		</list>
 		<many-to-one name="localidad" class="edu.core.entities.Localidad"
 			column="Localidades_localidad_id" />
 		<property name="nombre" column="punto_name" type="java.lang.String" />
@@ -97,7 +92,7 @@
 	<class name="edu.core.entities.Sector" table="Sectores">
 		<id name="idSector" type="java.lang.Integer">
 			<column name="sector_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="color" column="sector_color" type="string" />
 		<property name="precioSector" column="precio_base" type="java.lang.Float" />
@@ -106,14 +101,12 @@
 			<list-index column="fila_id" />
 			<one-to-many class="edu.core.entities.Fila" />
 		</list>
-		<many-to-one name="estadio" class="edu.core.entities.Estadio"
-			column="Estadios_estadio_id" lazy="false" fetch="select" />
 	</class>
 
 	<class name="edu.core.entities.Fila" table="filas">
 		<id name="idFila" type="java.lang.Integer">
 			<column name="fila_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="numero" column="fila_numero" type="java.lang.Integer" />
 		<property name="precioFila" column="precio_base" type="java.lang.Float" />
@@ -123,26 +116,26 @@
 			<one-to-many class="edu.core.entities.Butaca" />
 		</list>
 		<many-to-one name="sector" class="edu.core.entities.Sector"
-			column="Sectores_sector_id" lazy="false" fetch="select" />
+			column="Sectores_sector_id" lazy="false" fetch="select"/>
 	</class>
 
 	<class name="edu.core.entities.Butaca" table="butacas">
 		<id name="idButaca" type="java.lang.Integer">
 			<column name="butaca_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="numero" column="butaca_numero" type="java.lang.Integer" />
 		<property name="disponible" column="disponible" type="java.lang.Boolean" />
 		<many-to-one name="fila" class="edu.core.entities.Fila"
-			column="Filas_fila_id" lazy="false" fetch="select" />
+			column="Filas_fila_id" lazy="false" fetch="select"/>
 	</class>
 
 	<class name="edu.core.entities.Entrada" table="entradas">
 		<id name="numeroDeEntrada" type="java.lang.Integer">
 			<column name="entrada_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
-		<many-to-one name="noche" cascade="all" class="edu.core.entities.Noche"
+		<many-to-one name="noche" class="edu.core.entities.Noche"
 			column="Noches_noche_id" lazy="false" fetch="select" />
 		<property name="codigoDeBarra" column="codigo_barra" type="java.lang.Integer" />
 		<property name="precio" column="entrada_precio" type="java.lang.Float" />
@@ -156,7 +149,7 @@
  	<class name="edu.core.entities.AsignacionBanda" table="banda_noche">
 		<id name="idAsignacion" type="java.lang.Integer">
 			<column name="bano_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="orden" column="orden" type="java.lang.Integer" />
 		<many-to-one name="banda" class="edu.core.entities.Banda"
@@ -171,7 +164,7 @@
 	<class name="edu.core.entities.Banda" table="bandas">
 		<id name="idBanda" type="java.lang.Integer">
 			<column name="banda_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="nombre" column="banda_name" type="string" />
 		<many-to-one name="categoria" class="edu.core.entities.Categoria"
@@ -181,7 +174,7 @@
 	<class name="edu.core.entities.Categoria" table="categorias">
 		<id name="idCategoria" type="java.lang.Integer">
 			<column name="categoria_id" precision="5" scale="0" />
-			<generator class="native" />
+			<generator class="increment" />
 		</id>
 		<property name="precio" column="categoria_precio" type="java.lang.Float" />
 	</class>
