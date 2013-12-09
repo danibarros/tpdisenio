@@ -104,7 +104,7 @@ public class VentanaInicioDecorator {
 			}
 			
 		} else {
-			int resultado = JOptionPane.showConfirmDialog(null, null, "Quiere salir", 
+			int resultado = JOptionPane.showConfirmDialog(null, "¿Esta seguro de querer salir?", "Quiere salir", 
 			JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 			if (resultado == JOptionPane.OK_OPTION) {
 				System.exit(0);
