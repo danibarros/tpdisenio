@@ -93,9 +93,17 @@ public class Controlador {
 	
 	public void terminarFestival(){
 		FestivalDAO festivalDAO = new FestivalDAO();
+		NocheDAO nocheDAO = new NocheDAO();
 		VentanaFinal ventanaFinal = new VentanaFinal(festival, frame);
 		ventanaFinal.dibujar();
-		festivalDAO.save(festival);
+		festival.setIdFestival(festivalDAO.getUltimoFestival() + 1);
+		int i = nocheDAO.getUltimaNoche() + 1;
+		for (Noche noche : festival.getNoches()) {
+			noche.setIdNoche(i);
+			nocheDAO.save(noche);
+			i++;
+		}
+		festivalDAO.guardar(festival);
 
 	}
 

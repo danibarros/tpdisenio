@@ -57,19 +57,14 @@ public class Controlador {
 	private Set<Banda> bandas;
 	private List<Noche> noches;
 	private List<Festival> festivales;
-	private Festival festivalSeleccionado;
-	private VendedorDAO vendedorDao = new VendedorDAO();
-	
-	private LocalidadDAO ldao = new LocalidadDAO();
-	private FestivalDAO fdao = new FestivalDAO();
-	private EstadioDAO edao = new EstadioDAO();
-	
+	private Festival festivalSeleccionado;	
 	
 	public Controlador(JFrame frame){
 		this.frame = frame;
 	}
 	
     public void logIn(){
+    	VendedorDAO vendedorDao = new VendedorDAO();
     	UserValidationRequest request;
     	VentanaAlertDecorator alert = new VentanaAlertDecorator();
     	Validator validator = new Validator();
@@ -93,6 +88,7 @@ public class Controlador {
 		inicio.cargarFormulario(this.vendedor);
 	}
 	public void pedirDatosIniciales(){
+		FestivalDAO fdao = new FestivalDAO();
 		List<String> datos = new ArrayList<String>();
 		festivales = fdao.getAllFestivales();
 
@@ -113,7 +109,7 @@ public class Controlador {
 	}
 	
 	public void elegirButaca(){
-		
+		FestivalDAO fdao = new FestivalDAO();
 		festivalSeleccionado = fdao.getFestivalByName(festival);
 		
 		for (Festival fest : fdao.getAllFestivales()) {

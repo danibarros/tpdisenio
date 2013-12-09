@@ -15,7 +15,7 @@ public class Festival {
 	public Festival(){
 		this.noches = new ArrayList<Noche>();
 	}
-	
+
 	public int getIdFestival() {
 		return idFestival;
 	}

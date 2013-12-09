@@ -12,7 +12,6 @@ public class Noche {
 	private int idNoche;
 	private List<Banda> bandas;
 	private Time horaInicio;
-
     private Date fecha;
     private int numero;
     
