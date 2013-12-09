@@ -18,111 +18,117 @@ import edu.core.dao.NocheDAO;
 import edu.core.entities.Festival;
 import edu.core.entities.Noche;
 
+public class VentanaFormularioDecorator implements VentanaDecoratorInterface,
+		ActionListener {
 
-public class VentanaFormularioDecorator implements VentanaDecoratorInterface, ActionListener {
-	
 	@Override
 	public void dibujar() {
 
 	}
-	
+
 	private FestivalDAO festDAO = new FestivalDAO();
 	private JComboBox<String> comboFestival;
 	private JComboBox<String> comboNoche;
 
 	public List<String> cargarFormulario(List<Festival> festivales) {
-	
+
 		List<String> itemsFestival = new ArrayList<String>();
 		List<String> itemsNoche = new ArrayList<String>();
 		List<String> datos = new ArrayList<String>();
-		
+
 		for (Festival festival : festivales) {
 			itemsFestival.add(String.valueOf(festival.getNombre()));
 		}
-	
-		//@SuppressWarnings({ "unchecked", "rawtypes" })
+
+		// @SuppressWarnings({ "unchecked", "rawtypes" })
 		comboFestival = new JComboBox(itemsFestival.toArray());
-		
-		for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
+
+		for (Noche noche : festDAO.getFestivalByName(
+				comboFestival.getSelectedItem().toString()).getNoches()) {
 			if (noche != null) {
 				itemsNoche.add(String.valueOf(noche.getNumero()));
 			}
-		};
-		
+		}
+		;
+
 		comboNoche = new JComboBox(itemsNoche.toArray());
-		
+
 		JTextField field1 = new JTextField("");
-		
+
 		JTextField field3 = new JTextField("");
 		JTextField field4 = new JTextField("");
 		JTextField field5 = new JTextField("");
-		
+
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
 		panel.add(new JLabel("Ingrese su nombre y apellido"));
 		panel.add(field1);
 		panel.add(new JLabel("Ingrese Cantidad De Jubilados"));
-    	panel.add(field3);
+		panel.add(field3);
 		panel.add(new JLabel("Ingrese Cantidad De Menores"));
 		panel.add(field4);
-    	panel.add(new JLabel("Ingrese Cantidad De Mayores"));
+		panel.add(new JLabel("Ingrese Cantidad De Mayores"));
 		panel.add(field5);
 		panel.add(new JLabel("Seleccione el festival"));
 		panel.add(comboFestival);
 		panel.add(new JLabel("Seleccione la noche"));
 		panel.add(comboNoche);
-		
-		
+
 		comboFestival.setActionCommand("ComboFestivalChange");
 		comboFestival.addActionListener(this);
-		
-		int result = JOptionPane.showConfirmDialog(null, panel, "Datos de Compra",
-				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		
-		if (result == JOptionPane.OK_OPTION) 
-		{
-			if(field1.getText().equals("")  || field3.getText().equals("") || field4.getText().equals("") || field5.getText().equals("")) 
-			{ 
+
+		int result = JOptionPane.showConfirmDialog(null, panel,
+				"Datos de Compra", JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.PLAIN_MESSAGE);
+
+		if (result == JOptionPane.OK_OPTION) {
+			if (field1.getText().equals("") || field3.getText().equals("")
+					|| field4.getText().equals("")
+					|| field5.getText().equals("")) {
 				datos = null;
 				VentanaAlertDecorator alert = new VentanaAlertDecorator();
 				alert.dibujar();
 				this.cargarFormulario(festivales);
-			}
-			else
-			{
-				
+			} else {
+
 				datos.add(field1.getText());
 				datos.add(field3.getText());
 				datos.add(field4.getText());
 				datos.add(field5.getText());
 				datos.add(itemsNoche.get(comboNoche.getSelectedIndex()));
 				datos.add(itemsFestival.get(comboFestival.getSelectedIndex()));
-				
+
 			}
-		} 
-		else 
-		{
-			datos=null;
-			
+		} else {
+			int resultado = JOptionPane.showConfirmDialog(null,
+					"¿Esta seguro de querer salir?", "Quiere salir",
+					JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+			if (resultado == JOptionPane.OK_OPTION) {
+				datos = null;
+			} else {
+				this.cargarFormulario(festivales);
+			}
 		}
+
 		return datos;
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 
 		String event = e.getActionCommand();
 		switch (event) {
 		case "ComboFestivalChange":
-			
-			
+
 			comboNoche.removeAllItems();
-			for (Noche noche : festDAO.getFestivalByName(comboFestival.getSelectedItem().toString()).getNoches()){
+			for (Noche noche : festDAO.getFestivalByName(
+					comboFestival.getSelectedItem().toString()).getNoches()) {
 				if (noche != null) {
 					comboNoche.addItem(String.valueOf(noche.getNumero()));
 				}
-			};
-			
+			}
+			;
+
 			break;
 
 		default:

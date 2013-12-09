@@ -41,8 +41,14 @@ public class VentanaLoginDecorator {
 				request.setPass(String.valueOf(input));
 			}
 		   }else{
-			System.exit(0);
-		}
+			   int resultado = JOptionPane.showConfirmDialog(null, "¿Esta seguro de querer salir?", "Quiere salir", 
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+						if (resultado == JOptionPane.OK_OPTION) {
+							System.exit(0);
+							}else{
+								this.login();
+							}
+						}
 		return request;
 	}
 	
