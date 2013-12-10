@@ -150,7 +150,6 @@ CREATE TABLE ppa_disenio.Entradas (
     entrada_precio FLOAT NOT NULL,
     entrada_tipo VARCHAR(1) NOT NULL,
     cliente_name VARCHAR(50) NOT NULL,
-    cliente_dni INTEGER UNSIGNED NOT NULL,
     entrada_anticipada BOOL NULL,
     PRIMARY KEY (entrada_id),
     INDEX Entradas_FKIndex1 (Noches_noche_id),
