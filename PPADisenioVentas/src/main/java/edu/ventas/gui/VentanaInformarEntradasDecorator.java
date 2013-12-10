@@ -34,6 +34,7 @@ public class VentanaInformarEntradasDecorator implements
 	boolean vender = false;
 	int numeroDeEntrada;
 	EntradaDAO entradaDao = new EntradaDAO();
+	private Festival festival;
 	
 	
 	public VentanaInformarEntradasDecorator(JFrame frame){
@@ -44,8 +45,9 @@ public class VentanaInformarEntradasDecorator implements
 		// TODO Auto-generated method stub
 	}
 
-	public  boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Integer cantJubilados,Integer cantMenores,Integer cantMayores,Festival festival) 
+	public  boolean informarEntradas(Map<String,List<Butaca>> seleccionados, double precio, Noche noche,Integer cantJubilados,Integer cantMenores,Integer cantMayores,Festival festival,String apeynom) 
 	{
+		this.festival = festival;
 		int cantLineas = 0;
 		cantLineas += 2;
 		Set<Entrada> entradas = new HashSet<Entrada>();
@@ -68,7 +70,7 @@ public class VentanaInformarEntradasDecorator implements
 					cantLineas += 1;
 					
 					imprimirSector(panel, seleccionados.get(sector.getColor()),
-							entradas, sector.getColor());
+							entradas, sector.getColor(), apeynom);
 					
 				}
 			}
@@ -91,9 +93,11 @@ public class VentanaInformarEntradasDecorator implements
 		return 	toReturn;
 	}
 	
-	private void imprimirSector(JPanel panel, List<Butaca> butacas,Set<Entrada> entradas,String sector)
+	private void imprimirSector(JPanel panel, List<Butaca> butacas,Set<Entrada> entradas,String sector,String apeynom)
 	{
-		Entrada entrada=null;;
+		Entrada entrada=null;
+		int i = entradaDao.getMaximo() + 1;
+		
 		for (Butaca butaca : butacas) 
 		{
 			if(butaca.getFila().getSector().getColor() == sector)
@@ -103,8 +107,12 @@ public class VentanaInformarEntradasDecorator implements
 					if (ent.getButaca()==butaca)
 							entrada=ent;
 				}
+				entrada.setNumeroDeEntrada(i);
+				entrada.setClienteNombre(apeynom);
+				entrada.setFecha(festival.getFechaInicio());
 				panel.add(new JLabel("Precio: $" + entrada.getPrecioFinal()));
 				entradaDao.save(entrada);
+				i++;
 			}
 		}
 	}

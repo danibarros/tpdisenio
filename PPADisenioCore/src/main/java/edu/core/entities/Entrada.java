@@ -1,7 +1,7 @@
 package edu.core.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import edu.core.dao.ButacaDAO;
@@ -14,7 +14,7 @@ public class Entrada {
 	private Noche noche;
 	private int numeroDeEntrada;
 	private Date fecha;
-	private float precio;
+	private double precio;
 	private String tipo;
 	private String clienteNombre;
 	private boolean anticipada;
@@ -44,20 +44,17 @@ public class Entrada {
 	}
 
 
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-
 
 	public String getTipo() {
 		return tipo;
 	}
-
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -143,7 +140,7 @@ public class Entrada {
 	
 	public Double calcularPrecio(){ 
 		
-		Date fechaActual = new Date();
+		Date fechaActual = new Date(System.currentTimeMillis());
 				
 		double pBase,pNoche=0.0;
 		
@@ -151,11 +148,7 @@ public class Entrada {
 		pBase=calcularPrecioBase(); 
 		pNoche=nocheDao.getPrecioNocheById(noche.getIdNoche());
 		this.precioFinal = pBase + pNoche;
-//		List<Noche> noches = new ArrayList<Noche>();
-//		
-//		for (Noche noche : noches) {
-//			noche.equals(noche)
-//		}
+
 		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
 			{
 				this.precioFinal = precioFinal - 100;
@@ -166,7 +159,7 @@ public class Entrada {
 	}
 	
 	public Double calcularPrecioJubilados() {
-		Date fechaActual = new Date();
+		Date fechaActual = new Date(System.currentTimeMillis());
 		
 		
 		double pBase,pNoche=0.0;
@@ -186,7 +179,7 @@ public class Entrada {
 	}
 
 	public Double calcularPrecioMenores() {
-		Date fechaActual = new Date();
+		Date fechaActual = new Date(System.currentTimeMillis());
 		
 		
 		double pBase,pNoche=0.0;

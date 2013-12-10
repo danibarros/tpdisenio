@@ -8,7 +8,7 @@ public class Fila {
 	private int idFila;
 	private int numero;
 	private List<Butaca> butacas ;
-	private float precioFila;
+	private Double precioFila;
 	private Sector sector;
 	
 	public Fila(){
@@ -18,7 +18,7 @@ public class Fila {
 	public Fila(int numero, List<Butaca> butacas) {
 		this.numero = numero;
 		this.butacas = butacas;
-		this.setPrecioFila(numero);
+		this.setPrecioFila((double) numero);
 	}
 
 	public int getIdFila() {
@@ -29,7 +29,7 @@ public class Fila {
 		this.idFila = idFila;
 	}
 
-	public float getPrecioFila() {
+	public Double getPrecioFila() {
 		return this.precioFila;
 	}
 
@@ -57,7 +57,7 @@ public class Fila {
 		this.sector = sector;
 	}
 	
-	private void setPrecioFila(float precioFila) {
+	private void setPrecioFila(Double precioFila) {
 		this.precioFila = precioFila / numero;
 	}
 }

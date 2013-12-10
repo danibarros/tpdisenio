@@ -57,7 +57,8 @@ public class Controlador {
 	private Set<Banda> bandas;
 	private List<Noche> noches;
 	private List<Festival> festivales;
-	private Festival festivalSeleccionado;	
+	private Festival festivalSeleccionado;
+	
 	
 	public Controlador(JFrame frame){
 		this.frame = frame;
@@ -110,7 +111,7 @@ public class Controlador {
 	
 	public void elegirButaca(){
 		FestivalDAO fdao = new FestivalDAO();
-		festivalSeleccionado = fdao.getFestivalByName(festival);
+		festivalSeleccionado = fdao.getFestivalByName(festival);;
 		
 		for (Festival fest : fdao.getAllFestivales()) {
 			if(fest.getNombre().equals(festival.trim())){
@@ -136,7 +137,7 @@ public class Controlador {
 	public void vender(){
 		
     	VentanaInformarEntradasDecorator informator = new VentanaInformarEntradasDecorator(frame);
-    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festivalSeleccionado);
+    	compraAseptada = informator.informarEntradas(sectores, precio, nocheElegida,cantJubilados,cantMenores,cantMayores,festivalSeleccionado,apeYNom);
     	
 	}
 

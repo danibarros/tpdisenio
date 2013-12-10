@@ -7,7 +7,7 @@ public class Sector {
 
 	private int idSector;
 	private List<Fila> filas ;
-	private float precioSector;
+	private Double precioSector;
 	private String color;
 	
 	public Sector(){
@@ -32,16 +32,16 @@ public class Sector {
 	
 	public Sector(String color, List<Fila> filas, int precioSector) {
 		this.filas = filas;
-		this.precioSector = precioSector;
+		this.precioSector = (double) precioSector;
 		this.color = color;
 	}
 
-	public float getPrecioSector() {
+	public Double getPrecioSector() {
 
 		return this.precioSector;
 	}
 
-	public void setPrecioSector(float precioSector) {
+	public void setPrecioSector(Double precioSector) {
 		this.precioSector = precioSector;
 	}
 

@@ -95,7 +95,7 @@
 			<generator class="identity" />
 		</id>
 		<property name="color" column="sector_color" type="string" />
-		<property name="precioSector" column="precio_base" type="java.lang.Float" />
+		<property name="precioSector" column="precio_base" type="java.lang.Double" />
 		<list name="filas" table="filas" lazy="false" fetch="select">
 			<key column="Sectores_sector_id" />
 			<list-index column="fila_id" />
@@ -109,7 +109,7 @@
 			<generator class="identity" />
 		</id>
 		<property name="numero" column="fila_numero" type="java.lang.Integer" />
-		<property name="precioFila" column="precio_base" type="java.lang.Float" />
+		<property name="precioFila" column="precio_base" type="java.lang.Double" />
 		<list name="butacas" table="butacas" lazy="false" fetch="select">
 			<key column="Filas_fila_id" />
 			<list-index column="butaca_id" />
@@ -137,7 +137,7 @@
 		<many-to-one name="noche" class="edu.core.entities.Noche"
 			column="Noches_noche_id" lazy="false" fetch="select" />
 		<property name="codigoDeBarra" column="codigo_barra" type="java.lang.Integer" />
-		<property name="precio" column="entrada_precio" type="java.lang.Float" />
+		<property name="precioFinal" column="entrada_precio" type="java.lang.Double" />
 		<property name="fecha" column="entrada_fecha" type="java.sql.Date" />
 		<property name="tipo" column="entrada_tipo" type="string" />
 		<property name="clienteNombre" column="cliente_name" type="string" />
@@ -175,7 +175,7 @@
 			<column name="categoria_id" precision="5" scale="0" />
 			<generator class="identity" />
 		</id>
-		<property name="precio" column="categoria_precio" type="java.lang.Float" />
+		<property name="precio" column="categoria_precio" type="java.lang.Double" />
 	</class>
 
 </hibernate-mapping>
