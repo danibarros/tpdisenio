@@ -35,7 +35,7 @@ public class FestivalDAO extends GenericRepository<Festival, Integer>{
 	
 	public Festival getFestivalByName(String nombre){
 		
-		String hql = "from Festival where nombre = :festivalNombre ";
+		String hql = "from Festival where fest_nombre = :festivalNombre ";
 		Query query = session.createQuery(hql);
 		query.setString("festivalNombre", nombre);
 		Festival result = (Festival) query.list().get(0);

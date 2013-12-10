@@ -125,7 +125,6 @@
 			<generator class="identity" />
 		</id>
 		<property name="numero" column="butaca_numero" type="java.lang.Integer" />
-		<property name="disponible" column="disponible" type="java.lang.Boolean" />
 		<many-to-one name="fila" class="edu.core.entities.Fila"
 			column="Filas_fila_id" lazy="false" fetch="select"/>
 	</class>
@@ -133,7 +132,7 @@
 	<class name="edu.core.entities.Entrada" table="entradas">
 		<id name="numeroDeEntrada" type="java.lang.Integer">
 			<column name="entrada_id" precision="5" scale="0" />
-			<generator class="identity" />
+			<generator class="assigned" />
 		</id>
 		<many-to-one name="noche" class="edu.core.entities.Noche"
 			column="Noches_noche_id" lazy="false" fetch="select" />

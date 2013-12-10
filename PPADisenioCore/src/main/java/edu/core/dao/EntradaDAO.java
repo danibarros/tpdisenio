@@ -22,9 +22,21 @@ public class EntradaDAO extends GenericRepository<Entrada, Integer>{
 		return (Entrada) session.get(Entrada.class, id);
 	}
 	
+	public int getMaximo(){
+		String sql = "Select Max(entrada_id) "
+				+ " from ppa_disenio.entradas ";
+		Query query = session.createSQLQuery(sql);
+		int result;
+		if ((Integer) query.list().get(0) != null){
+			result = (Integer) query.list().get(0);
+		}else{
+			result = 0;
+		}
+		return result;
+	}
+	
 	public void reset(){
 		session.clear();
 	}
-	
 
 }
