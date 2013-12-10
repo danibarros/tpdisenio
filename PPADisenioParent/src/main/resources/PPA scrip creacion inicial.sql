@@ -201,87 +201,87 @@ values (0,0,'Lanu');
 		/* filas sector verde */
 		insert into ppa_disenio.filas values (0,0,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (0,0,1,true);
-			insert into ppa_disenio.butacas values (1,0,2,true);
-			insert into ppa_disenio.butacas values (2,0,3,true);
-			insert into ppa_disenio.butacas values (3,0,4,true);
-			insert into ppa_disenio.butacas values (4,0,5,true);
+			insert into ppa_disenio.butacas values (0,0,1);
+			insert into ppa_disenio.butacas values (1,0,2);
+			insert into ppa_disenio.butacas values (2,0,3);
+			insert into ppa_disenio.butacas values (3,0,4);
+			insert into ppa_disenio.butacas values (4,0,5);
 	insert into ppa_disenio.Sectores values (1,0,'Azul',60.0);
 		/* filas sector azul */
 		insert into ppa_disenio.filas values (1,1,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (5,1,1,true);
-			insert into ppa_disenio.butacas values (6,1,2,true);
-			insert into ppa_disenio.butacas values (7,1,3,true);
-			insert into ppa_disenio.butacas values (8,1,4,true);
-			insert into ppa_disenio.butacas values (9,1,5,true);
+			insert into ppa_disenio.butacas values (5,1,1);
+			insert into ppa_disenio.butacas values (6,1,2);
+			insert into ppa_disenio.butacas values (7,1,3);
+			insert into ppa_disenio.butacas values (8,1,4);
+			insert into ppa_disenio.butacas values (9,1,5);
 	insert into ppa_disenio.Sectores values (2,0,'Dorado',120.0);
 		/* filas sector dorado */
 		insert into ppa_disenio.filas values (2,2,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (10,2,1,true);
-			insert into ppa_disenio.butacas values (11,2,2,true);
-			insert into ppa_disenio.butacas values (12,2,3,true);
-			insert into ppa_disenio.butacas values (13,2,4,true);
-			insert into ppa_disenio.butacas values (14,2,5,true);
+			insert into ppa_disenio.butacas values (10,2,1);
+			insert into ppa_disenio.butacas values (11,2,2);
+			insert into ppa_disenio.butacas values (12,2,3);
+			insert into ppa_disenio.butacas values (13,2,4);
+			insert into ppa_disenio.butacas values (14,2,5);
 insert into ppa_disenio.estadios values (1,1,'River'); 
 	/* Sectores River */
 	insert into ppa_disenio.Sectores values (3,1,'Rojo',50.0);
 		/* filas sector rojo */
 		insert into ppa_disenio.filas values (3,3,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (15,3,1,true);
-			insert into ppa_disenio.butacas values (16,3,2,true);
-			insert into ppa_disenio.butacas values (17,3,3,true);
-			insert into ppa_disenio.butacas values (18,3,4,true);
-			insert into ppa_disenio.butacas values (19,3,5,true);
+			insert into ppa_disenio.butacas values (15,3,1);
+			insert into ppa_disenio.butacas values (16,3,2);
+			insert into ppa_disenio.butacas values (17,3,3);
+			insert into ppa_disenio.butacas values (18,3,4);
+			insert into ppa_disenio.butacas values (19,3,5);
 	insert into ppa_disenio.Sectores values (4,1,'Blanco',80.0);
 		/* filas sector blanco */
 		insert into ppa_disenio.filas values (4,4,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (20,4,1,true);
-			insert into ppa_disenio.butacas values (21,4,2,true);
-			insert into ppa_disenio.butacas values (22,4,3,true);
-			insert into ppa_disenio.butacas values (23,4,4,true);
-			insert into ppa_disenio.butacas values (24,4,5,true);
+			insert into ppa_disenio.butacas values (20,4,1);
+			insert into ppa_disenio.butacas values (21,4,2);
+			insert into ppa_disenio.butacas values (22,4,3);
+			insert into ppa_disenio.butacas values (23,4,4);
+			insert into ppa_disenio.butacas values (24,4,5);
 	insert into ppa_disenio.Sectores values (5,1,'Plateado',150.0);
 		/* filas sector plateado */
 		insert into ppa_disenio.filas values (5,5,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (25,5,1,true);
-			insert into ppa_disenio.butacas values (26,5,2,true);
-			insert into ppa_disenio.butacas values (27,5,3,true);
-			insert into ppa_disenio.butacas values (28,5,4,true);
-			insert into ppa_disenio.butacas values (29,5,5,true);
+			insert into ppa_disenio.butacas values (25,5,1);
+			insert into ppa_disenio.butacas values (26,5,2);
+			insert into ppa_disenio.butacas values (27,5,3);
+			insert into ppa_disenio.butacas values (28,5,4);
+			insert into ppa_disenio.butacas values (29,5,5);
 insert into ppa_disenio.estadios values (2,1,'Obras'); 
 	/* Sectores Obras */
 	insert into ppa_disenio.Sectores values (6,2,'Amarillo',60.0);
 		/* filas sector amarillo */
 		insert into ppa_disenio.filas values (6,6,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (30,6,1,true);
-			insert into ppa_disenio.butacas values (31,6,2,true);
-			insert into ppa_disenio.butacas values (32,6,3,true);
-			insert into ppa_disenio.butacas values (33,6,4,true);
-			insert into ppa_disenio.butacas values (34,6,5,true);
+			insert into ppa_disenio.butacas values (30,6,1);
+			insert into ppa_disenio.butacas values (31,6,2);
+			insert into ppa_disenio.butacas values (32,6,3);
+			insert into ppa_disenio.butacas values (33,6,4);
+			insert into ppa_disenio.butacas values (34,6,5);
 	insert into ppa_disenio.Sectores values (7,2,'Naranja',85.0);
 		/* filas sector naraja */
 		insert into ppa_disenio.filas values (7,7,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (35,7,1,true);
-			insert into ppa_disenio.butacas values (36,7,2,true);
-			insert into ppa_disenio.butacas values (37,7,3,true);
-			insert into ppa_disenio.butacas values (38,7,4,true);
-			insert into ppa_disenio.butacas values (39,7,5,true);
+			insert into ppa_disenio.butacas values (35,7,1);
+			insert into ppa_disenio.butacas values (36,7,2);
+			insert into ppa_disenio.butacas values (37,7,3);
+			insert into ppa_disenio.butacas values (38,7,4);
+			insert into ppa_disenio.butacas values (39,7,5);
 	insert into ppa_disenio.Sectores values (8,2,'Oro',170.0);
 		/* filas sector oro */
 		insert into ppa_disenio.filas values (8,8,0,30.0);
 			/* butacas */
-			insert into ppa_disenio.butacas values (40,8,1,true);
-			insert into ppa_disenio.butacas values (41,8,2,true);
-			insert into ppa_disenio.butacas values (42,8,3,true);
-			insert into ppa_disenio.butacas values (43,8,4,true);
-			insert into ppa_disenio.butacas values (44,8,5,true);
+			insert into ppa_disenio.butacas values (40,8,1);
+			insert into ppa_disenio.butacas values (41,8,2);
+			insert into ppa_disenio.butacas values (42,8,3);
+			insert into ppa_disenio.butacas values (43,8,4);
+			insert into ppa_disenio.butacas values (44,8,5);
 
 /* categorias */
 insert into ppa_disenio.categorias values (0,0);
@@ -316,7 +316,7 @@ insert into ppa_disenio.banda_noche values (2,1,6,0);
 /* vendedores */
 insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',0);
 insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',0);
-insert into ppa_diseniosectores.vendedores values (2,'Ger','gerb','bugaboo',0);
+insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',0);
 insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',0);
 insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',0);
 
@@ -325,6 +325,3 @@ insert into ppa_disenio.organizadores values (1,'Dani','danib','bugaboo',0);
 insert into ppa_disenio.organizadores values (2,'Ger','gerb','bugaboo',0);
 insert into ppa_disenio.organizadores values (3,'Emi','emic','bugaboo',0);
 insert into ppa_disenio.organizadores values (4,'Nacho','nachov','bugaboo',0);
-
-select * from festival;
-select * from noches;
