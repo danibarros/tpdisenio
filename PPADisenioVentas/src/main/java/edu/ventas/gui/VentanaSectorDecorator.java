@@ -21,6 +21,7 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 	JPanel panel;
 
 	List<Butaca> seleccionados = new ArrayList<Butaca>();
+	List<Integer> compradas = new ArrayList<Integer>();
 	List<Sector> sectores;
 	List<Fila> filas;
 	private int maximoSeleccionado;
@@ -28,11 +29,12 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 			"src/main/resources/ButacaOcupada.png"));
 
 	public void dibujarSector(JFrame frame, String sector, Estadio estadio,
-			List<Butaca> butacasSeleccionadas, int maximoSeleccionado) {
+			List<Butaca> butacasSeleccionadas,List<Integer> butacasCompradas, int maximoSeleccionado) {
 
 		this.maximoSeleccionado = maximoSeleccionado;
 		sectores = estadio.getSectores();
 		seleccionados = butacasSeleccionadas;
+		compradas=butacasCompradas;
 		Sector sectorEncontrado = null;
 		for (Sector sector2 : sectores) {
 			if (sector2 != null && sector2.getColor().equals(sector)) {
@@ -73,26 +75,42 @@ public class VentanaSectorDecorator implements VentanaDecoratorInterface,
 		JPanel panelFila = new JPanel();
 		for (Butaca butaca : butacas) {
 			if (butaca != null) {
-				if (!seleccionados.isEmpty() && seleccionados.contains(butaca)) {
+				if(compradas.contains(butaca.getIdButaca()))
+				{
 					cutbutton = new JButton(new ImageIcon(
 							"src/main/resources/ButacaOcupada.png"));
 					cutbutton.setName(String.valueOf(butaca.getNumero()));
-					cutbutton.addActionListener(this);
-					cutbutton.setBackground(Color.RED);
+					
+					cutbutton.setBackground(Color.WHITE);
 					ImageIcon press = new ImageIcon(
 							"src/main/resources/ButacaOcupada.png");
 					cutbutton.setPressedIcon(press);
+					cutbutton.setEnabled(false);
 					panelFila.add(cutbutton);
-				} else {
-					cutbutton = new JButton(new ImageIcon(
-							"src/main/resources/ButacaOcupada.png"));
-					cutbutton.setName(String.valueOf(butaca.getNumero()));
-					cutbutton.addActionListener(this);
-					cutbutton.setBackground(Color.BLUE);
-					ImageIcon press = new ImageIcon(
-							"src/main/resources/ButacaOcupada.png");
-					cutbutton.setPressedIcon(press);
-					panelFila.add(cutbutton);
+				}
+				else
+				{
+					if (!seleccionados.isEmpty() && seleccionados.contains(butaca)) {
+						cutbutton = new JButton(new ImageIcon(
+								"src/main/resources/ButacaOcupada.png"));
+						cutbutton.setName(String.valueOf(butaca.getNumero()));
+						cutbutton.addActionListener(this);
+						cutbutton.setBackground(Color.RED);
+						ImageIcon press = new ImageIcon(
+								"src/main/resources/ButacaOcupada.png");
+						cutbutton.setPressedIcon(press);
+						panelFila.add(cutbutton);
+					} else {
+						cutbutton = new JButton(new ImageIcon(
+								"src/main/resources/ButacaOcupada.png"));
+						cutbutton.setName(String.valueOf(butaca.getNumero()));
+						cutbutton.addActionListener(this);
+						cutbutton.setBackground(Color.BLUE);
+						ImageIcon press = new ImageIcon(
+								"src/main/resources/ButacaOcupada.png");
+						cutbutton.setPressedIcon(press);
+						panelFila.add(cutbutton);
+					}
 				}
 			}
 		}

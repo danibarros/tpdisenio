@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 import org.jboss.logging.MessageBundle;
 
+import edu.core.dao.EntradaDAO;
 import edu.core.entities.Butaca;
 import edu.core.entities.Estadio;
 import edu.core.entities.Fila;
@@ -34,11 +35,13 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 	private Noche noche;
 	private String sector;
 	private int cantidadButacas;
+	private List<Integer> butacasCompradas;
 	VentanaSectorDecorator ventanaSector = new VentanaSectorDecorator();
 	JFrame frame;
 	JPanel panel;
 	private boolean pause = true;
 	Map<String, List<Butaca>> sectores = new HashMap<String, List<Butaca>>();
+	EntradaDAO entradaDAO = new EntradaDAO();
 
 	public VentanaConButacasDecorator(Estadio estadio, Noche nocheElegida,
 			JFrame frame, int cantidadButacas) {
@@ -46,6 +49,7 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 		this.noche = nocheElegida;
 		this.frame = frame;
 		this.cantidadButacas = cantidadButacas;
+		butacasCompradas = entradaDAO.getAllButacas(noche.getIdNoche());
 	}
 
 	@Override
@@ -135,8 +139,9 @@ public class VentanaConButacasDecorator implements VentanaDecoratorInterface,
 			if (cb.getName().equalsIgnoreCase("cmbSectores")) {
 				String newSelection = (String) cb.getSelectedItem();
 				sector = newSelection;
+				
 				ventanaSector.dibujarSector(frame, sector, estadio,
-						ventanaSector.seleccionados, cantidadButacas);
+						ventanaSector.seleccionados,butacasCompradas, cantidadButacas);
 				agregarSeleccionados(ventanaSector.seleccionados, sector);
 			}
 			break;
