@@ -3,6 +3,7 @@ package edu.core.entities;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import java.lang.Double;
 
 import edu.core.dao.ButacaDAO;
 import edu.core.dao.NocheDAO;
@@ -14,7 +15,7 @@ public class Entrada {
 	private Noche noche;
 	private int numeroDeEntrada;
 	private Date fecha;
-	private double precio;
+	private Double precio;
 	private String tipo;
 	private String clienteNombre;
 	private boolean anticipada;
@@ -155,7 +156,7 @@ public class Entrada {
 				setAnticipada(true);
 			
 			}
-		return precioFinal;
+		return Math.floor(precioFinal * 100) / 100;
 	}
 	
 	public Double calcularPrecioJubilados() {
@@ -170,11 +171,12 @@ public class Entrada {
 		System.out.println("PRECIO BASE: "+pBase);
 		pNoche=nocheDao.getPrecioNocheById(noche.getIdNoche());
 		System.out.println("PRECIO NOCHE: "+pNoche);
-		this.precioFinal = pBase + pNoche - (pBase / 15);
+		this.precioFinal = Math.floor((pBase + pNoche - (pBase / 15)) * 100) / 100;
+		
 			
 		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
 			this.precioFinal = precioFinal - 100; 
-		return precioFinal;
+		return Math.floor(precioFinal * 100) / 100;
 		
 	}
 
@@ -192,7 +194,7 @@ public class Entrada {
 			
 		if (noche.getHoraInicio().getTime()- fechaActual.getTime() > 30 / (24 * 60 * 60 * 1000))
 			this.precioFinal = precioFinal - 100; 
-		return precioFinal;
+		return Math.floor(precioFinal * 100) / 100;
 		
 	}
 	

@@ -109,7 +109,7 @@
 			<generator class="identity" />
 		</id>
 		<property name="numero" column="fila_numero" type="java.lang.Integer" />
-		<property name="precioFila" column="precio_base" type="java.lang.Double" />
+		<!-- <property name="precioFila" column="precio_base" type="java.lang.Double" /> -->
 		<list name="butacas" table="butacas" lazy="false" fetch="select">
 			<key column="Filas_fila_id" />
 			<list-index column="butaca_id" />
@@ -137,7 +137,7 @@
 		<many-to-one name="noche" class="edu.core.entities.Noche"
 			column="Noches_noche_id" lazy="false" fetch="select" />
 		<property name="codigoDeBarra" column="codigo_barra" type="java.lang.Integer" />
-		<property name="precioFinal" column="entrada_precio" type="java.lang.Double" />
+		<property name="precioFinal" column="entrada_precio" type="java.lang.Double" /> 
 		<property name="fecha" column="entrada_fecha" type="java.sql.Date" />
 		<property name="tipo" column="entrada_tipo" type="string" />
 		<property name="clienteNombre" column="cliente_name" type="string" />

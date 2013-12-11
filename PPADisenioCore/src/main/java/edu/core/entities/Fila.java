@@ -2,13 +2,14 @@ package edu.core.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Double;
 
 public class Fila {
 
 	private int idFila;
 	private int numero;
 	private List<Butaca> butacas ;
-	private Double precioFila;
+	private double precioFila;
 	private Sector sector;
 	
 	public Fila(){
@@ -58,6 +59,8 @@ public class Fila {
 	}
 	
 	private void setPrecioFila(Double precioFila) {
-		this.precioFila = precioFila / numero;
+		this.precioFila = Math.floor((precioFila / numero) * 100) / 100;
+		
+		
 	}
 }
