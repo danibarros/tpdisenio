@@ -8,7 +8,7 @@ CREATE TABLE ppa_disenio.Paises (
 
 CREATE TABLE ppa_disenio.Categorias (
     categoria_id INTEGER UNSIGNED NOT NULL ,
-    categoria_precio DOUBLE NOT NULL,
+    categoria_precio DOUBLE(9,2) NOT NULL,
     PRIMARY KEY (categoria_id)
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE ppa_disenio.Sectores (
     sector_id INTEGER UNSIGNED NOT NULL ,
     Estadios_estadio_id INTEGER UNSIGNED NOT NULL,
     sector_color VARCHAR(20) NOT NULL,
-    precio_base DOUBLE NOT NULL,
+    precio_base DOUBLE(9,2) NOT NULL,
     PRIMARY KEY (sector_id),
     INDEX Sectores_FKIndex1 (Estadios_estadio_id),
     FOREIGN KEY (Estadios_estadio_id)
@@ -97,7 +97,7 @@ CREATE TABLE ppa_disenio.Filas (
     fila_id INTEGER UNSIGNED NOT NULL ,
     Sectores_sector_id INTEGER UNSIGNED NOT NULL,
     fila_numero INTEGER UNSIGNED NOT NULL,
-    precio_base DOUBLE NOT NULL,
+    precio_base DOUBLE(9,2) NOT NULL,
     PRIMARY KEY (fila_id),
     INDEX Filas_FKIndex1 (Sectores_sector_id),
     FOREIGN KEY (Sectores_sector_id)
@@ -147,7 +147,7 @@ CREATE TABLE ppa_disenio.Entradas (
     Noches_noche_id INTEGER UNSIGNED NOT NULL,
     codigo_barra INTEGER UNSIGNED NOT NULL,
     entrada_fecha DATE NOT NULL,
-    entrada_precio DOUBLE NOT NULL,
+    entrada_precio DOUBLE(9,2),
     cliente_name VARCHAR(50) NOT NULL,
     entrada_anticipada BOOL NULL,
     PRIMARY KEY (entrada_id),
@@ -316,7 +316,7 @@ insert into ppa_disenio.banda_noche values (2,1,6,0);
 /* vendedores */
 insert into ppa_disenio.vendedores values (0,'Diego','diegob','bugaboo',0);
 insert into ppa_disenio.vendedores values (1,'Dani','danib','bugaboo',0);
-insert into ppa_diseniosectores.vendedores values (2,'Ger','gerb','bugaboo',0);
+insert into ppa_disenio.vendedores values (2,'Ger','gerb','bugaboo',0);
 insert into ppa_disenio.vendedores values (3,'Emi','emic','bugaboo',0);
 insert into ppa_disenio.vendedores values (4,'Nacho','nachov','bugaboo',0);
 
@@ -325,6 +325,3 @@ insert into ppa_disenio.organizadores values (1,'Dani','danib','bugaboo',0);
 insert into ppa_disenio.organizadores values (2,'Ger','gerb','bugaboo',0);
 insert into ppa_disenio.organizadores values (3,'Emi','emic','bugaboo',0);
 insert into ppa_disenio.organizadores values (4,'Nacho','nachov','bugaboo',0);
-
-select * from festival;
-select * from noches;
