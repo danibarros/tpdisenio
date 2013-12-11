@@ -83,18 +83,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 			chkcmbBandas.addSelectedItems(objects);
 		}
 
-//		if (noche.getEstadio() != null) {
-//			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
-//		}
-//
-//		listaEstadios = new ArrayList<Estadio>(totalEstadios);
-//
-//		for (Estadio estadio : totalEstadios) {
-//			cmbEstadios.addItem(estadio.getNombre());
-//		}
-//		if (noche.getEstadio() != null) {
-//			cmbEstadios.setSelectedItem(noche.getEstadio().getNombre());
-//		}
+
 
 		List<Banda> bandasEncontradas = new ArrayList<Banda>();
 		if (chkcmbBandas.getSelectedItems() != null) {
@@ -105,18 +94,18 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		}
 		noche.setBandas(bandasEncontradas);
 		
-//		if (cmbEstadios.getSelectedItem() != null) {
-//			noche.setEstadio(listaEstadios.get(cmbEstadios.getSelectedIndex()));
-//		}
+
 
 		grid.setSize(500, 500);
 		grid.setBackground(c);
-
+		grid.add(lblHoraInicio);
+		grid.add(spinner);
+		panel.add(grid);
 		chkcmbBandas.setName("cmbBandas");
 		chkcmbBandas.addActionListener(this);
 		grid.add(lblBandas);
 		grid.add(chkcmbBandas);
-		grid.add(lblHoraInicio);
+		
 
 		SpinnerDateModel model = new SpinnerDateModel();
 		model.setCalendarField(Calendar.MINUTE);
@@ -124,8 +113,7 @@ public class VentanaNocheDecorator implements VentanaDecoratorInterface,
 		spinner.setModel(model);
 		spinner.setEditor(new JSpinner.DateEditor(spinner, "h:mm"));
 		
-		grid.add(spinner);
-		panel.add(grid);
+		
 		panel.setSize(500,500);
 
 		frame.add(panel, BorderLayout.CENTER);
