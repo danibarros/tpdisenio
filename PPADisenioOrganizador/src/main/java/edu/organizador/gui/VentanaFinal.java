@@ -39,7 +39,7 @@ public class VentanaFinal implements VentanaDecoratorInterface{
 		
 		for (Noche noche : noches) {
 			panel.add(new JLabel("Noche : "));
-			panel.add(new JLabel(String.valueOf(noche.getNumero())));
+			panel.add(new JLabel(String.valueOf(noche.getNumero()+1)));
 			panel.add(new JLabel("Fecha :"));
 			panel.add(new JLabel(String.valueOf(noche.getFecha())));
 			panel.add(new JLabel("Hora inicio :"));

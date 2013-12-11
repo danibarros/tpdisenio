@@ -53,7 +53,7 @@ public class VentanaConNochesDecorator implements VentanaDecoratorInterface,
 			noche.setNumero(i++);
 			Time time = new Time(cal.getTime().getHours(), cal.getTime().getMinutes(), cal.getTime().getSeconds());
 			noche.setHoraInicio(time);
-			comboNoches.addItem(String.valueOf(noche.getNumero()));	
+			comboNoches.addItem(String.valueOf(noche.getNumero()+1));	
 			nocheRequest.setNoche(noche);
 			noches.add(nocheRequest);
 		}
