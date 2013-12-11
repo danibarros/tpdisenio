@@ -39,4 +39,12 @@ public class EntradaDAO extends GenericRepository<Entrada, Integer>{
 		session.clear();
 	}
 
+	public List<Integer> getAllButacas(int idNoche) {
+		String hql = "select butaca_id from entradas  where butaca_id is not null and Noches_noche_id = :noche_id";
+		Query query = session.createSQLQuery(hql);
+		query.setInteger("noche_id", idNoche);
+		List<Integer> result = (List<Integer>) query.list();
+		return result;
+	}
+
 }

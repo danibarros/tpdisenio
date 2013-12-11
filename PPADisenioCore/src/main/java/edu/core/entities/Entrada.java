@@ -22,6 +22,7 @@ public class Entrada {
 	private double precioFinal;
 	private NocheDAO nocheDao;
 	
+	
 	public boolean isAnticipada() {
 		return anticipada;
 	}
@@ -209,7 +210,7 @@ public class Entrada {
 		}
 		else if (base >50)
 		{
-			descuento=100.0;
+			descuento=10.0;
 		}
 		else
 		{

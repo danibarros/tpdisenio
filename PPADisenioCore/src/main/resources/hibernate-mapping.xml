@@ -141,6 +141,8 @@
 		<property name="fecha" column="entrada_fecha" type="java.sql.Date" />
 		<property name="tipo" column="entrada_tipo" type="string" />
 		<property name="clienteNombre" column="cliente_name" type="string" />
+		<many-to-one name="butaca" class="edu.core.entities.Butaca"
+		column="butaca_id" />
 		
 		<property name="anticipada" column="entrada_anticipada" type="java.lang.Boolean" />
 	</class>
